@@ -1,0 +1,8 @@
+.pnp.*
+.yarn/*
+.yarn/cache
+.yarn/sdks
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions

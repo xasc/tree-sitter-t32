@@ -1,0 +1,17 @@
+{
+  "name": "tree-sitter-t32",
+  "packageManager": "yarn@3.2.3",
+  "private": true,
+  "scripts": {
+    "build": "tree-sitter generate",
+    "parse": "tree-sitter parse",
+    "test": "tree-sitter test"
+  },
+  "dependencies": {
+    "nan": "^2.16.0"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.20.7"
+  },
+  "main": "bindings/node"
+}
