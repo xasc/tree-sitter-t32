@@ -8,8 +8,7 @@
 
 
 enum TokenType {
-	IDENTIFIER,
-	LABEL_IDENTIFIER
+	LABEL_IDENTIFIER,
 };
 
 
@@ -103,14 +102,6 @@ bool tree_sitter_t32_external_scanner_scan(
 				lexer->result_symbol = LABEL_IDENTIFIER;
 				return true;
 			}
-		}
-	}
-	else if (valid_symbols[IDENTIFIER]) {
-		if (IsAlpha(lexer->lookahead) || lexer->lookahead == '_') {
-			ConsumeIdentifier(lexer);
-
-			lexer->result_symbol = IDENTIFIER;
-			return true;
 		}
 	}
 	return false;

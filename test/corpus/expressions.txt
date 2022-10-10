@@ -31,3 +31,61 @@ abc:
 (script
   (label
     (identifier)))
+
+==================
+IF block statements
+==================
+
+IF &a
+  STOP
+
+IF &b
+  STOP
+ELSE
+  CONTinue
+
+IF &c
+  continue
+ELSE IF &d
+  stop
+
+IF &d
+  CONTinue
+ELSE IF &e
+  CONT
+ELSE IF &f
+  stop
+ELSE
+  cont
+
+---
+
+(script
+  (if_block
+    (identifier)
+    (command))
+  (if_block
+    (identifier)
+    (command)
+    (else_block
+      (command)))
+  (if_block
+    (identifier)
+    (command)
+    (else_block
+      (if_block
+        (identifier)
+        (command))))
+  (if_block
+    (identifier)
+    (command)
+    (else_block
+      (if_block
+        (identifier)
+        (command)))
+    (else_block
+      (if_block
+        (identifier)
+        (command)))
+    (else_block
+        (command))))
