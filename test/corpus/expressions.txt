@@ -145,3 +145,72 @@ ELSE
         (command)
         (else_block
           (command))))))
+
+
+==================
+WHILE block statements
+==================
+
+WHILE &a
+  Step
+
+---
+
+(script
+  (while_block
+    (identifier)
+    (command)))
+
+==================
+WHILE block statements with parentheses
+==================
+
+WHILE &a
+(
+  Step
+  Break
+)
+
+---
+
+(script
+  (while_block
+    (identifier)
+    (command)
+    (command)))
+
+==================
+RePeaT block statements
+==================
+
+RePeaT 10. STOP
+
+REPEAT 10.
+(
+  cont
+)
+
+RPT
+(
+  b
+)
+
+rpt
+(
+  s
+)
+WHILE &a
+---
+
+(script
+  (repeat_block
+    (integer)
+    (command))
+  (repeat_block
+    (integer)
+    (command))
+  (repeat_block
+    (command))
+  (repeat_block
+    (command)
+    (identifier)))

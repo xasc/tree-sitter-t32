@@ -24,7 +24,7 @@ module.exports = grammar({
       $._newline
     ),
 
-    _block: $ => seq(
+    _block: $ => prec.right(seq(
       seq(
         '(',
         $._newline
@@ -32,14 +32,15 @@ module.exports = grammar({
       repeat($._statement),
       seq(
         ')',
-        $._newline
+        optional($._newline)
       ),
-    ),
+    )),
 
     _statement: $ => seq(
       choice(
         $.macro_declaration,
         $.if_block,
+        $.repeat_block,
         $.while_block,
         $._expression,
         $.command,
@@ -48,7 +49,7 @@ module.exports = grammar({
 
     if_block: $ => prec.right(seq(
       caseInsensitiveAndShort('IF'),
-      $._expression,
+      field('condition', $._expression),
       $._newline,
       choice(
         $._statement,
@@ -73,13 +74,34 @@ module.exports = grammar({
 
     while_block: $ => seq(
       caseInsensitiveAndShort('WHILE'),
-      $._expression,
+      field('condition', $._expression),
       $._newline,
       choice(
         $._statement,
         $._block
       ),
     ),
+
+    repeat_block: $ => prec.right(seq(
+      caseInsensitiveAndShort('RePeaT'),
+      choice(
+        seq(
+          $.integer,
+          $.command
+        ),
+        seq(
+          optional($.integer),
+          $._newline,
+          $._block
+        ),
+        seq(
+          $._newline,
+          $._block,
+          caseInsensitiveAndShort('WHILE'),
+          field('condition', $._expression),
+        ),
+      )
+    )),
 
     _expression: $ => choice(
       $._macro
@@ -112,6 +134,8 @@ module.exports = grammar({
       token(prec(PREC.command, /[a-zA-Z]+/)),
       $._newline
     ),
+
+    integer: $ => /[0-9]+\.?/,
 
     identifier: $ => /[a-zA-Z]\w*/,
 
