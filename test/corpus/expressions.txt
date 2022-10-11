@@ -82,10 +82,66 @@ ELSE
     (else_block
       (if_block
         (identifier)
-        (command)))
+        (command)
+        (else_block
+          (if_block
+            (identifier)
+            (command)
+            (else_block
+                (command))))))))
+
+==================
+Nested IF block statements
+==================
+
+IF &a
+  IF &b
+    stop
+  ELSE
+    IF &c
+    (
+      continue
+    )
+
+---
+
+(script
+  (if_block
+    (identifier)
+    (if_block
+      (identifier)
+      (command)
+      (else_block
+        (if_block
+          (identifier)
+          (command))))))
+
+==================
+IF block statements with parentheses
+==================
+
+IF &a
+(
+  STOP
+)
+ELSE IF &b
+(
+  CONTINUE
+)
+ELSE
+(
+  BREAK
+)
+
+---
+
+(script
+  (if_block
+    (identifier)
+    (command)
     (else_block
       (if_block
         (identifier)
-        (command)))
-    (else_block
-        (command))))
+        (command)
+        (else_block
+          (command))))))

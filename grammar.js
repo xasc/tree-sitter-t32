@@ -1,6 +1,5 @@
 const PREC = {
   command: -1,
-  else_block: 10,
 }
 
 
@@ -20,31 +19,54 @@ module.exports = grammar({
 
     _top_level: $ => choice(
       $.label,
+      $._statement,
       $._block,
       $._newline
     ),
 
-    _block: $ => choice(
-      $.macro_declaration,
-      $.if_block,
-      alias($._flow_command, $.command),
-      $._expression,
-      $.command,
+    _block: $ => seq(
+      seq(
+        '(',
+        $._newline
+      ),
+      repeat($._statement),
+      seq(
+        ')',
+        $._newline
+      ),
     ),
 
-    if_block: $ => prec.left(seq(
+    _statement: $ => seq(
+      choice(
+        $.macro_declaration,
+        $.if_block,
+        $._expression,
+        $.command,
+      )
+    ),
+
+    if_block: $ => prec.right(seq(
       choice('IF', 'if'),
       $._expression,
       $._newline,
-      $._block,
+      choice(
+        $._statement,
+        $._block
+      ),
       repeat($.else_block)
     )),
 
     else_block: $ => seq(
-      token(prec(PREC.else_block, choice('ELSE', 'else'))),
+      choice('ELSE', 'else'),
       choice(
         $.if_block,
-        seq($._newline, $._block)
+        seq(
+          $._newline,
+          choice(
+            $._statement,
+            $._block
+          ),
+        )
       )
     ),
 
@@ -70,14 +92,9 @@ module.exports = grammar({
     ),
 
     _declaration_command: $ => choice(
-      'GLOBAL', 'global',
-      'LOCAL', 'local',
-      'PRIVATE', 'private'
-    ),
-
-    _flow_command: $ => choice(
-      'STOP', 'stop',
-      'CONTinue', 'continue', 'CONT', 'cont',
+      caseInsensitive('GLOBAL'),
+      caseInsensitive('LOCAL'),
+      caseInsensitive('PRIVATE')
     ),
 
     command: $ => seq(
@@ -89,4 +106,15 @@ module.exports = grammar({
 
     _newline: $ => /[\r\n]+/,
   }
-});
+})
+
+
+function caseInsensitive (keyword, aliasAsWord = true) {
+  let result = new RegExp(keyword
+    .split('')
+    .map(l => l !== l.toLowerCase() ? `[${l}${l.toLowerCase()}]` : l)
+    .join('')
+  )
+  if (aliasAsWord) result = alias(result, keyword)
+  return result
+}
