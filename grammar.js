@@ -40,13 +40,14 @@ module.exports = grammar({
       choice(
         $.macro_declaration,
         $.if_block,
+        $.while_block,
         $._expression,
         $.command,
       )
     ),
 
     if_block: $ => prec.right(seq(
-      choice('IF', 'if'),
+      caseInsensitiveAndShort('IF'),
       $._expression,
       $._newline,
       choice(
@@ -57,7 +58,7 @@ module.exports = grammar({
     )),
 
     else_block: $ => seq(
-      choice('ELSE', 'else'),
+      caseInsensitiveAndShort('ELSE'),
       choice(
         $.if_block,
         seq(
@@ -68,6 +69,16 @@ module.exports = grammar({
           ),
         )
       )
+    ),
+
+    while_block: $ => seq(
+      caseInsensitiveAndShort('WHILE'),
+      $._expression,
+      $._newline,
+      choice(
+        $._statement,
+        $._block
+      ),
     ),
 
     _expression: $ => choice(
@@ -92,9 +103,9 @@ module.exports = grammar({
     ),
 
     _declaration_command: $ => choice(
-      caseInsensitive('GLOBAL'),
-      caseInsensitive('LOCAL'),
-      caseInsensitive('PRIVATE')
+      caseInsensitiveAndShort('GLOBAL'),
+      caseInsensitiveAndShort('LOCAL'),
+      caseInsensitiveAndShort('PRIVATE')
     ),
 
     command: $ => seq(
@@ -109,12 +120,33 @@ module.exports = grammar({
 })
 
 
-function caseInsensitive (keyword, aliasAsWord = true) {
-  let result = new RegExp(keyword
+function concatRegexp(reg, exp) {
+  let flags = reg.flags + exp.flags;
+  flags = Array.from(new Set(flags.split(''))).join();
+  return new RegExp(reg.source + exp.source, flags);
+}
+
+
+function caseInsensitiveAndShort(keyword, aliasAsWord = true) {
+  // Capture short form: RePeaT -> [rR][pP][tT]
+  const short = new RegExp(keyword
     .split('')
-    .map(l => l !== l.toLowerCase() ? `[${l}${l.toLowerCase()}]` : l)
+    .map(l => l === l.toUpperCase() ? `[${l.toLowerCase()}${l}]` : '')
     .join('')
   )
-  if (aliasAsWord) result = alias(result, keyword)
+
+  const combinator = new RegExp('|')
+
+  // Capture long form: RePeaT -> [rR][eE][pP][eE][aA][tT]
+  const long = new RegExp(keyword
+    .split('')
+    .map(l => `[${l.toLowerCase()}${l.toUpperCase()}]`)
+    .join('')
+  )
+
+  let result = concatRegexp(concatRegexp(short, combinator), long)
+  if (aliasAsWord) {
+    result = alias(result, keyword)
+  }
   return result
 }
