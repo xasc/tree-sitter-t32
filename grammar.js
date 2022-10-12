@@ -144,31 +144,22 @@ module.exports = grammar({
 })
 
 
-function concatRegexp(reg, exp) {
-  let flags = reg.flags + exp.flags;
-  flags = Array.from(new Set(flags.split(''))).join();
-  return new RegExp(reg.source + exp.source, flags);
-}
-
-
 function caseInsensitiveAndShort(keyword, aliasAsWord = true) {
-  // Capture short form: RePeaT -> [rR][pP][tT]
-  const short = new RegExp(keyword
-    .split('')
-    .map(l => l === l.toUpperCase() ? `[${l.toLowerCase()}${l}]` : '')
-    .join('')
+  let result = new RegExp(
+    [
+      // Capture short form: RePeaT -> [rR][pP][tT]
+      keyword
+        .split('')
+        .map(l => l === l.toUpperCase() ? `[${l.toLowerCase()}${l}]` : '')
+        .join(''),
+      // Capture long form: RePeaT -> [rR][eE][pP][eE][aA][tT]
+      keyword
+        .split('')
+        .map(l => `[${l.toLowerCase()}${l.toUpperCase()}]`)
+        .join('')
+    ].join('|')
   )
 
-  const combinator = new RegExp('|')
-
-  // Capture long form: RePeaT -> [rR][eE][pP][eE][aA][tT]
-  const long = new RegExp(keyword
-    .split('')
-    .map(l => `[${l.toLowerCase()}${l.toUpperCase()}]`)
-    .join('')
-  )
-
-  let result = concatRegexp(concatRegexp(short, combinator), long)
   if (aliasAsWord) {
     result = alias(result, keyword)
   }
