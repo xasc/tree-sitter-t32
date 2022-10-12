@@ -135,7 +135,18 @@ module.exports = grammar({
       $._newline
     ),
 
-    integer: $ => /[0-9]+\.?/,
+    integer: $ => choice(
+      /0y[0-9]+/,    // binary
+      /[0-9]+\.?/,   // decimal
+      /0x[0-9a-fA-F]+/, // hexadecimal
+    ),
+
+    bitmask: $ => choice(
+      /0y[0-9xX]+/,    // bitmask
+      /0x[0-9a-fA-FxX]+/, // hexmask
+    ),
+
+    time: $ => /[0-9]+(\.[0-9]+)?[mnu]?s/,
 
     identifier: $ => /[a-zA-Z]\w*/,
 
