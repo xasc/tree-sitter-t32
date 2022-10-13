@@ -1,26 +1,4 @@
 ==================
-Macro definitions
-==================
-
-GLOBAL &Macroname
-
-LOCAL &GLOBAL
-
-PRIVATE &msg1 &(started) &line_counT
-
----
-
-(script
-  (macro_declaration
-    (identifier))
-  (macro_declaration
-    (identifier))
-  (macro_declaration
-    (identifier)
-    (identifier)
-    (identifier)))
-
-==================
 Labels
 ==================
 
@@ -185,7 +163,7 @@ RePeaT block statements
 
 RePeaT 10. STOP
 
-REPEAT 10.
+REPEAT 0xaAfF09
 (
   cont
 )
@@ -200,6 +178,7 @@ rpt
   s
 )
 WHILE &a
+
 ---
 
 (script
@@ -214,3 +193,158 @@ WHILE &a
   (repeat_block
     (command)
     (identifier)))
+
+==================
+ON PRACTICE event control
+==================
+
+ON ALWAYS inherit
+ON ERROR CONTinue
+ON stoP Default
+ON CMD step DO ~/./run?.*mm
+ON TIME 1ns GOSUB label
+
+ON TIME 2.0s GOTO
+(
+  break
+)
+
+ON TIME 2.0ms JUMPTO l1
+ON TIME 2.0us default
+
+---
+
+(script
+  (on_event_control)
+  (on_event_control)
+  (on_event_control)
+  (on_event_control
+    (command)
+    (literal))
+  (on_event_control
+    (literal)
+    (identifier))
+  (on_event_control
+    (literal)
+    (command))
+  (on_event_control
+    (literal)
+    (identifier))
+  (on_event_control
+    (literal)))
+
+==================
+ON device event control
+==================
+
+ON ABREAK DEFault
+ON CORESWITCH DEFault
+ON GO DEFault
+ON PBREAK DEFault
+ON POWERDOWN DEFault
+ON POWERUP DEFault
+ON RESET DEFault
+ON SYSDOWN DEFault
+ON SYSUP DEFault
+ON TRIGGER DEFault
+
+ON PBREAKAT P:3:::42:0xfff8000 DEFault
+
+ON OBREAK DEFault
+ON ATRIGGER DEFault
+ON OTRIGGER DEFault
+ON CATRIGGER DEFault
+
+---
+
+(script
+  (on_event_control)
+  (on_event_control)
+  (on_event_control)
+  (on_event_control)
+  (on_event_control)
+  (on_event_control)
+  (on_event_control)
+  (on_event_control)
+  (on_event_control)
+  (on_event_control)
+  (on_event_control
+    (literal))
+  (on_event_control)
+  (on_event_control)
+  (on_event_control)
+  (on_event_control))
+
+==================
+GLOBALON PRACTICE event control
+==================
+
+GLOBALON ALWAYS DO "file.cmm"
+GLOBALON ERROR DO test.cmm
+GLOBALON STOP DO a/b/c.cmm
+GLOBALON CMD step DO run.cmm
+GLOBALON TIME 10.0ns DO rest.cmm
+GLOBALON CMD print EXEcute continue
+
+---
+
+(script
+  (globalon_event_control
+    (literal))
+  (globalon_event_control
+    (literal))
+  (globalon_event_control
+    (literal))
+  (globalon_event_control
+    (command)
+    (literal))
+  (globalon_event_control
+    (literal)
+    (literal))
+  (globalon_event_control
+    (command)
+    (command)))
+
+==================
+GLOBALON device event control
+==================
+
+GLOBALON ABREAK DO run.cmm
+GLOBALON CORESWITCH DO run.cmm
+GLOBALON GO DO run.cmm
+GLOBALON PBREAK DO run.cmm
+GLOBALON POWERDOWN DO run.cmm
+GLOBALON POWERUP DO run.cmm
+GLOBALON RESET DO run.cmm
+GLOBALON SYSDOWN DO run.cmm
+GLOBALON SYSUP DO run.cmm
+GLOBALON TRIGGER DO run.cmm
+
+GLOBALON PBREAKAT P:3:::42:0xfff8000 DO run.cmm
+
+---
+
+(script
+  (globalon_event_control
+    (literal))
+  (globalon_event_control
+    (literal))
+  (globalon_event_control
+    (literal))
+  (globalon_event_control
+    (literal))
+  (globalon_event_control
+    (literal))
+  (globalon_event_control
+    (literal))
+  (globalon_event_control
+    (literal))
+  (globalon_event_control
+    (literal))
+  (globalon_event_control
+    (literal))
+  (globalon_event_control
+    (literal))
+  (globalon_event_control
+    (literal)
+    (literal)))
