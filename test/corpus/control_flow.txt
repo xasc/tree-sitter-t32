@@ -183,10 +183,10 @@ WHILE &a
 
 (script
   (repeat_block
-    (integer)
+    (literal)
     (command))
   (repeat_block
-    (integer)
+    (literal)
     (command))
   (repeat_block
     (command))

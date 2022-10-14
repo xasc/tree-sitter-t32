@@ -19,3 +19,15 @@ PRIVATE &msg1 &(started) &line_counT
     (identifier)
     (identifier)
     (identifier)))
+
+==================
+Recursive macro expansion
+==================
+
+&&cmd
+
+---
+
+(script
+  (recursive_macro_expansion
+    (identifier)))

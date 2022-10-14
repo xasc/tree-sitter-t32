@@ -1,10 +1,13 @@
 const PREC = {
   command: -1,
+  path: -1,
   address: 10,
   time: 10
 }
 
 const COMMAND_NAME = /[a-zA-Z]+/
+
+const STRING_BODY = /[^"\n\\]+/
 
 const INTEGERS = [
   /0y[0-9]+/,  // Binary
@@ -49,12 +52,13 @@ module.exports = grammar({
     _statement: $ => seq(
       choice(
         $.macro_declaration,
+        $.recursive_macro_expansion,
+        $.assignment_expression,
         $.on_event_control,
         $.globalon_event_control,
         $.if_block,
         $.repeat_block,
         $.while_block,
-        $._expression,
         $.command,
       )
     ),
@@ -98,11 +102,11 @@ module.exports = grammar({
       longAndShortForm('RePeaT'),
       choice(
         seq(
-          $.integer,
+          field('condition', $._expression),
           $.command
         ),
         seq(
-          optional($.integer),
+          optional(field('condition', $._expression)),
           $._newline,
           $._block
         ),
@@ -184,7 +188,7 @@ module.exports = grammar({
 
     _cpu_event: $ => choice(
       longAndShortForm('PDRESETOFF'),  // Mico32
-      longAndShortForm('BOOTSTALL'),
+      longAndShortForm('BOOTSTALL'),  // Intel x86
       longAndShortForm('CPUBOOTSTALL'),
       longAndShortForm('TRACEHUBBREAK'),
       longAndShortForm('PBREAKRESET'),
@@ -229,7 +233,14 @@ module.exports = grammar({
     ),
 
     _expression: $ => choice(
-      $._macro
+      $._macro,
+      $.literal
+    ),
+
+    assignment_expression: $ => seq(
+      $._macro,
+      token.immediate('='),
+      $._expression
     ),
 
     label: $ => seq(
@@ -249,6 +260,13 @@ module.exports = grammar({
       optional(token.immediate(')'))
     ),
 
+    recursive_macro_expansion: $ => seq(
+      '&&',
+      optional(token.immediate('(')),
+      $.identifier,
+      optional(token.immediate(')'))
+    ),
+
     _declaration_command: $ => choice(
       longAndShortForm('GLOBAL'),
       longAndShortForm('LOCAL'),
@@ -260,21 +278,11 @@ module.exports = grammar({
       $._newline
     ),
 
-    integer: $ => choice(
-      ...INTEGERS
-    ),
-
-    float: $ => /[0-9]+\.[0-9]+(e[-+][0-9]+)?/,
-
-    bitmask: $ => choice(
-      /0y[0-9xX]+/,  // Bitmask
-      /0x[0-9a-fA-FxX]+/,  // Hexmask
-    ),
-
     literal: $ => choice(
-      $.integer,
-      $.bitmask,
-      $.float,
+      $._integer,
+      $._bitmask,
+      $._float,
+      $._range,
       $._address,
       $._time,
       $._string,
@@ -282,8 +290,29 @@ module.exports = grammar({
       $._path
     ),
 
+    _integer: $ => choice(
+      ...INTEGERS
+    ),
+
+    _float: $ => /[0-9]+\.[0-9]+(e[-+][0-9]+)?/,
+
+    _bitmask: $ => choice(
+      /0y[0-9xX]+/,  // Bitmask
+      /0x[0-9a-fA-FxX]+/,  // Hexmask
+    ),
+
+    _range: $ => seq(
+      choice(...INTEGERS),
+      choice(
+        '--',
+        '..'
+      ),
+      choice(...INTEGERS)
+    ),
+
+
     _address: $ => token(prec(PREC.address, seq(
-      /([a-zA-Z0-9]+:)?([a-zA-Z0-9]+:::)?([0-9]+:)?/,
+      /([a-zA-Z0-9]+:)([a-zA-Z0-9]+:::)?([0-9]+:)?/,
       token.immediate(choice(
         ...INTEGERS
       ))
@@ -292,7 +321,7 @@ module.exports = grammar({
     _string: $ => seq(
       '"',
       repeat(choice(
-        token.immediate(/[^"\n]+/),
+        token.immediate(STRING_BODY),
         /""/,  // Escape sequence
       )),
       '"'
@@ -306,11 +335,13 @@ module.exports = grammar({
 
     _time: $ => token(prec(PREC.time, /[0-9]+\.?[0-9]*[mnu]*s/)),
 
-    _path: $ => seq(
-      optional('"'),
-      token.immediate(/[^\n]+/),
-      optional('"')
-    ),
+    // A path enclosed in quotation marks is a string literal
+    _path: $ => token(prec(PREC.path, seq(
+      STRING_BODY,
+      repeat(
+        token.immediate(STRING_BODY),
+      ),
+    ))),
 
     identifier: $ => /[a-zA-Z]\w*/,
 
