@@ -276,6 +276,60 @@ ON CATRIGGER DEFault
   (on_event_control))
 
 ==================
+ON CPU event control
+==================
+
+ON PDRESETOFF DO run.cmm
+ON BOOTSTALL DO run.cmm
+ON CPUBOOTSTALL DO run.cmm
+ON TRACEHUBBREAK DO run.cmm
+ON PBREAKRESET DO run.cmm
+ON PBREAKVMENTRY DO run.cmm
+ON PBREAKVMEXIT DO run.cmm
+ON PBREAKSMMENTRY DO run.cmm
+ON PBREAKSMMEXIT DO run.cmm
+ON PBREAKGENERALDETECT DO run.cmm
+ON PBREAKINIT DO run.cmm
+ON PBREAKMACHINECHECK DO run.cmm
+ON PBREAKSHUTDOWN DO run.cmm
+ON PBREAKC6EXIT DO run.cmm
+ON PBREAKENCLU DO run.cmm
+
+---
+
+(script
+  (on_event_control
+    (literal))
+  (on_event_control
+    (literal))
+  (on_event_control
+    (literal))
+  (on_event_control
+    (literal))
+  (on_event_control
+    (literal))
+  (on_event_control
+    (literal))
+  (on_event_control
+    (literal))
+  (on_event_control
+    (literal))
+  (on_event_control
+    (literal))
+  (on_event_control
+    (literal))
+  (on_event_control
+    (literal))
+  (on_event_control
+    (literal))
+  (on_event_control
+    (literal))
+  (on_event_control
+    (literal))
+  (on_event_control
+    (literal)))
+
+==================
 GLOBALON PRACTICE event control
 ==================
 
@@ -347,4 +401,58 @@ GLOBALON PBREAKAT P:3:::42:0xfff8000 DO run.cmm
     (literal))
   (globalon_event_control
     (literal)
+    (literal)))
+
+==================
+GLOBALON CPU event control
+==================
+
+GLOBALON PDRESETOFF DO run.cmm
+GLOBALON BOOTSTALL DO run.cmm
+GLOBALON CPUBOOTSTALL DO run.cmm
+GLOBALON TRACEHUBBREAK DO run.cmm
+GLOBALON PBREAKRESET DO run.cmm
+GLOBALON PBREAKVMENTRY DO run.cmm
+GLOBALON PBREAKVMEXIT DO run.cmm
+GLOBALON PBREAKSMMENTRY DO run.cmm
+GLOBALON PBREAKSMMEXIT DO run.cmm
+GLOBALON PBREAKGENERALDETECT DO run.cmm
+GLOBALON PBREAKINIT DO run.cmm
+GLOBALON PBREAKMACHINECHECK DO run.cmm
+GLOBALON PBREAKSHUTDOWN DO run.cmm
+GLOBALON PBREAKC6EXIT DO run.cmm
+GLOBALON PBREAKENCLU DO run.cmm
+
+---
+
+(script
+  (globalon_event_control
+    (literal))
+  (globalon_event_control
+    (literal))
+  (globalon_event_control
+    (literal))
+  (globalon_event_control
+    (literal))
+  (globalon_event_control
+    (literal))
+  (globalon_event_control
+    (literal))
+  (globalon_event_control
+    (literal))
+  (globalon_event_control
+    (literal))
+  (globalon_event_control
+    (literal))
+  (globalon_event_control
+    (literal))
+  (globalon_event_control
+    (literal))
+  (globalon_event_control
+    (literal))
+  (globalon_event_control
+    (literal))
+  (globalon_event_control
+    (literal))
+  (globalon_event_control
     (literal)))

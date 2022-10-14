@@ -119,7 +119,8 @@ module.exports = grammar({
       longAndShortForm('ON'),
       choice(
         $._practice_event,
-        $._on_device_event
+        $._on_device_event,
+        $._cpu_event
       ),
       $._on_event_action,
     ),
@@ -130,7 +131,8 @@ module.exports = grammar({
         seq(
           choice(
             $._practice_event,
-            $._globalon_device_event
+            $._globalon_device_event,
+            $._cpu_event
           ),
           optional(
             $._common_event_action
@@ -177,7 +179,25 @@ module.exports = grammar({
       seq(
         longAndShortForm('PBREAKAT'),
         $.literal
-      )
+      ),
+    ),
+
+    _cpu_event: $ => choice(
+      longAndShortForm('PDRESETOFF'),  // Mico32
+      longAndShortForm('BOOTSTALL'),
+      longAndShortForm('CPUBOOTSTALL'),
+      longAndShortForm('TRACEHUBBREAK'),
+      longAndShortForm('PBREAKRESET'),
+      longAndShortForm('PBREAKVMENTRY'),
+      longAndShortForm('PBREAKVMEXIT'),
+      longAndShortForm('PBREAKSMMENTRY'),
+      longAndShortForm('PBREAKSMMEXIT'),
+      longAndShortForm('PBREAKGENERALDETECT'),
+      longAndShortForm('PBREAKINIT'),
+      longAndShortForm('PBREAKMACHINECHECK'),
+      longAndShortForm('PBREAKSHUTDOWN'),
+      longAndShortForm('PBREAKC6EXIT'),
+      longAndShortForm('PBREAKENCLU'),
     ),
 
     _on_event_action: $ => choice(
