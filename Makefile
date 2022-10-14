@@ -2,6 +2,13 @@
 
 filter ?=
 
+blank :=
+space := $(blank) $(blank)
+$(space) := $(space)
+
+filterFlag = $(subst _,$( ),$(addprefix --filter ,$(subst $( ),_,"$(filter)")))
+
+
 build:
 	yarn build
 
@@ -9,13 +16,13 @@ parse:
 	yarn parse example-file
 
 test:
-	yarn test $(addprefix --filter ,$(filter))
+	yarn test "$(filterFlag)"
 
 test-debug:
-	yarn test --debug $(addprefix --filter ,$(filter))
+	yarn test --debug $(filterFlag)
 
 test-graph:
-	yarn test --debug-graph $(addprefix --filter ,$(filter))
+	yarn test --debug-graph $(filterFlag)
 
 test-all:
 	yarn test
