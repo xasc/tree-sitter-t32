@@ -39,6 +39,8 @@ Assignment expression
 &a = 1
 &b=&(macro)
 
+&c=~&a+100.
+
 ---
 
 (script
@@ -47,7 +49,13 @@ Assignment expression
     (literal))
   (assignment_expression
     (identifier)
-    (identifier)))
+    (identifier))
+  (assignment_expression
+    (identifier)
+    (binary_expression
+      (unary_expression
+        (identifier))
+      (literal))))
 
 ==================
 Binary operators
@@ -170,4 +178,33 @@ Binary operators
     (identifier)
     (binary_expression
       (identifier)
+      (literal))))
+
+==================
+Unary operators
+==================
+
+&a= !1
+&a=+&b
+&a= -5.7
+&a= ~1.ms
+
+---
+
+(script
+  (assignment_expression
+    (identifier)
+    (unary_expression
+      (literal)))
+  (assignment_expression
+    (identifier)
+    (unary_expression
+      (identifier)))
+  (assignment_expression
+    (identifier)
+    (unary_expression
+      (literal)))
+  (assignment_expression
+    (identifier)
+    (unary_expression
       (literal))))

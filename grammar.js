@@ -314,6 +314,7 @@ module.exports = grammar({
     _expression: $ => choice(
       $._macro,
       $.literal,
+      $.unary_expression,
       $.binary_expression
     ),
 
@@ -326,7 +327,10 @@ module.exports = grammar({
     ),
 
    unary_expression: $ => prec.left(PREC.unary, seq(
-      field('operator', choice('!', '~', '-', '+')),
+      field('operator', choice(
+        '+', '-', '~', '!'
+      )),
+      $._no_blank,
       field('argument', $._expression)
     )),
 
@@ -353,10 +357,10 @@ module.exports = grammar({
         ['>>', PREC.shift]
       ];
 
-      return choice(...operators.map(([operator, precedence]) => {
-        return prec.left(precedence, seq(
+      return choice(...operators.map(([op, pre]) => {
+        return prec.left(pre, seq(
           field('left', $._expression),
-          field('operator', operator),
+          field('operator', op),
           $._no_blank,
           field('right', $._expression)
         ))
