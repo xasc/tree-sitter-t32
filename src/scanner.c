@@ -9,27 +9,38 @@
 
 enum TokenType {
 	LABEL_IDENTIFIER,
-	NO_BLANK
+	NO_BLANK,
+	LOGICAL_AND,
+	BITWISE_AND
 };
 
 
 typedef struct scannerState_s {
-	bool whitespace_after_linebreak;
 }
 scannerState_t;
 
 
-static void skip(TSLexer *const lexer)
+static void Skip(
+	TSLexer *const lexer)
 {
 	assert(lexer != NULL);
 	lexer->advance(lexer, true);
 }
 
 
-static void advance(TSLexer *const lexer)
+static void Advance(
+	TSLexer *const lexer)
 {
 	assert(lexer != NULL);
 	lexer->advance(lexer, false);
+}
+
+
+static void MarkEnd(
+	TSLexer *const lexer)
+{
+	assert(lexer != NULL);
+	lexer->mark_end(lexer);
 }
 
 
@@ -64,7 +75,8 @@ void tree_sitter_t32_external_scanner_deserialize(
 }
 
 
-static bool IsAlpha(int32_t const glyph)
+static bool IsAlpha(
+	int32_t const glyph)
 {
 	return (
 		(glyph >= 'A' && glyph <= 'Z') ||
@@ -73,7 +85,8 @@ static bool IsAlpha(int32_t const glyph)
 }
 
 
-static bool IsAlphaNum(int32_t const glyph)
+static bool IsAlphaNum(
+	int32_t const glyph)
 {
 	return (
 		IsAlpha(glyph) ||
@@ -82,15 +95,44 @@ static bool IsAlphaNum(int32_t const glyph)
 }
 
 
-static void ConsumeIdentifier(
+static void ScanIdentifier(
 	TSLexer * lexer)
 {
 	assert(lexer != NULL);
 
-	advance(lexer);
+	Advance(lexer);
 	while (IsAlphaNum(lexer->lookahead) || lexer->lookahead == '_') {
-		advance(lexer);
+		Advance(lexer);
 	}
+}
+
+
+static unsigned ScanAmpersandOperators(
+	TSLexer * lexer)
+{
+	assert(lexer != NULL);
+
+	/* LOCAL &a &b
+	 * &a = TRUE()
+	 * &b = FALSE()&&&a
+	 *
+	 * LOCAL &c &d
+	 * &c = 0x1
+	 * &d = 0xf&&c
+	 */
+	unsigned num = 0;
+	for (unsigned ii = 0; ii < 2; ii++) {
+		if (lexer->lookahead == '&') {
+			Advance(lexer);
+		}
+
+		if (IsAlpha(lexer->lookahead)) {
+			return num;
+		}
+		MarkEnd(lexer);
+		num += 1u;
+	}
+	return num;
 }
 
 
@@ -115,12 +157,26 @@ bool tree_sitter_t32_external_scanner_scan(
 	// Labels must start in the first column
 	if (valid_symbols[LABEL_IDENTIFIER] && lexer->get_column(lexer) == 0) {
 		if (IsAlpha(lexer->lookahead) || lexer->lookahead == '_') {
-			ConsumeIdentifier(lexer);
+			ScanIdentifier(lexer);
 
 			if (lexer->lookahead == ':') {
 				lexer->result_symbol = LABEL_IDENTIFIER;
 				return true;
 			}
+		}
+	}
+	else if (
+		(valid_symbols[LOGICAL_AND] || valid_symbols[BITWISE_AND]) &&
+		lexer->lookahead == '&'
+	) {
+		unsigned const num = ScanAmpersandOperators(lexer);
+		if (num == 1) {
+			lexer->result_symbol = BITWISE_AND;
+			return true;
+		}
+		if (num == 2) {
+			lexer->result_symbol = LOGICAL_AND;
+			return true;
 		}
 	}
 

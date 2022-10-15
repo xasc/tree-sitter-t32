@@ -33,7 +33,9 @@ module.exports = grammar({
 
   externals: $ => [
     $.label_identifier,
-    $._no_blank  // Zero-length token for expressions
+    $._no_blank,  // Zero-length token for expressions
+    $._logical_and,
+    $._bitwise_and
   ],
 
   conflicts: $ => [],
@@ -301,8 +303,9 @@ module.exports = grammar({
     ),
 
     binary_expression: $ => {
-      const table = [
-        ['&&', PREC.logical_and],
+      const operators = [
+        [$._logical_and, PREC.logical_and],
+        [$._bitwise_and, PREC.bitwise_and],
         ['^^', PREC.logical_xor],
         ['||', PREC.logical_or],
         ['+', PREC.add_sub],
@@ -312,7 +315,6 @@ module.exports = grammar({
         ['%', PREC.mul_div_mod],
         ['|', PREC.bitwise_or],
         ['^', PREC.bitwise_xor],
-        ['&', PREC.bitwise_and],
         ['==', PREC.relational],
         ['!=', PREC.relational],
         ['>', PREC.relational],
@@ -323,10 +325,10 @@ module.exports = grammar({
         ['>>', PREC.shift]
       ];
 
-      return choice(...table.map(([operator, precedence]) => {
+      return choice(...operators.map(([operator, precedence]) => {
         return prec.left(precedence, seq(
           field('left', $._expression),
-          token.immediate(field('operator', operator)),
+          field('operator', operator),
           $._no_blank,
           field('right', $._expression)
         ))

@@ -31,3 +31,143 @@ Recursive macro expansion
 (script
   (recursive_macro_expansion
     (identifier)))
+
+==================
+Assignment expression
+==================
+
+&a = 1
+&b=&(macro)
+
+---
+
+(script
+  (assignment_expression
+    (identifier)
+    (literal))
+  (assignment_expression
+    (identifier)
+    (identifier)))
+
+==================
+Binary operators
+==================
+
+&a=1&&2
+&a = 1^^&b
+&a= &b||2
+&a= 1+2
+&a= 1-&b
+&a= &b*2
+&a= 1/2
+&a= 1%&b
+&a= &b|2
+&a= 1^2
+&a= 1&&b
+&a= &b==2
+&a= 1!=2
+&a= 1>&b
+&a= &b>=2
+&a= 1<=2
+&a= 2<1
+&a= 1<<&b
+&a= &b>>2
+
+---
+
+(script
+  (assignment_expression
+    (identifier)
+    (binary_expression
+      (literal)
+      (literal)))
+  (assignment_expression
+    (identifier)
+    (binary_expression
+      (literal)
+      (identifier)))
+  (assignment_expression
+    (identifier)
+    (binary_expression
+      (identifier)
+      (literal)))
+  (assignment_expression
+    (identifier)
+    (binary_expression
+      (literal)
+      (literal)))
+  (assignment_expression
+    (identifier)
+    (binary_expression
+      (literal)
+      (identifier)))
+  (assignment_expression
+    (identifier)
+    (binary_expression
+      (identifier)
+      (literal)))
+  (assignment_expression
+    (identifier)
+    (binary_expression
+      (literal)
+      (literal)))
+  (assignment_expression
+    (identifier)
+    (binary_expression
+      (literal)
+      (identifier)))
+  (assignment_expression
+    (identifier)
+    (binary_expression
+      (identifier)
+      (literal)))
+  (assignment_expression
+    (identifier)
+    (binary_expression
+      (literal)
+      (literal)))
+  (assignment_expression
+    (identifier)
+    (binary_expression
+      (literal)
+      (identifier)))
+  (assignment_expression
+    (identifier)
+    (binary_expression
+      (identifier)
+      (literal)))
+  (assignment_expression
+    (identifier)
+    (binary_expression
+      (literal)
+      (literal)))
+  (assignment_expression
+    (identifier)
+    (binary_expression
+      (literal)
+      (identifier)))
+  (assignment_expression
+    (identifier)
+    (binary_expression
+      (identifier)
+      (literal)))
+  (assignment_expression
+    (identifier)
+    (binary_expression
+      (literal)
+      (literal)))
+  (assignment_expression
+    (identifier)
+    (binary_expression
+      (literal)
+      (literal)))
+  (assignment_expression
+    (identifier)
+    (binary_expression
+      (literal)
+      (identifier)))
+  (assignment_expression
+    (identifier)
+    (binary_expression
+      (identifier)
+      (literal))))

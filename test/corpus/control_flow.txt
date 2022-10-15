@@ -27,11 +27,11 @@ IF &c
 ELSE IF &d
   stop
 
-IF &d
+IF &e
   CONTinue
-ELSE IF &e
-  CONT
 ELSE IF &f
+  CONT
+ELSE IF &g
   stop
 ELSE
   cont
@@ -163,6 +163,9 @@ RePeaT block statements
 
 RePeaT 10. STOP
 
+RePeaT &a
+  print
+
 REPEAT 0xaAfF09
 (
   cont
@@ -184,6 +187,9 @@ WHILE &a
 (script
   (repeat_block
     (literal)
+    (command))
+  (repeat_block
+    (identifier)
     (command))
   (repeat_block
     (literal)
@@ -337,7 +343,7 @@ GLOBALON ALWAYS DO "file.cmm"
 GLOBALON ERROR DO test.cmm
 GLOBALON STOP DO a/b/c.cmm
 GLOBALON CMD step DO run.cmm
-GLOBALON TIME 10.0ns DO rest.cmm
+GLOBALON TIME 10.0ns DO do.cmm
 GLOBALON CMD print EXEcute continue
 
 ---
