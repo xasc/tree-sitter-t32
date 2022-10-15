@@ -208,3 +208,56 @@ Unary operators
     (identifier)
     (unary_expression
       (literal))))
+
+==================
+Range expressions
+==================
+
+&a= 0x1000..0x1fff
+&a=0x1000--0x1fff
+&a=(-1000.)--{-50.}
+&a='a'--'f'
+&a='A'..'F'
+&a=teststart--testend
+&a=`main`--`_exit`
+
+---
+
+(script
+  (assignment_expression
+    (identifier)
+    (binary_expression
+      (literal)
+      (literal)))
+  (assignment_expression
+    (identifier)
+    (binary_expression
+      (literal)
+      (literal)))
+  (assignment_expression
+    (identifier)
+    (binary_expression
+      (unary_expression
+        (literal))
+      (unary_expression
+        (literal))))
+  (assignment_expression
+    (identifier)
+    (binary_expression
+      (literal)
+      (literal)))
+  (assignment_expression
+    (identifier)
+    (binary_expression
+      (literal)
+      (literal)))
+  (assignment_expression
+    (identifier)
+    (binary_expression
+      (literal)
+      (literal)))
+  (assignment_expression
+    (identifier)
+    (binary_expression
+      (literal)
+      (literal))))
