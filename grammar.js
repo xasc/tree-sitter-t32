@@ -22,7 +22,7 @@
 
 const PREC = {
   command: -1,
-  path: -1,
+  _non_quoted_symbol: -1,
   logical_or: 10,
   logical_xor: 11,
   logical_and: 12,
@@ -34,6 +34,7 @@ const PREC = {
   mul_div_mod: 18,
   shift: 19,
   unary: 20,
+  range: 21,
   address: 100,
   time: 100
 }
@@ -308,14 +309,22 @@ module.exports = grammar({
     _common_event_action: $ => seq(
       longAndShortForm('DO'),
       repeat1($._blank),
-      $.literal
+      $._path
     ),
 
     _expression: $ => choice(
       $._macro,
       $.literal,
       $.unary_expression,
-      $.binary_expression
+      $.binary_expression,
+      $._parenthesized_expression
+    ),
+
+    _parenthesized_expression: $ => seq(
+      /[({]/,
+      $._expression,
+      $._no_blank,
+      /[)}]/
     ),
 
     assignment_expression: $ => seq(
@@ -354,7 +363,7 @@ module.exports = grammar({
         ['<=', PREC.relational],
         ['<', PREC.relational],
         ['<<', PREC.shift],
-        ['>>', PREC.shift]
+        [/\.\.|\-\-|\+\+/, PREC.range]
       ];
 
       return choice(...operators.map(([op, pre]) => {
@@ -409,16 +418,18 @@ module.exports = grammar({
       $._integer,
       $._bitmask,
       $._float,
-      $._range,
       $._address,
       $._time,
       $._string,
       $._character,
-      $._path
+      $._non_quoted_symbol
     ),
 
-    _integer: $ => choice(
-      ...INTEGERS
+    _integer: $ => seq(
+      optional(/[-\+]/),
+      choice(
+        ...INTEGERS
+      )
     ),
 
     _float: $ => /[0-9]+\.[0-9]+(e[-+][0-9]+)?/,
@@ -427,16 +438,6 @@ module.exports = grammar({
       /0y[0-9xX]+/,  // Bitmask
       /0x[0-9a-fA-FxX]+/,  // Hexmask
     ),
-
-    _range: $ => seq(
-      choice(...INTEGERS),
-      choice(
-        '--',
-        '..'
-      ),
-      choice(...INTEGERS)
-    ),
-
 
     _address: $ => token(prec(PREC.address, seq(
       /([a-zA-Z0-9]+:)([a-zA-Z0-9]+:::)?([0-9]+:)?/,
@@ -448,31 +449,33 @@ module.exports = grammar({
     _string: $ => seq(
       '"',
       repeat(choice(
-        token.immediate(STRING_BODY),
+        STRING_BODY,
         /""/,  // Escape sequence
       )),
       '"'
     ),
 
+    _path: $ => alias(
+      choice(
+        $._string,
+        STRING_BODY
+      ),
+      $.literal
+    ),
+
+    _non_quoted_symbol: $ => token(prec(PREC._non_quoted_symbol, seq(
+      /[^"\s.-]+/,
+    ))),
+
     _character: $ => seq(
       "'",
-      token.immediate(/[^\n]/),
+      /[^\n]/,
       "'"
     ),
 
     _time: $ => token(prec(PREC.time, /[0-9]+\.?[0-9]*[mnu]*s/)),
 
-    // A path enclosed in quotation marks is a string literal
-    _path: $ => token(prec(PREC.path, seq(
-      STRING_BODY,
-      repeat(
-        token.immediate(STRING_BODY),
-      ),
-    ))),
-
     identifier: $ => /[a-zA-Z]\w*/,
-
-    // _newline: $ => /[\r\n]+/,
 
     _terminator: $ => prec.right(repeat1(
       /\s*[\r\n]+\s*/
