@@ -2,11 +2,15 @@
 
 filter ?=
 
+, := ,
 blank :=
 space := $(blank) $(blank)
 $(space) := $(space)
 
-filterFlag = $(subst _,$( ),$(addprefix --filter ,$(subst $( ),_,"$(filter)")))
+spaces-to-commas = $(subst $( ),$(,),$1)
+commas-to-spaces = $(subst $(,),$( ),$1)
+
+filterFlag = $(call commas-to-spaces,$(addprefix --filter ,$(call spaces-to-commas,"$(filter)")))
 
 
 build:
