@@ -1,13 +1,25 @@
 const PREC = {
   command: -1,
   path: -1,
-  address: 10,
-  time: 10
+  logical_or: 10,
+  logical_xor: 11,
+  logical_and: 12,
+  bitwise_or: 13,
+  bitwise_xor: 14,
+  bitwise_and: 15,
+  relational: 16,
+  add_sub: 17,
+  mul_div_mod: 18,
+  shift: 19,
+  address: 100,
+  time: 100
 }
+
+const BLANK = /[ \t]/
 
 const COMMAND_NAME = /[a-zA-Z]+/
 
-const STRING_BODY = /[^"\n\\]+/
+const STRING_BODY = /[^"\n]+/
 
 const INTEGERS = [
   /0y[0-9]+/,  // Binary
@@ -20,10 +32,15 @@ module.exports = grammar({
   name: 't32',
 
   externals: $ => [
-    $.label_identifier
+    $.label_identifier,
+    $._no_blank  // Zero-length token for expressions
   ],
 
   conflicts: $ => [],
+
+  extras: $ => [
+    /\\\r?\n/
+  ],
 
   word: $ => $.identifier,
 
@@ -34,39 +51,38 @@ module.exports = grammar({
       $.label,
       $._statement,
       $._block,
-      $._newline
+      $._terminator
     ),
 
     _block: $ => prec.right(seq(
       seq(
         '(',
-        $._newline
+        $._terminator
       ),
       repeat($._statement),
       seq(
         ')',
-        optional($._newline)
+        $._terminator
       ),
     )),
 
-    _statement: $ => seq(
-      choice(
-        $.macro_declaration,
-        $.recursive_macro_expansion,
-        $.assignment_expression,
-        $.on_event_control,
-        $.globalon_event_control,
-        $.if_block,
-        $.repeat_block,
-        $.while_block,
-        $.command,
-      )
+    _statement: $ => choice(
+      $.macro_declaration,
+      $.recursive_macro_expansion,
+      $.assignment_expression,
+      $.on_event_control,
+      $.globalon_event_control,
+      $.if_block,
+      $.repeat_block,
+      $.while_block,
+      $.command,
     ),
 
     if_block: $ => prec.right(seq(
       longAndShortForm('IF'),
-      field('condition', $._expression),
-      $._newline,
+      repeat1($._blank),
+      field('condition', $._macro),
+      $._terminator,
       choice(
         $._statement,
         $._block
@@ -77,21 +93,25 @@ module.exports = grammar({
     else_block: $ => seq(
       longAndShortForm('ELSE'),
       choice(
-        $.if_block,
         seq(
-          $._newline,
+          $._terminator,
           choice(
             $._statement,
             $._block
-          ),
+          )
+        ),
+        seq(
+          repeat1($._blank),
+          $.if_block
         )
-      )
+      ),
     ),
 
     while_block: $ => seq(
       longAndShortForm('WHILE'),
+      repeat1($._blank),
       field('condition', $._expression),
-      $._newline,
+      $._terminator,
       choice(
         $._statement,
         $._block
@@ -102,74 +122,98 @@ module.exports = grammar({
       longAndShortForm('RePeaT'),
       choice(
         seq(
+          repeat1($._blank),
           field('condition', $._expression),
-          $.command
+          choice(
+            seq(
+              repeat1($._blank),
+              $.command
+            ),
+            seq(
+              $._terminator,
+              choice(
+                $._statement,
+                $._block
+              )
+            )
+          )
         ),
         seq(
-          optional(field('condition', $._expression)),
-          $._newline,
-          $._block
-        ),
-        seq(
-          $._newline,
-          $._block,
-          longAndShortForm('WHILE'),
-          field('condition', $._expression),
-        ),
+          $._terminator,
+          choice(
+            $._statement,
+            $._block
+          ),
+          optional(seq(
+            longAndShortForm('WHILE'),
+            repeat1($._blank),
+            field('condition', $._expression),
+            $._terminator
+          ))
+        )
       )
     )),
 
     on_event_control: $ => seq(
       longAndShortForm('ON'),
+      repeat1($._blank),
       choice(
-        $._practice_event,
+        $._common_practice_event,
         $._on_device_event,
-        $._cpu_event
+        $._cpu_event,
+        $._cmd_event,
       ),
+      repeat1($._blank),
       $._on_event_action,
     ),
 
     globalon_event_control: $ => seq(
       longAndShortForm('GLOBALON'),
+      repeat1($._blank),
       choice(
         seq(
           choice(
-            $._practice_event,
-            $._globalon_device_event,
-            $._cpu_event
+            $._common_practice_event,
+            $._common_device_event,
+            $._cpu_event,
+            $._cmd_event,
           ),
-          optional(
+          optional(seq(
+            repeat1($._blank),
             $._common_event_action
-          )
+          )),
+          $._terminator
         ),
         seq(
-          $._common_cmd_event,
+          $._cmd_event,
+          repeat1($._blank),
           longAndShortForm('EXECute'),
+          repeat1($._blank),
           $.command
         )
       )
     ),
 
-    _practice_event: $ => choice(
-      $._common_cmd_event,
+    _common_practice_event: $ => choice(
       longAndShortForm('ALWAYS'),
       longAndShortForm('ERROR'),
       longAndShortForm('STOP'),
       seq(
         longAndShortForm('TIME'),
+        repeat1($._blank),
         $.literal
       )
     ),
 
     _on_device_event: $ => choice(
-      $._globalon_device_event,
+      $._common_device_event,
       longAndShortForm('OBREAK'),
       longAndShortForm('ATRIGGER'),
       longAndShortForm('OTRIGGER'),
       longAndShortForm('CATRIGGER')
     ),
 
-    _globalon_device_event: $ => choice(
+    _common_device_event: $ => choice(
       longAndShortForm('ABREAK'),
       longAndShortForm('CORESWITCH'),
       longAndShortForm('GO'),
@@ -182,6 +226,7 @@ module.exports = grammar({
       longAndShortForm('TRIGGER'),
       seq(
         longAndShortForm('PBREAKAT'),
+        repeat1($._blank),
         $.literal
       ),
     ),
@@ -216,32 +261,77 @@ module.exports = grammar({
           longAndShortForm('JUMPTO'),
         ),
         choice(
-          $.identifier,
-          $._block
+          seq(
+            repeat1($._blank),
+            $.identifier,
+            $._terminator
+          ),
+          seq(
+            $._terminator,
+            $._block
+          )
         )
       )
     ),
 
-    _common_cmd_event: $ => seq(
+    _cmd_event: $ => seq(
       longAndShortForm('CMD'),
+      repeat1($._blank),
       alias(COMMAND_NAME, $.command)
     ),
 
     _common_event_action: $ => seq(
       longAndShortForm('DO'),
+      repeat1($._blank),
       $.literal
     ),
 
     _expression: $ => choice(
       $._macro,
-      $.literal
+      $.literal,
+      $.binary_expression
     ),
 
     assignment_expression: $ => seq(
       $._macro,
-      token.immediate('='),
+      repeat($._blank),
+      "=",
+      repeat($._blank),
       $._expression
     ),
+
+    binary_expression: $ => {
+      const table = [
+        ['&&', PREC.logical_and],
+        ['^^', PREC.logical_xor],
+        ['||', PREC.logical_or],
+        ['+', PREC.add_sub],
+        ['-', PREC.add_sub],
+        ['*', PREC.mul_div_mod],
+        ['/', PREC.mul_div_mod],
+        ['%', PREC.mul_div_mod],
+        ['|', PREC.bitwise_or],
+        ['^', PREC.bitwise_xor],
+        ['&', PREC.bitwise_and],
+        ['==', PREC.relational],
+        ['!=', PREC.relational],
+        ['>', PREC.relational],
+        ['>=', PREC.relational],
+        ['<=', PREC.relational],
+        ['<', PREC.relational],
+        ['<<', PREC.shift],
+        ['>>', PREC.shift]
+      ];
+
+      return choice(...table.map(([operator, precedence]) => {
+        return prec.left(precedence, seq(
+          field('left', $._expression),
+          token.immediate(field('operator', operator)),
+          $._no_blank,
+          field('right', $._expression)
+        ))
+      }));
+    },
 
     label: $ => seq(
       alias($.label_identifier, $.identifier),
@@ -250,22 +340,25 @@ module.exports = grammar({
 
     macro_declaration: $ => seq(
       $._declaration_command,
-      prec.right(repeat1($._macro))
+      repeat1(seq(
+        repeat1($._blank),
+        $._macro
+      )),
     ),
 
-    _macro: $ => seq(
+    _macro: $ => prec.left(seq(
       '&',
-      optional(token.immediate('(')),
+      optional('('),
       $.identifier,
-      optional(token.immediate(')'))
-    ),
+      optional(')')
+    )),
 
-    recursive_macro_expansion: $ => seq(
+    recursive_macro_expansion: $ => prec.left(seq(
       '&&',
-      optional(token.immediate('(')),
+      optional('('),
       $.identifier,
-      optional(token.immediate(')'))
-    ),
+      optional(')')
+    )),
 
     _declaration_command: $ => choice(
       longAndShortForm('GLOBAL'),
@@ -275,7 +368,7 @@ module.exports = grammar({
 
     command: $ => seq(
       token(prec(PREC.command, COMMAND_NAME)),
-      $._newline
+      $._terminator
     ),
 
     literal: $ => choice(
@@ -313,9 +406,9 @@ module.exports = grammar({
 
     _address: $ => token(prec(PREC.address, seq(
       /([a-zA-Z0-9]+:)([a-zA-Z0-9]+:::)?([0-9]+:)?/,
-      token.immediate(choice(
+      choice(
         ...INTEGERS
-      ))
+      )
     ))),
 
     _string: $ => seq(
@@ -345,7 +438,13 @@ module.exports = grammar({
 
     identifier: $ => /[a-zA-Z]\w*/,
 
-    _newline: $ => /[\r\n]+/,
+    // _newline: $ => /[\r\n]+/,
+
+    _terminator: $ => prec.right(repeat1(
+      /\s*[\r\n]+\s*/
+    )),
+
+    _blank: $ => BLANK
   }
 })
 

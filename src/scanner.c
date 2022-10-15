@@ -9,6 +9,7 @@
 
 enum TokenType {
 	LABEL_IDENTIFIER,
+	NO_BLANK
 };
 
 
@@ -16,6 +17,20 @@ typedef struct scannerState_s {
 	bool whitespace_after_linebreak;
 }
 scannerState_t;
+
+
+static void skip(TSLexer *const lexer)
+{
+	assert(lexer != NULL);
+	lexer->advance(lexer, true);
+}
+
+
+static void advance(TSLexer *const lexer)
+{
+	assert(lexer != NULL);
+	lexer->advance(lexer, false);
+}
 
 
 unsigned tree_sitter_t32_external_scanner_serialize(
@@ -72,10 +87,9 @@ static void ConsumeIdentifier(
 {
 	assert(lexer != NULL);
 
-	lexer->advance(lexer, false);
-
+	advance(lexer);
 	while (IsAlphaNum(lexer->lookahead) || lexer->lookahead == '_') {
-		lexer->advance(lexer, false);
+		advance(lexer);
 	}
 }
 
@@ -89,7 +103,12 @@ bool tree_sitter_t32_external_scanner_scan(
 
 	scannerState_t *const state = (scannerState_t *) payload;
 
-	if (lexer->lookahead == '\n') {
+	if (
+		lexer->lookahead == ' ' ||
+		lexer->lookahead == '\t' ||
+		lexer->lookahead == '\r' ||
+		lexer->lookahead == '\n'
+	) {
 		return false;
 	}
 
@@ -103,6 +122,14 @@ bool tree_sitter_t32_external_scanner_scan(
 				return true;
 			}
 		}
+	}
+
+	if (valid_symbols[NO_BLANK] && lexer->lookahead != ' ') {
+		/* Capture zero-length symbol to detect whitespaces
+		 * after operators after brackets.
+		 */
+		lexer->result_symbol = NO_BLANK;
+		return true;
 	}
 	return false;
 }
