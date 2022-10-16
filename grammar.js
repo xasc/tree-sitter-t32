@@ -506,7 +506,7 @@ module.exports = grammar({
     ),
 
     _non_quoted_symbol: $ => token(prec(PREC._non_quoted_symbol, seq(
-      /[^"\s&^|*%/=><~!.-]+/,
+      /[^"\s&^|*%/=><~!.:-]+/,
     ))),
 
     _quoted_symbol: $ => seq(
