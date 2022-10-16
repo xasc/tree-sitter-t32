@@ -33,6 +33,224 @@ Recursive macro expansion
     (identifier)))
 
 ==================
+Number literals
+==================
+
+&a = 0y100010001
+
+&b = 1000
+&b = 123445.
+
+&c = 0x12af
+&c = 0xA12F
+
+&d = 1.2
+&d = 1.3e+34
+&d = 0.123
+
+---
+
+(script
+  (assignment_expression
+    (identifier)
+    (literal))
+  (assignment_expression
+    (identifier)
+    (literal))
+  (assignment_expression
+    (identifier)
+    (literal))
+  (assignment_expression
+    (identifier)
+    (literal))
+  (assignment_expression
+    (identifier)
+    (literal))
+  (assignment_expression
+    (identifier)
+    (literal))
+  (assignment_expression
+    (identifier)
+    (literal))
+  (assignment_expression
+    (identifier)
+    (literal)))
+
+==================
+Bitmask literals
+==================
+
+&a = 0y10xx10
+&a = 0yX111XXX
+
+&b = 0xFX
+&b = 0xff1cxxxx
+
+---
+
+(script
+  (assignment_expression
+    (identifier)
+    (literal))
+  (assignment_expression
+    (identifier)
+    (literal))
+  (assignment_expression
+    (identifier)
+    (literal))
+  (assignment_expression
+    (identifier)
+    (literal)))
+
+==================
+Time literals
+==================
+
+&a = 10s
+&a = 10.s
+&a = 23.24ms
+&a = 123us
+&a = 75.0ns
+
+---
+
+(script
+  (assignment_expression
+    (identifier)
+    (literal))
+  (assignment_expression
+    (identifier)
+    (literal))
+  (assignment_expression
+    (identifier)
+    (literal))
+  (assignment_expression
+    (identifier)
+    (literal))
+  (assignment_expression
+    (identifier)
+    (literal)))
+
+==================
+String literals
+==================
+
+&a = "name"
+&a = "abc""def"
+
+&b = "line continuation \
+character"
+&b = \
+"line continuation character"
+
+---
+
+(script
+  (assignment_expression
+    (identifier)
+    (literal))
+  (assignment_expression
+    (identifier)
+    (literal))
+  (assignment_expression
+    (identifier)
+    (literal))
+  (assignment_expression
+    (identifier)
+    (literal)))
+
+==================
+Character literals
+==================
+
+&a = 'a'
+&a = 'z'
+&a = 'A'
+&a = 'Z'
+&a = '0'
+&a = '9'
+
+&b = '\
+9'
+&b = \
+'0'
+
+---
+
+(script
+  (assignment_expression
+    (identifier)
+    (literal))
+  (assignment_expression
+    (identifier)
+    (literal))
+  (assignment_expression
+    (identifier)
+    (literal))
+  (assignment_expression
+    (identifier)
+    (literal))
+  (assignment_expression
+    (identifier)
+    (literal))
+  (assignment_expression
+    (identifier)
+    (literal))
+  (assignment_expression
+    (identifier)
+    (literal))
+  (assignment_expression
+    (identifier)
+    (literal)))
+
+==================
+Symbol literals
+==================
+
+&a = `main`
+&b = _exit
+
+---
+
+(script
+  (assignment_expression
+    (identifier)
+    (literal))
+  (assignment_expression
+    (identifier)
+    (literal)))
+
+==================
+Address literals
+==================
+
+&a = P:0x1af
+&a = P:1234
+&a = P:1234.
+
+&b = UD:0x1000
+&b = NSP:1:::50.::0x0000:0xffff000008080004
+
+---
+
+(script
+  (assignment_expression
+    (identifier)
+    (literal))
+  (assignment_expression
+    (identifier)
+    (literal))
+  (assignment_expression
+    (identifier)
+    (literal))
+  (assignment_expression
+    (identifier)
+    (literal))
+  (assignment_expression
+    (identifier)
+    (literal)))
+
+==================
 Assignment expression
 ==================
 
@@ -210,7 +428,7 @@ Unary operators
       (literal))))
 
 ==================
-Range expressions
+Range operator
 ==================
 
 &a= 0x1000..0x1fff
@@ -219,7 +437,7 @@ Range expressions
 &a='a'--'f'
 &a='A'..'F'
 &a=teststart--testend
-&a=`main`--`_exit`
+&a=`main`..`_exit`
 
 ---
 
