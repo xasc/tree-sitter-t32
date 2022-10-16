@@ -40,30 +40,30 @@ ELSE
 
 (script
   (if_block
-    (identifier)
+    condition: (identifier)
     (command))
   (if_block
-    (identifier)
+    condition: (identifier)
     (command)
     (else_block
       (command)))
   (if_block
-    (identifier)
+    condition: (identifier)
     (command)
     (else_block
       (if_block
-        (identifier)
+        condition: (identifier)
         (command))))
   (if_block
-    (identifier)
+    condition: (identifier)
     (command)
     (else_block
       (if_block
-        (identifier)
+        condition: (identifier)
         (command)
         (else_block
           (if_block
-            (identifier)
+            condition: (identifier)
             (command)
             (else_block
                 (command))))))))
@@ -85,13 +85,13 @@ IF &a
 
 (script
   (if_block
-    (identifier)
+    condition: (identifier)
     (if_block
-      (identifier)
+      condition: (identifier)
       (command)
       (else_block
         (if_block
-          (identifier)
+          condition: (identifier)
           (command))))))
 
 ==================
@@ -115,11 +115,11 @@ ELSE
 
 (script
   (if_block
-    (identifier)
+    condition: (identifier)
     (command)
     (else_block
       (if_block
-        (identifier)
+        condition: (identifier)
         (command)
         (else_block
           (command))))))
@@ -136,7 +136,7 @@ WHILE &a
 
 (script
   (while_block
-    (identifier)
+    condition: (identifier)
     (command)))
 
 ==================
@@ -153,7 +153,7 @@ WHILE &a
 
 (script
   (while_block
-    (identifier)
+    condition: (identifier)
     (command)
     (command)))
 
@@ -186,19 +186,19 @@ WHILE &a
 
 (script
   (repeat_block
-    (literal)
+    condition: (literal)
     (command))
   (repeat_block
-    (identifier)
+    condition: (identifier)
     (command))
   (repeat_block
-    (literal)
+    condition: (literal)
     (command))
   (repeat_block
     (command))
   (repeat_block
     (command)
-    (identifier)))
+    condition: (identifier)))
 
 ==================
 ON PRACTICE event control

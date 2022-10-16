@@ -332,11 +332,11 @@ module.exports = grammar({
     ),
 
     assignment_expression: $ => seq(
-      $._macro,
+      field('left', $._macro),
       repeat($._blank),
-      "=",
+      field('operator', '='),
       repeat($._blank),
-      $._expression
+      field('right', $._expression)
     ),
 
    unary_expression: $ => prec.left(PREC.unary, seq(

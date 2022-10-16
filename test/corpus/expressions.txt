@@ -52,29 +52,29 @@ Number literals
 
 (script
   (assignment_expression
-    (identifier)
-    (literal))
+    left: (identifier)
+    right: (literal))
   (assignment_expression
-    (identifier)
-    (literal))
+    left: (identifier)
+    right: (literal))
   (assignment_expression
-    (identifier)
-    (literal))
+    left: (identifier)
+    right: (literal))
   (assignment_expression
-    (identifier)
-    (literal))
+    left: (identifier)
+    right: (literal))
   (assignment_expression
-    (identifier)
-    (literal))
+    left: (identifier)
+    right: (literal))
   (assignment_expression
-    (identifier)
-    (literal))
+    left: (identifier)
+    right: (literal))
   (assignment_expression
-    (identifier)
-    (literal))
+    left: (identifier)
+    right: (literal))
   (assignment_expression
-    (identifier)
-    (literal)))
+    left: (identifier)
+    right: (literal)))
 
 ==================
 Bitmask literals
@@ -90,17 +90,17 @@ Bitmask literals
 
 (script
   (assignment_expression
-    (identifier)
-    (literal))
+    left: (identifier)
+    right: (literal))
   (assignment_expression
-    (identifier)
-    (literal))
+    left: (identifier)
+    right: (literal))
   (assignment_expression
-    (identifier)
-    (literal))
+    left: (identifier)
+    right: (literal))
   (assignment_expression
-    (identifier)
-    (literal)))
+    left: (identifier)
+    right: (literal)))
 
 ==================
 Time literals
@@ -116,20 +116,20 @@ Time literals
 
 (script
   (assignment_expression
-    (identifier)
-    (literal))
+    left: (identifier)
+    right: (literal))
   (assignment_expression
-    (identifier)
-    (literal))
+    left: (identifier)
+    right: (literal))
   (assignment_expression
-    (identifier)
-    (literal))
+    left: (identifier)
+    right: (literal))
   (assignment_expression
-    (identifier)
-    (literal))
+    left: (identifier)
+    right: (literal))
   (assignment_expression
-    (identifier)
-    (literal)))
+    left: (identifier)
+    right: (literal)))
 
 ==================
 String literals
@@ -147,17 +147,17 @@ character"
 
 (script
   (assignment_expression
-    (identifier)
-    (literal))
+    left: (identifier)
+    right: (literal))
   (assignment_expression
-    (identifier)
-    (literal))
+    left: (identifier)
+    right: (literal))
   (assignment_expression
-    (identifier)
-    (literal))
+    left: (identifier)
+    right: (literal))
   (assignment_expression
-    (identifier)
-    (literal)))
+    left: (identifier)
+    right: (literal)))
 
 ==================
 Character literals
@@ -179,29 +179,29 @@ Character literals
 
 (script
   (assignment_expression
-    (identifier)
-    (literal))
+    left: (identifier)
+    right: (literal))
   (assignment_expression
-    (identifier)
-    (literal))
+    left: (identifier)
+    right: (literal))
   (assignment_expression
-    (identifier)
-    (literal))
+    left: (identifier)
+    right: (literal))
   (assignment_expression
-    (identifier)
-    (literal))
+    left: (identifier)
+    right: (literal))
   (assignment_expression
-    (identifier)
-    (literal))
+    left: (identifier)
+    right: (literal))
   (assignment_expression
-    (identifier)
-    (literal))
+    left: (identifier)
+    right: (literal))
   (assignment_expression
-    (identifier)
-    (literal))
+    left: (identifier)
+    right: (literal))
   (assignment_expression
-    (identifier)
-    (literal)))
+    left: (identifier)
+    right: (literal)))
 
 ==================
 Symbol literals
@@ -214,11 +214,11 @@ Symbol literals
 
 (script
   (assignment_expression
-    (identifier)
-    (literal))
+    left: (identifier)
+    right: (literal))
   (assignment_expression
-    (identifier)
-    (literal)))
+    left: (identifier)
+    right: (literal)))
 
 ==================
 Address literals
@@ -235,20 +235,20 @@ Address literals
 
 (script
   (assignment_expression
-    (identifier)
-    (literal))
+    left: (identifier)
+    right: (literal))
   (assignment_expression
-    (identifier)
-    (literal))
+    left: (identifier)
+    right: (literal))
   (assignment_expression
-    (identifier)
-    (literal))
+    left: (identifier)
+    right: (literal))
   (assignment_expression
-    (identifier)
-    (literal))
+    left: (identifier)
+    right: (literal))
   (assignment_expression
-    (identifier)
-    (literal)))
+    left: (identifier)
+    right: (literal)))
 
 ==================
 Assignment expression
@@ -263,17 +263,17 @@ Assignment expression
 
 (script
   (assignment_expression
-    (identifier)
-    (literal))
+    left: (identifier)
+    right: (literal))
   (assignment_expression
-    (identifier)
-    (identifier))
+    left: (identifier)
+    right: (identifier))
   (assignment_expression
-    (identifier)
-    (binary_expression
-      (unary_expression
-        (identifier))
-      (literal))))
+    left: (identifier)
+    right: (binary_expression
+      left: (unary_expression
+        argument: (identifier))
+      right: (literal))))
 
 ==================
 Binary operators
@@ -303,100 +303,100 @@ Binary operators
 
 (script
   (assignment_expression
-    (identifier)
-    (binary_expression
-      (literal)
-      (literal)))
+    left: (identifier)
+    right: (binary_expression
+      left: (literal)
+      right: (literal)))
   (assignment_expression
-    (identifier)
-    (binary_expression
-      (literal)
-      (identifier)))
+    left: (identifier)
+    right: (binary_expression
+      left: (literal)
+      right: (identifier)))
   (assignment_expression
-    (identifier)
-    (binary_expression
-      (identifier)
-      (literal)))
+    left: (identifier)
+    right: (binary_expression
+      left: (identifier)
+      right: (literal)))
   (assignment_expression
-    (identifier)
-    (binary_expression
-      (literal)
-      (literal)))
+    left: (identifier)
+    right: (binary_expression
+      left: (literal)
+      right: (literal)))
   (assignment_expression
-    (identifier)
-    (binary_expression
-      (literal)
-      (identifier)))
+    left: (identifier)
+    right: (binary_expression
+      left: (literal)
+      right: (identifier)))
   (assignment_expression
-    (identifier)
-    (binary_expression
-      (identifier)
-      (literal)))
+    left: (identifier)
+    right: (binary_expression
+      left: (identifier)
+      right: (literal)))
   (assignment_expression
-    (identifier)
-    (binary_expression
-      (literal)
-      (literal)))
+    left: (identifier)
+    right: (binary_expression
+      left: (literal)
+      right: (literal)))
   (assignment_expression
-    (identifier)
-    (binary_expression
-      (literal)
-      (identifier)))
+    left: (identifier)
+    right: (binary_expression
+      left: (literal)
+      right: (identifier)))
   (assignment_expression
-    (identifier)
-    (binary_expression
-      (identifier)
-      (literal)))
+    left: (identifier)
+    right: (binary_expression
+      left: (identifier)
+      right: (literal)))
   (assignment_expression
-    (identifier)
-    (binary_expression
-      (literal)
-      (literal)))
+    left: (identifier)
+    right: (binary_expression
+      left: (literal)
+      right: (literal)))
   (assignment_expression
-    (identifier)
-    (binary_expression
-      (literal)
-      (identifier)))
+    left: (identifier)
+    right: (binary_expression
+      left: (literal)
+      right: (identifier)))
   (assignment_expression
-    (identifier)
-    (binary_expression
-      (identifier)
-      (literal)))
+    left: (identifier)
+    right: (binary_expression
+      left: (identifier)
+      right: (literal)))
   (assignment_expression
-    (identifier)
-    (binary_expression
-      (literal)
-      (literal)))
+    left: (identifier)
+    right: (binary_expression
+      left: (literal)
+      right: (literal)))
   (assignment_expression
-    (identifier)
-    (binary_expression
-      (literal)
-      (identifier)))
+    left: (identifier)
+    right: (binary_expression
+      left: (literal)
+      right: (identifier)))
   (assignment_expression
-    (identifier)
-    (binary_expression
-      (identifier)
-      (literal)))
+    left: (identifier)
+    right: (binary_expression
+      left: (identifier)
+      right: (literal)))
   (assignment_expression
-    (identifier)
-    (binary_expression
-      (literal)
-      (literal)))
+    left: (identifier)
+    right: (binary_expression
+      left: (literal)
+      right: (literal)))
   (assignment_expression
-    (identifier)
-    (binary_expression
-      (literal)
-      (literal)))
+    left: (identifier)
+    right: (binary_expression
+      left: (literal)
+      right: (literal)))
   (assignment_expression
-    (identifier)
-    (binary_expression
-      (literal)
-      (identifier)))
+    left: (identifier)
+    right: (binary_expression
+      left: (literal)
+      right: (identifier)))
   (assignment_expression
-    (identifier)
-    (binary_expression
-      (identifier)
-      (literal))))
+    left: (identifier)
+    right: (binary_expression
+      left: (identifier)
+      right: (literal))))
 
 ==================
 Unary operators
@@ -411,21 +411,21 @@ Unary operators
 
 (script
   (assignment_expression
-    (identifier)
-    (unary_expression
-      (literal)))
+    left: (identifier)
+    right: (unary_expression
+      argument: (literal)))
   (assignment_expression
-    (identifier)
-    (unary_expression
-      (identifier)))
+    left: (identifier)
+    right: (unary_expression
+      argument: (identifier)))
   (assignment_expression
-    (identifier)
-    (unary_expression
-      (literal)))
+    left: (identifier)
+    right: (unary_expression
+      argument: (literal)))
   (assignment_expression
-    (identifier)
-    (unary_expression
-      (literal))))
+    left: (identifier)
+    right: (unary_expression
+      argument: (literal))))
 
 ==================
 Range operator
@@ -443,39 +443,39 @@ Range operator
 
 (script
   (assignment_expression
-    (identifier)
-    (binary_expression
-      (literal)
-      (literal)))
+    left: (identifier)
+    right: (binary_expression
+      left: (literal)
+      right: (literal)))
   (assignment_expression
-    (identifier)
-    (binary_expression
-      (literal)
-      (literal)))
+    left: (identifier)
+    right: (binary_expression
+      left: (literal)
+      right: (literal)))
   (assignment_expression
-    (identifier)
-    (binary_expression
-      (unary_expression
-        (literal))
-      (unary_expression
-        (literal))))
+    left: (identifier)
+    right: (binary_expression
+      left: (unary_expression
+        argument: (literal))
+      right: (unary_expression
+        argument: (literal))))
   (assignment_expression
-    (identifier)
-    (binary_expression
-      (literal)
-      (literal)))
+    left: (identifier)
+    right: (binary_expression
+      left: (literal)
+      right: (literal)))
   (assignment_expression
-    (identifier)
-    (binary_expression
-      (literal)
-      (literal)))
+    left: (identifier)
+    right: (binary_expression
+      left: (literal)
+      right: (literal)))
   (assignment_expression
-    (identifier)
-    (binary_expression
-      (literal)
-      (literal)))
+    left: (identifier)
+    right: (binary_expression
+      left: (literal)
+      right: (literal)))
   (assignment_expression
-    (identifier)
-    (binary_expression
-      (literal)
-      (literal))))
+    left: (identifier)
+    right: (binary_expression
+      left: (literal)
+      right: (literal))))
