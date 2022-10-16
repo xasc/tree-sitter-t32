@@ -39,9 +39,7 @@ const PREC = {
   time: 100
 }
 
-const NUMPREFIX = '0y|0x'
 const ALPHANUM = '[a-zA-Z0-9]+'
-const ALPHA = '[0-9]+'
 
 const RE_BLANK = /[ \t]/
 
@@ -62,11 +60,14 @@ module.exports = grammar({
   externals: $ => [
     $.label_identifier,
     $._no_blank,  // Zero-length token for expressions
-    $._logical_and,
-    $._bitwise_and
+    $._and_operator_pre_hook,  // Check for presence of macros after operator
+    '&&',
+    '&',
   ],
 
-  conflicts: $ => [],
+  conflicts: $ => [
+    [$._binary_expression, $._and_expression]
+  ],
 
   extras: $ => [
     /\\\r?\n/
@@ -347,10 +348,13 @@ module.exports = grammar({
       field('argument', $._expression)
     )),
 
-    binary_expression: $ => {
+    binary_expression: $ => choice(
+      $._binary_expression,
+      $._and_expression
+    ),
+
+    _binary_expression: $ => {
       const operators = [
-        [$._logical_and, PREC.logical_and],
-        [$._bitwise_and, PREC.bitwise_and],
         ['^^', PREC.logical_xor],
         ['||', PREC.logical_or],
         ['+', PREC.add_sub],
@@ -367,12 +371,30 @@ module.exports = grammar({
         ['<=', PREC.relational],
         ['<', PREC.relational],
         ['<<', PREC.shift],
+        ['>>', PREC.shift],
         [/\.\.|\-\-|\+\+/, PREC.range]
       ];
 
       return choice(...operators.map(([op, pre]) => {
         return prec.left(pre, seq(
           field('left', $._expression),
+          field('operator', op),
+          $._no_blank,
+          field('right', $._expression)
+        ))
+      }));
+    },
+
+    _and_expression: $ => {
+      const operators = [
+        ['&&', PREC.logical_and],
+        ['&', PREC.bitwise_and]
+      ];
+
+      return choice(...operators.map(([op, pre]) => {
+        return prec.left(pre, seq(
+          field('left', $._expression),
+          $._and_operator_pre_hook,
           field('operator', op),
           $._no_blank,
           field('right', $._expression)
@@ -484,7 +506,7 @@ module.exports = grammar({
     ),
 
     _non_quoted_symbol: $ => token(prec(PREC._non_quoted_symbol, seq(
-      /[^"\s.-]+/,
+      /[^"\s&^|*%/=><~!.-]+/,
     ))),
 
     _quoted_symbol: $ => seq(

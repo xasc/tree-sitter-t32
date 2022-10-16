@@ -32,12 +32,13 @@
 enum TokenType {
 	LABEL_IDENTIFIER,
 	NO_BLANK,
+	AND_OPERATOR_PRE_HOOK,
 	LOGICAL_AND,
 	BITWISE_AND
 };
 
-
 typedef struct scannerState_s {
+	unsigned and_operator_len;
 }
 scannerState_t;
 
@@ -63,6 +64,14 @@ static void MarkEnd(
 {
 	assert(lexer != NULL);
 	lexer->mark_end(lexer);
+}
+
+
+static bool IsEof(
+	TSLexer *const lexer)
+{
+	assert(lexer != NULL);
+	return lexer->eof(lexer);
 }
 
 
@@ -129,10 +138,10 @@ static void ScanIdentifier(
 }
 
 
-static unsigned ScanAmpersandOperators(
+static unsigned ScanLengthAndOperator(
 	TSLexer * lexer)
 {
-	assert(lexer != NULL);
+	assert(lexer != NULL && lexer->lookahead == '&');
 
 	/* LOCAL &a &b
 	 * &a = TRUE()
@@ -141,20 +150,29 @@ static unsigned ScanAmpersandOperators(
 	 * LOCAL &c &d
 	 * &c = 0x1
 	 * &d = 0xf&&c
+	 *
+	 * LOCAL &e
+	 * &e = 0xf&14.
 	 */
-	unsigned num = 0;
-	for (unsigned ii = 0; ii < 2; ii++) {
-		if (lexer->lookahead == '&') {
-			Advance(lexer);
-		}
 
-		if (IsAlpha(lexer->lookahead)) {
-			return num;
+	MarkEnd(lexer);
+
+	unsigned len = 0;
+	while (
+		lexer->lookahead == '&' ||
+		lexer->lookahead == '(' ||
+		lexer->lookahead == '{'
+	) {
+		if (lexer->lookahead == '&') {
+			len += 1u;
 		}
-		MarkEnd(lexer);
-		num += 1u;
+		Advance(lexer);
 	}
-	return num;
+
+	if (IsAlpha(lexer->lookahead) && len > 0) {
+		len -= 1u;
+	}
+	return len;
 }
 
 
@@ -187,16 +205,28 @@ bool tree_sitter_t32_external_scanner_scan(
 			}
 		}
 	}
+	else if (valid_symbols[AND_OPERATOR_PRE_HOOK] && lexer->lookahead == '&') {
+
+		state->and_operator_len = ScanLengthAndOperator(lexer);
+		lexer->result_symbol = AND_OPERATOR_PRE_HOOK;
+		return true;
+	}
 	else if (
 		(valid_symbols[LOGICAL_AND] || valid_symbols[BITWISE_AND]) &&
 		lexer->lookahead == '&'
 	) {
-		unsigned const num = ScanAmpersandOperators(lexer);
-		if (num == 1) {
+		unsigned const len = state->and_operator_len;
+		for (unsigned ii = 0; ii < len; ii++) {
+			Advance(lexer);
+		}
+
+		if (len == 1) {
+			state->and_operator_len = 0;
 			lexer->result_symbol = BITWISE_AND;
 			return true;
 		}
-		if (num == 2) {
+		if (len == 2) {
+			state->and_operator_len = 0;
 			lexer->result_symbol = LOGICAL_AND;
 			return true;
 		}
