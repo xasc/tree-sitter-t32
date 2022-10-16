@@ -39,13 +39,17 @@ const PREC = {
   time: 100
 }
 
-const BLANK = /[ \t]/
+const NUMPREFIX = '0y|0x'
+const ALPHANUM = '[a-zA-Z0-9]+'
+const ALPHA = '[0-9]+'
 
-const COMMAND_NAME = /[a-zA-Z]+/
+const RE_BLANK = /[ \t]/
 
-const STRING_BODY = /[^"\n]+/
+const RE_COMMAND_NAME = /[a-zA-Z]+/
 
-const INTEGERS = [
+const RE_STRING_BODY = /[^"\n\\]+/
+
+const RE_INTEGERS = [
   /0y[0-9]+/,  // Binary
   /[0-9]+\.?/,  // Decimal
   /0x[0-9a-fA-F]+/,  // Hexadecimal
@@ -303,7 +307,7 @@ module.exports = grammar({
     _cmd_event: $ => seq(
       longAndShortForm('CMD'),
       repeat1($._blank),
-      alias(COMMAND_NAME, $.command)
+      alias(RE_COMMAND_NAME, $.command)
     ),
 
     _common_event_action: $ => seq(
@@ -410,7 +414,7 @@ module.exports = grammar({
     ),
 
     command: $ => seq(
-      token(prec(PREC.command, COMMAND_NAME)),
+      token(prec(PREC.command, RE_COMMAND_NAME)),
       $._terminator
     ),
 
@@ -422,13 +426,13 @@ module.exports = grammar({
       $._time,
       $._string,
       $._character,
-      $._non_quoted_symbol
+      $._symbol
     ),
 
     _integer: $ => seq(
       optional(/[-\+]/),
       choice(
-        ...INTEGERS
+        ...RE_INTEGERS
       )
     ),
 
@@ -439,38 +443,54 @@ module.exports = grammar({
       /0x[0-9a-fA-FxX]+/,  // Hexmask
     ),
 
-    _address: $ => token(prec(PREC.address, seq(
-      /([a-zA-Z0-9]+:)([a-zA-Z0-9]+:::)?([0-9]+:)?/,
-      choice(
-        ...INTEGERS
-      )
-    ))),
+    _address: $ => {
+      return token(prec(PREC.address, seq(
+        new RegExp(ALPHANUM + ':'),  // Access class
+        repeat(new RegExp(ALPHANUM + '[.]?:+')),  // Machine identifier:::Memory space identifier::Memory segment identifier:
+        choice(
+          ...RE_INTEGERS
+        )
+      )))
+    },
 
     _string: $ => seq(
       '"',
       repeat(choice(
-        STRING_BODY,
+        RE_STRING_BODY,
         /""/,  // Escape sequence
       )),
       '"'
     ),
 
+    _character: $ => seq(
+      "'",
+      repeat(
+        /[^\n\\]/,
+      ),
+      "'"
+    ),
+
     _path: $ => alias(
       choice(
         $._string,
-        STRING_BODY
+        RE_STRING_BODY
       ),
       $.literal
+    ),
+
+    _symbol: $ => choice(
+      $._non_quoted_symbol,
+      $._quoted_symbol
     ),
 
     _non_quoted_symbol: $ => token(prec(PREC._non_quoted_symbol, seq(
       /[^"\s.-]+/,
     ))),
 
-    _character: $ => seq(
-      "'",
-      /[^\n]/,
-      "'"
+    _quoted_symbol: $ => seq(
+      "`",
+      /[^`\n]+/,
+      "`",
     ),
 
     _time: $ => token(prec(PREC.time, /[0-9]+\.?[0-9]*[mnu]*s/)),
@@ -481,7 +501,7 @@ module.exports = grammar({
       /\s*[\r\n]+\s*/
     )),
 
-    _blank: $ => BLANK
+    _blank: $ => RE_BLANK
   }
 })
 
