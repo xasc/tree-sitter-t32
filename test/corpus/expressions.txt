@@ -479,3 +479,128 @@ Range operator
     right: (binary_expression
       left: (literal)
       right: (literal))))
+
+==================
+Operator precedence
+==================
+
+&a = 1<<!2*3
+&a = 1>>~2/3
+
+&b = 1+!2*3
+&b = 1-~2%3
+
+&c = 1+!2!=3
+&c = 1-~2>=3
+
+&d = 1&!2==3
+
+&e = 1&+2^3
+
+&f = 1|+2^3
+
+&g = 1&&-2^3
+
+&h = 1^^+2&&3
+
+&i = 1^^+2||3
+
+---
+
+(script
+  (assignment_expression
+    left: (identifier)
+    right: (binary_expression
+      left: (binary_expression
+        left: (literal)
+        right: (unary_expression
+          argument: (literal)))
+      right: (literal)))
+  (assignment_expression
+    left: (identifier)
+    right: (binary_expression
+      left: (binary_expression
+        left: (literal)
+        right: (unary_expression
+          argument: (literal)))
+      right: (literal)))
+  (assignment_expression
+    left: (identifier)
+    right: (binary_expression
+      left: (literal)
+      right: (binary_expression
+        left: (unary_expression
+          argument: (literal))
+        right: (literal))))
+  (assignment_expression
+    left: (identifier)
+    right: (binary_expression
+      left: (literal)
+      right: (binary_expression
+        left: (unary_expression
+          argument: (literal))
+        right: (literal))))
+  (assignment_expression
+    left: (identifier)
+    right: (binary_expression
+      left: (binary_expression
+        left: (literal)
+        right: (unary_expression
+          argument: (literal)))
+      right: (literal)))
+  (assignment_expression
+    left: (identifier)
+    right: (binary_expression
+      left: (binary_expression
+        left: (literal)
+        right: (unary_expression
+          argument: (literal)))
+      right: (literal)))
+  (assignment_expression
+    left: (identifier)
+    right: (binary_expression
+      left: (literal)
+      right: (binary_expression
+        left: (unary_expression
+          argument: (literal))
+        right: (literal))))
+  (assignment_expression
+    left: (identifier)
+    right: (binary_expression
+      left: (binary_expression
+        left: (literal)
+        right: (unary_expression
+          argument: (literal)))
+      right: (literal)))
+  (assignment_expression
+    left: (identifier)
+    right: (binary_expression
+      left: (literal)
+      right: (binary_expression
+        left: (unary_expression
+          argument: (literal))
+        right: (literal))))
+  (assignment_expression
+    left: (identifier)
+    right: (binary_expression
+      left: (literal)
+      right: (binary_expression
+        left: (unary_expression
+          argument: (literal))
+        right: (literal))))
+  (assignment_expression
+    left: (identifier)
+    right: (binary_expression
+      left: (literal)
+      right: (binary_expression
+        left: (unary_expression
+          argument: (literal))
+        right: (literal))))
+  (assignment_expression
+    left: (identifier)
+    right: (binary_expression
+      left: (binary_expression
+        left: (literal)
+        right: (unary_expression
+          argument: (literal)))
+      right: (literal))))
