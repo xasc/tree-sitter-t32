@@ -414,11 +414,23 @@ module.exports = grammar({
       )),
     ),
 
-    _macro: $ => prec.left(seq(
-      '&',
-      optional('('),
-      $.identifier,
-      optional(')')
+    _macro: $ => prec.left(choice(
+      seq(
+        '&',
+        $.identifier
+      ),
+      seq(
+        '&',
+        '(',
+        $.identifier,
+        ')'
+      ),
+      seq(
+        '&',
+        '{',
+        $.identifier,
+        '}'
+      )
     )),
 
     recursive_macro_expansion: $ => prec.left(seq(

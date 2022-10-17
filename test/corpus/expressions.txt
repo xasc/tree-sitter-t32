@@ -6,7 +6,7 @@ GLOBAL &Macroname
 
 LOCAL &GLOBAL
 
-PRIVATE &msg1 &(started) &(line_counT)
+PRIVATE &msg1 &(started) &{line_counT}
 
 ---
 
@@ -611,7 +611,7 @@ Expressions with parentheses
 
 &a = (1+2)
 &a = (-1+&(b))*3
-&a = {1&&(-&b^3)}
+&a = {(1)&&(-&b^3)}
 
 ---
 
