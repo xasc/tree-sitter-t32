@@ -325,10 +325,17 @@ module.exports = grammar({
       $._parenthesized_expression
     ),
 
-    _parenthesized_expression: $ => seq(
-      /[({]/,
-      $._expression,
-      /[)}]/
+    _parenthesized_expression: $ => choice(
+      seq(
+        '(',
+        $._expression,
+        ')'
+      ),
+      seq(
+        '{',
+        $._expression,
+        '}'
+      )
     ),
 
     assignment_expression: $ => seq(
