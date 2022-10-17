@@ -6,7 +6,7 @@ GLOBAL &Macroname
 
 LOCAL &GLOBAL
 
-PRIVATE &msg1 &(started) &line_counT
+PRIVATE &msg1 &(started) &(line_counT)
 
 ---
 
@@ -604,3 +604,36 @@ Operator precedence
         right: (unary_expression
           argument: (literal)))
       right: (literal))))
+
+==================
+Expressions with parentheses
+==================
+
+&a = (1+2)
+&a = (-1+&(b))*3
+&a = {1&&(-&b^3)}
+
+---
+
+(script
+  (assignment_expression
+    left: (identifier)
+    right: (binary_expression
+      left: (literal)
+      right: (literal)))
+  (assignment_expression
+    left: (identifier)
+    right: (binary_expression
+      left: (binary_expression
+        left: (unary_expression
+          argument: (literal))
+        right: (identifier))
+      right: (literal)))
+  (assignment_expression
+    left: (identifier)
+    right: (binary_expression
+      left: (literal)
+      right: (binary_expression
+        left: (unary_expression
+          argument: (identifier))
+        right: (literal)))))
