@@ -645,7 +645,7 @@ Operator precedence
 Expressions with parentheses
 ==================
 
-&a = (1+2)
+&a = (1+FOUND())
 &a = (-1+&(b))*3
 &a = {(1)&&(-&b^3)}
 
@@ -656,7 +656,9 @@ Expressions with parentheses
     left: (identifier)
     right: (binary_expression
       left: (literal)
-      right: (literal)))
+      right: (practice_function
+        function: (identifier)
+        arguments: (argument_list))))
   (assignment_expression
     left: (identifier)
     right: (binary_expression
