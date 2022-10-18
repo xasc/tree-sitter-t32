@@ -251,6 +251,42 @@ Address literals
     right: (literal)))
 
 ==================
+PRACTICE functions
+==================
+
+&a = Register(PC)
+&a = FOUND()
+&a = OS.ENV(HOME)
+&a = Data.Word.BigEndean(MX:0x1234)
+
+---
+
+(script
+  (assignment_expression
+    left: (identifier)
+    right: (practice_function
+      function: (identifier)
+      arguments: (argument_list
+        (identifier))))
+  (assignment_expression
+    left: (identifier)
+    right: (practice_function
+      function: (identifier)
+      arguments: (argument_list)))
+  (assignment_expression
+    left: (identifier)
+    right: (practice_function
+      function: (identifier)
+      arguments: (argument_list
+        (identifier))))
+  (assignment_expression
+    left: (identifier)
+    right: (practice_function
+      function: (identifier)
+      arguments: (argument_list
+        (literal)))))
+
+==================
 Assignment expression
 ==================
 
