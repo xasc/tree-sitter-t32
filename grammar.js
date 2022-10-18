@@ -105,7 +105,7 @@ module.exports = grammar({
     if_block: $ => prec.right(seq(
       longAndShortForm('IF'),
       repeat1($._blank),
-      field('condition', $._macro),
+      field('condition', $._expression),
       $._terminator,
       choice(
         $._statement,

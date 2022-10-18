@@ -14,10 +14,10 @@ abc:
 IF block statements
 ==================
 
-IF &a
+IF (&a)
   STOP
 
-IF &b
+IF FOUND()
   STOP
 ELSE
   CONTinue
@@ -43,7 +43,9 @@ ELSE
     condition: (identifier)
     (identifier))
   (if_block
-    condition: (identifier)
+    condition: (practice_function
+      function: (identifier)
+      arguments: (argument_list))
     (identifier)
     (else_block
       (identifier)))
@@ -143,7 +145,7 @@ WHILE &a
 WHILE block statements with parentheses
 ==================
 
-WHILE &a
+WHILE (sYmbol.EXIT(main))
 (
   Step
   Break
@@ -153,7 +155,10 @@ WHILE &a
 
 (script
   (while_block
-    condition: (identifier)
+    condition: (practice_function
+      function: (identifier)
+      arguments: (argument_list
+        (identifier)))
     (identifier)
     (identifier)))
 
