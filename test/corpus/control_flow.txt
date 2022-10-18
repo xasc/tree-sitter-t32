@@ -41,34 +41,43 @@ ELSE
 (script
   (if_block
     condition: (identifier)
-    (identifier))
+    (command_expression
+      command: (identifier)))
   (if_block
     condition: (practice_function
       function: (identifier)
       arguments: (argument_list))
-    (identifier)
+    (command_expression
+      command: (identifier))
     (else_block
-      (identifier)))
+      (command_expression
+      command: (identifier))))
   (if_block
     condition: (identifier)
-    (identifier)
+    (command_expression
+      command: (identifier))
     (else_block
       (if_block
         condition: (identifier)
-        (identifier))))
+        (command_expression
+      command: (identifier)))))
   (if_block
     condition: (identifier)
-    (identifier)
+    (command_expression
+      command: (identifier))
     (else_block
       (if_block
         condition: (identifier)
-        (identifier)
+        (command_expression
+      command: (identifier))
         (else_block
           (if_block
             condition: (identifier)
-            (identifier)
+            (command_expression
+      command: (identifier))
             (else_block
-                (identifier))))))))
+                (command_expression
+      command: (identifier)))))))))
 
 ==================
 Nested IF block statements
@@ -90,11 +99,13 @@ IF &a
     condition: (identifier)
     (if_block
       condition: (identifier)
-      (identifier)
+      (command_expression
+      command: (identifier))
       (else_block
         (if_block
           condition: (identifier)
-          (identifier))))))
+          (command_expression
+      command: (identifier)))))))
 
 ==================
 IF block statements with parentheses
@@ -118,13 +129,16 @@ ELSE
 (script
   (if_block
     condition: (identifier)
-    (identifier)
+    (command_expression
+      command: (identifier))
     (else_block
       (if_block
         condition: (identifier)
-        (identifier)
+        (command_expression
+      command: (identifier))
         (else_block
-          (identifier))))))
+          (command_expression
+      command: (identifier)))))))
 
 
 ==================
@@ -139,7 +153,8 @@ WHILE &a
 (script
   (while_block
     condition: (identifier)
-    (identifier)))
+    (command_expression
+      command: (identifier))))
 
 ==================
 WHILE block statements with parentheses
@@ -159,8 +174,10 @@ WHILE (sYmbol.EXIT(main))
       function: (identifier)
       arguments: (argument_list
         (identifier)))
-    (identifier)
-    (identifier)))
+    (command_expression
+      command: (identifier))
+    (command_expression
+      command: (identifier))))
 
 ==================
 RePeaT block statements
@@ -195,14 +212,18 @@ WHILE &a
     (identifier))
   (repeat_block
     condition: (identifier)
-    (identifier))
+    (command_expression
+      command: (identifier)))
   (repeat_block
     condition: (literal)
-    (identifier))
+    (command_expression
+      command: (identifier)))
   (repeat_block
-    (identifier))
+    (command_expression
+      command: (identifier)))
   (repeat_block
-    (identifier)
+    (command_expression
+      command: (identifier))
     condition: (identifier)))
 
 ==================
@@ -237,7 +258,8 @@ ON TIME 2.0us default
     (identifier))
   (on_event_control
     (literal)
-    (identifier))
+    (command_expression
+      (identifier)))
   (on_event_control
     (literal)
     (identifier))

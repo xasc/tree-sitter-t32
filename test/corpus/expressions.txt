@@ -11,11 +11,11 @@ PRIVATE &msg1 &(started) &{line_counT}
 ---
 
 (script
-  (macro_declaration
+  (command_expression
     (identifier))
-  (macro_declaration
+  (command_expression
     (identifier))
-  (macro_declaration
+  (command_expression
     (identifier)
     (identifier)
     (identifier)))
@@ -285,6 +285,29 @@ PRACTICE functions
       function: (identifier)
       arguments: (argument_list
         (literal)))))
+
+==================
+Commands
+==================
+
+::B::WinPrint.Data.dump 0x1000 /Byte
+Data.DRAWFFT %Decimal.Byte VM:0++0x4f 2.0 512.
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    argument: (literal)
+    argument: (identifier))
+  (command_expression
+    command: (identifier)
+    argument: (identifier)
+    argument: (binary_expression
+      left: (literal)
+      right: (literal))
+    argument: (literal)
+    argument: (literal)))
 
 ==================
 Assignment expression

@@ -21,8 +21,6 @@
  */
 
 const PREC = {
-  command: -2,
-  _non_quoted_symbol: -1,
   logical_or: 10,
   logical_xor: 11,
   logical_and: 12,
@@ -35,8 +33,7 @@ const PREC = {
   shift: 19,
   unary: 20,
   range: 21,
-  practice_function: 22,
-  time: 100
+  practice_function: 22
 }
 
 const RE_STRING_BODY = /[^"\n\\]+/
@@ -99,7 +96,7 @@ module.exports = grammar({
       $.if_block,
       $.repeat_block,
       $.while_block,
-      $._command_statement,
+      $.command_expression,
     ),
 
     if_block: $ => prec.right(seq(
@@ -409,7 +406,7 @@ module.exports = grammar({
       ':'
     ),
 
-    macro_declaration: $ => seq(
+    _macro_declaration: $ => seq(
       $._declaration_command,
       repeat1(seq(
         repeat1($._blank),
@@ -449,12 +446,49 @@ module.exports = grammar({
       longAndShortForm('PRIVATE')
     ),
 
-    _command_statement: $ => choice(
-      $.macro_declaration,
-      seq(
-        prec(PREC.command, $.identifier),
-        $._terminator
+    command_expression: $ => seq(
+      optional(/(::)*B::/),
+      choice(
+        seq(
+          $._macro_declaration,
+          $._terminator
+        ),
+        seq(
+          field('command', $.identifier),
+          field('argument', optional($._command_arguments)),
+          choice(
+            $._block,
+            $._terminator
+          )
+        )
       )
+    ),
+
+    _command_arguments: $ => seq(
+      $._blank,
+      choice(
+        $._expression,
+        $._command_option,
+        $._command_format
+      ),
+      repeat(seq(
+        $._blank,
+        choice(
+          $._expression,
+          $._command_option,
+          $._command_format
+        )
+      ))
+    ),
+
+    _command_option: $ => seq(
+      '/',
+      $.identifier
+    ),
+
+    _command_format: $ => seq(
+      '%',
+      $.identifier
     ),
 
     practice_function: $ => prec(PREC.practice_function, seq(
