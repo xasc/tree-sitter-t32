@@ -41,32 +41,32 @@ ELSE
 (script
   (if_block
     condition: (identifier)
-    (command))
+    (identifier))
   (if_block
     condition: (identifier)
-    (command)
+    (identifier)
     (else_block
-      (command)))
+      (identifier)))
   (if_block
     condition: (identifier)
-    (command)
-    (else_block
-      (if_block
-        condition: (identifier)
-        (command))))
-  (if_block
-    condition: (identifier)
-    (command)
+    (identifier)
     (else_block
       (if_block
         condition: (identifier)
-        (command)
+        (identifier))))
+  (if_block
+    condition: (identifier)
+    (identifier)
+    (else_block
+      (if_block
+        condition: (identifier)
+        (identifier)
         (else_block
           (if_block
             condition: (identifier)
-            (command)
+            (identifier)
             (else_block
-                (command))))))))
+                (identifier))))))))
 
 ==================
 Nested IF block statements
@@ -88,11 +88,11 @@ IF &a
     condition: (identifier)
     (if_block
       condition: (identifier)
-      (command)
+      (identifier)
       (else_block
         (if_block
           condition: (identifier)
-          (command))))))
+          (identifier))))))
 
 ==================
 IF block statements with parentheses
@@ -116,13 +116,13 @@ ELSE
 (script
   (if_block
     condition: (identifier)
-    (command)
+    (identifier)
     (else_block
       (if_block
         condition: (identifier)
-        (command)
+        (identifier)
         (else_block
-          (command))))))
+          (identifier))))))
 
 
 ==================
@@ -137,7 +137,7 @@ WHILE &a
 (script
   (while_block
     condition: (identifier)
-    (command)))
+    (identifier)))
 
 ==================
 WHILE block statements with parentheses
@@ -154,8 +154,8 @@ WHILE &a
 (script
   (while_block
     condition: (identifier)
-    (command)
-    (command)))
+    (identifier)
+    (identifier)))
 
 ==================
 RePeaT block statements
@@ -187,17 +187,17 @@ WHILE &a
 (script
   (repeat_block
     condition: (literal)
-    (command))
+    (identifier))
   (repeat_block
     condition: (identifier)
-    (command))
+    (identifier))
   (repeat_block
     condition: (literal)
-    (command))
+    (identifier))
   (repeat_block
-    (command))
+    (identifier))
   (repeat_block
-    (command)
+    (identifier)
     condition: (identifier)))
 
 ==================
@@ -225,14 +225,14 @@ ON TIME 2.0us default
   (on_event_control)
   (on_event_control)
   (on_event_control
-    (command)
+    (identifier)
     (literal))
   (on_event_control
     (literal)
     (identifier))
   (on_event_control
     (literal)
-    (command))
+    (identifier))
   (on_event_control
     (literal)
     (identifier))
@@ -356,14 +356,14 @@ GLOBALON CMD print EXEcute continue
   (globalon_event_control
     (literal))
   (globalon_event_control
-    (command)
+    (identifier)
     (literal))
   (globalon_event_control
     (literal)
     (literal))
   (globalon_event_control
-    (command)
-    (command)))
+    (identifier)
+    (identifier)))
 
 ==================
 GLOBALON device event control

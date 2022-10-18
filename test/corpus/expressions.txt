@@ -218,7 +218,7 @@ Symbol literals
     right: (literal))
   (assignment_expression
     left: (identifier)
-    right: (literal)))
+    right: (identifier)))
 
 ==================
 Address literals
@@ -282,7 +282,7 @@ Binary operators
 &a=1&&2
 &a = 1^^&b
 &a= &b||2
-&a= 1+2
+&a= 1ms+2.ns
 &a= 1-&b
 &a= &b*2
 &a= 1/2
@@ -472,8 +472,8 @@ Range operator
   (assignment_expression
     left: (identifier)
     right: (binary_expression
-      left: (literal)
-      right: (literal)))
+      left: (identifier)
+      right: (identifier)))
   (assignment_expression
     left: (identifier)
     right: (binary_expression

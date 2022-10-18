@@ -21,7 +21,7 @@
  */
 
 const PREC = {
-  command: -1,
+  command: -2,
   _non_quoted_symbol: -1,
   logical_or: 10,
   logical_xor: 11,
@@ -35,15 +35,9 @@ const PREC = {
   shift: 19,
   unary: 20,
   range: 21,
-  address: 100,
+  practice_function: 22,
   time: 100
 }
-
-const ALPHANUM = '[a-zA-Z0-9]+'
-
-const RE_BLANK = /[ \t]/
-
-const RE_COMMAND_NAME = /[a-zA-Z]+/
 
 const RE_STRING_BODY = /[^"\n\\]+/
 
@@ -98,7 +92,6 @@ module.exports = grammar({
     )),
 
     _statement: $ => choice(
-      $.macro_declaration,
       $.recursive_macro_expansion,
       $.assignment_expression,
       $.on_event_control,
@@ -106,7 +99,7 @@ module.exports = grammar({
       $.if_block,
       $.repeat_block,
       $.while_block,
-      $.command,
+      $._command_statement,
     ),
 
     if_block: $ => prec.right(seq(
@@ -158,7 +151,7 @@ module.exports = grammar({
           choice(
             seq(
               repeat1($._blank),
-              $.command
+              $.identifier
             ),
             seq(
               $._terminator,
@@ -220,7 +213,7 @@ module.exports = grammar({
           repeat1($._blank),
           longAndShortForm('EXECute'),
           repeat1($._blank),
-          $.command
+          $.identifier
         )
       )
     ),
@@ -308,7 +301,7 @@ module.exports = grammar({
     _cmd_event: $ => seq(
       longAndShortForm('CMD'),
       repeat1($._blank),
-      alias(RE_COMMAND_NAME, $.command)
+      $.identifier
     ),
 
     _common_event_action: $ => seq(
@@ -320,8 +313,11 @@ module.exports = grammar({
     _expression: $ => choice(
       $.unary_expression,
       $.binary_expression,
+      $.practice_function,
       $._macro,
       $.literal,
+      $.identifier,
+      $.identifier,
       $._parenthesized_expression
     ),
 
@@ -410,7 +406,7 @@ module.exports = grammar({
 
     label: $ => seq(
       alias($.label_identifier, $.identifier),
-      token.immediate(':')
+      ':'
     ),
 
     macro_declaration: $ => seq(
@@ -453,9 +449,29 @@ module.exports = grammar({
       longAndShortForm('PRIVATE')
     ),
 
-    command: $ => seq(
-      token(prec(PREC.command, RE_COMMAND_NAME)),
-      $._terminator
+    _command_statement: $ => choice(
+      $.macro_declaration,
+      seq(
+        prec(PREC.command, $.identifier),
+        $._terminator
+      )
+    ),
+
+    practice_function: $ => prec(PREC.practice_function, seq(
+      field('function', $._expression),
+      field('arguments', $.argument_list)
+    )),
+
+    argument_list: $ => seq(
+      '(',
+      optional(seq(
+        $._expression,
+        repeat(seq(
+          ',',
+          $._expression
+        ))
+      )),
+      ')'
     ),
 
     literal: $ => choice(
@@ -469,11 +485,8 @@ module.exports = grammar({
       $._symbol
     ),
 
-    _integer: $ => seq(
-      optional(/[-\+]/),
-      choice(
-        ...RE_INTEGERS
-      )
+    _integer: $ => choice(
+      ...RE_INTEGERS
     ),
 
     _float: $ => /[0-9]+\.[0-9]+(e[-+][0-9]+)?/,
@@ -484,13 +497,15 @@ module.exports = grammar({
     ),
 
     _address: $ => {
-      return token(prec(PREC.address, seq(
-        new RegExp(ALPHANUM + ':'),  // Access class
-        repeat(new RegExp(ALPHANUM + '[.]?:+')),  // Machine identifier:::Memory space identifier::Memory segment identifier:
+      const alphanum = '[a-zA-Z0-9]+'
+
+      return token(seq(
+        new RegExp(alphanum + ':'),  // Access class
+        repeat(new RegExp(alphanum + '[.]?:+')),  // Machine identifier:::Memory space identifier::Memory segment identifier:
         choice(
           ...RE_INTEGERS
         )
-      )))
+      ))
     },
 
     _string: $ => seq(
@@ -518,30 +533,24 @@ module.exports = grammar({
       $.literal
     ),
 
-    _symbol: $ => choice(
-      $._non_quoted_symbol,
-      $._quoted_symbol
-    ),
-
-    _non_quoted_symbol: $ => token(prec(PREC._non_quoted_symbol, seq(
-      /[^"\s&^|*%/=><~!.:-]+/,
-    ))),
-
-    _quoted_symbol: $ => seq(
+    _symbol: $ => seq(
       "`",
       /[^`\n]+/,
       "`",
     ),
 
-    _time: $ => token(prec(PREC.time, /[0-9]+\.?[0-9]*[mnu]*s/)),
+    _time: $ => /[0-9]+\.?[0-9]*[mnu]*s/,
 
-    identifier: $ => /[a-zA-Z]\w*/,
+    identifier: $ => token(choice(
+      /[a-zA-Z][.\w]*/,
+      /[a-zA-Z_][\w]*/,
+    )),
 
     _terminator: $ => prec.right(repeat1(
       /\s*[\r\n]+\s*/
     )),
 
-    _blank: $ => RE_BLANK
+    _blank: $ => /[ \t]/
   }
 })
 
