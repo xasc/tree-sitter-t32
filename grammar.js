@@ -71,7 +71,6 @@ module.exports = grammar({
     script: $ => repeat($._top_level),
 
     _top_level: $ => choice(
-      $.label,
       $._statement,
       $._block,
       $._terminator
@@ -98,6 +97,16 @@ module.exports = grammar({
       $.repeat_block,
       $.while_block,
       $.command_expression,
+      $._labeled_statement
+    ),
+
+    _labeled_statement: $ => seq(
+      $._label,
+      repeat($._blank),
+      choice(
+        $._statement,
+        $._terminator
+      )
     ),
 
     if_block: $ => prec.right(seq(
@@ -402,8 +411,8 @@ module.exports = grammar({
       }));
     },
 
-    label: $ => seq(
-      alias($.label_identifier, $.identifier),
+    _label: $ => seq(
+      field('label', alias($.label_identifier, $.identifier)),
       ':'
     ),
 

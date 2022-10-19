@@ -132,7 +132,11 @@ static void ScanIdentifier(
 	assert(lexer != NULL);
 
 	Advance(lexer);
-	while (IsAlphaNum(lexer->lookahead) || lexer->lookahead == '_') {
+	while (
+		IsAlphaNum(lexer->lookahead) ||
+		lexer->lookahead == '_' ||
+		lexer->lookahead == '.'
+	) {
 		Advance(lexer);
 	}
 }
@@ -196,7 +200,11 @@ bool tree_sitter_t32_external_scanner_scan(
 
 	// Labels must start in the first column
 	if (valid_symbols[LABEL_IDENTIFIER] && lexer->get_column(lexer) == 0) {
-		if (IsAlpha(lexer->lookahead) || lexer->lookahead == '_') {
+		if (
+			IsAlpha(lexer->lookahead) ||
+			lexer->lookahead == '_' ||
+			lexer->lookahead == '.'
+		) {
 			ScanIdentifier(lexer);
 
 			if (lexer->lookahead == ':') {

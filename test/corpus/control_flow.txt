@@ -3,12 +3,17 @@ Labels
 ==================
 
 abc:
+a_b.c: PRINT "A"
 
 ---
 
 (script
-  (label
-    (identifier)))
+  label: (identifier)
+  label: (identifier)
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (literal))))
 
 ==================
 IF block statements
