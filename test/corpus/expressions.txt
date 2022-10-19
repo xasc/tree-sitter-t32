@@ -284,30 +284,32 @@ PRACTICE functions
     right: (practice_function
       function: (identifier)
       arguments: (argument_list
-        (literal)))))
+        (literal))))
 
 ==================
 Commands
 ==================
 
-::B::WinPrint.Data.dump 0x1000 /Byte
-Data.DRAWFFT %Decimal.Byte VM:0++0x4f 2.0 512.
+::B::WinPrint.Data.dump  0x1000 /Byte
+Data.DRAWFFT ,%Decimal.Byte ,VM:0++0x4f , 2.0 512.,
 
 ---
 
 (script
   (command_expression
     command: (identifier)
-    argument: (literal)
-    argument: (identifier))
+    arguments: (argument_list
+      (literal)
+      (identifier)))
   (command_expression
     command: (identifier)
-    argument: (identifier)
-    argument: (binary_expression
-      left: (literal)
-      right: (literal))
-    argument: (literal)
-    argument: (literal)))
+    arguments: (argument_list
+      (identifier)
+      (binary_expression
+        left: (literal)
+        right: (literal))
+      (literal)
+      (literal))))
 
 ==================
 Assignment expression

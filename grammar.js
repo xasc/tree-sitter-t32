@@ -57,7 +57,8 @@ module.exports = grammar({
   ],
 
   conflicts: $ => [
-    [$._binary_expression, $._and_expression]
+    [$._binary_expression, $._and_expression],
+    [$._command_arguments, $._command_arguments]
   ],
 
   extras: $ => [
@@ -78,7 +79,7 @@ module.exports = grammar({
 
     _block: $ => prec.right(seq(
       seq(
-        '(',
+        /\((&[+-]?)?/,
         $._terminator
       ),
       repeat($._statement),
@@ -455,7 +456,7 @@ module.exports = grammar({
         ),
         seq(
           field('command', $.identifier),
-          field('argument', optional($._command_arguments)),
+          field('arguments', optional(alias($._command_arguments, $.argument_list))),
           choice(
             $._block,
             $._terminator
@@ -465,20 +466,22 @@ module.exports = grammar({
     ),
 
     _command_arguments: $ => seq(
+      repeat1(seq(
+        repeat($._command_argument_separator),
+        $._command_argument
+      )),
+      prec.left(repeat($._command_argument_separator))
+    ),
+
+    _command_argument: $ => choice(
+      $._expression,
+      $._command_option,
+      $._command_format
+    ),
+
+    _command_argument_separator: $ => choice(
       $._blank,
-      choice(
-        $._expression,
-        $._command_option,
-        $._command_format
-      ),
-      repeat(seq(
-        $._blank,
-        choice(
-          $._expression,
-          $._command_option,
-          $._command_format
-        )
-      ))
+      ','
     ),
 
     _command_option: $ => seq(
