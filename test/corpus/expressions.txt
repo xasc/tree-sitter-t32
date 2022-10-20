@@ -8,6 +8,8 @@ LOCAL &GLOBAL
 
 PRIVATE &msg1 &(started) &{line_counT}
 
+PARAMETERS &_myvalue1 &my_Value2
+
 ---
 
 (script
@@ -17,6 +19,9 @@ PRIVATE &msg1 &(started) &{line_counT}
     (identifier))
   (command_expression
     (identifier)
+    (identifier)
+    (identifier))
+  (command_expression
     (identifier)
     (identifier)))
 

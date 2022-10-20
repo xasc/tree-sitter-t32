@@ -449,7 +449,8 @@ module.exports = grammar({
     _declaration_command: $ => choice(
       longAndShortForm('GLOBAL'),
       longAndShortForm('LOCAL'),
-      longAndShortForm('PRIVATE')
+      longAndShortForm('PRIVATE'),
+      longAndShortForm('PARAMETERS')
     ),
 
     command_expression: $ => seq(
