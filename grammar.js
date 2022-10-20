@@ -97,10 +97,10 @@ module.exports = grammar({
       $.repeat_block,
       $.while_block,
       $.command_expression,
-      $._labeled_statement
+      $.labeled_command
     ),
 
-    _labeled_statement: $ => seq(
+    labeled_command: $ => seq(
       $._label,
       repeat($._blank),
       choice(

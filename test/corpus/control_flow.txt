@@ -8,12 +8,14 @@ a_b.c: PRINT "A"
 ---
 
 (script
-  label: (identifier)
-  label: (identifier)
-  (command_expression
-    command: (identifier)
-    arguments: (argument_list
-      (literal))))
+  (labeled_command
+    label: (identifier))
+  (labeled_command
+    label: (identifier)
+    (command_expression
+      command: (identifier)
+      arguments: (argument_list
+        (literal)))))
 
 ==================
 IF block statements
