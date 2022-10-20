@@ -284,7 +284,7 @@ PRACTICE functions
     right: (practice_function
       function: (identifier)
       arguments: (argument_list
-        (literal))))
+        (literal)))))
 
 ==================
 Commands
@@ -308,6 +308,56 @@ Data.DRAWFFT ,%Decimal.Byte ,VM:0++0x4f , 2.0 512.,
       (binary_expression
         left: (literal)
         right: (literal))
+      (literal)
+      (literal))))
+
+==================
+Commands with embedded blocks
+==================
+
+DIALOG.view
+(&+
+       POS 1. 1. 10.
+text:  TEXT "A Basic Dialog"
+)
+
+DIALOG.view
+(&-
+MYNAME: POS 22. 0. 24. 1.
+        DEFEDIT "" ""
+)
+
+---
+
+(script
+  (command_expression
+    command: (identifier))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (literal)
+      (literal)
+      (literal)))
+  (labeled_command
+    label: (identifier)
+    (command_expression
+      command: (identifier)
+      arguments: (argument_list
+        (literal))))
+  (command_expression
+    command: (identifier))
+  (labeled_command
+    label: (identifier)
+    (command_expression
+      command: (identifier)
+      arguments: (argument_list
+        (literal)
+        (literal)
+        (literal)
+        (literal))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
       (literal)
       (literal))))
 
