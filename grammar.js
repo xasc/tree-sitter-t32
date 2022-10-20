@@ -525,7 +525,8 @@ module.exports = grammar({
       $._time,
       $._string,
       $._character,
-      $._symbol
+      $._symbol,
+      $._file_dialog
     ),
 
     _integer: $ => choice(
@@ -583,6 +584,8 @@ module.exports = grammar({
     ),
 
     _time: $ => /[0-9]+\.?[0-9]*[mnu]*s/,
+
+    _file_dialog: $ => '*',
 
     identifier: $ => token(choice(
       /[a-zA-Z][.\w]*/,

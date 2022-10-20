@@ -297,6 +297,7 @@ Commands
 
 ::B::WinPrint.Data.dump  0x1000 /Byte
 Data.DRAWFFT ,%Decimal.Byte ,VM:0++0x4f , 2.0 512.,
+PEDIT *
 
 ---
 
@@ -314,6 +315,10 @@ Data.DRAWFFT ,%Decimal.Byte ,VM:0++0x4f , 2.0 512.,
         left: (literal)
         right: (literal))
       (literal)
+      (literal)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
       (literal))))
 
 ==================
