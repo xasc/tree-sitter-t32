@@ -5,7 +5,7 @@ Comments
 // Comment A
 ; Comment B
 
-PRINT "A" ;
+PRINT "A";
 ECHO "B" // a\
             b
 
