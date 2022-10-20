@@ -592,8 +592,19 @@ module.exports = grammar({
       /[a-zA-Z_][\w]*/,
     )),
 
-    _terminator: $ => prec.right(repeat1(
-      /\s*[\r\n]+\s*/
+    comment: $ => seq(
+      choice(
+        ';',
+        '//'
+      ),
+      repeat(/\\\r?\n|[^\n]/)
+    ),
+
+    _terminator: $ => prec.right(seq(
+      optional($.comment),
+      repeat1(
+        /\s*[\r\n]+\s*/
+      )
     )),
 
     _blank: $ => /[ \t]/

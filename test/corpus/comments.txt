@@ -1,0 +1,26 @@
+==================
+Comments
+==================
+
+// Comment A
+; Comment B
+
+PRINT "A" ;
+ECHO "B" // a\
+            b
+
+---
+
+(script
+  (comment)
+  (comment)
+  (command_expression
+    (identifier)
+    (argument_list
+      (literal))
+    (comment))
+  (command_expression
+    (identifier)
+    (argument_list
+      (literal))
+    (comment)))
