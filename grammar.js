@@ -50,7 +50,6 @@ module.exports = grammar({
 
   externals: $ => [
     $.label_identifier,
-    $._no_blank,  // Zero-length token for expressions
     $._and_operator_pre_hook,  // Check for presence of macros after operator
     '&&',
     '&',
@@ -353,7 +352,6 @@ module.exports = grammar({
       field('operator', choice(
         '+', '-', '~', '!'
       )),
-      $._no_blank,
       field('argument', $._expression)
     )),
 
@@ -388,7 +386,6 @@ module.exports = grammar({
         return prec.left(pre, seq(
           field('left', $._expression),
           field('operator', op),
-          $._no_blank,
           field('right', $._expression)
         ))
       }));
@@ -405,7 +402,6 @@ module.exports = grammar({
           field('left', $._expression),
           $._and_operator_pre_hook,
           field('operator', op),
-          $._no_blank,
           field('right', $._expression)
         ))
       }));

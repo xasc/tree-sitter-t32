@@ -31,7 +31,6 @@
 
 enum TokenType {
 	LABEL_IDENTIFIER,
-	NO_BLANK,
 	AND_OPERATOR_PRE_HOOK,
 	LOGICAL_AND,
 	BITWISE_AND
@@ -238,14 +237,6 @@ bool tree_sitter_t32_external_scanner_scan(
 			lexer->result_symbol = LOGICAL_AND;
 			return true;
 		}
-	}
-
-	if (valid_symbols[NO_BLANK] && lexer->lookahead != ' ') {
-		/* Capture zero-length symbol to detect whitespaces
-		 * after operators after brackets.
-		 */
-		lexer->result_symbol = NO_BLANK;
-		return true;
 	}
 	return false;
 }
