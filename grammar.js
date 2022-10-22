@@ -90,8 +90,6 @@ module.exports = grammar({
     _statement: $ => choice(
       $.recursive_macro_expansion,
       $.assignment_expression,
-      $.on_event_control,
-      $.globalon_event_control,
       $.if_block,
       $.repeat_block,
       $.while_block,
@@ -184,138 +182,6 @@ module.exports = grammar({
       )
     )),
 
-    on_event_control: $ => seq(
-      longAndShortForm('ON'),
-      repeat1($._blank),
-      choice(
-        $._common_practice_event,
-        $._on_device_event,
-        $._cpu_event,
-        $._cmd_event,
-      ),
-      repeat1($._blank),
-      $._on_event_action,
-    ),
-
-    globalon_event_control: $ => seq(
-      longAndShortForm('GLOBALON'),
-      repeat1($._blank),
-      choice(
-        seq(
-          choice(
-            $._common_practice_event,
-            $._common_device_event,
-            $._cpu_event,
-            $._cmd_event,
-          ),
-          optional(seq(
-            repeat1($._blank),
-            $._common_event_action
-          )),
-          $._terminator
-        ),
-        seq(
-          $._cmd_event,
-          repeat1($._blank),
-          longAndShortForm('EXECute'),
-          repeat1($._blank),
-          $.identifier
-        )
-      )
-    ),
-
-    _common_practice_event: $ => choice(
-      longAndShortForm('ALWAYS'),
-      longAndShortForm('ERROR'),
-      longAndShortForm('STOP'),
-      seq(
-        longAndShortForm('TIME'),
-        repeat1($._blank),
-        $.literal
-      )
-    ),
-
-    _on_device_event: $ => choice(
-      $._common_device_event,
-      longAndShortForm('OBREAK'),
-      longAndShortForm('ATRIGGER'),
-      longAndShortForm('OTRIGGER'),
-      longAndShortForm('CATRIGGER')
-    ),
-
-    _common_device_event: $ => choice(
-      longAndShortForm('ABREAK'),
-      longAndShortForm('CORESWITCH'),
-      longAndShortForm('GO'),
-      longAndShortForm('PBREAK'),
-      longAndShortForm('POWERDOWN'),
-      longAndShortForm('POWERUP'),
-      longAndShortForm('RESET'),
-      longAndShortForm('SYSDOWN'),
-      longAndShortForm('SYSUP'),
-      longAndShortForm('TRIGGER'),
-      seq(
-        longAndShortForm('PBREAKAT'),
-        repeat1($._blank),
-        $.literal
-      ),
-    ),
-
-    _cpu_event: $ => choice(
-      longAndShortForm('PDRESETOFF'),  // Mico32
-      longAndShortForm('BOOTSTALL'),  // Intel x86
-      longAndShortForm('CPUBOOTSTALL'),
-      longAndShortForm('TRACEHUBBREAK'),
-      longAndShortForm('PBREAKRESET'),
-      longAndShortForm('PBREAKVMENTRY'),
-      longAndShortForm('PBREAKVMEXIT'),
-      longAndShortForm('PBREAKSMMENTRY'),
-      longAndShortForm('PBREAKSMMEXIT'),
-      longAndShortForm('PBREAKGENERALDETECT'),
-      longAndShortForm('PBREAKINIT'),
-      longAndShortForm('PBREAKMACHINECHECK'),
-      longAndShortForm('PBREAKSHUTDOWN'),
-      longAndShortForm('PBREAKC6EXIT'),
-      longAndShortForm('PBREAKENCLU'),
-    ),
-
-    _on_event_action: $ => choice(
-      $._common_event_action,
-      longAndShortForm('inherit'),
-      longAndShortForm('CONTinue'),
-      longAndShortForm('default'),
-      seq(
-        choice(
-          longAndShortForm('GOSUB'),
-          longAndShortForm('GOTO'),
-          longAndShortForm('JUMPTO'),
-        ),
-        choice(
-          seq(
-            repeat1($._blank),
-            $.identifier,
-            $._terminator
-          ),
-          seq(
-            $._terminator,
-            $._block
-          )
-        )
-      )
-    ),
-
-    _cmd_event: $ => seq(
-      longAndShortForm('CMD'),
-      repeat1($._blank),
-      $.identifier
-    ),
-
-    _common_event_action: $ => seq(
-      longAndShortForm('DO'),
-      repeat1($._blank),
-      $._path
-    ),
-
     _expression: $ => choice(
       $.unary_expression,
       $.binary_expression,
@@ -324,6 +190,7 @@ module.exports = grammar({
       $.literal,
       $.identifier,
       $.identifier,
+      $._go_command_expression,
       $._parenthesized_expression
     ),
 
@@ -453,6 +320,17 @@ module.exports = grammar({
       longAndShortForm('PARAMETERS')
     ),
 
+    _go_command_expression: $ => prec.right(seq(
+      alias(longAndShortForm('DO'), $.identifier),
+      repeat1($._blank),
+      repeat1(
+        choice(
+          $._path,
+          $._macro
+        )
+      )
+    )),
+
     command_expression: $ => seq(
       optional(/(::)*B::/),
       choice(
@@ -572,7 +450,7 @@ module.exports = grammar({
     _path: $ => alias(
       choice(
         $._string,
-        RE_STRING_BODY
+        /[^"\s\\&:]+/
       ),
       $.literal
     ),
@@ -602,9 +480,7 @@ module.exports = grammar({
 
     _terminator: $ => prec.right(seq(
       optional($.comment),
-      repeat1(
-        /\s*[\r\n]+\s*/
-      )
+      /(\s*[\r\n]+\s*)+/
     )),
 
     _blank: $ => /[ \t]/
