@@ -51,6 +51,7 @@ module.exports = grammar({
   externals: $ => [
     $.label_identifier,
     $._and_operator_pre_hook,  // Check for presence of macros after operator
+    $._path,  // Unquoted path literals
     '&&',
     '&',
   ],
@@ -190,7 +191,6 @@ module.exports = grammar({
       $.literal,
       $.identifier,
       $.identifier,
-      $._go_command_expression,
       $._parenthesized_expression
     ),
 
@@ -320,17 +320,6 @@ module.exports = grammar({
       longAndShortForm('PARAMETERS')
     ),
 
-    _go_command_expression: $ => prec.right(seq(
-      alias(longAndShortForm('DO'), $.identifier),
-      repeat1($._blank),
-      repeat1(
-        choice(
-          $._path,
-          $._macro
-        )
-      )
-    )),
-
     command_expression: $ => seq(
       optional(/(::)*B::/),
       choice(
@@ -360,7 +349,8 @@ module.exports = grammar({
     _command_argument: $ => choice(
       $._expression,
       $._command_option,
-      $._command_format
+      $._command_format,
+      alias($._path, $.literal)
     ),
 
     _command_argument_separator: $ => choice(
@@ -404,7 +394,8 @@ module.exports = grammar({
       $._string,
       $._character,
       $._symbol,
-      $._file_dialog
+      $._file_dialog,
+      $._file_handle
     ),
 
     _integer: $ => choice(
@@ -447,14 +438,6 @@ module.exports = grammar({
       "'"
     ),
 
-    _path: $ => alias(
-      choice(
-        $._string,
-        /[^"\s\\&:]+/
-      ),
-      $.literal
-    ),
-
     _symbol: $ => seq(
       "`",
       /[^`\n]+/,
@@ -464,6 +447,8 @@ module.exports = grammar({
     _time: $ => /[0-9]+\.?[0-9]*[mnu]*s/,
 
     _file_dialog: $ => '*',
+
+    _file_handle: $ => /#[0-9]+/,
 
     identifier: $ => token(choice(
       /[a-zA-Z][.\w]*/,

@@ -32,6 +32,7 @@
 enum TokenType {
 	LABEL_IDENTIFIER,
 	AND_OPERATOR_PRE_HOOK,
+	PATH,
 	LOGICAL_AND,
 	BITWISE_AND
 };
@@ -106,21 +107,49 @@ void tree_sitter_t32_external_scanner_deserialize(
 
 
 static bool IsAlpha(
+int32_t const glyph)
+{
+return (
+	(glyph >= 'A' && glyph <= 'Z') ||
+	(glyph >= 'a' && glyph <= 'z')
+);
+}
+
+
+static bool IsNum(
 	int32_t const glyph)
 {
-	return (
-		(glyph >= 'A' && glyph <= 'Z') ||
-		(glyph >= 'a' && glyph <= 'z')
-	);
+	return (glyph >= '0' && glyph <= '9');
 }
 
 
 static bool IsAlphaNum(
 	int32_t const glyph)
 {
+	return (IsAlpha(glyph) || IsNum(glyph));
+}
+
+
+static bool IsSpace(
+	int32_t const glyph)
+{
 	return (
-		IsAlpha(glyph) ||
-		(glyph >= '0' && glyph <= '9')
+		glyph == ' ' ||
+		glyph == '\t' ||
+		glyph == '\r' ||
+		glyph == '\n'
+	);
+}
+
+
+static bool IsUnaryOperator(
+	int32_t const glyph)
+{
+	return (
+		glyph == '+' ||
+		glyph == '-' ||
+		glyph == '~' ||
+		glyph == '!'
 	);
 }
 
@@ -137,12 +166,15 @@ static void ScanIdentifier(
 		lexer->lookahead == '.'
 	) {
 		Advance(lexer);
+		if (IsEof(lexer)) {
+			break;
+		}
 	}
 }
 
 
 static unsigned ScanLengthAndOperator(
-	TSLexer * lexer)
+	TSLexer *const lexer)
 {
 	assert(lexer != NULL && lexer->lookahead == '&');
 
@@ -169,13 +201,132 @@ static unsigned ScanLengthAndOperator(
 		if (lexer->lookahead == '&') {
 			len += 1u;
 		}
+
 		Advance(lexer);
+		if (IsEof(lexer)) {
+			break;
+		}
 	}
 
 	if (IsAlpha(lexer->lookahead) && len > 0) {
 		len -= 1u;
 	}
 	return len;
+}
+
+
+static bool ScanPathLiteral(
+	TSLexer *const lexer)
+{
+	assert(lexer != NULL);
+
+	bool has_dir_shorthand = false;
+	bool has_file_suffix = false;
+	bool has_drive = false;
+
+	bool is_expression = false;
+	bool is_comment = false;
+	bool is_line_continuation = false;
+	bool is_option = false;
+
+	unsigned num_tildes = 0;
+	unsigned num_dots = 0;
+	unsigned num_slashes = 0;
+	unsigned num_total_slashes = 0;
+	unsigned num_backslashes = 0;
+	unsigned ii = 0;
+	while (!(IsSpace(lexer->lookahead) || IsEof(lexer))) {
+		if (
+			lexer->lookahead == '(' ||
+			lexer->lookahead == ')' ||
+			lexer->lookahead == '&' ||
+			lexer->lookahead == '%' ||
+			lexer->lookahead == '"' ||
+			lexer->lookahead == '`' ||
+			lexer->lookahead == '\'' ||
+			((ii == 0 || num_tildes > 0) && IsNum(lexer->lookahead))
+		) {
+			/*
+			 * Detect expressions containing tilde operators, macros or
+			 * time literals.
+			 */
+			is_expression = true;
+			break;
+		}
+		else if (lexer->lookahead == '/') {
+			if (num_slashes > 0) {
+				is_comment = true;
+				break;
+			}
+
+			if (ii == 0) {
+				is_option = true;
+			}
+		}
+
+		if (
+			(ii == 0 && (lexer->lookahead == '/' || lexer->lookahead == '\\')) ||
+			(ii == 1 && lexer->lookahead == ':')
+		) {
+			has_drive = true;
+		}
+
+		if (lexer->lookahead == '/' || lexer->lookahead == '\\') {
+			if (num_tildes > 0 || num_dots > 0) {
+				has_dir_shorthand = true;
+			}
+		}
+		else if (num_dots > 0 && IsAlpha(lexer->lookahead)) {
+			has_file_suffix = true;
+		}
+
+		if (lexer->lookahead == '~') {
+			num_tildes += 1u;
+		}
+		else {
+			num_tildes = 0;
+		}
+
+		if (lexer->lookahead == '.') {
+			num_dots += 1u;
+		}
+		else {
+			num_dots = 0;
+		}
+
+		if (lexer->lookahead == '/') {
+			num_slashes += 1u;
+			num_total_slashes += 1u;
+		}
+		else {
+			num_slashes = 0;
+		}
+
+		if (lexer->lookahead == '\\') {
+			num_backslashes += 1u;
+		}
+		else {
+			num_backslashes = 0;
+		}
+
+		Advance(lexer);
+		ii += 1u;
+	}
+
+	if (num_backslashes > 0 && (lexer->lookahead == '\r' || lexer->lookahead == '\n')) {
+		is_line_continuation = true;
+	}
+	else if (is_option && num_total_slashes != 1u) {
+		is_option = false;
+	}
+
+	if (is_expression || is_comment || is_line_continuation || is_option) {
+		return false;
+	}
+	else if (has_dir_shorthand || has_file_suffix || has_drive) {
+		return true;
+	}
+	return false;
 }
 
 
@@ -188,12 +339,7 @@ bool tree_sitter_t32_external_scanner_scan(
 
 	scannerState_t *const state = (scannerState_t *) payload;
 
-	if (
-		lexer->lookahead == ' ' ||
-		lexer->lookahead == '\t' ||
-		lexer->lookahead == '\r' ||
-		lexer->lookahead == '\n'
-	) {
+	if (IsSpace(lexer->lookahead)) {
 		return false;
 	}
 
@@ -213,7 +359,6 @@ bool tree_sitter_t32_external_scanner_scan(
 		}
 	}
 	else if (valid_symbols[AND_OPERATOR_PRE_HOOK] && lexer->lookahead == '&') {
-
 		state->and_operator_len = ScanLengthAndOperator(lexer);
 		lexer->result_symbol = AND_OPERATOR_PRE_HOOK;
 		return true;
@@ -237,6 +382,10 @@ bool tree_sitter_t32_external_scanner_scan(
 			lexer->result_symbol = LOGICAL_AND;
 			return true;
 		}
+	}
+	else if (valid_symbols[PATH] && ScanPathLiteral(lexer)) {
+		lexer->result_symbol = PATH;
+		return true;
 	}
 	return false;
 }
