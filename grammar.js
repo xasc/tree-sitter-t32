@@ -190,7 +190,6 @@ module.exports = grammar({
       $._macro,
       $.literal,
       $.identifier,
-      $.identifier,
       $._parenthesized_expression
     ),
 

@@ -421,6 +421,7 @@ Data.DRAWFFT ,%Decimal.Byte ,VM:0++0x4f , 2.0 512.,
 PEDIT *
 OPEN #1 "~~/license.t32" /Read
 CD.DO /home
+do a/b/c
 
 ---
 
@@ -452,7 +453,15 @@ CD.DO /home
   (command_expression
     command: (identifier)
     arguments: (argument_list
-      (identifier))))
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (binary_expression
+        left: (binary_expression
+          left: (identifier)
+          right: (identifier))
+        right: (identifier)))))
 
 ==================
 Commands with embedded blocks
