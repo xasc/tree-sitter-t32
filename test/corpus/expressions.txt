@@ -514,6 +514,53 @@ MYNAME: POS 22. 0. 24. 1.
       (literal))))
 
 ==================
+Commands with internal C-style variables
+==================
+
+Var.Set \i=0x42
+Var.Set \myStr[5]="hello"
+ECHO %Hex Var.VALUE(\i)
+ECHO Var.STRing(\myStr[5])
+Var.View %all \i \myStr
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (assignment_expression
+        left: (identifier)
+        right: (literal))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (assignment_expression
+        left: (identifier)
+        right: (literal))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)
+      (practice_function
+        function: (identifier)
+        arguments: (argument_list
+          (identifier)))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (practice_function
+        function: (identifier)
+        arguments: (argument_list
+          (identifier)))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)
+      (identifier)
+      (identifier))))
+
+==================
 Assignment expression
 ==================
 

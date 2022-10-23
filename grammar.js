@@ -62,7 +62,7 @@ module.exports = grammar({
   ],
 
   extras: $ => [
-    /\\\r?\n/
+    $._line_continuation
   ],
 
   word: $ => $.identifier,
@@ -188,6 +188,7 @@ module.exports = grammar({
       $.binary_expression,
       $.practice_function,
       $._macro,
+      $._c_variable,
       $.literal,
       $.identifier,
       $._parenthesized_expression
@@ -273,6 +274,12 @@ module.exports = grammar({
       }));
     },
 
+    c_variable_assignment_expression: $ => seq(
+        field('left', $._c_variable),
+        field('operator', '='),
+        field('right', $._expression)
+    ),
+
     _label: $ => seq(
       field('label', alias($.label_identifier, $.identifier)),
       ':'
@@ -312,6 +319,16 @@ module.exports = grammar({
       optional(')')
     )),
 
+    _c_variable: $ => seq(
+      '\\',
+      $.identifier,
+      optional(token(seq(
+        '[',
+        /[0-9]+/,
+        ']'
+      )))
+    ),
+
     _declaration_command: $ => choice(
       longAndShortForm('GLOBAL'),
       longAndShortForm('LOCAL'),
@@ -347,6 +364,7 @@ module.exports = grammar({
 
     _command_argument: $ => choice(
       $._expression,
+      alias($.c_variable_assignment_expression, $.assignment_expression),
       $._command_option,
       $._command_format,
       alias($._path, $.literal)
@@ -466,6 +484,8 @@ module.exports = grammar({
       optional($.comment),
       /(\s*[\r\n]+\s*)+/
     )),
+
+    _line_continuation: $ => /\\\r?\n/,
 
     _blank: $ => /[ \t]/
   }
