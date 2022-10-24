@@ -21,6 +21,7 @@
  */
 
 const PREC = {
+  definition: 1,
   logical_or: 10,
   logical_xor: 11,
   logical_and: 12,
@@ -285,8 +286,8 @@ module.exports = grammar({
       ':'
     ),
 
-    _macro_declaration: $ => seq(
-      $._declaration_command,
+    _macro_definition: $ => seq(
+      $._macro_definition_command,
       repeat1(seq(
         repeat1($._blank),
         $._macro
@@ -319,6 +320,23 @@ module.exports = grammar({
       optional(')')
     )),
 
+    _c_variable_definition: $ => seq(
+      field('command', alias($.c_variable_definition_command, $.identifier)),
+      repeat1($._blank),
+      alias($._type, $.literal),
+      repeat1($._blank),
+      field('variable', $._c_variable)
+    ),
+
+    c_variable_definition_command: $ => token(seq(
+      longAndShortForm('Var'),
+      '.',
+      choice(
+        longAndShortForm('NEWLOCAL'),
+        longAndShortForm('NEWGLOBAL')
+      )
+    )),
+
     _c_variable: $ => seq(
       '\\',
       $.identifier,
@@ -329,18 +347,21 @@ module.exports = grammar({
       )))
     ),
 
-    _declaration_command: $ => choice(
+    _macro_definition_command: $ => token(choice(
       longAndShortForm('GLOBAL'),
       longAndShortForm('LOCAL'),
       longAndShortForm('PRIVATE'),
       longAndShortForm('PARAMETERS')
-    ),
+    )),
 
     command_expression: $ => seq(
       optional(/(::)*B::/),
       choice(
         seq(
-          $._macro_declaration,
+          choice(
+            $._macro_definition,
+            $._c_variable_definition
+          ),
           $._terminator
         ),
         seq(
@@ -466,6 +487,11 @@ module.exports = grammar({
     _file_dialog: $ => '*',
 
     _file_handle: $ => /#[0-9]+/,
+
+    _type: $ => seq(
+      alias($.identifier, ''),
+      repeat(/\[[0-9]+\]/)
+    ),
 
     identifier: $ => token(choice(
       /[a-zA-Z][.\w]*/,

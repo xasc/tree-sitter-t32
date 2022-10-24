@@ -38,6 +38,25 @@ Recursive macro expansion
     (identifier)))
 
 ==================
+Internal C-style variable definitions
+==================
+
+Var.NEWLOCAL int \i
+Var.NEWGLOBAL char[10][128] \myStr
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    (literal)
+    variable: (identifier))
+  (command_expression
+    command: (identifier)
+    (literal)
+    variable: (identifier)))
+
+==================
 Number literals
 ==================
 
