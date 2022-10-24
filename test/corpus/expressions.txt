@@ -14,16 +14,20 @@ PARAMETERS &_myvalue1 &my_Value2
 
 (script
   (command_expression
-    (identifier))
+    command: (identifier)
+    macro: (identifier))
   (command_expression
-    (identifier))
+    command: (identifier)
+    macro: (identifier))
   (command_expression
-    (identifier)
-    (identifier)
-    (identifier))
+    command: (identifier)
+    macro: (identifier)
+    macro: (identifier)
+    macro: (identifier))
   (command_expression
-    (identifier)
-    (identifier)))
+    command: (identifier)
+    macro: (identifier)
+    macro: (identifier)))
 
 ==================
 Recursive macro expansion

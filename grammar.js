@@ -287,10 +287,10 @@ module.exports = grammar({
     ),
 
     _macro_definition: $ => seq(
-      $._macro_definition_command,
+      field('command', alias($.macro_definition_command, $.identifier)),
       repeat1(seq(
         repeat1($._blank),
-        $._macro
+        field('macro', $._macro)
       )),
     ),
 
@@ -347,7 +347,7 @@ module.exports = grammar({
       )))
     ),
 
-    _macro_definition_command: $ => token(choice(
+    macro_definition_command: $ => token(choice(
       longAndShortForm('GLOBAL'),
       longAndShortForm('LOCAL'),
       longAndShortForm('PRIVATE'),
