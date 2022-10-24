@@ -42,6 +42,24 @@ typedef struct scannerState_s {
 }
 scannerState_t;
 
+typedef struct sequences_s {
+	unsigned num_tildes;
+	unsigned num_dots;
+	unsigned num_slashes;
+	unsigned num_backslashes;
+}
+sequences_t;
+
+typedef struct pathScan_s {
+	bool has_dir_shorthand;
+	bool has_file_suffix;
+	bool has_drive;
+	bool has_wildcard;
+	sequences_t seq[1];
+	unsigned num_total_slashes;
+}
+pathScan_t;
+
 
 static void Skip(
 	TSLexer *const lexer)
@@ -215,25 +233,30 @@ static unsigned ScanLengthAndOperator(
 }
 
 
+static unsigned TrackConsecutiveSymbols(
+	char const sym,
+	int32_t const glyph,
+	unsigned counter)
+{
+	if (glyph == sym) {
+		return counter + 1u;
+	}
+	return 0;
+}
+
+
 static bool ScanPathLiteral(
 	TSLexer *const lexer)
 {
 	assert(lexer != NULL);
-
-	bool has_dir_shorthand = false;
-	bool has_file_suffix = false;
-	bool has_drive = false;
 
 	bool is_expression = false;
 	bool is_comment = false;
 	bool is_line_continuation = false;
 	bool is_option = false;
 
-	unsigned num_tildes = 0;
-	unsigned num_dots = 0;
-	unsigned num_slashes = 0;
-	unsigned num_total_slashes = 0;
-	unsigned num_backslashes = 0;
+	pathScan_t scan[1] = {};
+
 	unsigned ii = 0;
 	while (!(IsSpace(lexer->lookahead) || IsEof(lexer))) {
 		if (
@@ -244,7 +267,7 @@ static bool ScanPathLiteral(
 			lexer->lookahead == '"' ||
 			lexer->lookahead == '`' ||
 			lexer->lookahead == '\'' ||
-			((ii == 0 || num_tildes > 0) && IsNum(lexer->lookahead))
+			((ii == 0 || scan->seq->num_tildes > 0) && IsNum(lexer->lookahead))
 		) {
 			/*
 			 * Detect expressions containing tilde operators, macros or
@@ -254,7 +277,7 @@ static bool ScanPathLiteral(
 			break;
 		}
 		else if (lexer->lookahead == '/') {
-			if (num_slashes > 0) {
+			if (scan->seq->num_slashes > 0) {
 				is_comment = true;
 				break;
 			}
@@ -264,69 +287,56 @@ static bool ScanPathLiteral(
 			}
 		}
 
-		if (
-			(ii == 0 && (lexer->lookahead == '/' || lexer->lookahead == '\\')) ||
-			(ii == 1 && lexer->lookahead == ':')
-		) {
-			has_drive = true;
+		if (ii == 1 && lexer->lookahead == ':') {
+			scan->has_drive = true;
 		}
-
-		if (lexer->lookahead == '/' || lexer->lookahead == '\\') {
-			if (num_tildes > 0 || num_dots > 0) {
-				has_dir_shorthand = true;
+		else if (lexer->lookahead == '*' || lexer->lookahead == '?') {
+			if (scan->seq->num_slashes > 0 || scan->seq->num_backslashes > 0) {
+				scan->has_wildcard = true;
 			}
 		}
-		else if (num_dots > 0 && IsAlpha(lexer->lookahead)) {
-			has_file_suffix = true;
+		else if (lexer->lookahead == '/' || lexer->lookahead == '\\') {
+			if (scan->seq->num_tildes > 0 || scan->seq->num_dots > 0) {
+				scan->has_dir_shorthand = true;
+			}
+		}
+		else if (scan->seq->num_dots > 0 && IsAlpha(lexer->lookahead)) {
+			scan->has_file_suffix = true;
 		}
 
-		if (lexer->lookahead == '~') {
-			num_tildes += 1u;
-		}
-		else {
-			num_tildes = 0;
-		}
+		scan->seq->num_tildes = TrackConsecutiveSymbols('~', lexer->lookahead, scan->seq->num_tildes);
 
-		if (lexer->lookahead == '.') {
-			num_dots += 1u;
-		}
-		else {
-			num_dots = 0;
-		}
+		scan->seq->num_dots = TrackConsecutiveSymbols('.', lexer->lookahead, scan->seq->num_dots);
+
+		scan->seq->num_slashes = TrackConsecutiveSymbols('/', lexer->lookahead, scan->seq->num_slashes);
+
+		scan->seq->num_backslashes = TrackConsecutiveSymbols('\\', lexer->lookahead, scan->seq->num_backslashes);
 
 		if (lexer->lookahead == '/') {
-			num_slashes += 1u;
-			num_total_slashes += 1u;
-		}
-		else {
-			num_slashes = 0;
-		}
-
-		if (lexer->lookahead == '\\') {
-			num_backslashes += 1u;
-		}
-		else {
-			num_backslashes = 0;
+			scan->num_total_slashes += 1u;
 		}
 
 		Advance(lexer);
 		ii += 1u;
 	}
 
-	if (num_backslashes > 0 && (lexer->lookahead == '\r' || lexer->lookahead == '\n')) {
+	if (scan->seq->num_backslashes > 0 && (lexer->lookahead == '\r' || lexer->lookahead == '\n')) {
 		is_line_continuation = true;
 	}
-	else if (is_option && num_total_slashes != 1u) {
+	else if (is_option && scan->num_total_slashes != 1u) {
 		is_option = false;
 	}
 
 	if (is_expression || is_comment || is_line_continuation || is_option) {
 		return false;
 	}
-	else if (has_dir_shorthand || has_file_suffix || has_drive) {
-		return true;
-	}
-	return false;
+
+	return (
+		scan->has_dir_shorthand ||
+		scan->has_file_suffix ||
+		scan->has_drive ||
+		scan->has_wildcard
+	);
 }
 
 
