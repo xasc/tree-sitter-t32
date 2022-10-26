@@ -254,6 +254,7 @@ static bool ScanPathLiteral(
 	bool is_comment = false;
 	bool is_line_continuation = false;
 	bool is_option = false;
+	bool is_symbol = false;
 
 	pathScan_t scan[1] = {};
 
@@ -264,6 +265,8 @@ static bool ScanPathLiteral(
 			lexer->lookahead == ')' ||
 			lexer->lookahead == '&' ||
 			lexer->lookahead == '%' ||
+			lexer->lookahead == '+' ||
+			lexer->lookahead == '-' ||
 			lexer->lookahead == '"' ||
 			lexer->lookahead == '`' ||
 			lexer->lookahead == '\'' ||
@@ -285,6 +288,10 @@ static bool ScanPathLiteral(
 			if (ii == 0) {
 				is_option = true;
 			}
+		}
+		else if (lexer->lookahead == '\\' && scan->seq->num_backslashes) {
+			is_symbol = true;
+			break;
 		}
 
 		if (ii == 1 && lexer->lookahead == ':') {
@@ -327,7 +334,7 @@ static bool ScanPathLiteral(
 		is_option = false;
 	}
 
-	if (is_expression || is_comment || is_line_continuation || is_option) {
+	if (is_expression || is_comment || is_line_continuation || is_option || is_symbol) {
 		return false;
 	}
 

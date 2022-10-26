@@ -232,11 +232,33 @@ Character literals
     right: (literal)))
 
 ==================
+_t
+==================
+
+&c = \`ops::operator<<=`
+
+---
+==================
 Symbol literals
 ==================
 
-&a = `main`
-&b = _exit
+&a = _exit
+&a = SIEVE
+
+&b = \MCC\sieve
+&b = \\app\MCC\sieve
+&b = \\\1\\linux\do_mounts\load_ramdisk
+&b = \\\Dom0\\linux\do_mounts\load_ramdisk
+
+&c = \\linux\\load_ramdisk
+&c = \\\Dom0\\\\load_ramdisk
+
+&c = `main`
+&c = `nestxf1::~nestxf1`
+&c = \`ops::operator<<=`
+
+List \\sieve\sieve\fill_buffer+0x64
+
 
 ---
 
