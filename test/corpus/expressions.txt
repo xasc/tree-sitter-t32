@@ -232,13 +232,6 @@ Character literals
     right: (literal)))
 
 ==================
-_t
-==================
-
-&c = \`ops::operator<<=`
-
----
-==================
 Symbol literals
 ==================
 
@@ -259,16 +252,48 @@ Symbol literals
 
 List \\sieve\sieve\fill_buffer+0x64
 
-
 ---
 
 (script
   (assignment_expression
     left: (identifier)
+    right: (identifier))
+  (assignment_expression
+    left: (identifier)
+    right: (identifier))
+  (assignment_expression
+    left: (identifier)
     right: (literal))
   (assignment_expression
     left: (identifier)
-    right: (identifier)))
+    right: (literal))
+  (assignment_expression
+    left: (identifier)
+    right: (literal))
+  (assignment_expression
+    left: (identifier)
+    right: (literal))
+  (assignment_expression
+    left: (identifier)
+    right: (literal))
+  (assignment_expression
+    left: (identifier)
+    right: (literal))
+  (assignment_expression
+    left: (identifier)
+    right: (literal))
+  (assignment_expression
+    left: (identifier)
+    right: (literal))
+  (assignment_expression
+    left: (identifier)
+    right: (literal))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (binary_expression
+        left: (literal)
+        right: (literal)))))
 
 ==================
 Address literals
@@ -566,7 +591,8 @@ Var.Set \i=0x42
 Var.Set \myStr[5]="hello"
 ECHO %Hex Var.VALUE(\i)
 ECHO Var.STRing(\myStr[5])
-Var.View %all \i \myStr
+Var.View %all \i \myStr/
+Var.view *(&flags+20)
 
 ---
 
