@@ -160,7 +160,7 @@ Time literals
     right: (literal)))
 
 ==================
-_String literals
+String literals
 ==================
 
 &a = "name"
@@ -175,6 +175,9 @@ character"
 ---
 
 (script
+  (assignment_expression
+    left: (identifier)
+    right: (literal))
   (assignment_expression
     left: (identifier)
     right: (literal))

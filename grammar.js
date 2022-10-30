@@ -38,8 +38,6 @@ const PREC = {
   practice_function: 23
 }
 
-const RE_STRING_BODY = /[^"\n\\]+/
-
 const RE_INTEGERS = [
   /0y[0-9]+/,  // Binary
   /[0-9]+\.?/,  // Decimal
@@ -190,6 +188,7 @@ module.exports = grammar({
       $.practice_function,
       $._macro,
       $._c_variable,
+      // $._c_pointer_expresssion,
       $.literal,
       $.identifier,
       $._parenthesized_expression
@@ -227,6 +226,14 @@ module.exports = grammar({
       $._binary_expression,
       $._and_expression
     ),
+
+    _c_pointer_expresssion: $ => prec.left(PREC.pointer, seq(
+      field('operator', choice(
+        '*',
+        '&'
+      )),
+      field('argument', $._expression)
+    )),
 
     _binary_expression: $ => {
       const operators = [
@@ -498,7 +505,7 @@ module.exports = grammar({
     _string: $ => seq(
       '"',
       repeat(choice(
-        RE_STRING_BODY,
+        /[^"]+/,
         /""/,  // Escape sequence
       )),
       '"'
