@@ -654,6 +654,23 @@ Var.View %all \i \myStr
       (identifier))))
 
 ==================
+_Command with C expression
+==================
+
+Var.view *(&flags+20)
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (c_pointer_expression
+        argument: (binary_expression
+          left: (identifier)
+          right: (literal))))))
+
+==================
 Assignment expression
 ==================
 

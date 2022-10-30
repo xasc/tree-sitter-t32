@@ -21,7 +21,6 @@
  */
 
 const PREC = {
-  definition: 1,
   logical_or: 10,
   logical_xor: 11,
   logical_and: 12,
@@ -57,7 +56,7 @@ module.exports = grammar({
   ],
 
   conflicts: $ => [
-    [$._binary_expression, $._and_expression],
+    [$._binary_expression, $._and_expression]
   ],
 
   extras: $ => [
@@ -188,7 +187,7 @@ module.exports = grammar({
       $.practice_function,
       $._macro,
       $._c_variable,
-      // $._c_pointer_expresssion,
+      $.c_pointer_expression,
       $.literal,
       $.identifier,
       $._parenthesized_expression
@@ -227,11 +226,9 @@ module.exports = grammar({
       $._and_expression
     ),
 
-    _c_pointer_expresssion: $ => prec.left(PREC.pointer, seq(
-      field('operator', choice(
-        '*',
-        '&'
-      )),
+    // Address-of operator is treated as PRACTICE macro
+    c_pointer_expression: $ => prec.left(PREC.pointer, seq(
+      field('operator', '*'),
       field('argument', $._expression)
     )),
 
@@ -374,10 +371,7 @@ module.exports = grammar({
         seq(
           field('command', alias($._command_identifier, $.identifier)),
           field('arguments', optional(alias($._command_arguments, $.argument_list))),
-          choice(
-            $._block,
-            $._terminator
-          )
+          $._terminator
         )
       )
     ),
