@@ -263,6 +263,7 @@ Symbol literals
 &c = \`ops::operator<<=`
 
 List \\sieve\sieve\fill_buffer+0x64
+Var.set `class1::operator+(int)\i`
 
 ---
 
@@ -305,7 +306,11 @@ List \\sieve\sieve\fill_buffer+0x64
     arguments: (argument_list
       (binary_expression
         left: (literal)
-        right: (literal)))))
+        right: (literal))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (literal))))
 
 ==================
 Address literals
@@ -654,7 +659,7 @@ Var.View %all \i \myStr
       (identifier))))
 
 ==================
-_Command with C expression
+Command with C expression
 ==================
 
 Var.view *(&flags+20)

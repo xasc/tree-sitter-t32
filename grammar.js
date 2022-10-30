@@ -513,11 +513,11 @@ module.exports = grammar({
 
     // Module names with single backslash are treated as internal c-style variables
     _symbol: $ => token(choice(
-      /\\\\\\([\w_]+|`[^`\n\\]+`)\\\\([\w_]*|`[^`\n\\]+`)\\([\w_]*|`[^`\n\\]+`)\\([\w_]+|`[^`\n\\]+`)(\\([\w_]+|`[^`\n\\]+`))*/,  // Includes machine name
-      /((\\\\([\w_]+|`[^`\n\\]+`))?\\([\w_]*|`[^`\n\\]+`)\\)?`[^`\n\\]+`(\\([\w_]+|`[^`\n\\]+`))*/,  // Quoted function name only
-      /(\\\\([\w_]+|`[^`\n\\]+`))?\\([\w_]*|`[^`\n\\]+`)\\[\w_]+(\\([\w_]+|`[^`\n\\]+`))*/,  // Module name with unquoted function name
-      /[\\]{2,3}([\w_]+|`[^`\n\\]+`)/,  // Machine or program name
-      /\\`[^`\n\\]+`/,  // Quoted module name only
+      /\\\\\\([\w_]+|`[^`\n]+`)\\\\([\w_]*|`[^`\n]+`)\\([\w_]*|`[^`\n]+`)\\([\w_]+|`[^`\n]+`)(\\([\w_]+|`[^`\n]+`))*/,  // Includes machine name
+      /((\\\\([\w_]+|`[^`\n]+`))?\\([\w_]*|`[^`\n]+`)\\)?`[^`\n]+`(\\([\w_]+|`[^`\n]+`))*/,  // Quoted function name only
+      /(\\\\([\w_]+|`[^`\n]+`))?\\([\w_]*|`[^`\n]+`)\\[\w_]+(\\([\w_]+|`[^`\n]+`))*/,  // Module name with unquoted function name
+      /[\\]{2,3}([\w_]+|`[^`\n]+`)/,  // Machine or program name
+      /\\`[^`\n]+`/,  // Quoted module name only
     )),
 
     _time: $ => /[0-9]+\.?[0-9]*[mnu]*s/,
