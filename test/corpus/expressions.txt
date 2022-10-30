@@ -201,6 +201,8 @@ Character literals
 &a = 'Z'
 &a = '0'
 &a = '9'
+&a = '\'
+&a = '''
 
 &b = '\
 9'
@@ -210,6 +212,12 @@ Character literals
 ---
 
 (script
+  (assignment_expression
+    left: (identifier)
+    right: (literal))
+  (assignment_expression
+    left: (identifier)
+    right: (literal))
   (assignment_expression
     left: (identifier)
     right: (literal))

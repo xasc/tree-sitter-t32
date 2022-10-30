@@ -513,9 +513,7 @@ module.exports = grammar({
 
     _character: $ => seq(
       "'",
-      repeat(
-        /[^\n\\]/,
-      ),
+      /[^\n]/,
       "'"
     ),
 
