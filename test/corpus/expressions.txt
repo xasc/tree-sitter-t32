@@ -160,11 +160,12 @@ Time literals
     right: (literal)))
 
 ==================
-String literals
+_String literals
 ==================
 
 &a = "name"
 &a = "abc""def"
+&a = "\"
 
 &b = "line continuation \
 character"
@@ -454,6 +455,7 @@ PRACTICE functions
 &a = FOUND()
 &a = OS.ENV(HOME)
 &a = Data.Word.BigEndean(MX:0x1234)
+&a=STRing.Replace(OS.PWD(),"/",0.)
 
 ---
 
@@ -480,6 +482,16 @@ PRACTICE functions
     right: (practice_function
       function: (identifier)
       arguments: (argument_list
+        (literal))))
+  (assignment_expression
+    left: (identifier)
+    right: (practice_function
+      function: (identifier)
+      arguments: (argument_list
+        (practice_function
+          function: (identifier)
+          arguments: (argument_list))
+        (literal)
         (literal)))))
 
 ==================
@@ -487,9 +499,9 @@ Commands
 ==================
 
 ::B::WinPrint.Data.dump  0x1000 /Byte
-Data.DRAWFFT ,%Decimal.Byte ,VM:0++0x4f , 2.0 512.,
+Data.DRAWFFT ,%Decimal.Byte,VM:0++0x4f ,, 2.0 512., ,
 PEDIT *
-OPEN #1 "~~/license.t32" /Read
+OPEN #1,"~~/license.t32" /Read
 CD.DO /home
 do a/b/c
 
@@ -591,8 +603,7 @@ Var.Set \i=0x42
 Var.Set \myStr[5]="hello"
 ECHO %Hex Var.VALUE(\i)
 ECHO Var.STRing(\myStr[5])
-Var.View %all \i \myStr/
-Var.view *(&flags+20)
+Var.View %all \i \myStr
 
 ---
 
