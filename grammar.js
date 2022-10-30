@@ -32,9 +32,10 @@ const PREC = {
   add_sub: 17,
   mul_div_mod: 18,
   shift: 19,
-  unary: 20,
-  range: 21,
-  practice_function: 22
+  pointer: 20,
+  unary: 21,
+  range: 22,
+  practice_function: 23
 }
 
 const RE_STRING_BODY = /[^"\n\\]+/
@@ -59,7 +60,6 @@ module.exports = grammar({
 
   conflicts: $ => [
     [$._binary_expression, $._and_expression],
-    [$._command_arguments, $._command_arguments]
   ],
 
   extras: $ => [
@@ -365,7 +365,7 @@ module.exports = grammar({
           $._terminator
         ),
         seq(
-          field('command', $.identifier),
+          field('command', alias($._command_identifier, $.identifier)),
           field('arguments', optional(alias($._command_arguments, $.argument_list))),
           choice(
             $._block,
@@ -375,25 +375,49 @@ module.exports = grammar({
       )
     ),
 
+    _command_identifier: $ => seq(
+      alias($.identifier, 'command'),
+      repeat(seq(
+        '.',
+        alias($.identifier, 'subcommand')
+      ))
+    ),
+
     _command_arguments: $ => seq(
-      repeat1(seq(
-        repeat($._command_argument_separator),
-        $._command_argument
-      )),
-      prec.left(repeat($._command_argument_separator))
+      repeat1($._blank),
+      choice(
+        ',',
+        seq(
+          ',',
+          $._command_argument,
+          repeat(seq(
+            repeat1($._command_argument_separator),
+            $._command_argument
+          )),
+          repeat($._command_argument_separator)
+        ),
+        seq(
+          $._command_argument,
+          repeat(seq(
+            repeat1($._command_argument_separator),
+            $._command_argument
+          )),
+          repeat($._command_argument_separator)
+        )
+      )
     ),
 
     _command_argument: $ => choice(
       $._expression,
       alias($.c_variable_assignment_expression, $.assignment_expression),
       $._command_option,
-      $._command_format,
+      alias($._command_format, $.identifier),
       alias($._path, $.literal)
     ),
 
     _command_argument_separator: $ => choice(
       $._blank,
-      ','
+      ',',
     ),
 
     _command_option: $ => seq(
@@ -403,13 +427,25 @@ module.exports = grammar({
 
     _command_format: $ => seq(
       '%',
-      $.identifier
+      alias($.identifier, 'format'),
+      repeat(seq(
+        '.',
+        alias($.identifier, 'subformat')
+      ))
     ),
 
     practice_function: $ => prec(PREC.practice_function, seq(
-      field('function', $._expression),
+      field('function', alias($._function_identifier, $.identifier)),
       field('arguments', $.argument_list)
     )),
+
+    _function_identifier: $ => seq(
+      alias($.identifier, 'function'),
+      repeat(seq(
+        '.',
+        alias($.identifier, 'subfunction')
+      ))
+    ),
 
     argument_list: $ => seq(
       '(',
@@ -496,10 +532,7 @@ module.exports = grammar({
       repeat(/\[[0-9]+\]/)
     ),
 
-    identifier: $ => token(choice(
-      /[a-zA-Z][.\w]*/,
-      /[a-zA-Z_][\w]*/,
-    )),
+    identifier: $ => /[a-zA-Z_][\w_]*/,
 
     comment: $ => seq(
       choice(
