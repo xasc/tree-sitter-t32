@@ -588,7 +588,7 @@ MYNAME: POS 22. 0. 24. 1.
       (literal)
       (literal)
       (literal)))
-  (labeled_command
+  (labeled_expression
     label: (identifier)
     (command_expression
       command: (identifier)
@@ -596,7 +596,7 @@ MYNAME: POS 22. 0. 24. 1.
         (literal))))
   (command_expression
     command: (identifier))
-  (labeled_command
+  (labeled_expression
     label: (identifier)
     (command_expression
       command: (identifier)
@@ -659,10 +659,27 @@ Var.View %all \i \myStr
       (identifier))))
 
 ==================
+_t
+==================
+
+&a = i-1..i+1
+
+---
+(script
+  left: (identifier)
+==================
 Command with C expression
 ==================
 
+Var.set *0x2000 = 1
+
 Var.view *(&flags+20)
+Var.set (long)__START
+
+Var.set (0xdeadbeef)(1,5.0,3)
+Var.set strcmp("123" , "abc")
+
+Var.set vdblarray[2..4][(i-1)..(i+1)]
 
 ---
 
@@ -670,10 +687,56 @@ Var.view *(&flags+20)
   (command_expression
     command: (identifier)
     arguments: (argument_list
+      (assignment_expression
+        left: (c_pointer_expression
+          argument: (literal))
+        right: (literal))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
       (c_pointer_expression
         argument: (binary_expression
           left: (identifier)
-          right: (literal))))))
+          right: (literal)))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (c_cast_expression
+        type: (identifier)
+        value: (identifier))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (c_call_expression
+        function: (literal)
+        arguments: (argument_list
+          (literal)
+          (literal)
+          (literal)))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (c_call_expression
+        function: (identifier)
+        arguments: (argument_list
+          (literal)
+          (literal)))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (c_subscript_expression
+        argument: (c_subscript_expression
+          argument: (identifier)
+          index: (binary_expression
+            left: (literal)
+            right: (literal)))
+        index: (binary_expression
+          left: (binary_expression
+            left: (identifier)
+            right: (literal))
+          right: (binary_expression
+            left: (identifier)
+            right: (literal)))))))
 
 ==================
 Assignment expression
@@ -863,6 +926,7 @@ Range operator
 &a='A'..'F'
 &a=teststart--testend
 &a=`main`..`_exit`
+&a=2..4.
 
 ---
 
@@ -899,6 +963,11 @@ Range operator
     right: (binary_expression
       left: (identifier)
       right: (identifier)))
+  (assignment_expression
+    left: (identifier)
+    right: (binary_expression
+      left: (literal)
+      right: (literal)))
   (assignment_expression
     left: (identifier)
     right: (binary_expression

@@ -32,6 +32,8 @@
 enum TokenType {
 	LABEL_IDENTIFIER,
 	AND_OPERATOR_PRE_HOOK,
+	DECIMAL_NUMBER,
+	DECIMAL_NUMBER_PRE_HOOK,
 	PATH,
 	LOGICAL_AND,
 	BITWISE_AND
@@ -39,6 +41,7 @@ enum TokenType {
 
 typedef struct scannerState_s {
 	unsigned and_operator_len;
+	unsigned decimal_number_len;
 }
 scannerState_t;
 
@@ -233,6 +236,64 @@ static unsigned ScanLengthAndOperator(
 }
 
 
+static unsigned ScanLengthDecimalNumber(
+	TSLexer *const lexer)
+{
+	assert(lexer != NULL && IsNum(lexer->lookahead));
+
+	/* LOCAL &a
+	 * &a = 1...4
+	 *
+	 * LOCAL &b
+	 * &b = 1..2
+	 */
+	MarkEnd(lexer);
+
+	unsigned len = 0;
+	unsigned num_dots = 0;
+	while (
+		IsNum(lexer->lookahead) ||
+		lexer->lookahead == '.'
+	) {
+		if (IsNum(lexer->lookahead)) {
+			if (num_dots == 1u) {
+				// Floating point number detected
+				return 0;
+			}
+			else if (num_dots > 1u) {
+				// Number after range operator
+				break;
+			}
+			len += 1u;
+		}
+		else if (lexer->lookahead == '.') {
+			num_dots += 1u;
+		}
+
+		Advance(lexer);
+		if (IsEof(lexer)) {
+			break;
+		}
+	}
+
+	// Check for binary, hexadecimal numbers, time literals
+	// and addresses
+	if (
+		lexer->lookahead == ':' ||
+		lexer->lookahead == 'x' || lexer->lookahead == 'X' ||
+		lexer->lookahead == 'y' || lexer->lookahead == 'Y' ||
+		lexer->lookahead == 'm' || lexer->lookahead == 'u' || lexer->lookahead == 'n' || lexer->lookahead == 's'
+	) {
+		return 0;
+	}
+
+	if (num_dots == 1u || num_dots == 3u) {
+		len += 1u;
+	}
+	return len;
+}
+
+
 static unsigned TrackConsecutiveSymbols(
 	char const sym,
 	int32_t const glyph,
@@ -397,6 +458,25 @@ bool tree_sitter_t32_external_scanner_scan(
 		if (len == 2) {
 			state->and_operator_len = 0;
 			lexer->result_symbol = LOGICAL_AND;
+			return true;
+		}
+	}
+	else if (valid_symbols[DECIMAL_NUMBER_PRE_HOOK] && IsNum(lexer->lookahead)) {
+		state->decimal_number_len = ScanLengthDecimalNumber(lexer);
+		if (state->decimal_number_len > 0) {
+			lexer->result_symbol = DECIMAL_NUMBER_PRE_HOOK;
+			return true;
+		}
+	}
+	else if (valid_symbols[DECIMAL_NUMBER] && IsNum(lexer->lookahead)) {
+		unsigned const len = state->decimal_number_len;
+		for (unsigned ii = 0; ii < len; ii++) {
+			Advance(lexer);
+		}
+
+		if (len > 0) {
+			state->decimal_number_len = 0;
+			lexer->result_symbol = DECIMAL_NUMBER;
 			return true;
 		}
 	}

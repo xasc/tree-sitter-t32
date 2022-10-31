@@ -32,15 +32,15 @@ const PREC = {
   mul_div_mod: 18,
   shift: 19,
   pointer: 20,
-  unary: 21,
-  range: 22,
-  practice_function: 23
+  cast: 21,
+  unary: 22,
+  range: 23
 }
 
-const RE_INTEGERS = [
+const RE_BIN_HEX_NUMBER = [
   /0y[0-9]+/,  // Binary
-  /[0-9]+\.?/,  // Decimal
-  /0x[0-9a-fA-F]+/,  // Hexadecimal
+  // /[0-9]+\.?/,  // Decimal
+  /0[xX][0-9a-fA-F]+/,  // Hexadecimal
 ]
 
 
@@ -50,13 +50,17 @@ module.exports = grammar({
   externals: $ => [
     $.label_identifier,
     $._and_operator_pre_hook,  // Check for presence of macros after operator
+    $._decimal_number,
+    $._decimal_number_pre_hook,  // Check for presence of range operator after number
     $._path,  // Unquoted path literals
     '&&',
     '&',
   ],
 
   conflicts: $ => [
-    [$._binary_expression, $._and_expression]
+    [$._binary_expression, $._and_expression],
+    [$._expression, $._function_identifier],
+    [$._expression, $.c_type_declaration]
   ],
 
   extras: $ => [
@@ -88,15 +92,15 @@ module.exports = grammar({
 
     _statement: $ => choice(
       $.recursive_macro_expansion,
-      $.assignment_expression,
+      alias($.macro_assignment_expression, $.assignment_expression),
       $.if_block,
       $.repeat_block,
       $.while_block,
       $.command_expression,
-      $.labeled_command
+      $.labeled_expression
     ),
 
-    labeled_command: $ => seq(
+    labeled_expression: $ => seq(
       $._label,
       repeat($._blank),
       choice(
@@ -108,7 +112,7 @@ module.exports = grammar({
     if_block: $ => prec.right(seq(
       longAndShortForm('IF'),
       repeat1($._blank),
-      field('condition', $._expression),
+      field('condition', $._practice_expression),
       $._terminator,
       choice(
         $._statement,
@@ -137,7 +141,7 @@ module.exports = grammar({
     while_block: $ => seq(
       longAndShortForm('WHILE'),
       repeat1($._blank),
-      field('condition', $._expression),
+      field('condition', $._practice_expression),
       $._terminator,
       choice(
         $._statement,
@@ -150,7 +154,7 @@ module.exports = grammar({
       choice(
         seq(
           repeat1($._blank),
-          field('condition', $._expression),
+          field('condition', $._practice_expression),
           choice(
             seq(
               repeat1($._blank),
@@ -174,20 +178,30 @@ module.exports = grammar({
           optional(seq(
             longAndShortForm('WHILE'),
             repeat1($._blank),
-            field('condition', $._expression),
+            field('condition', $._practice_expression),
             $._terminator
           ))
         )
       )
     )),
 
+    _practice_expression: $ => choice(
+      $._expression,
+      $.practice_function,
+    ),
+
+    _hll_expression: $ => choice(
+      $._expression,
+      $.c_subscript_expression
+    ),
+
     _expression: $ => choice(
       $.unary_expression,
       $.binary_expression,
-      $.practice_function,
       $._macro,
-      $._c_variable,
+      $._internal_c_variable,
       $.c_pointer_expression,
+      $.c_cast_expression,
       $.literal,
       $.identifier,
       $._parenthesized_expression
@@ -196,29 +210,29 @@ module.exports = grammar({
     _parenthesized_expression: $ => choice(
       seq(
         '(',
-        $._expression,
+        $._practice_expression,
         ')'
       ),
       seq(
         '{',
-        $._expression,
+        $._practice_expression,
         '}'
       )
     ),
 
-    assignment_expression: $ => seq(
+    macro_assignment_expression: $ => seq(
       field('left', $._macro),
       repeat($._blank),
       field('operator', '='),
       repeat($._blank),
-      field('right', $._expression)
+      field('right', $._practice_expression)
     ),
 
    unary_expression: $ => prec.left(PREC.unary, seq(
       field('operator', choice(
         '+', '-', '~', '!'
       )),
-      field('argument', $._expression)
+      field('argument', $._practice_expression)
     )),
 
     binary_expression: $ => choice(
@@ -229,8 +243,20 @@ module.exports = grammar({
     // Address-of operator is treated as PRACTICE macro
     c_pointer_expression: $ => prec.left(PREC.pointer, seq(
       field('operator', '*'),
-      field('argument', $._expression)
+      field('argument', $._practice_expression)
     )),
+
+    c_cast_expression: $ => prec(PREC.cast, seq(
+      '(',
+      field('type', alias($.c_type_declaration, $.identifier)),
+      ')',
+      field('value', $._practice_expression)
+    )),
+
+    c_call_expression: $ => seq(
+      field('function', $._expression),
+      field('arguments', $.argument_list)
+      ),
 
     _binary_expression: $ => {
       const operators = [
@@ -251,14 +277,16 @@ module.exports = grammar({
         ['<', PREC.relational],
         ['<<', PREC.shift],
         ['>>', PREC.shift],
-        [/\.\.|\-\-|\+\+/, PREC.range]
+        ['..', PREC.range],
+        ['--', PREC.range],
+        ['++', PREC.range]
       ];
 
       return choice(...operators.map(([op, pre]) => {
         return prec.left(pre, seq(
-          field('left', $._expression),
+          field('left', $._practice_expression),
           field('operator', op),
-          field('right', $._expression)
+          field('right', $._practice_expression)
         ))
       }));
     },
@@ -271,19 +299,21 @@ module.exports = grammar({
 
       return choice(...operators.map(([op, pre]) => {
         return prec.left(pre, seq(
-          field('left', $._expression),
+          field('left', $._practice_expression),
           $._and_operator_pre_hook,
           field('operator', op),
-          field('right', $._expression)
+          field('right', $._practice_expression)
         ))
       }));
     },
 
-    c_variable_assignment_expression: $ => seq(
-        field('left', $._c_variable),
+    assignment_expression: $ => prec.left(seq(
+        field('left', $._practice_expression),
+        repeat($._blank),
         field('operator', '='),
-        field('right', $._expression)
-    ),
+        repeat($._blank),
+        field('right', $._practice_expression)
+    )),
 
     _label: $ => seq(
       field('label', alias($.label_identifier, $.identifier)),
@@ -324,24 +354,100 @@ module.exports = grammar({
       optional(')')
     )),
 
-    _c_variable_definition: $ => seq(
-      field('command', alias($.c_variable_definition_command, $.identifier)),
-      repeat1($._blank),
-      alias($._type, $.literal),
-      repeat1($._blank),
-      field('variable', $._c_variable)
+    _var_command: $ => choice(
+      seq(
+        field('command', alias(seq(
+          longAndShortForm('Var'),
+          '.',
+          choice(
+            longAndShortForm('NEWLOCAL'),
+            longAndShortForm('NEWGLOBAL')
+          )
+        ), $.identifier)),
+        repeat1($._blank),
+        alias($._type, $.literal),
+        repeat1($._blank),
+        field('variable', $._internal_c_variable)
+      ),
+      seq(
+        field('command', alias(seq(
+          longAndShortForm('Var'),
+          optional(seq(
+            '.',
+            choice(
+              longAndShortForm('set'),
+              longAndShortForm('ASSIGN'),
+              longAndShortForm('Call')
+            )
+          ))
+        ), $.identifier)),
+        field('arguments', alias($._var_call_command_arguments, $.argument_list))
+      ),
+      seq(
+        field('command', alias(seq(
+          longAndShortForm('Var'),
+          repeat1(seq(
+            '.',
+            alias($.identifier, 'subcommand')
+          ))
+        ), $.identifier)),
+        field('arguments', optional(alias($._var_command_arguments, $.argument_list)))
+      )
     ),
 
-    c_variable_definition_command: $ => token(seq(
-      longAndShortForm('Var'),
-      '.',
-      choice(
-        longAndShortForm('NEWLOCAL'),
-        longAndShortForm('NEWGLOBAL')
-      )
-    )),
+    _var_call_command_arguments: $ => seq(
+      repeat1($._blank),
+      optional(seq(
+        alias($._command_format, $.identifier),
+        repeat1($._blank),
+      )),
+      $._var_call_command_argument
+    ),
 
-    _c_variable: $ => seq(
+    // Commas as argument separators do not seem viable for
+    // HLL expressions
+    _var_command_arguments: $ => seq(
+      repeat1($._blank),
+      choice(
+        ',',
+        seq(
+          ',',
+          $._command_argument,
+          repeat(seq(
+            repeat1($._blank),
+            $._command_argument
+          )),
+          repeat($._blank)
+        ),
+        seq(
+          $._command_argument,
+          repeat(seq(
+            repeat1($._blank),
+            $._command_argument
+          )),
+          repeat($._blank)
+        )
+      )
+    ),
+
+    _var_call_command_argument: $ => choice(
+      $._hll_expression,
+      $.assignment_expression,
+      $.c_call_expression,
+      $._command_option,
+      alias($._command_format, $.identifier),
+    ),
+
+    c_subscript_expression: $ => seq(
+      field('argument', $._hll_expression),
+      seq(
+        '[',
+        field('index', $._hll_expression),
+        ']'
+      )
+    ),
+
+    _internal_c_variable: $ => seq(
       '\\',
       $.identifier,
       optional(token(seq(
@@ -364,7 +470,7 @@ module.exports = grammar({
         seq(
           choice(
             $._macro_definition,
-            $._c_variable_definition
+            $._var_command
           ),
           $._terminator
         ),
@@ -409,8 +515,7 @@ module.exports = grammar({
     ),
 
     _command_argument: $ => choice(
-      $._expression,
-      alias($.c_variable_assignment_expression, $.assignment_expression),
+      $._practice_expression,
       $._command_option,
       alias($._command_format, $.identifier),
       alias($._path, $.literal)
@@ -435,10 +540,10 @@ module.exports = grammar({
       ))
     ),
 
-    practice_function: $ => prec(PREC.practice_function, seq(
+    practice_function: $ => seq(
       field('function', alias($._function_identifier, $.identifier)),
       field('arguments', $.argument_list)
-    )),
+    ),
 
     _function_identifier: $ => seq(
       alias($.identifier, 'function'),
@@ -451,13 +556,69 @@ module.exports = grammar({
     argument_list: $ => seq(
       '(',
       optional(seq(
-        $._expression,
+        $._practice_expression,
         repeat(seq(
+          repeat($._blank),
           ',',
-          $._expression
+          repeat($._blank),
+          $._practice_expression
         ))
       )),
       ')'
+    ),
+
+    c_type_declaration: $ => seq(
+      choice(
+        $._c_base_type_declaration,
+        $._c_compound_type_declaration,
+        $.identifier
+      ),
+      repeat(seq(
+        repeat($._blank),
+        choice(
+          '*',
+          seq(
+            '[',
+            $._practice_expression,
+            ']'
+          )
+        )
+      ))
+    ),
+
+    _c_compound_type_declaration: $ => seq(
+      choice(
+        'struct',
+        'union',
+        'enum',
+      ),
+      repeat1($._blank),
+      $.identifier
+    ),
+
+    _c_base_type_declaration: $ => choice(
+      seq(
+        optional(seq(
+          choice(
+            'signed',
+            'unsigned'
+          ),
+          repeat1($._blank)
+        )),
+        choice(
+          'char',
+          'short',
+          'int',
+          'long',
+          'long long',
+          ...[8, 16, 32, 64].map(w => `int${w}_t`),
+          ...[8, 16, 32, 64].map(w => `uint${w}_t`)
+        ),
+      ),
+      'float',
+      'double',
+      'long double',
+      'bool'
     ),
 
     literal: $ => choice(
@@ -474,7 +635,11 @@ module.exports = grammar({
     ),
 
     _integer: $ => choice(
-      ...RE_INTEGERS
+      ...RE_BIN_HEX_NUMBER,
+      seq(
+        $._decimal_number_pre_hook,
+        $._decimal_number
+      )
     ),
 
     _float: $ => /[0-9]+\.[0-9]+(e[-+][0-9]+)?/,
@@ -487,13 +652,17 @@ module.exports = grammar({
     _address: $ => {
       const alphanum = '[a-zA-Z0-9]+'
 
-      return token(seq(
+      return seq(
         new RegExp(alphanum + ':'),  // Access class
         repeat(new RegExp(alphanum + '[.]?:+')),  // Machine identifier:::Memory space identifier::Memory segment identifier:
         choice(
-          ...RE_INTEGERS
+          ...RE_BIN_HEX_NUMBER,
+          seq(
+            $._decimal_number_pre_hook,
+            $._decimal_number
+          )
         )
-      ))
+      )
     },
 
     _string: $ => seq(

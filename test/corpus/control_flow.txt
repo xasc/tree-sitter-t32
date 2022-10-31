@@ -8,9 +8,9 @@ a_b.c: PRINT "A"
 ---
 
 (script
-  (labeled_command
+  (labeled_expression
     label: (identifier))
-  (labeled_command
+  (labeled_expression
     label: (identifier)
     (command_expression
       command: (identifier)
