@@ -35,8 +35,9 @@ const PREC = {
   cast: 21,
   unary: 22,
   prefix_postfix: 23,
-  subscript: 24,
-  range: 25
+  field: 24,
+  subscript: 25,
+  range: 26
 }
 
 const RE_BIN_HEX_NUMBER = [
@@ -420,6 +421,14 @@ module.exports = grammar({
       )
     )),
 
+    c_field_expression: $ => prec(PREC.field, seq(
+      field('argument', $._expression),
+      field('operator', choice(
+        '->',
+      )),
+      field('field', $.identifier)
+    )),
+
     _internal_c_variable: $ => seq(
       '\\',
       $.identifier,
@@ -686,6 +695,7 @@ module.exports = grammar({
       $.c_cast_expression,
       $.c_pointer_expression,
       $.c_subscript_expression,
+      $.c_field_expression,
       $.identifier,
       $.literal,
       $.unary_expression,

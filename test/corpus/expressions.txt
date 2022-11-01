@@ -681,6 +681,8 @@ Var.ASSIGN \string_array[2]="element2"
 Var.set  flags[\a++]
 Var.set  flags[--\a]
 
+Var.View ast->left=(left_t *)ast->left->right
+
 ---
 
 (script
@@ -756,7 +758,22 @@ Var.set  flags[--\a]
       (c_subscript_expression
         argument: (identifier)
         index: (unary_expression
-          argument: (identifier))))))
+          argument: (identifier)))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (assignment_expression
+        left: (c_field_expression
+          argument: (identifier)
+          field: (identifier))
+        right: (c_cast_expression
+          type: (identifier
+            (identifier))
+          value: (c_field_expression
+            argument: (c_field_expression
+              argument: (identifier)
+              field: (identifier))
+            field: (identifier)))))))
 
 ==================
 Assignment expression
