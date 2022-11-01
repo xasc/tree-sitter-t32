@@ -443,7 +443,7 @@ bool tree_sitter_t32_external_scanner_scan(
 	}
 	else if (
 		(valid_symbols[LOGICAL_AND] || valid_symbols[BITWISE_AND]) &&
-		lexer->lookahead == '&'
+		state->and_operator_len > 0
 	) {
 		unsigned const len = state->and_operator_len;
 		for (unsigned ii = 0; ii < len; ii++) {
@@ -468,7 +468,7 @@ bool tree_sitter_t32_external_scanner_scan(
 			return true;
 		}
 	}
-	else if (valid_symbols[DECIMAL_NUMBER] && IsNum(lexer->lookahead)) {
+	else if (valid_symbols[DECIMAL_NUMBER] && state->decimal_number_len) {
 		unsigned const len = state->decimal_number_len;
 		for (unsigned ii = 0; ii < len; ii++) {
 			Advance(lexer);
