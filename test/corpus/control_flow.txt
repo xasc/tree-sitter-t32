@@ -776,3 +776,49 @@ GLOBALON PBREAKENCLU DO run.cmm
       (identifier)
       (identifier)
       (literal))))
+
+==================
+Var.IF block statements
+==================
+
+Var.IF \a<sizeof(array)
+  PRINT "OK"
+
+---
+
+(script
+  (if_block
+    command: (identifier)
+    condition: (binary_expression
+      left: (identifier)
+      right: (call_expression
+        function: (identifier)
+        arguments: (argument_list
+          (identifier))))
+    (command_expression
+      command: (identifier)
+      arguments: (argument_list
+        (literal)))))
+
+==================
+Var.WHILE block statements
+==================
+
+Var.WHILE string_array[\i]!='\0'
+  Var.set \i++
+
+---
+
+(script
+  (while_block
+    command: (identifier)
+    condition: (binary_expression
+      left: (c_subscript_expression
+        argument: (identifier)
+        index: (identifier))
+      right: (literal))
+    (command_expression
+      command: (identifier)
+      arguments: (argument_list
+        (unary_expression
+          argument: (identifier))))))
