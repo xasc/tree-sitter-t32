@@ -478,33 +478,33 @@ PRACTICE functions
 (script
   (assignment_expression
     left: (identifier)
-    right: (practice_function
+    right: (call_expression
       function: (identifier)
       arguments: (argument_list
         (identifier))))
   (assignment_expression
     left: (identifier)
-    right: (practice_function
+    right: (call_expression
       function: (identifier)
       arguments: (argument_list)))
   (assignment_expression
     left: (identifier)
-    right: (practice_function
+    right: (call_expression
       function: (identifier)
       arguments: (argument_list
         (identifier))))
   (assignment_expression
     left: (identifier)
-    right: (practice_function
+    right: (call_expression
       function: (identifier)
       arguments: (argument_list
         (literal))))
   (assignment_expression
     left: (identifier)
-    right: (practice_function
+    right: (call_expression
       function: (identifier)
       arguments: (argument_list
-        (practice_function
+        (call_expression
           function: (identifier)
           arguments: (argument_list))
         (literal)
@@ -640,14 +640,14 @@ Var.View %all \i \myStr
     command: (identifier)
     arguments: (argument_list
       (identifier)
-      (practice_function
+      (call_expression
         function: (identifier)
         arguments: (argument_list
           (identifier)))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
-      (practice_function
+      (call_expression
         function: (identifier)
         arguments: (argument_list
           (identifier)))))
@@ -658,15 +658,6 @@ Var.View %all \i \myStr
       (identifier)
       (identifier))))
 
-==================
-_t
-==================
-
-&a = i-1..i+1
-
----
-(script
-  left: (identifier)
 ==================
 Command with C expression
 ==================
@@ -707,7 +698,7 @@ Var.set vdblarray[2..4][(i-1)..(i+1)]
   (command_expression
     command: (identifier)
     arguments: (argument_list
-      (c_call_expression
+      (call_expression
         function: (literal)
         arguments: (argument_list
           (literal)
@@ -716,7 +707,7 @@ Var.set vdblarray[2..4][(i-1)..(i+1)]
   (command_expression
     command: (identifier)
     arguments: (argument_list
-      (c_call_expression
+      (call_expression
         function: (identifier)
         arguments: (argument_list
           (literal)
@@ -1114,7 +1105,7 @@ Expressions with parentheses
     left: (identifier)
     right: (binary_expression
       left: (literal)
-      right: (practice_function
+      right: (call_expression
         function: (identifier)
         arguments: (argument_list))))
   (assignment_expression

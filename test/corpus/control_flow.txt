@@ -51,7 +51,7 @@ ELSE
     (command_expression
       command: (identifier)))
   (if_block
-    condition: (practice_function
+    condition: (call_expression
       function: (identifier)
       arguments: (argument_list))
     (command_expression
@@ -177,7 +177,7 @@ WHILE (sYmbol.EXIT(main))
 
 (script
   (while_block
-    condition: (practice_function
+    condition: (call_expression
       function: (identifier)
       arguments: (argument_list
         (identifier)))

@@ -100,6 +100,19 @@ module.exports = grammar({
       $.labeled_expression
     ),
 
+    _parenthesized_expression: $ => choice(
+      seq(
+        '(',
+        $._expression,
+        ')'
+      ),
+      seq(
+        '{',
+        $._expression,
+        '}'
+      )
+    ),
+
     labeled_expression: $ => seq(
       $._label,
       repeat($._blank),
@@ -112,7 +125,7 @@ module.exports = grammar({
     if_block: $ => prec.right(seq(
       longAndShortForm('IF'),
       repeat1($._blank),
-      field('condition', $._practice_expression),
+      field('condition', $._expression),
       $._terminator,
       choice(
         $._statement,
@@ -141,7 +154,7 @@ module.exports = grammar({
     while_block: $ => seq(
       longAndShortForm('WHILE'),
       repeat1($._blank),
-      field('condition', $._practice_expression),
+      field('condition', $._expression),
       $._terminator,
       choice(
         $._statement,
@@ -154,7 +167,7 @@ module.exports = grammar({
       choice(
         seq(
           repeat1($._blank),
-          field('condition', $._practice_expression),
+          field('condition', $._expression),
           choice(
             seq(
               repeat1($._blank),
@@ -178,85 +191,32 @@ module.exports = grammar({
           optional(seq(
             longAndShortForm('WHILE'),
             repeat1($._blank),
-            field('condition', $._practice_expression),
+            field('condition', $._expression),
             $._terminator
           ))
         )
       )
     )),
 
-    _practice_expression: $ => choice(
-      $._expression,
-      $.practice_function,
-    ),
-
-    _hll_expression: $ => choice(
-      $._expression,
-      $.c_subscript_expression
-    ),
-
-    _expression: $ => choice(
-      $.unary_expression,
-      $.binary_expression,
-      $._macro,
-      $._internal_c_variable,
-      $.c_pointer_expression,
-      $.c_cast_expression,
-      $.literal,
-      $.identifier,
-      $._parenthesized_expression
-    ),
-
-    _parenthesized_expression: $ => choice(
-      seq(
-        '(',
-        $._practice_expression,
-        ')'
-      ),
-      seq(
-        '{',
-        $._practice_expression,
-        '}'
-      )
-    ),
-
     macro_assignment_expression: $ => seq(
       field('left', $._macro),
       repeat($._blank),
       field('operator', '='),
       repeat($._blank),
-      field('right', $._practice_expression)
+      field('right', $._expression)
     ),
 
    unary_expression: $ => prec.left(PREC.unary, seq(
       field('operator', choice(
         '+', '-', '~', '!'
       )),
-      field('argument', $._practice_expression)
+      field('argument', $._expression)
     )),
 
     binary_expression: $ => choice(
       $._binary_expression,
       $._and_expression
     ),
-
-    // Address-of operator is treated as PRACTICE macro
-    c_pointer_expression: $ => prec.left(PREC.pointer, seq(
-      field('operator', '*'),
-      field('argument', $._practice_expression)
-    )),
-
-    c_cast_expression: $ => prec(PREC.cast, seq(
-      '(',
-      field('type', alias($.c_type_declaration, $.identifier)),
-      ')',
-      field('value', $._practice_expression)
-    )),
-
-    c_call_expression: $ => seq(
-      field('function', $._expression),
-      field('arguments', $.argument_list)
-      ),
 
     _binary_expression: $ => {
       const operators = [
@@ -284,9 +244,9 @@ module.exports = grammar({
 
       return choice(...operators.map(([op, pre]) => {
         return prec.left(pre, seq(
-          field('left', $._practice_expression),
+          field('left', $._expression),
           field('operator', op),
-          field('right', $._practice_expression)
+          field('right', $._expression)
         ))
       }));
     },
@@ -299,20 +259,20 @@ module.exports = grammar({
 
       return choice(...operators.map(([op, pre]) => {
         return prec.left(pre, seq(
-          field('left', $._practice_expression),
+          field('left', $._expression),
           $._and_operator_pre_hook,
           field('operator', op),
-          field('right', $._practice_expression)
+          field('right', $._expression)
         ))
       }));
     },
 
     assignment_expression: $ => prec.left(seq(
-        field('left', $._practice_expression),
+        field('left', $._expression),
         repeat($._blank),
         field('operator', '='),
         repeat($._blank),
-        field('right', $._practice_expression)
+        field('right', $._expression)
     )),
 
     _label: $ => seq(
@@ -352,6 +312,19 @@ module.exports = grammar({
       optional('('),
       $.identifier,
       optional(')')
+    )),
+
+    // Address-of operator is treated as PRACTICE macro
+    c_pointer_expression: $ => prec.left(PREC.pointer, seq(
+      field('operator', '*'),
+      field('argument', $._expression)
+    )),
+
+    c_cast_expression: $ => prec(PREC.cast, seq(
+      '(',
+      field('type', alias($.c_type_declaration, $.identifier)),
+      ')',
+      field('value', $._expression)
     )),
 
     _var_command: $ => choice(
@@ -431,18 +404,17 @@ module.exports = grammar({
     ),
 
     _var_call_command_argument: $ => choice(
-      $._hll_expression,
+      $._expression,
       $.assignment_expression,
-      $.c_call_expression,
       $._command_option,
       alias($._command_format, $.identifier),
     ),
 
     c_subscript_expression: $ => seq(
-      field('argument', $._hll_expression),
+      field('argument', $._expression),
       seq(
         '[',
-        field('index', $._hll_expression),
+        field('index', $._expression),
         ']'
       )
     ),
@@ -515,7 +487,7 @@ module.exports = grammar({
     ),
 
     _command_argument: $ => choice(
-      $._practice_expression,
+      $._expression,
       $._command_option,
       alias($._command_format, $.identifier),
       alias($._path, $.literal)
@@ -540,8 +512,11 @@ module.exports = grammar({
       ))
     ),
 
-    practice_function: $ => seq(
-      field('function', alias($._function_identifier, $.identifier)),
+    call_expression: $ => seq(
+      field('function', choice(
+        $._expression,
+        alias($._function_identifier, $.identifier)
+      )),
       field('arguments', $.argument_list)
     ),
 
@@ -556,12 +531,12 @@ module.exports = grammar({
     argument_list: $ => seq(
       '(',
       optional(seq(
-        $._practice_expression,
+        $._expression,
         repeat(seq(
           repeat($._blank),
           ',',
           repeat($._blank),
-          $._practice_expression
+          $._expression
         ))
       )),
       ')'
@@ -579,7 +554,7 @@ module.exports = grammar({
           '*',
           seq(
             '[',
-            $._practice_expression,
+            $._expression,
             ']'
           )
         )
@@ -698,6 +673,20 @@ module.exports = grammar({
     _type: $ => seq(
       alias($.identifier, ''),
       repeat(/\[[0-9]+\]/)
+    ),
+
+    _expression: $ => choice(
+      $.binary_expression,
+      $.call_expression,
+      $.c_cast_expression,
+      $.c_pointer_expression,
+      $.c_subscript_expression,
+      $.identifier,
+      $.literal,
+      $.unary_expression,
+      $._internal_c_variable,
+      $._macro,
+      $._parenthesized_expression
     ),
 
     identifier: $ => /[a-zA-Z_][\w_]*/,
