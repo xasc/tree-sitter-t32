@@ -60,7 +60,9 @@ module.exports = grammar({
   conflicts: $ => [
     [$._binary_expression, $._and_expression],
     [$._expression, $._function_identifier],
-    [$._expression, $.c_type_declaration]
+    [$._expression, $.c_type_declaration],
+    [$._command_argument, $.assignment_expression],
+    [$.argument_list, $.assignment_expression]
   ],
 
   extras: $ => [
@@ -345,20 +347,6 @@ module.exports = grammar({
       seq(
         field('command', alias(seq(
           longAndShortForm('Var'),
-          optional(seq(
-            '.',
-            choice(
-              longAndShortForm('set'),
-              longAndShortForm('ASSIGN'),
-              longAndShortForm('Call')
-            )
-          ))
-        ), $.identifier)),
-        field('arguments', alias($._var_call_command_arguments, $.argument_list))
-      ),
-      seq(
-        field('command', alias(seq(
-          longAndShortForm('Var'),
           repeat1(seq(
             '.',
             alias($.identifier, 'subcommand')
@@ -366,15 +354,6 @@ module.exports = grammar({
         ), $.identifier)),
         field('arguments', optional(alias($._var_command_arguments, $.argument_list)))
       )
-    ),
-
-    _var_call_command_arguments: $ => seq(
-      repeat1($._blank),
-      optional(seq(
-        alias($._command_format, $.identifier),
-        repeat1($._blank),
-      )),
-      $._var_call_command_argument
     ),
 
     // Commas as argument separators do not seem viable for
@@ -401,13 +380,6 @@ module.exports = grammar({
           repeat($._blank)
         )
       )
-    ),
-
-    _var_call_command_argument: $ => choice(
-      $._expression,
-      $.assignment_expression,
-      $._command_option,
-      alias($._command_format, $.identifier),
     ),
 
     c_subscript_expression: $ => seq(
@@ -676,6 +648,7 @@ module.exports = grammar({
     ),
 
     _expression: $ => choice(
+      $.assignment_expression,
       $.binary_expression,
       $.call_expression,
       $.c_cast_expression,

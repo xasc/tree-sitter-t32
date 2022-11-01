@@ -671,6 +671,10 @@ Var.set (0xdeadbeef)(1,5.0,3)
 Var.set strcmp("123" , "abc")
 
 Var.set vdblarray[2..4][(i-1)..(i+1)]
+Var.ASSIGN \string_array[2]="element2"
+
+Var.IF \i=10.
+  &a = TRUE()
 
 ---
 
@@ -727,7 +731,24 @@ Var.set vdblarray[2..4][(i-1)..(i+1)]
             right: (literal))
           right: (binary_expression
             left: (identifier)
-            right: (literal)))))))
+            right: (literal))))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (assignment_expression
+        left: (identifier)
+        right: (literal))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (assignment_expression
+        left: (identifier)
+        right: (literal))))
+  (assignment_expression
+    left: (identifier)
+    right: (call_expression
+      function: (identifier)
+      arguments: (argument_list))))
 
 ==================
 Assignment expression
