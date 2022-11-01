@@ -209,9 +209,14 @@ Character literals
 &b = \
 '0'
 
+&c = '\0'
+
 ---
 
 (script
+  (assignment_expression
+    left: (identifier)
+    right: (literal))
   (assignment_expression
     left: (identifier)
     right: (literal))
