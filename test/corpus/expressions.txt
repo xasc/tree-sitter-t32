@@ -676,6 +676,9 @@ Var.ASSIGN \string_array[2]="element2"
 Var.IF \i=10.
   &a = TRUE()
 
+Var.set  flags[\a++]
+Var.set  flags[--\a]
+
 ---
 
 (script
@@ -748,7 +751,21 @@ Var.IF \i=10.
     left: (identifier)
     right: (call_expression
       function: (identifier)
-      arguments: (argument_list))))
+      arguments: (argument_list)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (c_subscript_expression
+        argument: (identifier)
+        index: (unary_expression
+          argument: (identifier)))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (c_subscript_expression
+        argument: (identifier)
+        index: (unary_expression
+          argument: (identifier))))))
 
 ==================
 Assignment expression

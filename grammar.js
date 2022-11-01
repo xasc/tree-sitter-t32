@@ -34,12 +34,13 @@ const PREC = {
   pointer: 20,
   cast: 21,
   unary: 22,
-  range: 23
+  prefix_postfix: 23,
+  subscript: 24,
+  range: 25
 }
 
 const RE_BIN_HEX_NUMBER = [
   /0y[0-9]+/,  // Binary
-  // /[0-9]+\.?/,  // Decimal
   /0[xX][0-9a-fA-F]+/,  // Hexadecimal
 ]
 
@@ -208,11 +209,27 @@ module.exports = grammar({
       field('right', $._expression)
     ),
 
-   unary_expression: $ => prec.left(PREC.unary, seq(
+   unary_expression: $ => choice(
+      $._prefix_postfix_expression,
+      $._unary_expression
+    ),
+
+   _unary_expression: $ => prec.left(PREC.unary, seq(
       field('operator', choice(
         '+', '-', '~', '!'
       )),
       field('argument', $._expression)
+    )),
+
+    _prefix_postfix_expression: $ => prec.right(PREC.prefix_postfix, choice(
+      seq(
+        field('argument', $._expression),
+        field('operator', choice('++', '--'))
+      ),
+      seq(
+        field('operator', choice('++', '--')),
+        field('argument', $._expression)
+      )
     )),
 
     binary_expression: $ => choice(
@@ -269,7 +286,7 @@ module.exports = grammar({
       }));
     },
 
-    assignment_expression: $ => prec.left(seq(
+    assignment_expression: $ => prec.right(seq(
         field('left', $._expression),
         repeat($._blank),
         field('operator', '='),
@@ -382,14 +399,14 @@ module.exports = grammar({
       )
     ),
 
-    c_subscript_expression: $ => seq(
+    c_subscript_expression: $ => prec(PREC.subscript, seq(
       field('argument', $._expression),
       seq(
         '[',
         field('index', $._expression),
         ']'
       )
-    ),
+    )),
 
     _internal_c_variable: $ => seq(
       '\\',
