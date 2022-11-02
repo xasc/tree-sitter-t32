@@ -1,9 +1,23 @@
 {
   "name": "tree-sitter-t32",
-  "packageManager": "yarn@3.2.3",
-  "private": true,
+  "version": "0.1",
+  "description": "Lauterbach TRACE32 script language grammar for tree-sitter",
+  "author": "Christoph Sax",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://codeberg.org/xasc/tree-sitter-t32/"
+  },
+  "keywords": [
+    "parser",
+    "lexer",
+    "trace32",
+    "t32",
+    "lauterbach",
+    "practice"
+  ],
   "scripts": {
-    "build": "tree-sitter generate",
+    "build": "tree-sitter generate && node-gyp build",
     "parse": "tree-sitter parse",
     "test": "tree-sitter test"
   },
@@ -11,7 +25,18 @@
     "nan": "^2.16.0"
   },
   "devDependencies": {
+    "node-gyp": "^9.3.0",
     "tree-sitter-cli": "^0.20.7"
   },
-  "main": "bindings/node"
+  "packageManager": "yarn@3.2.3",
+  "main": "bindings/node",
+  "tree-sitter": [
+    {
+      "scope": "source.t32",
+      "file-types": [
+        "cmm",
+        "t32"
+      ]
+    }
+  ]
 }
