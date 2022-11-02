@@ -64,14 +64,6 @@ typedef struct pathScan_s {
 pathScan_t;
 
 
-static void Skip(
-	TSLexer *const lexer)
-{
-	assert(lexer != NULL);
-	lexer->advance(lexer, true);
-}
-
-
 static void Advance(
 	TSLexer *const lexer)
 {
@@ -159,18 +151,6 @@ static bool IsSpace(
 		glyph == '\t' ||
 		glyph == '\r' ||
 		glyph == '\n'
-	);
-}
-
-
-static bool IsUnaryOperator(
-	int32_t const glyph)
-{
-	return (
-		glyph == '+' ||
-		glyph == '-' ||
-		glyph == '~' ||
-		glyph == '!'
 	);
 }
 
@@ -279,7 +259,7 @@ static unsigned ScanLengthDecimalNumber(
 	// Check for binary, hexadecimal numbers, time literals
 	// and addresses
 	if (
-		lexer->lookahead == ':' ||
+		lexer->lookahead == ':' || lexer->lookahead ==  '\'' ||
 		lexer->lookahead == 'x' || lexer->lookahead == 'X' ||
 		lexer->lookahead == 'y' || lexer->lookahead == 'Y' ||
 		lexer->lookahead == 'm' || lexer->lookahead == 'u' || lexer->lookahead == 'n' || lexer->lookahead == 's'
