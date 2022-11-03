@@ -3,7 +3,7 @@ Comments
 ==================
 
 // Comment A
-; Comment B
+  ; Comment B
 
 PRINT "A";
 ECHO "B" // a\
@@ -24,3 +24,34 @@ ECHO "B" // a\
     (argument_list
       (literal))
     (comment)))
+
+==================
+Interjected comments
+==================
+
+IF &a
+ // Comment here
+(
+  PRINT "true"
+)
+ELSE
+// Comment there
+  PRINT "false"
+
+---
+
+(script
+  (if_block
+    command: (identifier)
+    condition: (identifier)
+    (comment)
+    (command_expression
+      command: (identifier)
+      arguments: (argument_list
+        (literal)))
+    (else_block
+      (comment)
+      (command_expression
+        command: (identifier)
+        arguments: (argument_list
+          (literal))))))
