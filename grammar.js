@@ -127,13 +127,14 @@ module.exports = grammar({
     ),
 
     if_block: $ => prec.right(seq(
-      field('command', alias(seq(
-        optional(seq(
+      field('command', choice(
+        alias(seq(
           longAndShortForm('Var'),
-          '.'
-        )),
-        longAndShortForm('IF')
-      ), $.identifier)),
+          '.',
+          longAndShortForm('IF')
+        ), $.identifier),
+        alias(longAndShortForm('IF'), $.identifier)
+      )),
       repeat1($._blank),
       field('condition', $._expression),
       $._terminator,
@@ -162,13 +163,14 @@ module.exports = grammar({
     ),
 
     while_block: $ => seq(
-      field('command', alias(seq(
-        optional(seq(
+      field('command', choice(
+        alias(seq(
           longAndShortForm('Var'),
-          '.'
-        )),
-        longAndShortForm('WHILE')
-      ), $.identifier)),
+          '.',
+          longAndShortForm('WHILE')
+        ), $.identifier),
+        alias(longAndShortForm('WHILE'), $.identifier)
+      )),
       repeat1($._blank),
       field('condition', $._expression),
       $._terminator,
@@ -179,7 +181,7 @@ module.exports = grammar({
     ),
 
     repeat_block: $ => prec.right(seq(
-      longAndShortForm('RePeaT'),
+      field('command', alias(longAndShortForm('RePeaT'), $.identifier)),
       choice(
         seq(
           repeat1($._blank),

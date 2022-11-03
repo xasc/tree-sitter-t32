@@ -47,10 +47,12 @@ ELSE
 
 (script
   (if_block
+    command: (identifier)
     condition: (identifier)
     (command_expression
       command: (identifier)))
   (if_block
+    command: (identifier)
     condition: (call_expression
       function: (identifier)
       arguments: (argument_list))
@@ -60,25 +62,30 @@ ELSE
       (command_expression
       command: (identifier))))
   (if_block
+    command: (identifier)
     condition: (identifier)
     (command_expression
       command: (identifier))
     (else_block
       (if_block
+    command: (identifier)
         condition: (identifier)
         (command_expression
       command: (identifier)))))
   (if_block
+    command: (identifier)
     condition: (identifier)
     (command_expression
       command: (identifier))
     (else_block
       (if_block
+    command: (identifier)
         condition: (identifier)
         (command_expression
       command: (identifier))
         (else_block
           (if_block
+    command: (identifier)
             condition: (identifier)
             (command_expression
       command: (identifier))
@@ -103,13 +110,16 @@ IF &a
 
 (script
   (if_block
+    command: (identifier)
     condition: (identifier)
     (if_block
+    command: (identifier)
       condition: (identifier)
       (command_expression
       command: (identifier))
       (else_block
         (if_block
+    command: (identifier)
           condition: (identifier)
           (command_expression
       command: (identifier)))))))
@@ -135,11 +145,13 @@ ELSE
 
 (script
   (if_block
+    command: (identifier)
     condition: (identifier)
     (command_expression
       command: (identifier))
     (else_block
       (if_block
+    command: (identifier)
         condition: (identifier)
         (command_expression
       command: (identifier))
@@ -159,6 +171,7 @@ WHILE &a
 
 (script
   (while_block
+    command: (identifier)
     condition: (identifier)
     (command_expression
       command: (identifier))))
@@ -177,6 +190,7 @@ WHILE (sYmbol.EXIT(main))
 
 (script
   (while_block
+    command: (identifier)
     condition: (call_expression
       function: (identifier)
       arguments: (argument_list
@@ -215,20 +229,25 @@ WHILE &a
 
 (script
   (repeat_block
+    command: (identifier)
     condition: (literal)
     (identifier))
   (repeat_block
+    command: (identifier)
     condition: (identifier)
     (command_expression
       command: (identifier)))
   (repeat_block
+    command: (identifier)
     condition: (literal)
     (command_expression
       command: (identifier)))
   (repeat_block
+    command: (identifier)
     (command_expression
       command: (identifier)))
   (repeat_block
+    command: (identifier)
     (command_expression
       command: (identifier))
     condition: (identifier)))
