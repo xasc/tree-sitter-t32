@@ -338,6 +338,9 @@ static bool ScanPathLiteral(
 		if (ii == 1 && lexer->lookahead == ':') {
 			scan->has_drive = true;
 		}
+		else if (ii == 2 && scan->has_drive) {
+			scan->has_drive = (lexer->lookahead == '\\');
+		}
 		else if (lexer->lookahead == '*' || lexer->lookahead == '?') {
 			if (scan->seq->num_slashes > 0 || scan->seq->num_backslashes > 0) {
 				scan->has_wildcard = true;
