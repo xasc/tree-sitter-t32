@@ -15,19 +15,19 @@ PARAMETERS &_myvalue1 &my_Value2
 (script
   (command_expression
     command: (identifier)
-    macro: (identifier))
+    macro: (macro))
   (command_expression
     command: (identifier)
-    macro: (identifier))
+    macro: (macro))
   (command_expression
     command: (identifier)
-    macro: (identifier)
-    macro: (identifier)
-    macro: (identifier))
+    macro: (macro)
+    macro: (macro)
+    macro: (macro))
   (command_expression
     command: (identifier)
-    macro: (identifier)
-    macro: (identifier)))
+    macro: (macro)
+    macro: (macro)))
 
 ==================
 Recursive macro expansion
@@ -80,28 +80,28 @@ Number literals
 
 (script
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (integer))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (integer))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (integer))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (integer))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (integer))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (float))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (float))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (float)))
 
 ==================
@@ -118,16 +118,16 @@ Bitmask literals
 
 (script
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (bitmask))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (bitmask))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (bitmask))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (bitmask)))
 
 ==================
@@ -144,19 +144,19 @@ Time literals
 
 (script
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (time))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (time))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (time))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (time))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (time)))
 
 ==================
@@ -176,19 +176,19 @@ character"
 
 (script
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (string))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (string))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (string))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (string))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (string)))
 
 ==================
@@ -215,37 +215,37 @@ Character literals
 
 (script
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (character))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (character))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (character))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (character))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (character))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (character))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (character))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (character))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (character))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (character))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (character)))
 
 ==================
@@ -274,37 +274,37 @@ Var.set `class1::operator+(int)\i`
 
 (script
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (identifier))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (identifier))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (symbol))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (symbol))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (symbol))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (symbol))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (symbol))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (symbol))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (symbol))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (symbol))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (symbol))
   (command_expression
     command: (identifier)
@@ -332,19 +332,19 @@ Address literals
 
 (script
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (address))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (address))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (address))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (address))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (address)))
 
 ==================
@@ -383,90 +383,90 @@ DIR *.obj
   (command_expression
     command: (identifier)
     arguments: (argument_list
-      (literal)))
+      (path)))
   (command_expression
     command: (identifier)
     arguments: (argument_list
-      (literal)))
+      (path)))
   (command_expression
     command: (identifier)
     arguments: (argument_list
-      (literal)))
+      (path)))
   (command_expression
     command: (identifier)
     arguments: (argument_list
-      (literal)))
+      (path)))
   (command_expression
     command: (identifier)
     arguments: (argument_list
-      (literal)))
+      (path)))
   (command_expression
     command: (identifier)
     arguments: (argument_list
-      (literal)))
+      (path)))
   (command_expression
     command: (identifier)
     arguments: (argument_list
-      (literal)))
+      (path)))
   (command_expression
     command: (identifier)
     arguments: (argument_list
-      (literal)))
+      (path)))
   (command_expression
     command: (identifier)
     arguments: (argument_list
-      (literal)))
+      (path)))
   (command_expression
     command: (identifier)
     arguments: (argument_list
-      (literal)))
+      (path)))
   (command_expression
     command: (identifier)
     arguments: (argument_list
-      (literal)))
+      (path)))
   (command_expression
     command: (identifier)
     arguments: (argument_list
-      (literal)))
-  (command_expression
-    command: (identifier)
-    arguments: (argument_list
-      (file_handle)
-      (literal)))
+      (path)))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       (file_handle)
-      (literal)))
+      (path)))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       (file_handle)
-      (literal)))
+      (path)))
   (command_expression
     command: (identifier)
     arguments: (argument_list
-      (literal)))
+      (file_handle)
+      (path)))
   (command_expression
     command: (identifier)
     arguments: (argument_list
-      (literal)))
+      (path)))
   (command_expression
     command: (identifier)
     arguments: (argument_list
-      (literal)))
+      (path)))
   (command_expression
     command: (identifier)
     arguments: (argument_list
-      (literal)))
+      (path)))
   (command_expression
     command: (identifier)
     arguments: (argument_list
-      (literal)))
+      (path)))
   (command_expression
     command: (identifier)
     arguments: (argument_list
-      (literal))))
+      (path)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (path))))
 
 ==================
 PRACTICE functions
@@ -482,30 +482,30 @@ PRACTICE functions
 
 (script
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (call_expression
       function: (identifier)
       arguments: (argument_list
         (identifier))))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (call_expression
       function: (identifier)
       arguments: (argument_list)))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (call_expression
       function: (identifier)
       arguments: (argument_list
         (identifier))))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (call_expression
       function: (identifier)
       arguments: (argument_list
         (address))))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (call_expression
       function: (identifier)
       arguments: (argument_list
@@ -698,7 +698,7 @@ Var.View ast->left=(left_t *)ast->left->right
     arguments: (argument_list
       (c_pointer_expression
         argument: (binary_expression
-          left: (identifier)
+          left: (macro)
           right: (integer)))))
   (command_expression
     command: (identifier)
@@ -788,16 +788,16 @@ Assignment expression
 
 (script
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (integer))
   (assignment_expression
-    left: (identifier)
-    right: (identifier))
+    left: (macro)
+    right: (macro))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
       left: (unary_expression
-        argument: (identifier))
+        argument: (macro))
       right: (integer))))
 
 ==================
@@ -828,99 +828,99 @@ Binary operators
 
 (script
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
       left: (integer)
       right: (integer)))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
       left: (integer)
-      right: (identifier)))
+      right: (macro)))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
-      left: (identifier)
+      left: (macro)
       right: (integer)))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
       left: (time)
       right: (time)))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
       left: (integer)
-      right: (identifier)))
+      right: (macro)))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
-      left: (identifier)
+      left: (macro)
       right: (integer)))
   (assignment_expression
-    left: (identifier)
-    right: (binary_expression
-      left: (integer)
-      right: (integer)))
-  (assignment_expression
-    left: (identifier)
-    right: (binary_expression
-      left: (integer)
-      right: (identifier)))
-  (assignment_expression
-    left: (identifier)
-    right: (binary_expression
-      left: (identifier)
-      right: (integer)))
-  (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
       left: (integer)
       right: (integer)))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
       left: (integer)
-      right: (identifier)))
+      right: (macro)))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
-      left: (identifier)
+      left: (macro)
       right: (integer)))
   (assignment_expression
-    left: (identifier)
-    right: (binary_expression
-      left: (integer)
-      right: (integer)))
-  (assignment_expression
-    left: (identifier)
-    right: (binary_expression
-      left: (integer)
-      right: (identifier)))
-  (assignment_expression
-    left: (identifier)
-    right: (binary_expression
-      left: (identifier)
-      right: (integer)))
-  (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
       left: (integer)
       right: (integer)))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
+    right: (binary_expression
+      left: (integer)
+      right: (macro)))
+  (assignment_expression
+    left: (macro)
+    right: (binary_expression
+      left: (macro)
+      right: (integer)))
+  (assignment_expression
+    left: (macro)
     right: (binary_expression
       left: (integer)
       right: (integer)))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
       left: (integer)
-      right: (identifier)))
+      right: (macro)))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
-      left: (identifier)
+      left: (macro)
+      right: (integer)))
+  (assignment_expression
+    left: (macro)
+    right: (binary_expression
+      left: (integer)
+      right: (integer)))
+  (assignment_expression
+    left: (macro)
+    right: (binary_expression
+      left: (integer)
+      right: (integer)))
+  (assignment_expression
+    left: (macro)
+    right: (binary_expression
+      left: (integer)
+      right: (macro)))
+  (assignment_expression
+    left: (macro)
+    right: (binary_expression
+      left: (macro)
       right: (integer))))
 
 ==================
@@ -936,19 +936,19 @@ Unary operators
 
 (script
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (unary_expression
       argument: (integer)))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (unary_expression
-      argument: (identifier)))
+      argument: (macro)))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (unary_expression
       argument: (float)))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (unary_expression
       argument: (time))))
 
@@ -969,44 +969,44 @@ Range operator
 
 (script
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
       left: (integer)
       right: (integer)))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
       left: (integer)
       right: (integer)))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
       left: (unary_expression
         argument: (integer))
       right: (unary_expression
         argument: (integer))))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
       left: (character)
       right: (character)))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
       left: (character)
       right: (character)))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
       left: (identifier)
       right: (identifier)))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
       left: (symbol)
       right: (symbol)))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
       left: (integer)
       right: (integer))))
@@ -1040,7 +1040,7 @@ Operator precedence
 
 (script
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
       left: (binary_expression
         left: (integer)
@@ -1048,7 +1048,7 @@ Operator precedence
           argument: (integer)))
       right: (integer)))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
       left: (binary_expression
         left: (integer)
@@ -1056,7 +1056,7 @@ Operator precedence
           argument: (integer)))
       right: (integer)))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
       left: (integer)
       right: (binary_expression
@@ -1064,7 +1064,7 @@ Operator precedence
           argument: (integer))
         right: (integer))))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
       left: (integer)
       right: (binary_expression
@@ -1072,7 +1072,7 @@ Operator precedence
           argument: (integer))
         right: (integer))))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
       left: (binary_expression
         left: (integer)
@@ -1080,7 +1080,7 @@ Operator precedence
           argument: (integer)))
       right: (integer)))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
       left: (binary_expression
         left: (integer)
@@ -1088,7 +1088,7 @@ Operator precedence
           argument: (integer)))
       right: (integer)))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
       left: (integer)
       right: (binary_expression
@@ -1096,7 +1096,7 @@ Operator precedence
           argument: (integer))
         right: (integer))))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
       left: (binary_expression
         left: (integer)
@@ -1104,7 +1104,7 @@ Operator precedence
           argument: (integer)))
       right: (integer)))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
       left: (integer)
       right: (binary_expression
@@ -1112,7 +1112,7 @@ Operator precedence
           argument: (integer))
         right: (integer))))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
       left: (integer)
       right: (binary_expression
@@ -1120,7 +1120,7 @@ Operator precedence
           argument: (integer))
         right: (integer))))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
       left: (integer)
       right: (binary_expression
@@ -1128,7 +1128,7 @@ Operator precedence
           argument: (integer))
         right: (integer))))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
       left: (binary_expression
         left: (integer)
@@ -1148,25 +1148,25 @@ Expressions with parentheses
 
 (script
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
       left: (integer)
       right: (call_expression
         function: (identifier)
         arguments: (argument_list))))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
       left: (binary_expression
         left: (unary_expression
           argument: (integer))
-        right: (identifier))
+        right: (macro))
       right: (integer)))
   (assignment_expression
-    left: (identifier)
+    left: (macro)
     right: (binary_expression
       left: (integer)
       right: (binary_expression
         left: (unary_expression
-          argument: (identifier))
+          argument: (macro))
         right: (integer)))))

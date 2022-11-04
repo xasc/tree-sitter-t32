@@ -54,7 +54,7 @@ module.exports = grammar({
     $._and_operator_pre_hook,  // Check for presence of macros after operator
     $._decimal_number,
     $._decimal_number_pre_hook,  // Check for presence of range operator after number
-    $._path,  // Unquoted path literals
+    $.path,  // Unquoted path literals
     '&&',
     '&',
   ],
@@ -223,7 +223,7 @@ module.exports = grammar({
     )),
 
     macro_assignment_expression: $ => prec.right(seq(
-      field('left', $._macro),
+      field('left', $.macro),
       repeat($._blank),
       field('operator', '='),
       repeat($._blank),
@@ -324,25 +324,25 @@ module.exports = grammar({
       field('command', alias($.macro_definition_command, $.identifier)),
       repeat1(seq(
         repeat1($._blank),
-        field('macro', $._macro)
+        field('macro', $.macro)
       )),
     ),
 
-    _macro: $ => prec.left(choice(
+    macro: $ => prec.left(choice(
       seq(
         '&',
-        $.identifier
+        alias($.identifier, 'name')
       ),
       seq(
         '&',
         '(',
-        $.identifier,
+        alias($.identifier, 'name'),
         ')'
       ),
       seq(
         '&',
         '{',
-        $.identifier,
+        alias($.identifier, 'name'),
         '}'
       )
     )),
@@ -508,7 +508,7 @@ module.exports = grammar({
       $._expression,
       $._command_option,
       alias($._command_format, $.identifier),
-      alias($._path, $.literal)
+      $.path
     ),
 
     _command_argument_separator: $ => choice(
@@ -708,7 +708,7 @@ module.exports = grammar({
       $._literal,
       $.unary_expression,
       $._internal_c_variable,
-      $._macro,
+      $.macro,
       $._parenthesized_expression
     ),
 

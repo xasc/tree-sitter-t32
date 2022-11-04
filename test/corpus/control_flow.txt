@@ -48,7 +48,7 @@ ELSE
 (script
   (if_block
     command: (identifier)
-    condition: (identifier)
+    condition: (macro)
     (command_expression
       command: (identifier)))
   (if_block
@@ -64,33 +64,33 @@ ELSE
       command: (identifier))))
   (if_block
     command: (identifier)
-    condition: (identifier)
+    condition: (macro)
     (command_expression
       command: (identifier))
     (else_block
       command: (identifier)
       (if_block
         command: (identifier)
-        condition: (identifier)
+        condition: (macro)
         (command_expression
       command: (identifier)))))
   (if_block
     command: (identifier)
-    condition: (identifier)
+    condition: (macro)
     (command_expression
       command: (identifier))
     (else_block
       command: (identifier)
       (if_block
         command: (identifier)
-        condition: (identifier)
+        condition: (macro)
         (command_expression
           command: (identifier))
         (else_block
           command: (identifier)
           (if_block
             command: (identifier)
-            condition: (identifier)
+            condition: (macro)
             (command_expression
             command: (identifier))
             (else_block
@@ -116,19 +116,19 @@ IF &a
 (script
   (if_block
     command: (identifier)
-    condition: (identifier)
+    condition: (macro)
     (if_block
     command: (identifier)
-      condition: (identifier)
+      condition: (macro)
       (command_expression
       command: (identifier))
       (else_block
         command: (identifier)
         (if_block
-    command: (identifier)
-          condition: (identifier)
+          command: (identifier)
+          condition: (macro)
           (command_expression
-      command: (identifier)))))))
+            command: (identifier)))))))
 
 ==================
 IF block statements with parentheses
@@ -152,20 +152,20 @@ ELSE
 (script
   (if_block
     command: (identifier)
-    condition: (identifier)
+    condition: (macro)
     (command_expression
       command: (identifier))
     (else_block
       command: (identifier)
       (if_block
-    command: (identifier)
-        condition: (identifier)
+        command: (identifier)
+        condition: (macro)
         (command_expression
-      command: (identifier))
+          command: (identifier))
         (else_block
           command: (identifier)
           (command_expression
-      command: (identifier)))))))
+            command: (identifier)))))))
 
 
 ==================
@@ -180,7 +180,7 @@ WHILE &a
 (script
   (while_block
     command: (identifier)
-    condition: (identifier)
+    condition: (macro)
     (command_expression
       command: (identifier))))
 
@@ -242,7 +242,7 @@ WHILE &a
     (identifier))
   (repeat_block
     command: (identifier)
-    condition: (identifier)
+    condition: (macro)
     (command_expression
       command: (identifier)))
   (repeat_block
@@ -258,7 +258,7 @@ WHILE &a
     command: (identifier)
     (command_expression
       command: (identifier))
-    condition: (identifier)))
+    condition: (macro)))
 
 ==================
 ON PRACTICE event control
@@ -302,7 +302,7 @@ ON TIME 2.0us default
       (identifier)
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
@@ -411,7 +411,7 @@ ON CATRIGGER DEFault
     (identifier)
     (argument_list
       (identifier)
-      (literal)
+      (address)
       (identifier)))
   (command_expression
     (identifier)
@@ -462,91 +462,91 @@ ON PBREAKENCLU DO run.cmm
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal))))
+      (path))))
 
 ==================
 GLOBALON PRACTICE event control
@@ -573,27 +573,27 @@ GLOBALON CMD print EXEcute continue
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (time)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
@@ -627,68 +627,68 @@ GLOBALON PBREAKAT P:3:::42:0xfff8000 DO run.cmm
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
-      (literal)
+      (address)
       (identifier)
-      (literal))))
+      (path))))
 
 ==================
 GLOBALON CPU event control
@@ -718,91 +718,91 @@ GLOBALON PBREAKENCLU DO run.cmm
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (path)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
       (identifier)
-      (literal))))
+      (path))))
 
 ==================
 Var.IF block statements

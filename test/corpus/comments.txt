@@ -43,7 +43,7 @@ ELSE
 (script
   (if_block
     command: (identifier)
-    condition: (identifier)
+    condition: (macro)
     (comment)
     (command_expression
       command: (identifier)
