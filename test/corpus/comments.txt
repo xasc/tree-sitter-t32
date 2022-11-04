@@ -17,12 +17,12 @@ ECHO "B" // a\
   (command_expression
     (identifier)
     (argument_list
-      (literal))
+      (string))
     (comment))
   (command_expression
     (identifier)
     (argument_list
-      (literal))
+      (string))
     (comment)))
 
 ==================
@@ -48,10 +48,11 @@ ELSE
     (command_expression
       command: (identifier)
       arguments: (argument_list
-        (literal)))
+        (string)))
     (else_block
+      command: (identifier)
       (comment)
       (command_expression
         command: (identifier)
         arguments: (argument_list
-          (literal))))))
+          (string))))))

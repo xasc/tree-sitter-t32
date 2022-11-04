@@ -15,7 +15,7 @@ a_b.c: PRINT "A"
     (command_expression
       command: (identifier)
       arguments: (argument_list
-        (literal)))))
+        (string)))))
 
 ==================
 IF block statements
@@ -59,6 +59,7 @@ ELSE
     (command_expression
       command: (identifier))
     (else_block
+      command: (identifier)
       (command_expression
       command: (identifier))))
   (if_block
@@ -67,8 +68,9 @@ ELSE
     (command_expression
       command: (identifier))
     (else_block
+      command: (identifier)
       (if_block
-    command: (identifier)
+        command: (identifier)
         condition: (identifier)
         (command_expression
       command: (identifier)))))
@@ -78,20 +80,23 @@ ELSE
     (command_expression
       command: (identifier))
     (else_block
+      command: (identifier)
       (if_block
-    command: (identifier)
+        command: (identifier)
         condition: (identifier)
         (command_expression
-      command: (identifier))
+          command: (identifier))
         (else_block
+          command: (identifier)
           (if_block
-    command: (identifier)
+            command: (identifier)
             condition: (identifier)
             (command_expression
-      command: (identifier))
+            command: (identifier))
             (else_block
-                (command_expression
-      command: (identifier)))))))))
+              command: (identifier)
+              (command_expression
+                command: (identifier)))))))))
 
 ==================
 Nested IF block statements
@@ -118,6 +123,7 @@ IF &a
       (command_expression
       command: (identifier))
       (else_block
+        command: (identifier)
         (if_block
     command: (identifier)
           condition: (identifier)
@@ -150,12 +156,14 @@ ELSE
     (command_expression
       command: (identifier))
     (else_block
+      command: (identifier)
       (if_block
     command: (identifier)
         condition: (identifier)
         (command_expression
       command: (identifier))
         (else_block
+          command: (identifier)
           (command_expression
       command: (identifier)))))))
 
@@ -230,7 +238,7 @@ WHILE &a
 (script
   (repeat_block
     command: (identifier)
-    condition: (literal)
+    condition: (integer)
     (identifier))
   (repeat_block
     command: (identifier)
@@ -239,7 +247,7 @@ WHILE &a
       command: (identifier)))
   (repeat_block
     command: (identifier)
-    condition: (literal)
+    condition: (integer)
     (command_expression
       command: (identifier)))
   (repeat_block
@@ -299,14 +307,14 @@ ON TIME 2.0us default
     (identifier)
     (argument_list
       (identifier)
-      (literal)
+      (time)
       (identifier)
       (identifier)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
-      (literal)
+      (time)
       (identifier)))
   (command_expression
     (identifier))
@@ -314,14 +322,14 @@ ON TIME 2.0us default
     (identifier)
     (argument_list
       (identifier)
-      (literal)
+      (time)
       (identifier)
       (identifier)))
   (command_expression
     (identifier)
     (argument_list
       (identifier)
-      (literal)
+      (time)
       (identifier))))
 
 ==================
@@ -559,7 +567,7 @@ GLOBALON CMD print EXEcute continue
     (argument_list
       (identifier)
       (identifier)
-      (literal)))
+      (string)))
   (command_expression
     (identifier)
     (argument_list
@@ -583,7 +591,7 @@ GLOBALON CMD print EXEcute continue
     (identifier)
     (argument_list
       (identifier)
-      (literal)
+      (time)
       (identifier)
       (literal)))
   (command_expression
@@ -817,7 +825,7 @@ Var.IF \a<sizeof(array)
     (command_expression
       command: (identifier)
       arguments: (argument_list
-        (literal)))))
+        (string)))))
 
 ==================
 Var.WHILE block statements
@@ -835,7 +843,7 @@ Var.WHILE string_array[\i]!='\0'
       left: (c_subscript_expression
         argument: (identifier)
         index: (identifier))
-      right: (literal))
+      right: (character))
     (command_expression
       command: (identifier)
       arguments: (argument_list

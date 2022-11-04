@@ -68,7 +68,8 @@ module.exports = grammar({
   ],
 
   extras: $ => [
-    $._line_continuation
+    $._line_continuation,
+    $.comment
   ],
 
   word: $ => $.identifier,
@@ -83,25 +84,30 @@ module.exports = grammar({
     ),
 
     _block: $ => prec.right(seq(
+      repeat($._blank),
       seq(
         /\((&[+-]?)?/,
         $._terminator
       ),
       repeat($._statement),
       seq(
+        repeat($._blank),
         ')',
         $._terminator
       ),
     )),
 
-    _statement: $ => choice(
-      $.recursive_macro_expansion,
-      alias($.macro_assignment_expression, $.assignment_expression),
-      $.if_block,
-      $.repeat_block,
-      $.while_block,
-      $.command_expression,
-      $.labeled_expression
+    _statement: $ => seq(
+      repeat($._blank),
+      choice(
+        $.recursive_macro_expansion,
+        alias($.macro_assignment_expression, $.assignment_expression),
+        $.if_block,
+        $.repeat_block,
+        $.while_block,
+        $.command_expression,
+        $.labeled_expression
+      )
     ),
 
     _parenthesized_expression: $ => choice(
@@ -119,7 +125,6 @@ module.exports = grammar({
 
     labeled_expression: $ => seq(
       $._label,
-      repeat($._blank),
       choice(
         $._statement,
         $._terminator
@@ -146,7 +151,8 @@ module.exports = grammar({
     )),
 
     else_block: $ => seq(
-      longAndShortForm('ELSE'),
+      repeat($._blank),
+      field('command', alias(longAndShortForm('ELSE'), $.identifier)),
       choice(
         seq(
           $._terminator,
@@ -608,20 +614,20 @@ module.exports = grammar({
       'bool'
     ),
 
-    literal: $ => choice(
-      $._integer,
-      $._bitmask,
-      $._float,
-      $._address,
-      $._time,
-      $._string,
-      $._character,
-      $._symbol,
-      $._file_dialog,
-      $._file_handle
+    _literal: $ => choice(
+      $.address,
+      $.bitmask,
+      $.character,
+      alias($._file_dialog, $.literal),
+      $.file_handle,
+      $.float,
+      $.integer,
+      $.string,
+      $.symbol,
+      $.time
     ),
 
-    _integer: $ => choice(
+    integer: $ => choice(
       ...RE_BIN_HEX_NUMBER,
       seq(
         $._decimal_number_pre_hook,
@@ -629,14 +635,14 @@ module.exports = grammar({
       )
     ),
 
-    _float: $ => /[0-9]+\.[0-9]+(e[-+][0-9]+)?/,
+    float: $ => /[0-9]+\.[0-9]+(e[-+][0-9]+)?/,
 
-    _bitmask: $ => choice(
+    bitmask: $ => choice(
       /0y[0-9xX]+/,  // Bitmask
       /0x[0-9a-fA-FxX]+/,  // Hexmask
     ),
 
-    _address: $ => {
+    address: $ => {
       const alphanum = '[a-zA-Z0-9]+'
 
       return seq(
@@ -652,7 +658,7 @@ module.exports = grammar({
       )
     },
 
-    _string: $ => seq(
+    string: $ => seq(
       '"',
       repeat(choice(
         /[^"]+/,
@@ -661,7 +667,7 @@ module.exports = grammar({
       '"'
     ),
 
-    _character: $ => seq(
+    character: $ => seq(
       "'",
       choice(
         /\\[^'\n]/,
@@ -671,7 +677,7 @@ module.exports = grammar({
     ),
 
     // Module names with single backslash are treated as internal c-style variables
-    _symbol: $ => token(choice(
+    symbol: $ => token(choice(
       /\\\\\\([\w_]+|`[^`\n]+`)\\\\([\w_]*|`[^`\n]+`)\\([\w_]*|`[^`\n]+`)\\([\w_]+|`[^`\n]+`)(\\([\w_]+|`[^`\n]+`))*/,  // Includes machine name
       /((\\\\([\w_]+|`[^`\n]+`))?\\([\w_]*|`[^`\n]+`)\\)?`[^`\n]+`(\\([\w_]+|`[^`\n]+`))*/,  // Quoted function name only
       /(\\\\([\w_]+|`[^`\n]+`))?\\([\w_]*|`[^`\n]+`)\\[\w_]+(\\([\w_]+|`[^`\n]+`))*/,  // Module name with unquoted function name
@@ -679,11 +685,11 @@ module.exports = grammar({
       /\\`[^`\n]+`/,  // Quoted module name only
     )),
 
-    _time: $ => /[0-9]+\.?[0-9]*[mnu]*s/,
+    time: $ => /[0-9]+\.?[0-9]*[mnu]*s/,
 
     _file_dialog: $ => '*',
 
-    _file_handle: $ => /#[0-9]+/,
+    file_handle: $ => /#[0-9]+/,
 
     _type: $ => seq(
       alias($.identifier, ''),
@@ -699,7 +705,7 @@ module.exports = grammar({
       $.c_subscript_expression,
       $.c_field_expression,
       $.identifier,
-      $.literal,
+      $._literal,
       $.unary_expression,
       $._internal_c_variable,
       $._macro,
@@ -708,17 +714,11 @@ module.exports = grammar({
 
     identifier: $ => /[a-zA-Z_][\w_]*/,
 
-    comment: $ => seq(
-      choice(
-        ';',
-        '//'
-      ),
-      repeat(/\\\r?\n|[^\n]/)
-    ),
+    comment: $ => /\s*(;|\/\/)(\\\r?\n|[^\n])*/,
 
     _terminator: $ => prec.right(seq(
       optional($.comment),
-      /(\s*[\r\n]+\s*)+/
+      /(\s*[\r\n]+)+/
     )),
 
     _line_continuation: $ => /\\\r?\n/,
