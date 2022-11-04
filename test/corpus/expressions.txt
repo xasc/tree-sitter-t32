@@ -328,6 +328,9 @@ Address literals
 &b = UD:0x1000
 &b = NSP:1:::50.::0x0000:0xffff000008080004
 
+&c = P:&HEAD
+&c = EA:&HEAD+0x4
+
 ---
 
 (script
@@ -345,7 +348,17 @@ Address literals
     right: (address))
   (assignment_expression
     left: (macro)
-    right: (address)))
+    right: (address))
+  (assignment_expression
+    left: (macro)
+    right: (access_class)
+    right: (macro))
+  (assignment_expression
+    left: (macro)
+    right: (access_class)
+    right: (binary_expression
+      left: (macro)
+      right: (integer))))
 
 ==================
 Path literals

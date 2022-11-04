@@ -21,6 +21,7 @@
  */
 
 const PREC = {
+  address: 1,
   logical_or: 10,
   logical_xor: 11,
   logical_and: 12,
@@ -45,6 +46,7 @@ const RE_BIN_HEX_NUMBER = [
   /0[xX][0-9a-fA-F]+/,  // Hexadecimal
 ]
 
+const ALPHANUM = '[a-zA-Z0-9]+'
 
 module.exports = grammar({
   name: 't32',
@@ -618,6 +620,7 @@ module.exports = grammar({
       $.address,
       $.bitmask,
       $.character,
+      $._compound_address,
       alias($._file_dialog, $.literal),
       $.file_handle,
       $.float,
@@ -642,12 +645,19 @@ module.exports = grammar({
       /0x[0-9a-fA-FxX]+/,  // Hexmask
     ),
 
-    address: $ => {
-      const alphanum = '[a-zA-Z0-9]+'
+    _compound_address: $ => prec.left(seq(
+      $.access_class,
+      $._expression
+    )),
 
-      return seq(
-        new RegExp(alphanum + ':'),  // Access class
-        repeat(new RegExp(alphanum + '[.]?:+')),  // Machine identifier:::Memory space identifier::Memory segment identifier:
+    access_class: $ => {
+      return new RegExp(ALPHANUM + ':')
+    },
+
+    address: $ => {
+      return prec(PREC.address, seq(
+        alias($.access_class, 'access_class'),
+        repeat(new RegExp(ALPHANUM + '[.]?:+')),  // Machine identifier:::Memory space identifier::Memory segment identifier:
         choice(
           ...RE_BIN_HEX_NUMBER,
           seq(
@@ -655,7 +665,7 @@ module.exports = grammar({
             $._decimal_number
           )
         )
-      )
+      ))
     },
 
     string: $ => seq(
