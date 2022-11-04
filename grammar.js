@@ -385,15 +385,17 @@ module.exports = grammar({
         field('variable', $._internal_c_variable)
       ),
       seq(
-        field('command', alias(seq(
-          longAndShortForm('Var'),
-          repeat1(seq(
-            '.',
-            alias($.identifier, 'subcommand')
-          )),
-        ), $.identifier)),
+        field('command', alias($._var_command_identifier, $.identifier)),
         field('arguments', optional(alias($._var_command_arguments, $.argument_list)))
       )
+    ),
+
+    _var_command_identifier: $ => seq(
+      alias(longAndShortForm('Var'), 'command'),
+      repeat(seq(
+        '.',
+        alias($.identifier, 'subcommand')
+      )),
     ),
 
     // Commas as argument separators do not seem viable for
@@ -403,7 +405,7 @@ module.exports = grammar({
       choice(
         ',',
         seq(
-          ',',
+          repeat1(','),
           $._command_argument,
           repeat(seq(
             repeat1($._blank),
@@ -487,7 +489,7 @@ module.exports = grammar({
       choice(
         ',',
         seq(
-          ',',
+          repeat1(','),
           $._command_argument,
           repeat(seq(
             repeat1($._command_argument_separator),
