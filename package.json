@@ -19,7 +19,8 @@
   "scripts": {
     "build": "tree-sitter generate && node-gyp build",
     "parse": "tree-sitter parse",
-    "test": "tree-sitter test"
+    "test": "tree-sitter test",
+    "highlight": "tree-sitter highlight"
   },
   "dependencies": {
     "nan": "^2.16.0"
@@ -36,7 +37,8 @@
       "file-types": [
         "cmm",
         "t32"
-      ]
+      ],
+      "highlights": "queries/highlights.scm"
     }
   ]
 }

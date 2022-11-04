@@ -1,6 +1,7 @@
 .PHONY: build parse test test-all test-debug test-graph
 
 filter ?=
+file ?=
 
 , := ,
 blank :=
@@ -17,7 +18,10 @@ build:
 	yarn build
 
 parse:
-	yarn parse example-file
+	yarn parse "$(file)"
+
+highlight:
+	yarn highlight "$(file)"
 
 test:
 	yarn test "$(filterFlag)"
