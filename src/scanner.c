@@ -421,8 +421,10 @@ bool tree_sitter_t32_external_scanner_scan(
 	}
 	else if (valid_symbols[AND_OPERATOR_PRE_HOOK] && lexer->lookahead == '&') {
 		state->and_operator_len = ScanLengthAndOperator(lexer);
-		lexer->result_symbol = AND_OPERATOR_PRE_HOOK;
-		return true;
+		if (state->and_operator_len > 0) {
+			lexer->result_symbol = AND_OPERATOR_PRE_HOOK;
+			return true;
+		}
 	}
 	else if (
 		(valid_symbols[LOGICAL_AND] || valid_symbols[BITWISE_AND]) &&
