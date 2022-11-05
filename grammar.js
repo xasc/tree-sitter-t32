@@ -102,13 +102,14 @@ module.exports = grammar({
     _statement: $ => seq(
       repeat($._blank),
       choice(
-        $.recursive_macro_expansion,
         alias($.macro_assignment_expression, $.assignment_expression),
-        $.if_block,
-        $.repeat_block,
-        $.while_block,
         $.command_expression,
-        $.labeled_expression
+        $.labeled_expression,
+        $.macro_definition,
+        $.if_block,
+        $.recursive_macro_expansion,
+        $.repeat_block,
+        $.while_block
       )
     ),
 
@@ -322,12 +323,14 @@ module.exports = grammar({
       ':'
     ),
 
-    _macro_definition: $ => seq(
+    macro_definition: $ => seq(
+      optional(/(::)*B::/),
       field('command', alias($.macro_definition_command, $.identifier)),
       repeat1(seq(
         repeat1($._blank),
         field('macro', $.macro)
       )),
+      $._terminator
     ),
 
     macro: $ => prec.left(choice(
@@ -462,10 +465,7 @@ module.exports = grammar({
       optional(/(::)*B::/),
       choice(
         seq(
-          choice(
-            $._macro_definition,
-            $._var_command
-          ),
+          $._var_command,
           $._terminator
         ),
         seq(

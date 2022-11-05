@@ -13,18 +13,18 @@ PARAMETERS &_myvalue1 &my_Value2
 ---
 
 (script
-  (command_expression
+  (macro_definition
     command: (identifier)
     macro: (macro))
-  (command_expression
+  (macro_definition
     command: (identifier)
     macro: (macro))
-  (command_expression
+  (macro_definition
     command: (identifier)
     macro: (macro)
     macro: (macro)
     macro: (macro))
-  (command_expression
+  (macro_definition
     command: (identifier)
     macro: (macro)
     macro: (macro)))
@@ -534,6 +534,7 @@ Commands
 
 ::B::WinPrint.Data.dump  0x1000 /Byte
 Data.DRAWFFT ,%Decimal.Byte,VM:0++0x4f ,, 2.0 512., ,
+List ,,Register(PC)
 PEDIT *
 OPEN #1,"~~/license.t32" /Read
 CD.DO /home
@@ -556,6 +557,13 @@ do a/b/c
         right: (integer))
       (float)
       (integer)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (call_expression
+        function: (identifier)
+        arguments: (argument_list
+          (identifier)))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
