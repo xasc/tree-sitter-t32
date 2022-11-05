@@ -727,7 +727,7 @@ module.exports = grammar({
 
     _terminator: $ => choice(
       $.comment,
-      /(\s*[\r\n]+)+/
+      /\s*\r?\n/
     ),
 
     _line_continuation: $ => /\\\r?\n/,
