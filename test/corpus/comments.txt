@@ -45,10 +45,11 @@ ELSE
     command: (identifier)
     condition: (macro)
     (comment)
-    (command_expression
-      command: (identifier)
-      arguments: (argument_list
-        (string)))
+    (block
+      (command_expression
+        command: (identifier)
+        arguments: (argument_list
+          (string))))
     (else_block
       command: (identifier)
       (comment)

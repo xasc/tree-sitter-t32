@@ -127,8 +127,9 @@ IF &a
         (if_block
           command: (identifier)
           condition: (macro)
-          (command_expression
-            command: (identifier)))))))
+          (block
+            (command_expression
+              command: (identifier))))))))
 
 ==================
 IF block statements with parentheses
@@ -153,20 +154,22 @@ ELSE
   (if_block
     command: (identifier)
     condition: (macro)
-    (command_expression
-      command: (identifier))
+    (block
+      (command_expression
+        command: (identifier)))
     (else_block
       command: (identifier)
       (if_block
         command: (identifier)
         condition: (macro)
-        (command_expression
-          command: (identifier))
-        (else_block
-          command: (identifier)
+        (block
           (command_expression
-            command: (identifier)))))))
-
+            command: (identifier)))
+          (else_block
+            command: (identifier)
+            (block
+              (command_expression
+                command: (identifier))))))))
 
 ==================
 WHILE block statements
@@ -203,10 +206,11 @@ WHILE (sYmbol.EXIT(main))
       function: (identifier)
       arguments: (argument_list
         (identifier)))
-    (command_expression
-      command: (identifier))
-    (command_expression
-      command: (identifier))))
+    (block
+      (command_expression
+        command: (identifier))
+      (command_expression
+        command: (identifier)))))
 
 ==================
 RePeaT block statements
@@ -248,16 +252,19 @@ WHILE &a
   (repeat_block
     command: (identifier)
     condition: (integer)
-    (command_expression
-      command: (identifier)))
+    (block
+      (command_expression
+        command: (identifier))))
   (repeat_block
     command: (identifier)
-    (command_expression
-      command: (identifier)))
+    (block
+      (command_expression
+        command: (identifier))))
   (repeat_block
     command: (identifier)
-    (command_expression
-      command: (identifier))
+    (block
+      (command_expression
+        command: (identifier)))
     condition: (macro)))
 
 ==================
@@ -316,8 +323,9 @@ ON TIME 2.0us default
       (identifier)
       (time)
       (identifier)))
-  (command_expression
-    (identifier))
+  (block
+    (command_expression
+      (identifier)))
   (command_expression
     (identifier)
     (argument_list

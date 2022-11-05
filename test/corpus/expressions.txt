@@ -608,34 +608,36 @@ MYNAME: POS 22. 0. 24. 1.
 (script
   (command_expression
     command: (identifier))
-  (command_expression
-    command: (identifier)
-    arguments: (argument_list
-      (integer)
-      (integer)
-      (integer)))
-  (labeled_expression
-    label: (identifier)
+  (block
     (command_expression
       command: (identifier)
       arguments: (argument_list
-        (string))))
+        (integer)
+        (integer)
+        (integer)))
+    (labeled_expression
+      label: (identifier)
+      (command_expression
+        command: (identifier)
+        arguments: (argument_list
+          (string)))))
   (command_expression
     command: (identifier))
-  (labeled_expression
-    label: (identifier)
+  (block
+    (labeled_expression
+      label: (identifier)
+      (command_expression
+        command: (identifier)
+        arguments: (argument_list
+          (integer)
+          (integer)
+          (integer)
+          (integer))))
     (command_expression
       command: (identifier)
       arguments: (argument_list
-        (integer)
-        (integer)
-        (integer)
-        (integer))))
-  (command_expression
-    command: (identifier)
-    arguments: (argument_list
-      (string)
-      (string))))
+        (string)
+        (string)))))
 
 ==================
 Commands with internal C-style variables

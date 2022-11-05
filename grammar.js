@@ -80,12 +80,12 @@ module.exports = grammar({
     script: $ => repeat($._top_level),
 
     _top_level: $ => choice(
+      $.block,
       $._statement,
-      $._block,
       $._terminator
     ),
 
-    _block: $ => prec.right(seq(
+    block: $ => prec.right(seq(
       repeat($._blank),
       seq(
         /\((&[+-]?)?/,
@@ -148,7 +148,7 @@ module.exports = grammar({
       $._terminator,
       choice(
         $._statement,
-        $._block
+        $.block
       ),
       repeat($.else_block)
     )),
@@ -161,7 +161,7 @@ module.exports = grammar({
           $._terminator,
           choice(
             $._statement,
-            $._block
+            $.block
           )
         ),
         seq(
@@ -185,7 +185,7 @@ module.exports = grammar({
       $._terminator,
       choice(
         $._statement,
-        $._block
+        $.block
       ),
     ),
 
@@ -204,7 +204,7 @@ module.exports = grammar({
               $._terminator,
               choice(
                 $._statement,
-                $._block
+                $.block
               )
             )
           )
@@ -213,7 +213,7 @@ module.exports = grammar({
           $._terminator,
           choice(
             $._statement,
-            $._block
+            $.block
           ),
           optional(seq(
             longAndShortForm('WHILE'),
