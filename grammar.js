@@ -723,12 +723,12 @@ module.exports = grammar({
 
     identifier: $ => /[a-zA-Z_][\w_]*/,
 
-    comment: $ => /\s*(;|\/\/)(\\\r?\n|[^\n])*/,
+    comment: $ => /[ \t]*(;|\/\/)(\\\r?\n|[^\n])*\n/,
 
-    _terminator: $ => prec.right(seq(
-      optional($.comment),
+    _terminator: $ => choice(
+      $.comment,
       /(\s*[\r\n]+)+/
-    )),
+    ),
 
     _line_continuation: $ => /\\\r?\n/,
 
