@@ -23,6 +23,9 @@ parse:
 highlight:
 	yarn highlight "$(file)"
 
+playground:
+	yarn playground
+
 test:
 	yarn test "$(filterFlag)"
 

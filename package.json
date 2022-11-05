@@ -18,9 +18,11 @@
   ],
   "scripts": {
     "build": "tree-sitter generate && node-gyp build",
+    "build-wasm": "tree-sitter build-wasm",
     "parse": "tree-sitter parse",
     "test": "tree-sitter test",
-    "highlight": "tree-sitter highlight"
+    "highlight": "tree-sitter highlight",
+    "playground": "tree-sitter playground"
   },
   "dependencies": {
     "nan": "^2.16.0"
@@ -38,7 +40,8 @@
         "cmm",
         "t32"
       ],
-      "highlights": "queries/highlights.scm"
+      "highlights": "queries/highlights.scm",
+      "locals": "queries/locals.scm"
     }
   ]
 }
