@@ -91,7 +91,10 @@ module.exports = grammar({
         /\((&[+-]?)?/,
         $._terminator
       ),
-      repeat($._statement),
+      repeat(choice(
+        $._statement,
+        $.block
+      )),
       seq(
         repeat($._blank),
         ')',
@@ -150,7 +153,7 @@ module.exports = grammar({
         $._statement,
         $.block
       ),
-      repeat($.else_block)
+      optional($.else_block)
     )),
 
     else_block: $ => seq(

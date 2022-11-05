@@ -99,6 +99,54 @@ ELSE
                 command: (identifier)))))))))
 
 ==================
+Nested blocks
+==================
+
+IF TRUE()
+(
+  (
+    PRINT %ERROR "A"
+  )
+  Eval &whitelist
+  (
+    PRINT %ERROR "B"
+  )
+)
+
+(
+  (
+  )
+)
+
+---
+
+(script
+  (if_block
+    command: (identifier)
+    condition: (call_expression
+      function: (identifier)
+      arguments: (argument_list))
+      (block
+        (block
+          (command_expression
+            command: (identifier)
+            arguments: (argument_list
+              (identifier)
+              (string))))
+        (command_expression
+          command: (identifier)
+          arguments: (argument_list
+            (macro)))
+        (block
+          (command_expression
+            command: (identifier)
+            arguments: (argument_list
+              (identifier)
+              (string))))))
+  (block
+    (block)))
+
+==================
 Nested IF block statements
 ==================
 
