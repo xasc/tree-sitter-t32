@@ -61,8 +61,6 @@
 
 (symbol) @string.special
 
-"" @string.escape
-
 (character) @character
 
 (labeled_expression label: (identifier) @label)
