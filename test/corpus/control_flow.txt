@@ -216,7 +216,7 @@ WHILE (sYmbol.EXIT(main))
 RePeaT block statements
 ==================
 
-RePeaT 10. STOP
+RePeaT 10. PRINT "A"
 
 RePeaT &a
   print
@@ -243,7 +243,10 @@ WHILE &a
   (repeat_block
     command: (identifier)
     condition: (integer)
-    (identifier))
+    (command_expression
+      command: (identifier)
+      arguments: (argument_list
+        (string))))
   (repeat_block
     command: (identifier)
     condition: (macro)

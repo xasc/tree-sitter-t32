@@ -196,10 +196,7 @@ module.exports = grammar({
           repeat1($._blank),
           field('condition', $._expression),
           choice(
-            seq(
-              repeat1($._blank),
-              $.identifier
-            ),
+            $._statement,
             seq(
               $._terminator,
               choice(
