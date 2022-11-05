@@ -1,4 +1,4 @@
-.PHONY: build parse test test-all test-debug test-graph
+.PHONY: build build-wasm highlight parse test test-all test-debug test-graph
 
 filter ?=
 file ?=
@@ -16,6 +16,9 @@ filterFlag = $(call commas-to-spaces,$(addprefix --filter ,$(call spaces-to-comm
 
 build:
 	yarn build
+
+build-wasm:
+	yarn build-wasm
 
 parse:
 	yarn parse "$(file)"
