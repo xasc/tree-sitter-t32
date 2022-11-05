@@ -53,12 +53,14 @@ Var.NEWGLOBAL char[10][128] \myStr
 (script
   (command_expression
     command: (identifier)
-    (literal)
-    variable: (identifier))
+    arguments: (argument_list
+      (literal)
+      variable: (identifier)))
   (command_expression
     command: (identifier)
-    (literal)
-    variable: (identifier)))
+    arguments: (argument_list
+      (literal)
+      variable: (identifier))))
 
 ==================
 Number literals

@@ -371,18 +371,8 @@ module.exports = grammar({
 
     _var_command: $ => choice(
       seq(
-        field('command', alias(seq(
-          longAndShortForm('Var'),
-          '.',
-          choice(
-            longAndShortForm('NEWLOCAL'),
-            longAndShortForm('NEWGLOBAL')
-          )
-        ), $.identifier)),
-        repeat1($._blank),
-        alias($._type, $.literal),
-        repeat1($._blank),
-        field('variable', $._internal_c_variable)
+        field('command', alias($._var_definition_command_identifier, $.identifier)),
+        field('arguments', optional(alias($._var_definition_command_arguments, $.argument_list)))
       ),
       seq(
         field('command', alias($._var_command_identifier, $.identifier)),
@@ -396,6 +386,26 @@ module.exports = grammar({
         '.',
         alias($.identifier, 'subcommand')
       )),
+    ),
+
+    // Commas as argument separators do not seem viable for
+    // HLL expressions
+    _var_definition_command_arguments: $ => seq(
+      repeat1($._blank),
+      optional(seq(
+        alias($._type, $.literal),
+        repeat1($._blank)
+      )),
+      field('variable', $._internal_c_variable)
+    ),
+
+    _var_definition_command_identifier: $ => seq(
+      alias(longAndShortForm('Var'), 'command'),
+      '.',
+      choice(
+        longAndShortForm('NEWLOCAL'),
+        longAndShortForm('NEWGLOBAL')
+      )
     ),
 
     // Commas as argument separators do not seem viable for
