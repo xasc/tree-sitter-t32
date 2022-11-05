@@ -650,6 +650,7 @@ Var.Set \myStr[5]="hello"
 ECHO %Hex Var.VALUE(\i)
 ECHO Var.STRing(\myStr[5])
 Var.View %all \i \myStr
+Var.Assign \myarr[&i]="&val"
 
 ---
 
@@ -686,7 +687,15 @@ Var.View %all \i \myStr
     arguments: (argument_list
       (identifier)
       (identifier)
-      (identifier))))
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (assignment_expression
+        left: (c_subscript_expression
+          argument: (identifier)
+          index: (macro))
+        right: (string)))))
 
 ==================
 Commands with C expression

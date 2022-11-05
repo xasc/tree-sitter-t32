@@ -227,7 +227,8 @@ module.exports = grammar({
       repeat($._blank),
       field('operator', '='),
       repeat($._blank),
-      field('right', $._expression)
+      field('right', $._expression),
+      $._terminator
     )),
 
    unary_expression: $ => choice(
