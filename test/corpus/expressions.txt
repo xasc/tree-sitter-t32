@@ -224,6 +224,8 @@ character"
 &b = \
 "line continuation character"
 
+&c = "first: &first"
+
 ---
 
 (script
@@ -241,7 +243,11 @@ character"
     right: (string))
   (assignment_expression
     left: (macro)
-    right: (string)))
+    right: (string))
+  (assignment_expression
+    left: (macro)
+    right: (string
+      (macro))))
 
 ==================
 Character literals
@@ -614,7 +620,8 @@ WAIT !RUN()
       right: (call_expression
         function: (identifier)
         arguments: (argument_list
-          (string)
+          (string
+            (macro))
           (string))))
     (block
       (command_expression
@@ -632,7 +639,8 @@ WAIT !RUN()
       right: (call_expression
         function: (identifier)
         arguments: (argument_list
-          (string)
+          (string
+            (macro))
           (string))))
     (block
       (command_expression
@@ -702,9 +710,11 @@ do a/b/c
   (command_expression
     command: (identifier)
     arguments: (argument_list
-      (string)
+      (string
+        (macro))
       (literal)
-      (string)))
+      (string
+        (macro))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
@@ -840,7 +850,8 @@ Var.Assign \myarr[&i]="&val"
         left: (c_subscript_expression
           argument: (identifier)
           index: (macro))
-        right: (string)))))
+        right: (string
+          (macro))))))
 
 ==================
 Commands with C expression

@@ -688,8 +688,9 @@ module.exports = grammar({
     string: $ => seq(
       '"',
       repeat(choice(
-        /[^"]+/,
+        /[^"&]+/,
         /""/,  // Escape sequence
+        $.macro
       )),
       '"'
     ),
@@ -729,7 +730,8 @@ module.exports = grammar({
     _os_command_operators: $ => prec(PREC.os_command_operators, choice(
       '>',
       '>>',
-      '+'
+      '+',
+      ';'
     )),
 
     file_handle: $ => /#[0-9]+/,
