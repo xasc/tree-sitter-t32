@@ -265,6 +265,15 @@ static unsigned ScanLengthDecimalNumber(
 	 *
 	 * LOCAL &b
 	 * &b = 1..2
+	 *
+	 * LOCAL &c
+	 * &c = 1.MHZ
+	 *
+	 * LOCAL &d
+	 * &d = 1.ms
+	 *
+	 * LOCAL &e
+	 * &e = 1.0%
 	 */
 	MarkEnd(lexer);
 
@@ -295,15 +304,30 @@ static unsigned ScanLengthDecimalNumber(
 		}
 	}
 
-	// Check for binary, hexadecimal numbers, time literals
-	// and addresses
+	// Check for binary, hexadecimal numbers, time and frequency
+	// literals, and addresses
 	if (
+		// addresses
 		lexer->lookahead == ':' || lexer->lookahead ==  '\'' ||
+		// bitmasks
 		lexer->lookahead == 'x' || lexer->lookahead == 'X' ||
 		lexer->lookahead == 'y' || lexer->lookahead == 'Y' ||
-		lexer->lookahead == 'm' || lexer->lookahead == 'u' || lexer->lookahead == 'n' || lexer->lookahead == 's'
+		// time
+		lexer->lookahead == 'm' || lexer->lookahead == 'u' || lexer->lookahead == 'n' || lexer->lookahead == 's' ||
+		lexer->lookahead == 'M' || lexer->lookahead == 'U' || lexer->lookahead == 'N' || lexer->lookahead == 'S' ||
+		// frequency
+		lexer->lookahead == 'k' || lexer->lookahead == 'm' || lexer->lookahead == 'g' || lexer->lookahead == 'h' ||
+		lexer->lookahead == 'K' || lexer->lookahead == 'M' || lexer->lookahead == 'G' || lexer->lookahead == 'H'
 	) {
 		return 0;
+	}
+
+	// Check for percentage literals
+	if (lexer->lookahead == '%') {
+		Advance(lexer);
+		if (IsSpace(lexer->lookahead)) {
+			return 0;
+		}
 	}
 
 	if (num_dots == 1u || num_dots == 3u) {

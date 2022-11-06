@@ -197,6 +197,21 @@ SYStem.VirtualTiming.InternalClock 1hz 10HZ
       (frequency))))
 
 ==================
+Percentage literals
+==================
+
+WinPOS 0% 30.70%
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (percentage)
+      (percentage))))
+
+==================
 String literals
 ==================
 

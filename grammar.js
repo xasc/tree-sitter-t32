@@ -641,6 +641,7 @@ module.exports = grammar({
       $.frequency,
       $.integer,
       alias($._special_command_operator, $.literal),
+      $.percentage,
       $.string,
       $.symbol,
       $.time
@@ -715,6 +716,8 @@ module.exports = grammar({
     time: $ => /[0-9]+\.?[0-9]*[mnu]*s/,
 
     frequency: $ => /[0-9]+\.?[0-9]*[kKmMgG]*[hH][zZ]/,
+
+    percentage: $ => /[0-9]+\.?[0-9]*%/,
 
     _special_command_operator: $ => choice(
       $._file_dialog,
