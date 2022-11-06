@@ -153,11 +153,11 @@ module.exports = grammar({
         $._statement,
         $.block
       ),
+      repeat($._blank),
       optional($.else_block)
     )),
 
     else_block: $ => seq(
-      repeat($._blank),
       field('command', alias(longAndShortForm('ELSE'), $.identifier)),
       choice(
         seq(
