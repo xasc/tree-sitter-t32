@@ -35,8 +35,13 @@ IF &a
   PRINT "true"
 )
 ELSE
-// Comment there
+// or here
   PRINT "false"
+
+(
+  ; Block nesting
+
+)
 
 ---
 
@@ -56,4 +61,6 @@ ELSE
       (command_expression
         command: (identifier)
         arguments: (argument_list
-          (string))))))
+          (string)))))
+  (block
+    (comment)))

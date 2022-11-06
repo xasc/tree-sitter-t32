@@ -634,7 +634,7 @@ module.exports = grammar({
       $.bitmask,
       $.character,
       $._compound_address,
-      alias($._file_dialog, $.literal),
+      alias($._special_command_operator, $.literal),
       $.file_handle,
       $.float,
       $.integer,
@@ -710,7 +710,14 @@ module.exports = grammar({
 
     time: $ => /[0-9]+\.?[0-9]*[mnu]*s/,
 
+    _special_command_operator: $ => choice(
+      $._file_dialog,
+      $._file_redirection
+    ),
+
     _file_dialog: $ => '*',
+
+    _file_redirection: $ => '>',
 
     file_handle: $ => /#[0-9]+/,
 
@@ -737,7 +744,7 @@ module.exports = grammar({
 
     identifier: $ => /[a-zA-Z_][\w_]*/,
 
-    comment: $ => /[ \t]*(;|\/\/)(\\\r?\n|[^\n])*\n/,
+    comment: $ => /[ \t]*(;|\/\/)(\\\r?\n|[^\n])*\n+/,
 
     _terminator: $ => choice(
       $.comment,
