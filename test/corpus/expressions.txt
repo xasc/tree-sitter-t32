@@ -272,6 +272,10 @@ Symbol literals
 List \\sieve\sieve\fill_buffer+0x64
 Var.set `class1::operator+(int)\i`
 
+List main\47
+Data.dump func4\4+0x0e
+
+
 ---
 
 (script
@@ -317,7 +321,17 @@ Var.set `class1::operator+(int)\i`
   (command_expression
     command: (identifier)
     arguments: (argument_list
-      (symbol))))
+      (symbol)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (symbol)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (binary_expression
+        left: (symbol)
+        right: (integer)))))
 
 ==================
 Address literals

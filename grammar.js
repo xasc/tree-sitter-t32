@@ -707,6 +707,7 @@ module.exports = grammar({
       /(\\\\([\w_]+|`[^`\n]+`))?\\([\w_]*|`[^`\n]+`)\\[\w_]+(\\([\w_]+|`[^`\n]+`))*/,  // Module name with unquoted function name
       /[\\]{2,3}([\w_]+|`[^`\n]+`)/,  // Machine or program name
       /\\`[^`\n]+`/,  // Quoted module name only
+      /[\w_]+\\[0-9]+/,  // Function name with line number offset
     )),
 
     time: $ => /[0-9]+\.?[0-9]*[mnu]*s/,
