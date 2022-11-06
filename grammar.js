@@ -636,10 +636,11 @@ module.exports = grammar({
       $.bitmask,
       $.character,
       $._compound_address,
-      alias($._special_command_operator, $.literal),
       $.file_handle,
       $.float,
+      $.frequency,
       $.integer,
+      alias($._special_command_operator, $.literal),
       $.string,
       $.symbol,
       $.time
@@ -712,6 +713,8 @@ module.exports = grammar({
     )),
 
     time: $ => /[0-9]+\.?[0-9]*[mnu]*s/,
+
+    frequency: $ => /[0-9]+\.?[0-9]*[kKmMgG]*[hH][zZ]/,
 
     _special_command_operator: $ => choice(
       $._file_dialog,

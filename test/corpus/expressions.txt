@@ -161,6 +161,41 @@ Time literals
     left: (macro)
     right: (time)))
 
+
+==================
+Frequency literals
+==================
+
+Trace.CLOCK 50.MHZ 1.mhz
+Trace.CLOCK 10.1GHZ 0.7ghz
+SYStem.JtagClock  1kHZ 0.khz
+SYStem.VirtualTiming.InternalClock 1hz 10HZ
+
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (frequency)
+      (frequency)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (frequency)
+      (frequency)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (frequency)
+      (frequency)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (frequency)
+      (frequency))))
+
 ==================
 String literals
 ==================
