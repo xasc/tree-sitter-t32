@@ -69,4 +69,4 @@ verify_password:
 ;   ^ keyword.return
 )
 
-// vim: set ft=[bt32:
+// vim: set ft=t32:
