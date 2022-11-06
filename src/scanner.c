@@ -155,7 +155,7 @@ static bool IsSpace(
 }
 
 
-static void ScanIdentifier(
+static void ScanLabelIdentifier(
 	TSLexer * lexer)
 {
 	assert(lexer != NULL);
@@ -165,6 +165,24 @@ static void ScanIdentifier(
 		IsAlphaNum(lexer->lookahead) ||
 		lexer->lookahead == '_' ||
 		lexer->lookahead == '.'
+	) {
+		Advance(lexer);
+		if (IsEof(lexer)) {
+			break;
+		}
+	}
+}
+
+
+static void ScanIdentifier(
+	TSLexer * lexer)
+{
+	assert(lexer != NULL);
+
+	Advance(lexer);
+	while (
+		IsAlphaNum(lexer->lookahead) ||
+		lexer->lookahead == '_'
 	) {
 		Advance(lexer);
 		if (IsEof(lexer)) {
@@ -189,11 +207,15 @@ static unsigned ScanLengthAndOperator(
 	 *
 	 * LOCAL &e
 	 * &e = 0xf&14.
+	 *
+	 * LOCAL &f
+	 * &e = FALSE()&&sYmbol.Exit(main)
 	 */
 
 	MarkEnd(lexer);
 
 	unsigned len = 0;
+	int32_t macro_delim = '\0';
 	while (
 		lexer->lookahead == '&' ||
 		lexer->lookahead == '(' ||
@@ -202,6 +224,12 @@ static unsigned ScanLengthAndOperator(
 		if (lexer->lookahead == '&') {
 			len += 1u;
 		}
+		else if (lexer->lookahead == '(') {
+			macro_delim = ')';
+		}
+		else if (lexer->lookahead == '{') {
+			macro_delim = '}';
+		}
 
 		Advance(lexer);
 		if (IsEof(lexer)) {
@@ -209,10 +237,21 @@ static unsigned ScanLengthAndOperator(
 		}
 	}
 
-	if (IsAlpha(lexer->lookahead) && len > 0) {
-		len -= 1u;
+	// Check for number literal on right hand side
+	if (len <= 0 || !IsAlpha(lexer->lookahead)) {
+		return len;
 	}
-	return len;
+
+	// Check for PRACTICE function calls or parenthesized
+	// expressions on right hand side
+	ScanIdentifier(lexer);
+	if (
+		lexer->lookahead == '.' ||
+		(macro_delim != '\0' && macro_delim != lexer->lookahead)
+	) {
+		return len;
+	}
+	return len - 1u;;
 }
 
 
@@ -411,7 +450,7 @@ bool tree_sitter_t32_external_scanner_scan(
 			lexer->lookahead == '_' ||
 			lexer->lookahead == '.'
 		) {
-			ScanIdentifier(lexer);
+			ScanLabelIdentifier(lexer);
 
 			if (lexer->lookahead == ':') {
 				lexer->result_symbol = LABEL_IDENTIFIER;

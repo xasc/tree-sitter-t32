@@ -493,6 +493,11 @@ PRACTICE functions
 &a = Data.Word.BigEndean(MX:0x1234)
 &a=STRing.Replace(OS.PWD(),"/",0.)
 
+  IF f0()&&(f1("&a",":"))
+  (
+    PRINT "A"
+  )
+
 ---
 
 (script
@@ -528,7 +533,23 @@ PRACTICE functions
           function: (identifier)
           arguments: (argument_list))
         (string)
-        (integer)))))
+        (integer))))
+  (if_block
+    command: (identifier)
+    condition: (binary_expression
+      left: (call_expression
+        function: (identifier)
+        arguments: (argument_list))
+      right: (call_expression
+        function: (identifier)
+        arguments: (argument_list
+          (string)
+          (string))))
+    (block
+      (command_expression
+        command: (identifier)
+        arguments: (argument_list
+          (string))))))
 
 ==================
 Commands
