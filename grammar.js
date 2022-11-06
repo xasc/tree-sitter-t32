@@ -21,6 +21,7 @@
  */
 
 const PREC = {
+  os_command_operators: -1,
   address: 1,
   logical_or: 10,
   logical_xor: 11,
@@ -714,15 +715,16 @@ module.exports = grammar({
 
     _special_command_operator: $ => choice(
       $._file_dialog,
-      $._file_redirection
+      $._os_command_operators
     ),
 
     _file_dialog: $ => '*',
 
-    _file_redirection: $ => choice(
+    _os_command_operators: $ => prec(PREC.os_command_operators, choice(
       '>',
-      '>>'
-    ),
+      '>>',
+      '+'
+    )),
 
     file_handle: $ => /#[0-9]+/,
 

@@ -610,6 +610,7 @@ OPEN #1,"~~/license.t32" /Read
 
 OS.Command "&in" > "&out"
 OS.Hidden cat &src >> &dst
+OS.Hidden copy /b &a + &b  &c
 
 CD.DO /home
 do a/b/c
@@ -660,6 +661,15 @@ do a/b/c
       (identifier)
       (macro)
       (literal)
+      (macro)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)
+      (identifier)
+      (macro)
+      (literal)
+      (macro)
       (macro)))
   (command_expression
     command: (identifier)
