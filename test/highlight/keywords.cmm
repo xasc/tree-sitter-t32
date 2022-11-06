@@ -25,6 +25,7 @@ ELSE
     WHILE !&pass
     (
         GOSUB verify_password "&password"
+;             ^ label
         RETURNVALUES &pass
 
         WAIT 10.ms

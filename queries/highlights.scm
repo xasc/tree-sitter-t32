@@ -68,6 +68,7 @@
 
 (labeled_expression label: (identifier) @label)
 
+; Macros in commands
 (
   (macro_definition
     command: (identifier) @keyword
@@ -87,6 +88,7 @@
   (#match? @keyword "^[rR][eE][tT][uU][rR][nN][vV][aA][lL][uU][eE][sS]$")
 )
 
+; Returns
 (
   (command_expression
     command: (identifier) @keyword.return)
@@ -98,20 +100,29 @@
   (#match? @keyword.return "^[rR][eE][tT][uU][rR][nN]$")
 )
 
+; Variables,  constants and subroutine calls
 (macro) @variable
 
 (
  (argument_list (identifier) @constant.builtin)
  (#match? @constant.builtin "^[%/][a-zA-Z][a-zA-Z0-9.]*$")
 )
+(
+  (command_expression
+    command: (identifier) @keyword
+    arguments: (argument_list . (identifier) @label))
+  (#match? @keyword "^[gG][oO][sS][uU][bB]$")
+)
 (argument_list
   (identifier) @constant
   !variable)
 (argument_list (identifier) @variable)
 
+; Commands
 (command_expression command: (identifier) @keyword)
 (macro_definition command: (identifier) @keyword)
 
+; Control flow
 (if_block command: (identifier) @conditional)
 (else_block command: (identifier) @conditional)
 
