@@ -1,11 +1,4 @@
 ==================
-_
-==================
-
-
----
-
-==================
 Macro definitions
 ==================
 
@@ -510,6 +503,8 @@ PRACTICE functions
     PRINT "B"
   )
 
+WAIT !RUN()
+
 ---
 
 (script
@@ -579,7 +574,14 @@ PRACTICE functions
       (command_expression
         command: (identifier)
         arguments: (argument_list
-          (string))))))
+          (string)))))
+    (command_expression
+      command: (identifier)
+      arguments: (argument_list
+        (unary_expression
+          argument: (call_expression
+            function: (identifier)
+            arguments: (argument_list))))))
 
 ==================
 Commands
@@ -590,8 +592,10 @@ Data.DRAWFFT ,%Decimal.Byte,VM:0++0x4f ,, 2.0 512., ,
 List ,,Register(PC)
 
 PEDIT *
-OS.Command "&in" > "&out"
 OPEN #1,"~~/license.t32" /Read
+
+OS.Command "&in" > "&out"
+OS.Hidden cat &src >> &dst
 
 CD.DO /home
 do a/b/c
@@ -627,15 +631,22 @@ do a/b/c
   (command_expression
     command: (identifier)
     arguments: (argument_list
+      (file_handle)
+      (string)
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
       (string)
       (literal)
       (string)))
   (command_expression
     command: (identifier)
     arguments: (argument_list
-      (file_handle)
-      (string)
-      (identifier)))
+      (identifier)
+      (macro)
+      (literal)
+      (macro)))
   (command_expression
     command: (identifier)
     arguments: (argument_list

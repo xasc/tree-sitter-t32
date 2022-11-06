@@ -35,10 +35,11 @@ const PREC = {
   pointer: 20,
   cast: 21,
   unary: 22,
-  prefix_postfix: 23,
-  field: 24,
-  subscript: 25,
-  range: 26
+  call: 23,
+  prefix_postfix: 24,
+  field: 25,
+  subscript: 26,
+  range: 27
 }
 
 const RE_BIN_HEX_NUMBER = [
@@ -545,13 +546,13 @@ module.exports = grammar({
       ))
     ),
 
-    call_expression: $ => seq(
+    call_expression: $ => prec(PREC.call, seq(
       field('function', choice(
         $._expression,
         alias($._function_identifier, $.identifier)
       )),
       field('arguments', $.argument_list)
-    ),
+    )),
 
     _function_identifier: $ => seq(
       alias($.identifier, 'function'),
@@ -717,7 +718,10 @@ module.exports = grammar({
 
     _file_dialog: $ => '*',
 
-    _file_redirection: $ => '>',
+    _file_redirection: $ => choice(
+      '>',
+      '>>'
+    ),
 
     file_handle: $ => /#[0-9]+/,
 
