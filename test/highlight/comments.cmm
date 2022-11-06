@@ -6,3 +6,5 @@
 
 ECHO &a // This is a trailing comment
 ;       ^ comment
+
+// vim: set ft=t32:

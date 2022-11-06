@@ -7,7 +7,8 @@ ENTRY &password
 
 IF "&password"==""
 ; <- conditional
-;        ^ string
+;  ^ string
+;    ^ variable
 ;             ^ operator
 (
     ECHO "Failed to provide password."
@@ -26,7 +27,7 @@ ELSE
         GOSUB verify_password "&password"
         RETURNVALUES &pass
 
-        WAIT 1.ms
+        WAIT 10.ms
 ;            ^ number
     )
 )
@@ -37,6 +38,15 @@ LOCAL &num
 ;      ^ number
 
 RePeaT &num PRINT "Password: &password"
+
+WinCLEAR
+FramePOS ,,,,Maximized
+;        ^ punctuation.delimiter
+;            ^ constant
+WinPOS 0% 50% 100% 35%
+;      ^ number
+COVerage.ListFunc
+
 ENDDO
 
 
@@ -46,6 +56,8 @@ verify_password:
     PARAMETERS &password
 
     SYStem.Option.KEYCODE "&password"
+    SYStem.JtagClock  1kHz
+;                     ^ number
     SYStem.Mode.Attach
 
     Data.Set EAXI:0x34000000 %Long 0x34000100 0x34000021 /verify
@@ -56,3 +68,5 @@ verify_password:
     RETURN TRUE()
 ;   ^ keyword.return
 )
+
+// vim: set ft=[bt32:

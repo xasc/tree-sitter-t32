@@ -19,3 +19,5 @@ Var.NEWLOCAL \x
 ;             ^ variable
 Var.set \x=func3(5,3)
 PRINT Var.VALUE(\x)
+
+// vim: set ft=t32:

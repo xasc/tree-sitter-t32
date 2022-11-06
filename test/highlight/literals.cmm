@@ -13,6 +13,9 @@ DO ~~~~/test.cmm
 WAIT 1.ns
 ;    ^ number
 
+SYStem.JtagClock  100.GHZ
+;                 ^ number
+
 DATA.SET P:&HEAD+0x4 %LONG DATA.LONG(EA:&HEAD+0x4)&0xFFFFFF
 ;                                    ^ number
 
@@ -27,3 +30,8 @@ List `main`
 Data.Set 0xffff800000 0y0011xx01xx&&a
 ;                     ^ number
 ;                                 ^ operator
+
+WinPOS 0% 85% 100% 15%
+;             ^ number
+
+// vim: set ft=t32:
