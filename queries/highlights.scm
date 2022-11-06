@@ -42,6 +42,7 @@
 [
   ","
   "."
+  ";"
 ] @punctuation.delimiter
 
 [
@@ -49,7 +50,9 @@
   (address)
   (bitmask)
   (file_handle)
+  (frequency)
   (integer)
+  (percentage)
   (time)
 ] @number
 
