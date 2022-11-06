@@ -1,4 +1,11 @@
 ==================
+_
+==================
+
+
+---
+
+==================
 Macro definitions
 ==================
 
@@ -581,8 +588,11 @@ Commands
 ::B::WinPrint.Data.dump  0x1000 /Byte
 Data.DRAWFFT ,%Decimal.Byte,VM:0++0x4f ,, 2.0 512., ,
 List ,,Register(PC)
+
 PEDIT *
+OS.Command "&in" > "&out"
 OPEN #1,"~~/license.t32" /Read
+
 CD.DO /home
 do a/b/c
 
@@ -614,6 +624,12 @@ do a/b/c
     command: (identifier)
     arguments: (argument_list
       (literal)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (string)
+      (literal)
+      (string)))
   (command_expression
     command: (identifier)
     arguments: (argument_list
