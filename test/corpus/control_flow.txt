@@ -911,3 +911,53 @@ Var.WHILE string_array[\i]!='\0'
       arguments: (argument_list
         (unary_expression
           argument: (identifier))))))
+
+
+==================
+Subroutine Calls
+==================
+
+GOSUB printA
+GOSUB printB
+
+printA:
+(
+  PRINT "A"
+  RETURN
+)
+
+SUBROUTINE printB
+(
+  PRINT "B"
+  ENDDO
+)
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)))
+  (labeled_expression
+    label: (identifier)
+    (block
+      (command_expression
+        command: (identifier)
+        arguments: (argument_list
+          (string)))
+      (command_expression
+        command: (identifier))))
+    (subroutine_block
+      subroutine: (identifier)
+      (block
+        (command_expression
+          command: (identifier)
+          arguments: (argument_list
+            (string)))
+        (command_expression
+          command: (identifier)))))

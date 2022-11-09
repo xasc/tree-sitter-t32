@@ -114,6 +114,7 @@ module.exports = grammar({
         $.if_block,
         $.recursive_macro_expansion,
         $.repeat_block,
+        $.subroutine_block,
         $.while_block
       )
     ),
@@ -131,12 +132,23 @@ module.exports = grammar({
       )
     ),
 
-    labeled_expression: $ => seq(
+    labeled_expression: $ => prec.right(seq(
       $._label,
       choice(
         $._statement,
-        $._terminator
-      )
+        seq(
+          $._terminator,
+          optional($.block)
+        )
+      ),
+    )),
+
+    subroutine_block: $ => seq(
+      longAndShortForm('SUBROUTINE'),
+      repeat1($._blank),
+      field('subroutine', $.identifier),
+      $._terminator,
+      $.block
     ),
 
     if_block: $ => prec.right(seq(
