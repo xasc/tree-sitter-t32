@@ -138,16 +138,18 @@ module.exports = grammar({
         $._statement,
         seq(
           $._terminator,
+          repeat($.comment),
           optional($.block)
         )
       ),
     )),
 
     subroutine_block: $ => seq(
-      longAndShortForm('SUBROUTINE'),
+      field('command', alias(longAndShortForm('SUBROUTINE'), $.identifier)),
       repeat1($._blank),
       field('subroutine', $.identifier),
       $._terminator,
+      repeat($.comment),
       $.block
     ),
 
@@ -165,7 +167,10 @@ module.exports = grammar({
       $._terminator,
       choice(
         $._statement,
-        $.block
+        seq(
+          repeat($.comment),
+          $.block
+        )
       ),
       repeat($._blank),
       optional($.else_block)
@@ -202,7 +207,10 @@ module.exports = grammar({
       $._terminator,
       choice(
         $._statement,
-        $.block
+        seq(
+          repeat($.comment),
+          $.block
+        )
       ),
     ),
 
@@ -218,7 +226,10 @@ module.exports = grammar({
               $._terminator,
               choice(
                 $._statement,
-                $.block
+                seq(
+                  repeat($.comment),
+                  $.block
+                )
               )
             )
           )
@@ -227,7 +238,10 @@ module.exports = grammar({
           $._terminator,
           choice(
             $._statement,
-            $.block
+            seq(
+              repeat($.comment),
+              $.block
+            )
           ),
           optional(seq(
             longAndShortForm('WHILE'),

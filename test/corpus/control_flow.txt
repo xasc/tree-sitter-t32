@@ -191,10 +191,12 @@ IF &a
   STOP
 )
 ELSE IF &b
+; comment A
 (
   CONTINUE
 )
 ELSE
+; comment B
 (
   BREAK
 )
@@ -213,11 +215,13 @@ ELSE
       (if_block
         command: (identifier)
         condition: (macro)
+        (comment)
         (block
           (command_expression
             command: (identifier)))
           (else_block
             command: (identifier)
+            (comment)
             (block
               (command_expression
                 command: (identifier))))))))
@@ -248,6 +252,12 @@ WHILE (sYmbol.EXIT(main))
   Break
 )
 
+WHILE (FALSE())
+// comment
+(
+  ECHO "test"
+)
+
 ---
 
 (script
@@ -261,7 +271,18 @@ WHILE (sYmbol.EXIT(main))
       (command_expression
         command: (identifier))
       (command_expression
-        command: (identifier)))))
+        command: (identifier))))
+  (while_block
+    command: (identifier)
+    condition: (call_expression
+      function: (identifier)
+      arguments: (argument_list))
+    (comment)
+    (block
+      (command_expression
+        command: (identifier)
+        arguments: (argument_list
+          (string))))))
 
 ==================
 RePeaT block statements
@@ -287,6 +308,12 @@ rpt
   s
 )
 WHILE &a
+
+REPEAT TRUE()
+; comment
+(
+  cont
+)
 
 ---
 
@@ -319,7 +346,16 @@ WHILE &a
     (block
       (command_expression
         command: (identifier)))
-    condition: (macro)))
+    condition: (macro))
+  (repeat_block
+    command: (identifier)
+    condition: (call_expression
+      function: (identifier)
+      arguments: (argument_list))
+    (comment)
+    (block
+      (command_expression
+        command: (identifier)))))
 
 ==================
 ON PRACTICE event control
@@ -919,6 +955,7 @@ Subroutine Calls
 
 GOSUB printA
 GOSUB printB
+GOSUB printC
 
 printA:
 (
@@ -932,9 +969,20 @@ SUBROUTINE printB
   ENDDO
 )
 
+SUBROUTINE printC
+// comment
+(
+  PRINT "C"
+  ENDDO
+)
+
 ---
 
 (script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)))
   (command_expression
     command: (identifier)
     arguments: (argument_list
@@ -953,7 +1001,19 @@ SUBROUTINE printB
       (command_expression
         command: (identifier))))
     (subroutine_block
+      command: (identifier)
       subroutine: (identifier)
+      (block
+        (command_expression
+          command: (identifier)
+          arguments: (argument_list
+            (string)))
+        (command_expression
+          command: (identifier))))
+    (subroutine_block
+      command: (identifier)
+      subroutine: (identifier)
+      (comment)
       (block
         (command_expression
           command: (identifier)
