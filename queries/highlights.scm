@@ -66,8 +66,6 @@
 
 (character) @character
 
-(labeled_expression label: (identifier) @label)
-
 ; Macros in commands
 (
   (macro_definition
@@ -100,9 +98,17 @@
   (#match? @keyword.return "^[rR][eE][tT][uU][rR][nN]$")
 )
 
-; Variables,  constants and subroutine calls
-(macro) @variable
+; Subroutine calls
+(subroutine_block
+  command: (identifier) @keyword
+  subroutine: (identifier) @function)
 
+(labeled_expression
+  label: (identifier) @function
+  (block))
+
+; Variables, constants and labels
+(macro) @variable
 (
  (argument_list (identifier) @constant.builtin)
  (#match? @constant.builtin "^[%/][a-zA-Z][a-zA-Z0-9.]*$")
@@ -113,22 +119,36 @@
     arguments: (argument_list . (identifier) @label))
   (#match? @keyword "^[gG][oO][sS][uU][bB]$")
 )
+(
+  (command_expression
+    command: (identifier) @keyword
+    arguments: (argument_list . (identifier) @label))
+  (#match? @keyword "^[gG][oO][tT][oO]$")
+)
 (argument_list
   (identifier) @constant
   !variable)
 (argument_list (identifier) @variable)
+
+(labeled_expression
+  label: (identifier) @label)
 
 ; Commands
 (command_expression command: (identifier) @keyword)
 (macro_definition command: (identifier) @keyword)
 
 ; Control flow
-(if_block command: (identifier) @conditional)
-(else_block command: (identifier) @conditional)
+(if_block
+  command: (identifier) @conditional)
+(else_block
+  command: (identifier) @conditional)
 
-(while_block command: (identifier) @repeat)
-(repeat_block command: (identifier) @repeat)
+(while_block
+  command: (identifier) @repeat)
+(repeat_block
+  command: (identifier) @repeat)
 
-(call_expression function: (identifier) @function.call)
+(call_expression
+  function: (identifier) @function.call)
 
-(comment) @comment
+(comment) @comment @spell

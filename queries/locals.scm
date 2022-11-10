@@ -1,5 +1,6 @@
 (block) @local.scope
 
+; Variable definitions
 (
   (macro_definition
     command: (identifier) @command
@@ -34,6 +35,7 @@
   (#match? @command "^([vV][aA][rR]|[vV])[.][nN][eE][wW][gG][lL][oO][bB][aA][lL]$")
 )
 
+; Parameter definitions
 (
   (macro_definition
     command: (identifier) @command
@@ -53,5 +55,21 @@
   (#match? @command "^[rR][eE][tT][uU][rR][nN][vV][aA][lL][uU][eE][sS]$")
 )
 
-(macro) @local.reference
-(identifier) @local.reference
+; Function definitions
+(subroutine_block
+  command: (identifier) @command
+  subroutine: (identifier) @global.definition.function)
+
+(labeled_expression
+  label: (identifier) @global.definition.function
+  (block))
+
+; References
+(
+  (command_expression
+    command: (identifier) @command
+    arguments: (argument_list . (identifier) @reference))
+  (#match? @command "^[gG][oO][sS][uU][bB]$")
+)
+(macro) @reference
+(identifier) @reference
