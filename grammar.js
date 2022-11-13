@@ -112,6 +112,7 @@ module.exports = grammar({
         $.labeled_expression,
         $.macro_definition,
         $.if_block,
+        $.parameter_declaration,
         $.recursive_macro_expansion,
         $.repeat_block,
         $.subroutine_block,
@@ -362,6 +363,16 @@ module.exports = grammar({
       $._terminator
     ),
 
+    parameter_declaration: $ => seq(
+      optional(/(::)*B::/),
+      field('command', alias($.parameter_declaration_command, $.identifier)),
+      repeat1(seq(
+        repeat1($._blank),
+        field('macro', $.macro)
+      )),
+      $._terminator
+    ),
+
     macro: $ => prec.left(choice(
       seq(
         '&',
@@ -386,19 +397,6 @@ module.exports = grammar({
       optional('('),
       $.identifier,
       optional(')')
-    )),
-
-    // Address-of operator is treated as PRACTICE macro
-    c_pointer_expression: $ => prec.left(PREC.pointer, seq(
-      field('operator', '*'),
-      field('argument', $._expression)
-    )),
-
-    c_cast_expression: $ => prec(PREC.cast, seq(
-      '(',
-      field('type', alias($.c_type_declaration, $.identifier)),
-      ')',
-      field('value', $._expression)
     )),
 
     _var_command: $ => choice(
@@ -466,39 +464,17 @@ module.exports = grammar({
       )
     ),
 
-    c_subscript_expression: $ => prec(PREC.subscript, seq(
-      field('argument', $._expression),
-      seq(
-        '[',
-        field('index', $._expression),
-        ']'
-      )
-    )),
-
-    c_field_expression: $ => prec(PREC.field, seq(
-      field('argument', $._expression),
-      field('operator', choice(
-        '->',
-      )),
-      field('field', $.identifier)
-    )),
-
-    _internal_c_variable: $ => seq(
-      '\\',
-      $.identifier,
-      optional(token(seq(
-        '[',
-        /[0-9]+/,
-        ']'
-      )))
+    parameter_declaration_command: $ => choice(
+      longAndShortForm('PARAMETERS'),
+      longAndShortForm('ENTRY'),
+      longAndShortForm('RETURNVALUES')
     ),
 
-    macro_definition_command: $ => token(choice(
+    macro_definition_command: $ => choice(
       longAndShortForm('GLOBAL'),
       longAndShortForm('LOCAL'),
-      longAndShortForm('PRIVATE'),
-      longAndShortForm('PARAMETERS')
-    )),
+      longAndShortForm('PRIVATE')
+    ),
 
     command_expression: $ => seq(
       optional(/(::)*B::/),
@@ -602,6 +578,47 @@ module.exports = grammar({
       )),
       ')'
     ),
+
+    c_subscript_expression: $ => prec(PREC.subscript, seq(
+      field('argument', $._expression),
+      seq(
+        '[',
+        field('index', $._expression),
+        ']'
+      )
+    )),
+
+    // Address-of operator is treated as PRACTICE macro
+    c_pointer_expression: $ => prec.left(PREC.pointer, seq(
+      field('operator', '*'),
+      field('argument', $._expression)
+    )),
+
+    c_cast_expression: $ => prec(PREC.cast, seq(
+      '(',
+      field('type', alias($.c_type_declaration, $.identifier)),
+      ')',
+      field('value', $._expression)
+    )),
+
+    c_field_expression: $ => prec(PREC.field, seq(
+      field('argument', $._expression),
+      field('operator', choice(
+        '->',
+      )),
+      field('field', $.identifier)
+    )),
+
+    _internal_c_variable: $ => seq(
+      '\\',
+      $.identifier,
+      optional(token(seq(
+        '[',
+        /[0-9]+/,
+        ']'
+      )))
+    ),
+
 
     c_type_declaration: $ => seq(
       choice(

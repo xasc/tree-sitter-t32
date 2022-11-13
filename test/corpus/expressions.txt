@@ -8,8 +8,6 @@ LOCAL &GLOBAL
 
 PRIVATE &msg1 &(started) &{line_counT}
 
-PARAMETERS &_myvalue1 &my_Value2
-
 ---
 
 (script
@@ -22,10 +20,6 @@ PARAMETERS &_myvalue1 &my_Value2
   (macro_definition
     command: (identifier)
     macro: (macro)
-    macro: (macro)
-    macro: (macro))
-  (macro_definition
-    command: (identifier)
     macro: (macro)
     macro: (macro)))
 
@@ -61,6 +55,31 @@ Var.NEWGLOBAL char[10][128] \myStr
     arguments: (argument_list
       (literal)
       variable: (identifier))))
+
+==================
+Parameter declarations
+==================
+
+PARAMETERS &_myvalue1 &my_Value2
+
+ENTRY &parameter
+
+RETURNVALUES &FIRST &(second)
+
+---
+
+(script
+  (parameter_declaration
+    command: (identifier)
+    macro: (macro)
+    macro: (macro))
+  (parameter_declaration
+    command: (identifier)
+    macro: (macro))
+  (parameter_declaration
+    command: (identifier)
+    macro: (macro)
+    macro: (macro)))
 
 ==================
 Number literals
