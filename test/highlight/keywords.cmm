@@ -8,7 +8,7 @@ ENTRY &password
 IF "&password"==""
 ; <- conditional
 ;  ^ string
-;    ^ variable
+;    ^ parameter
 ;             ^ operator
 (
     ECHO "Failed to provide password."
@@ -26,7 +26,7 @@ ELSE
 ;         ^ operator
     (
         GOSUB verify_password "&password"
-;             ^ label
+;             ^ function.call
         RETURNVALUES &pass
 ;                     ^ parameter
         WAIT 10.ms
@@ -39,17 +39,19 @@ ELSE
     ELSE
     (
         GOSUB start_debug
-;             ^ label
+;             ^ function.call
     )
 )
 
 LOCAL &num
+;      ^ variable
 
 &num = 2.
 ;      ^ number
 
 RePeaT &num PRINT "Password: &password"
-;                             ^ variable
+;       ^ variable
+;                             ^ parameter
 
 WinCLEAR
 FramePOS ,,,,Maximized
@@ -82,7 +84,7 @@ verify_password:
 
     Data.Set EAXI:0x34000000 %Long 0x34000100 0x34000021 /verify
 ;            ^ number
-;                            ^ constant.builtin
+;                             ^ constant.builtin
 ;                                                         ^ constant
 
     RETURN TRUE()

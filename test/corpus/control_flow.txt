@@ -954,8 +954,8 @@ Subroutine Calls
 ==================
 
 GOSUB printA
-GOSUB printB
-GOSUB printC
+GOSUB printB "B"
+GOSUB printC "begin:" &second
 
 printA:
 (
@@ -965,32 +965,38 @@ printA:
 
 SUBROUTINE printB
 (
-  PRINT "B"
-  ENDDO
+  ENTRY &in
+
+  PRINT "&in"
+  RETURN
 )
 
 SUBROUTINE printC
 // comment
 (
-  PRINT "C"
+  PARAMETERS &a &b
+
+  PRINT "&a"+"&b"
   ENDDO
 )
 
 ---
 
 (script
-  (command_expression
+  (subroutine_call_expression
     command: (identifier)
-    arguments: (argument_list
-      (identifier)))
-  (command_expression
+    subroutine: (identifier))
+  (subroutine_call_expression
     command: (identifier)
+    subroutine: (identifier)
     arguments: (argument_list
-      (identifier)))
-  (command_expression
+      (string)))
+  (subroutine_call_expression
     command: (identifier)
+    subroutine: (identifier)
     arguments: (argument_list
-      (identifier)))
+      (string)
+      (macro)))
   (labeled_expression
     label: (identifier)
     (block
@@ -1004,10 +1010,14 @@ SUBROUTINE printC
       command: (identifier)
       subroutine: (identifier)
       (block
+        (parameter_declaration
+          command: (identifier)
+          macro: (macro))
         (command_expression
           command: (identifier)
           arguments: (argument_list
-            (string)))
+            (string
+              (macro))))
         (command_expression
           command: (identifier))))
     (subroutine_block
@@ -1015,9 +1025,17 @@ SUBROUTINE printC
       subroutine: (identifier)
       (comment)
       (block
+        (parameter_declaration
+          command: (identifier)
+          macro: (macro)
+          macro: (macro))
         (command_expression
           command: (identifier)
           arguments: (argument_list
-            (string)))
+            (binary_expression
+              left: (string
+                (macro))
+              right: (string
+                (macro)))))
         (command_expression
           command: (identifier)))))

@@ -116,6 +116,7 @@ module.exports = grammar({
         $.recursive_macro_expansion,
         $.repeat_block,
         $.subroutine_block,
+        $.subroutine_call_expression,
         $.while_block
       )
     ),
@@ -370,6 +371,15 @@ module.exports = grammar({
         repeat1($._blank),
         field('macro', $.macro)
       )),
+      $._terminator
+    ),
+
+    subroutine_call_expression: $ => seq(
+      optional(/(::)*B::/),
+      field('command', alias('GOSUB', $.identifier)),
+      repeat1($._blank),
+      field('subroutine', $.identifier),
+      field('arguments', optional(alias($._command_arguments, $.argument_list))),
       $._terminator
     ),
 
