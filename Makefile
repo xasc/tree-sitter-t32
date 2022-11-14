@@ -1,4 +1,4 @@
-.PHONY: build build-wasm highlight parse test test-all test-debug test-graph
+.PHONY: build build-wasm highlight parse tags test test-all test-debug test-graph
 
 filter ?=
 file ?=
@@ -25,6 +25,9 @@ parse:
 
 highlight:
 	yarn highlight "$(file)"
+
+tags:
+	yarn tags "$(file)"
 
 playground:
 	yarn playground

@@ -20,6 +20,7 @@
     "build": "tree-sitter generate && node-gyp build",
     "build-wasm": "tree-sitter build-wasm",
     "parse": "tree-sitter parse",
+    "tags": "tree-sitter tags",
     "test": "tree-sitter test",
     "highlight": "tree-sitter highlight",
     "playground": "tree-sitter playground"
