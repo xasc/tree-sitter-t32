@@ -433,7 +433,7 @@ module.exports = grammar({
     _var_definition_command_arguments: $ => seq(
       repeat1($._blank),
       optional(seq(
-        alias($._type, $.literal),
+        field('type', $.type_identifier),
         repeat1($._blank)
       )),
       field('variable', $._internal_c_variable)
@@ -789,7 +789,7 @@ module.exports = grammar({
 
     file_handle: $ => /#[0-9]+/,
 
-    _type: $ => seq(
+    type_identifier: $ => seq(
       alias($.identifier, ''),
       repeat(/\[[0-9]+\]/)
     ),

@@ -48,12 +48,12 @@ Var.NEWGLOBAL char[10][128] \myStr
   (command_expression
     command: (identifier)
     arguments: (argument_list
-      (literal)
+      type: (type_identifier)
       variable: (identifier)))
   (command_expression
     command: (identifier)
     arguments: (argument_list
-      (literal)
+      type: (type_identifier)
       variable: (identifier))))
 
 ==================
