@@ -95,10 +95,10 @@
 ; Parameter declarations
 (parameter_declaration
   command: (identifier) @keyword
-  macro: (macro) @parameter)
+  macro: (macro) @variable.parameter)
 
 ; Variables, constants and labels
-(macro) @variable
+(macro) @variable.builtin
 (
  (argument_list (identifier) @constant.builtin)
  (#match? @constant.builtin "^[%/][a-zA-Z][a-zA-Z0-9.]*$")

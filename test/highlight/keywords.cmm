@@ -1,14 +1,14 @@
 PRIVATE &password
 ; <- keyword
-;        ^ variable
+;        ^ variable.builtin
 ENTRY &password
 ; <- keyword
-;        ^ parameter
+;        ^ variable.parameter
 
 IF "&password"==""
 ; <- conditional
 ;  ^ string
-;    ^ parameter
+;    ^ variable.parameter
 ;             ^ operator
 (
     ECHO "Failed to provide password."
@@ -28,7 +28,7 @@ ELSE
         GOSUB verify_password "&password"
 ;             ^ function.call
         RETURNVALUES &pass
-;                     ^ parameter
+;                     ^ variable.parameter
         WAIT 10.ms
 ;            ^ number
     )
@@ -44,14 +44,14 @@ ELSE
 )
 
 LOCAL &num
-;      ^ variable
+;      ^ variable.builtin
 
 &num = 2.
 ;      ^ number
 
 RePeaT &num PRINT "Password: &password"
-;       ^ variable
-;                             ^ parameter
+;       ^ variable.builtin
+;                             ^ variable.parameter
 
 WinCLEAR
 FramePOS ,,,,Maximized
@@ -75,7 +75,7 @@ verify_password:
 ; <- function
 (
     PARAMETERS &password
-;               ^ parameter
+;               ^ variable.parameter
 
     SYStem.Option.KEYCODE "&password"
     SYStem.JtagClock  1kHz
