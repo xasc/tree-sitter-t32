@@ -135,4 +135,5 @@
 (call_expression
   function: (identifier) @function.call)
 
+(type_identifier) @type
 (comment) @comment @spell
