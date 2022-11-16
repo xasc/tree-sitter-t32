@@ -436,7 +436,7 @@ module.exports = grammar({
         field('type', $.type_identifier),
         repeat1($._blank)
       )),
-      field('variable', $._internal_c_variable)
+      field('variable', $.internal_c_variable)
     ),
 
     _var_definition_command_identifier: $ => seq(
@@ -619,9 +619,9 @@ module.exports = grammar({
       field('field', $.identifier)
     )),
 
-    _internal_c_variable: $ => seq(
+    internal_c_variable: $ => seq(
       '\\',
-      $.identifier,
+      alias($.identifier, 'name'),
       optional(token(seq(
         '[',
         /[0-9]+/,
@@ -805,7 +805,7 @@ module.exports = grammar({
       $.identifier,
       $._literal,
       $.unary_expression,
-      $._internal_c_variable,
+      $.internal_c_variable,
       $.macro,
       $._parenthesized_expression
     ),

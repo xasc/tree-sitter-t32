@@ -49,12 +49,12 @@ Var.NEWGLOBAL char[10][128] \myStr
     command: (identifier)
     arguments: (argument_list
       type: (type_identifier)
-      variable: (identifier)))
+      variable: (internal_c_variable)))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       type: (type_identifier)
-      variable: (identifier))))
+      variable: (internal_c_variable))))
 
 ==================
 Parameter declarations
@@ -833,13 +833,13 @@ Var.Assign \myarr[&i]="&val"
     command: (identifier)
     arguments: (argument_list
       (assignment_expression
-        left: (identifier)
+        left: (internal_c_variable)
         right: (integer))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       (assignment_expression
-        left: (identifier)
+        left: (internal_c_variable)
         right: (string))))
   (command_expression
     command: (identifier)
@@ -848,26 +848,26 @@ Var.Assign \myarr[&i]="&val"
       (call_expression
         function: (identifier)
         arguments: (argument_list
-          (identifier)))))
+          (internal_c_variable)))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       (call_expression
         function: (identifier)
         arguments: (argument_list
-          (identifier)))))
+          (internal_c_variable)))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       (identifier)
-      (identifier)
-      (identifier)))
+      (internal_c_variable)
+      (internal_c_variable)))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       (assignment_expression
         left: (c_subscript_expression
-          argument: (identifier)
+          argument: (internal_c_variable)
           index: (macro))
         right: (string
           (macro))))))
@@ -952,7 +952,7 @@ Var.View ast->left=(left_t *)ast->left->right
     command: (identifier)
     arguments: (argument_list
       (assignment_expression
-        left: (identifier)
+        left: (internal_c_variable)
         right: (string))))
   (command_expression
     command: (identifier)
@@ -960,14 +960,14 @@ Var.View ast->left=(left_t *)ast->left->right
       (c_subscript_expression
         argument: (identifier)
         index: (unary_expression
-          argument: (identifier)))))
+          argument: (internal_c_variable)))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       (c_subscript_expression
         argument: (identifier)
         index: (unary_expression
-          argument: (identifier)))))
+          argument: (internal_c_variable)))))
   (command_expression
     command: (identifier)
     arguments: (argument_list

@@ -915,7 +915,7 @@ Var.IF \a<sizeof(array)
   (if_block
     command: (identifier)
     condition: (binary_expression
-      left: (identifier)
+      left: (internal_c_variable)
       right: (call_expression
         function: (identifier)
         arguments: (argument_list
@@ -940,13 +940,13 @@ Var.WHILE string_array[\i]!='\0'
     condition: (binary_expression
       left: (c_subscript_expression
         argument: (identifier)
-        index: (identifier))
+        index: (internal_c_variable))
       right: (character))
     (command_expression
       command: (identifier)
       arguments: (argument_list
         (unary_expression
-          argument: (identifier))))))
+          argument: (internal_c_variable))))))
 
 
 ==================
