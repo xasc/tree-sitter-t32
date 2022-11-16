@@ -5,6 +5,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2022-11-16
+
+### Added
+
+- Added query to mark comments as language injection point
+- Added query for tag generation
+- Added support for SUBROUTINE command
+- Added ENTRY, PARAMETERS and RETURNVALUES as parameter declarations
+- Added internal C-Style variables as node type
+
+### Changed
+
+- Improved syntax highlighting for:
+  - Comments
+  - Commands ENTRY, PARAMETERS, RETURNVALUES and SUBROUTINE
+  - C-style expressions
+  - Parameters
+- Nested comments in IF, WHILE, RePeaT or SUBROUTINE block statements become child nodes
+
+### Fixed
+
+- Fix capture names in locals query
+
 ## [1.1.0] - 2022-11-06
 
 ### Added
