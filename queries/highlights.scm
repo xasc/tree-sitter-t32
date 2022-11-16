@@ -99,23 +99,23 @@
 
 ; Variables, constants and labels
 (macro) @variable.builtin
-(
- (argument_list (identifier) @constant.builtin)
- (#match? @constant.builtin "^[%/][a-zA-Z][a-zA-Z0-9.]*$")
-)
+(internal_c_variable) @variable.builtin
+
 (
   (command_expression
     command: (identifier) @keyword
     arguments: (argument_list . (identifier) @label))
   (#match? @keyword "^[gG][oO][tT][oO]$")
 )
-(argument_list
-  (identifier) @constant
-  !variable)
-(argument_list (identifier) @variable)
-
 (labeled_expression
   label: (identifier) @label)
+
+(
+ (argument_list (identifier) @constant.builtin)
+ (#match? @constant.builtin "^[%/][a-zA-Z][a-zA-Z0-9.]*$")
+)
+(argument_list
+  (identifier) @constant)
 
 ; Commands
 (command_expression command: (identifier) @keyword)
