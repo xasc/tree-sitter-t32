@@ -1,17 +1,13 @@
-(
-  (command_expression
-    command: (identifier) @keyword
-    arguments: (argument_list . (identifier) @name))
-  (#match? @keyword "^[sS][uU][bB][rR][oO][uU][tT][iI][nN][eE]$")
-) @definition.function
+; Subroutine definitions
+(subroutine_block
+  command: (identifier)
+  subroutine: (identifier) @name) @definition.function
 
-(
-  (command_expression
-    command: (identifier) @keyword
-    arguments: (argument_list . (identifier) @name))
-  (#match? @keyword "^[gG][oO][sS][uU][bB]$")
-) @reference.call
+(labeled_expression
+  label: (identifier) @name
+  (block)) @definition.function
 
-(call_expression
-  function: (identifier) @name
-) @reference.call
+; Subroutine calls
+(subroutine_call_expression
+  command: (identifier)
+  subroutine: (identifier) @name) @reference.call

@@ -1,0 +1,56 @@
+SYStem.CPU STM32F407VG
+IF !SIMULATOR()
+(
+    SYStem.JtagClock 10.MHz
+    SYStem.CONFIG DEBUGPORTTYPE SWD
+    SYStem.MemAccess DAP
+)
+ELSE
+(
+    SYStem.MemAccess CPU
+)
+
+GOSUB PrintItems ONE
+;     ^ reference.call
+
+GOSUB PrintItems ONE TWO THREE
+;     ^ reference.call
+
+GOSUB copydata 0x80000000 0x8fff0000 0x1000
+;     ^ reference.call
+
+ENDDO
+
+
+SUBROUTINE PrintItems
+;          ^ definition.function
+(
+  PRIVATE &list &count
+  ENTRY %LINE &list
+  &count=STRing.COUNT("&list"," ")+1
+  &index=0
+  RePeat
+  (
+    PRIVATE &item
+    &item=STRing.SPLIT("&list"," ",&index)
+    PRINT "&item"
+    &index=&index+1
+  )
+  WHILE &index<&count
+  ENDDO
+)
+
+
+copydata:
+; <- definition.function
+(
+  PARAMETERS &from &to &size
+  PRIVATE &err &eaddr
+  Data.COPY &from++(&size-1) &to
+  Data.ComPare &from++(&size-1) &to
+  &err=!FOUND()
+  &eaddr=ADDRESS.OFFSET(TRACK.ADDRESS())
+  RETURN "&err" "&eaddr"
+)
+
+// vim: set ft=t32:
