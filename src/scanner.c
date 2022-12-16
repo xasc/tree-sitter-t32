@@ -29,6 +29,11 @@
 #include "tree_sitter/parser.h"
 
 
+#if defined(_MSC_VER)
+# define _Static_assert(c__, msg__)  assert((c__));
+#endif
+
+
 enum TokenType {
 	LABEL_IDENTIFIER,
 	AND_OPERATOR_PRE_HOOK,
@@ -360,7 +365,7 @@ static bool ScanPathLiteral(
 	bool is_option = false;
 	bool is_symbol = false;
 
-	pathScan_t scan[1] = {};
+	pathScan_t scan[1] = {{0}};
 
 	unsigned ii = 0;
 	while (!(IsSpace(lexer->lookahead) || IsEof(lexer))) {
