@@ -1,0 +1,11 @@
+pipeline:
+  build:
+    image: node:bullseye
+    environment:
+      - DEBIAN_FRONTEND=noninteractive
+    commands:
+      - apt-get update
+      - apt-get install --no-install-recommends --yes build-essential
+      - yarn install
+      - yarn run tree-sitter generate
+      - yarn run tree-sitter test
