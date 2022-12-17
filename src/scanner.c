@@ -30,7 +30,7 @@
 
 
 #if defined(_MSC_VER)
-# define _Static_assert(c__, msg__)  assert((c__));
+# define _Static_assert(c__, msg__)  static_assert((c__))
 #endif
 
 
