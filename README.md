@@ -1,4 +1,5 @@
 # tree-sitter-t32
+[![CI Status](https://ci.codeberg.org/api/badges/xasc/tree-sitter-t32/status.svg)](https://ci.codeberg.org/xasc/tree-sitter-t32)
 
 Lauterbach TRACE32 script language grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter).
 
