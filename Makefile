@@ -14,32 +14,35 @@ commas-to-spaces = $(subst $(,),$( ),$1)
 filterFlag = $(call commas-to-spaces,$(addprefix --filter ,$(call spaces-to-commas,"$(filter)")))
 
 
-build:
-	yarn build
+build: src/parser.c
 
 build-wasm:
 	yarn build-wasm
 
-parse:
+parse: build
 	yarn parse "$(file)"
 
-highlight:
+highlight: build
 	yarn highlight "$(file)"
 
-tags:
+tags: build
 	yarn tags "$(file)"
 
 playground:
 	yarn playground
 
-test:
+test: build
 	yarn test "$(filterFlag)"
 
-test-debug:
+test-debug: build
 	yarn test --debug $(filterFlag)
 
-test-graph:
+test-graph: build
 	yarn test --debug-graph $(filterFlag)
 
-test-all:
+test-all: build
 	yarn test
+
+
+src/parser.c: grammar.js
+	yarn build
