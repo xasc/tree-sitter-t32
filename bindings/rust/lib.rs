@@ -70,6 +70,6 @@ mod tests {
         let mut parser = tree_sitter::Parser::new();
         parser
             .set_language(super::language())
-            .expect("Error loading t32 language");
+            .expect("Error loading t32 language grammar");
     }
 }
