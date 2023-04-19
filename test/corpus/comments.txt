@@ -26,6 +26,37 @@ ECHO "B" // a\
     (comment)))
 
 ==================
+Comments before line with trailing whitespaces
+==================
+
+  Data.Set P:(COREBASE()+0x783) %Long 0x2 ; Comment A.RCE
+    
+  Data.Set AHB:0x21381a0b %BE 0xXXXXxxx3    ; Comment C
+
+---
+
+(script
+  (command_expression
+    (identifier)
+    (argument_list
+      (access_class)
+      (binary_expression
+        (call_expression
+          (identifier)
+          (argument_list))
+        (integer))
+      (identifier)
+      (integer))
+    (comment))
+  (command_expression
+    (identifier)
+    (argument_list
+      (address)
+      (identifier)
+      (bitmask))
+    (comment)))
+
+==================
 Interjected comments
 ==================
 
