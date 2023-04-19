@@ -66,6 +66,8 @@ ENTRY &parameter
 
 RETURNVALUES &FIRST &(second)
 
+ENTRY %LInE &params
+
 ---
 
 (script
@@ -79,6 +81,10 @@ RETURNVALUES &FIRST &(second)
   (parameter_declaration
     command: (identifier)
     macro: (macro)
+    macro: (macro))
+  (parameter_declaration
+    command: (identifier)
+    (identifier)
     macro: (macro)))
 
 ==================
