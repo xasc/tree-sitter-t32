@@ -42,7 +42,6 @@
 [
   ","
   "."
-  ";"
 ] @punctuation.delimiter
 
 [
@@ -100,7 +99,7 @@
 
 ; Variables, constants and labels
 (macro) @variable.builtin
-(internal_c_variable) @variable.builtin
+(trace32_hll_variable) @variable.builtin
 
 (
   (command_expression
@@ -111,6 +110,8 @@
 (labeled_expression
   label: (identifier) @label)
 
+(option_expression) @constant
+(format_expression) @constant.builtin
 (
  (argument_list (identifier) @constant.builtin)
  (#match? @constant.builtin "^[%/][a-zA-Z][a-zA-Z0-9.]*$")
@@ -136,5 +137,9 @@
 (call_expression
   function: (identifier) @function.call)
 
-(type_identifier) @type
+[
+  (hll_primitive_type)
+  (hll_type_identifier)
+] @type
+
 (comment) @comment

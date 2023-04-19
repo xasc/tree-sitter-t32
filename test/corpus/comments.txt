@@ -46,7 +46,8 @@ Comments before line with trailing whitespaces
             (identifier)
             (argument_list))
           (integer)))
-      (identifier)
+      (format_expression
+        (identifier))
       (integer))
     (comment))
   (command_expression
@@ -55,7 +56,8 @@ Comments before line with trailing whitespaces
       (address
         (access_class)
         (integer))
-      (identifier)
+      (format_expression
+        (identifier))
       (bitmask))
     (comment)))
 

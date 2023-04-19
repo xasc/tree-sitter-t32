@@ -1,0 +1,1188 @@
+==================
+Var commands with default format
+==================
+
+Var.AddWatch ast.left vtripplearray
+Var.AddWatch %format ast.left vtripplearray
+
+Var.Assign *0x2000 = 1
+Var.Assign %format *0x2000 = 1
+
+Var.Break.Delete flags
+Var.Break.Delete flags /option
+
+Var.Break.direct mcount
+Var.Break.direct mcount /option
+
+Var.Break.PASS vfloat<1.57
+Var.Break.PASS
+
+Var.Break.Set struct1
+Var.Break.Set struct1.x /Write
+
+Var.Call (0xdeadbeef)(1,5.0,3)
+Var.Call strcmp("123","abc")
+Var.Call vops+4
+
+Var.CHAIN ast
+Var.CHAIN %format ast ast.left vpchar
+
+Var.DelWatch struct1
+Var.DelWatch ast.count mcount
+
+Var.DRAW flags[0..16] cstr1[0..16] /XY
+Var.DRAWXY array1 array2
+
+Var.DUMP flags
+Var.DUMP %format flags vtripplearray /option
+
+Var.Eval mcount
+Var.Eval %format mcount
+
+Var.FixedCHAIN ast ast.left vpchar
+Var.FixedCHAIN %Location %Multiline ast ast.left vpchar
+
+Var.FixedTABle OsIsrCfg
+Var.FixedTABle %format flags i k vpchar
+
+Var.Go.Back mcount
+Var.Go.Back flags /Write
+
+Var.Go.Change flags
+
+Var.Go.direct flags
+Var.Go.direct vfloat /Write
+
+Var.Go.Till vfloat<=1.57
+
+Var.INFO func7
+
+Var.LOG flags i k
+Var.LOG
+
+Var.OBJECT mcount
+Var.OBJECT %String %Type vStr
+
+Var.PROfile vdblarray[2][(i-1)]
+Var.PROfile %E mstatic1 fstatic fstatic2
+
+Var ptr[4]= 'x'
+Var.set string_array[2] = "element2"
+Var.set ast->left=(left_t *)ast->left->right
+
+Var.Step.BackChange ptr->x
+
+Var.Step.BackTill i>0x10
+
+Var.Step.Change k
+
+Var.Step.Till i>0x10
+
+Var.TABle mcount
+Var.TABle %Location flags i k vpchar
+
+Var.TYPE ast->left
+Var.TYPE %format ast->left,ast->count , struct1
+
+Var.view (long)__START
+Var.view  flags[a++]
+Var.view  flags[--a]
+Var.view *(&flags+20)
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_field_expression
+        argument: (identifier)
+        field: (hll_field_identifier))
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (format_expression
+        value: (identifier))
+      (hll_field_expression
+        argument: (identifier)
+        field: (hll_field_identifier))
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_assignment_expression
+        left: (hll_pointer_expression
+          argument: (hll_number_literal))
+        right: (hll_number_literal))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (format_expression
+        value: (identifier))
+      (hll_assignment_expression
+        left: (hll_pointer_expression
+          argument: (hll_number_literal))
+        right: (hll_number_literal))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)
+      (option_expression
+        option: (identifier))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)
+      (option_expression
+        option: (identifier))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_binary_expression
+        left: (identifier)
+        right: (hll_number_literal))))
+  (command_expression
+    command: (identifier))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_field_expression
+        argument: (identifier)
+        field: (hll_field_identifier))
+      (option_expression
+        option: (identifier))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_call_expression
+        function: (hll_parenthesized_expression
+          (hll_number_literal))
+        arguments: (hll_argument_list
+          (hll_number_literal)
+          (hll_number_literal)
+          (hll_number_literal)))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_call_expression
+        function: (identifier)
+        arguments: (hll_argument_list
+          (hll_string_literal)
+          (hll_string_literal)))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_binary_expression
+        left: (identifier)
+        right: (hll_number_literal))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (format_expression
+        value: (identifier))
+      (identifier)
+      (hll_field_expression
+        argument: (identifier)
+        field: (hll_field_identifier))
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_field_expression
+        argument: (identifier)
+        field: (hll_field_identifier))
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_subscript_expression
+        argument: (identifier)
+        index: (hll_range_expression
+          left: (hll_number_literal)
+          right: (hll_number_literal)))
+      (hll_subscript_expression
+        argument: (identifier)
+        index: (hll_range_expression
+          left: (hll_number_literal)
+          right: (hll_number_literal)))
+      (option_expression
+        option: (identifier))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (format_expression
+        value: (identifier))
+      (identifier)
+      (identifier)
+      (option_expression
+        option: (identifier))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (format_expression
+        value: (identifier))
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)
+      (hll_field_expression
+        argument: (identifier)
+        field: (hll_field_identifier))
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (format_expression
+        value: (identifier))
+      (format_expression
+        value: (identifier))
+      (identifier)
+      (hll_field_expression
+        argument: (identifier)
+        field: (hll_field_identifier))
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (format_expression
+        value: (identifier))
+      (identifier)
+      (identifier)
+      (identifier)
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)
+      (option_expression
+        option: (identifier))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)
+      (option_expression
+        option: (identifier))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_binary_expression
+        left: (identifier)
+        right: (hll_number_literal))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)
+      (identifier)
+      (identifier)))
+  (command_expression
+    command: (identifier))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (format_expression
+        value: (identifier))
+      (format_expression
+        value: (identifier))
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_subscript_expression
+        argument: (hll_subscript_expression
+          argument: (identifier)
+          index: (hll_number_literal))
+        index: (hll_parenthesized_expression
+          (hll_binary_expression
+            left: (identifier)
+            right: (hll_number_literal))))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (format_expression
+        value: (identifier))
+      (identifier)
+      (identifier)
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_assignment_expression
+        left: (hll_subscript_expression
+          argument: (identifier)
+          index: (hll_number_literal))
+        right: (hll_char_literal
+          (character)))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_assignment_expression
+        left: (hll_subscript_expression
+          argument: (identifier)
+          index: (hll_number_literal))
+        right: (hll_string_literal))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_assignment_expression
+        left: (hll_field_expression
+          argument: (identifier)
+          field: (hll_field_identifier))
+        right: (hll_cast_expression
+          type: (hll_type_descriptor
+            type: (hll_type_identifier)
+            declarator: (hll_abstract_pointer_declarator))
+          value: (hll_field_expression
+            argument: (hll_field_expression
+              argument: (identifier)
+              field: (hll_field_identifier))
+            field: (hll_field_identifier))))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_field_expression
+        argument: (identifier)
+        field: (hll_field_identifier))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_binary_expression
+        left: (identifier)
+        right: (hll_number_literal))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_binary_expression
+        left: (identifier)
+        right: (hll_number_literal))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (format_expression
+        value: (identifier))
+      (identifier)
+      (identifier)
+      (identifier)
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_field_expression
+        argument: (identifier)
+        field: (hll_field_identifier))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (format_expression
+        value: (identifier))
+      (hll_field_expression
+        argument: (identifier)
+        field: (hll_field_identifier))
+      (hll_field_expression
+        argument: (identifier)
+        field: (hll_field_identifier))
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_cast_expression
+        type: (hll_type_descriptor
+          type: (hll_sized_type_specifier))
+        value: (identifier))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_subscript_expression
+        argument: (identifier)
+        index: (hll_update_expression
+          argument: (identifier)))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_subscript_expression
+        argument: (identifier)
+        index: (hll_update_expression
+          argument: (identifier)))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_pointer_expression
+        argument: (hll_parenthesized_expression
+          (hll_binary_expression
+            left: (hll_pointer_expression
+              argument: (identifier))
+            right: (hll_number_literal)))))))
+
+==================
+Var commands with non default format
+==================
+
+Var.AddSticker main\10 %Hex mcount
+Var.EXPORT ~~~\export.csv %Type %Location %Index flags ast /Append
+Var.WRITE #1 %CONTinue vdiarray[2]
+
+Var.PRINT cstr1 ", " mstatic1
+Var.PRINT %CONTinue "cstr1=" cstr1 ", mstatic1=" mstatic1
+
+Var.PATtern target* struct
+Var.PATtern %Type * struct struct?
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (symbol)
+      (format_expression
+        value: (identifier))
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (path)
+      (format_expression
+        value: (identifier))
+      (format_expression
+        value: (identifier))
+      (format_expression
+        value: (identifier))
+      (identifier)
+      (identifier)
+      (option_expression
+        option: (identifier))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (file_handle)
+      (format_expression
+        value: (identifier))
+      (hll_subscript_expression
+        argument: (identifier)
+        index: (hll_number_literal))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)
+      (hll_string_literal)
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (format_expression
+        value: (identifier))
+      (hll_string_literal)
+      (identifier)
+      (hll_string_literal)
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_type_pattern)
+      (hll_type_pattern)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (format_expression
+        value: (identifier))
+      (hll_type_pattern)
+      (hll_type_pattern)
+      (hll_type_pattern))))
+
+==================
+Var commands without HLL expression
+==================
+
+Var.Local
+Var.Local %format %format
+
+Var.Ref
+Var.Ref %format /Track
+
+Var.TREE
+Var.TREE %Type %Location %Index
+
+---
+
+(script
+  (command_expression
+    command: (identifier))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (format_expression
+        value: (identifier))
+      (format_expression
+        value: (identifier))))
+  (command_expression
+    command: (identifier))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (format_expression
+        value: (identifier))
+      (option_expression
+        option: (identifier))))
+  (command_expression
+    command: (identifier))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (format_expression
+        value: (identifier))
+      (format_expression
+        value: (identifier))
+      (format_expression
+        value: (identifier)))))
+
+==================
+Internal C-style variable definitions from primitive types
+==================
+
+Var.NEWLOCAL int \i
+Var.NEWGLOBAL char[10][128] \myStr
+
+Var.NEWLOCAL unsigned short int \a
+Var.NEWLOCAL long int \b
+
+Var.NEWGLOBAL unsigned \c
+Var.NEWGLOBAL short \d
+
+Var.NEWLOCAL float \e
+
+Var.NEWLOCAL uintptr_t \f
+Var.NEWLOCAL intptr_t \f
+
+Var.NEWLOCAL size_t \g
+Var.NEWLOCAL ssize_t \g
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_primitive_type)
+        declarator: (trace32_hll_variable))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_primitive_type)
+        declarator: (hll_array_declarator
+          size: (hll_number_literal)
+          declarator: (hll_array_declarator
+            size: (hll_number_literal)
+            declarator: (trace32_hll_variable))))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_sized_type_specifier
+          type: (hll_type_identifier))
+        declarator: (trace32_hll_variable))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_sized_type_specifier
+          type: (hll_type_identifier))
+        declarator: (trace32_hll_variable))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_sized_type_specifier)
+        declarator: (trace32_hll_variable))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_sized_type_specifier)
+        declarator: (trace32_hll_variable))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_primitive_type)
+        declarator: (trace32_hll_variable))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_primitive_type)
+        declarator: (trace32_hll_variable))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_primitive_type)
+        declarator: (trace32_hll_variable))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_primitive_type)
+        declarator: (trace32_hll_variable))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_primitive_type)
+        declarator: (trace32_hll_variable)))))
+
+==================
+Internal C-style variable definitions from primitive types with fixed size
+==================
+
+Var.NEWLOCAL uint8_t \a
+Var.NEWLOCAL uint16_t \a
+Var.NEWLOCAL uint32_t \a
+Var.NEWLOCAL uint64_t \a
+
+Var.NEWLOCAL int8_t \b
+Var.NEWLOCAL int16_t \b
+Var.NEWLOCAL int32_t \b
+Var.NEWLOCAL int64_t \b
+
+Var.NEWLOCAL char16_t \c
+Var.NEWLOCAL char32_t \c
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_primitive_type)
+        declarator: (trace32_hll_variable))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_primitive_type)
+        declarator: (trace32_hll_variable))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_primitive_type)
+        declarator: (trace32_hll_variable))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_primitive_type)
+        declarator: (trace32_hll_variable))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_primitive_type)
+        declarator: (trace32_hll_variable))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_primitive_type)
+        declarator: (trace32_hll_variable))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_primitive_type)
+        declarator: (trace32_hll_variable))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_primitive_type)
+        declarator: (trace32_hll_variable))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_primitive_type)
+        declarator: (trace32_hll_variable))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_primitive_type)
+        declarator: (trace32_hll_variable)))))
+
+==================
+Internal C-style variable definitions from sized primitive types
+==================
+
+Var.NEWLOCAL unsigned \a
+Var.NEWLOCAL unsigned int \a
+Var.NEWLOCAL signed long int \a
+Var.NEWLOCAL unsigned \a
+Var.NEWLOCAL unsigned long \a
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_sized_type_specifier)
+        declarator: (trace32_hll_variable))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_sized_type_specifier
+          type: (hll_type_identifier))
+        declarator: (trace32_hll_variable))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_sized_type_specifier
+          type: (hll_type_identifier))
+        declarator: (trace32_hll_variable))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_sized_type_specifier)
+        declarator: (trace32_hll_variable))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_sized_type_specifier)
+        declarator: (trace32_hll_variable)))))
+
+==================
+Internal C-style variable definitions from struct types
+==================
+
+Var.NEWLOCAL struct s1 \a
+
+---
+
+(script
+(command_expression
+  command: (identifier)
+  arguments: (argument_list
+    (hll_declaration
+      type: (hll_struct_specifier
+        name: (hll_type_identifier))
+      declarator: (trace32_hll_variable)))))
+
+==================
+Internal C-style variable definitions from union types
+==================
+
+Var.NEWLOCAL union u1 \a
+
+---
+
+(script
+(command_expression
+  command: (identifier)
+  arguments: (argument_list
+    (hll_declaration
+      type: (hll_union_specifier
+        name: (hll_type_identifier))
+      declarator: (trace32_hll_variable)))))
+
+==================
+Internal C-style variable definitions from enum types
+==================
+
+Var.NEWLOCAL enum e1 \a
+
+---
+
+(script
+(command_expression
+  command: (identifier)
+  arguments: (argument_list
+    (hll_declaration
+      type: (hll_enum_specifier
+        name: (hll_type_identifier))
+      declarator: (trace32_hll_variable)))))
+
+==================
+Internal C-style variable definitions from pointer types
+==================
+
+Var.NEWGLOBAL char * \a
+Var.NEWGLOBAL const char ** \b
+Var.NEWGLOBAL int const * const \c
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_primitive_type)
+        declarator: (hll_pointer_declarator
+          declarator: (trace32_hll_variable)))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        (hll_type_qualifier)
+        type: (hll_primitive_type)
+        declarator: (hll_pointer_declarator
+          declarator: (hll_pointer_declarator
+          declarator: (trace32_hll_variable))))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_primitive_type)
+        (hll_type_qualifier)
+        declarator: (hll_pointer_declarator
+          (hll_type_qualifier)
+          declarator: (trace32_hll_variable))))))
+
+==================
+Commands with TRACE32-internal C-style variables
+==================
+
+Var.Set \i=0x42
+Var.Set \myStr[5]="hello"
+ECHO %Hex Var.VALUE(\i)
+ECHO Var.STRing(\myStr[5])
+Var.View %all \i \myStr
+Var.Assign \myarr[&i]="&val"
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_assignment_expression
+        left: (trace32_hll_variable)
+        right: (hll_number_literal))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_assignment_expression
+        left: (hll_subscript_expression
+          argument: (trace32_hll_variable)
+          index: (hll_number_literal))
+        right: (hll_string_literal))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (format_expression
+        value: (identifier))
+      (call_expression
+        function: (identifier)
+        arguments: (argument_list
+          (trace32_hll_variable)))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (call_expression
+        function: (identifier)
+        arguments: (argument_list
+          (hll_subscript_expression
+            argument: (trace32_hll_variable)
+            index: (hll_number_literal))))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (format_expression
+        value: (identifier))
+      (trace32_hll_variable)
+      (trace32_hll_variable)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_assignment_expression
+        left: (hll_subscript_expression
+          argument: (trace32_hll_variable)
+          index: (hll_pointer_expression
+            argument: (identifier)))
+        right: (hll_string_literal)))))
+
+============================================
+Commands with field accesses
+============================================
+
+Var.Assign s.data1 = 1
+Var.Assign p->data2 = 2
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_assignment_expression
+        left: (hll_field_expression
+          argument: (identifier)
+          field: (hll_field_identifier))
+        right: (hll_number_literal))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_assignment_expression
+        left: (hll_field_expression
+          argument: (identifier)
+          field: (hll_field_identifier))
+        right: (hll_number_literal)))))
+
+============================================
+Commands with subscript accesses
+============================================
+
+Var.Assign q[data3] = 3
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_assignment_expression
+        left: (hll_subscript_expression
+          argument: (identifier)
+          index: (identifier))
+        right: (hll_number_literal)))))
+
+============================================
+Commands with Boolean operators
+============================================
+
+Var.Assign a = !x||!y&&!z
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_assignment_expression
+        left: (identifier)
+        right: (hll_binary_expression
+          left: (hll_unary_expression
+            argument: (identifier))
+          right: (hll_binary_expression
+            left: (hll_unary_expression
+              argument: (identifier))
+            right: (hll_unary_expression
+              argument: (identifier))))))))
+
+============================================
+Commands with cast expressions
+============================================
+
+Var.Assign \c = (int)a
+Var.set (CAddition * )&d
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_assignment_expression
+        left: (trace32_hll_variable)
+        right: (hll_cast_expression
+          type: (hll_type_descriptor
+            type: (hll_primitive_type))
+          value: (identifier)))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_cast_expression
+        type: (hll_type_descriptor
+          type: (hll_type_identifier)
+          declarator: (hll_abstract_pointer_declarator))
+        value: (hll_pointer_expression
+          argument: (identifier))))))
+
+============================================
+Commands with conditional expressions
+============================================
+
+Var.set j = (i<0)?( -i ):i
+Var.set ( x==y )?f1():(f2())
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_assignment_expression
+        left: (identifier)
+        right: (hll_conditional_expression
+          condition: (hll_parenthesized_expression
+            (hll_binary_expression
+              left: (identifier)
+              right: (hll_number_literal)))
+          consequence: (hll_parenthesized_expression
+            (hll_unary_expression
+              argument: (identifier)))
+          alternative: (identifier)))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_conditional_expression
+        condition: (hll_parenthesized_expression
+          (hll_binary_expression
+            left: (identifier)
+            right: (identifier)))
+        consequence: (hll_call_expression
+          function: (identifier)
+          arguments: (hll_argument_list))
+        alternative: (hll_parenthesized_expression
+          (hll_call_expression
+            function: (identifier)
+            arguments: (hll_argument_list)))))))
+
+==================
+Extension: Range operator
+==================
+
+Var.set vdblarray[2..4][(i-1)..(i+1)]
+Var.ASSIGN \string_array[4..5]="element2"
+Var.set flags[5..9]==0
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_subscript_expression
+        argument: (hll_subscript_expression
+          argument: (identifier)
+          index: (hll_range_expression
+            left: (hll_number_literal)
+            right: (hll_number_literal)))
+        index: (hll_range_expression
+          left: (hll_parenthesized_expression
+            (hll_binary_expression
+              left: (identifier)
+              right: (hll_number_literal)))
+          right: (hll_parenthesized_expression
+            (hll_binary_expression
+              left: (identifier)
+              right: (hll_number_literal)))))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_assignment_expression
+        left: (hll_subscript_expression
+          argument: (trace32_hll_variable)
+          index: (hll_range_expression
+            left: (hll_number_literal)
+            right: (hll_number_literal)))
+        right: (hll_string_literal))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+    (hll_binary_expression
+      left: (hll_subscript_expression
+        argument: (identifier)
+        index: (hll_range_expression
+          left: (hll_number_literal)
+          right: (hll_number_literal)))
+      right: (hll_number_literal)))))
+
+==================
+Extension: Escaped symbols with special characters
+==================
+
+Var.set `nestxf1::~nestxf1`
+Var.set \`ops::operator<<=`
+Var.set `class1::operator+(int)\i`
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (symbol)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (symbol)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (symbol))))

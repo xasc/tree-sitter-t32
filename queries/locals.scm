@@ -13,7 +13,7 @@
 (command_expression
   command: (identifier)
   arguments: (argument_list
-    variable: (identifier) @local.definition))
+    declarator: (trace32_hll_variable) @local.definition))
 
 ; Function definitions
 (subroutine_block

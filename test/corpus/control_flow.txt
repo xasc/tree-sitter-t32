@@ -133,7 +133,8 @@ IF TRUE()
           (command_expression
             command: (identifier)
             arguments: (argument_list
-              (identifier)
+              (format_expression
+                value: (identifier))
               (string))))
         (command_expression
           command: (identifier)
@@ -143,7 +144,8 @@ IF TRUE()
           (command_expression
             command: (identifier)
             arguments: (argument_list
-              (identifier)
+              (format_expression
+                value: (identifier))
               (string))))))
   (block
     (block
@@ -924,12 +926,11 @@ Var.IF \a<sizeof(array)
 (script
   (if_block
     command: (identifier)
-    condition: (binary_expression
-      left: (internal_c_variable)
-      right: (call_expression
-        function: (identifier)
-        arguments: (argument_list
-          (identifier))))
+    condition: (hll_binary_expression
+      left: (trace32_hll_variable)
+      right: (hll_sizeof_expression
+        type: (hll_type_descriptor
+          type: (hll_type_identifier))))
     (command_expression
       command: (identifier)
       arguments: (argument_list
@@ -947,16 +948,17 @@ Var.WHILE string_array[\i]!='\0'
 (script
   (while_block
     command: (identifier)
-    condition: (binary_expression
-      left: (c_subscript_expression
+    condition: (hll_binary_expression
+      left: (hll_subscript_expression
         argument: (identifier)
-        index: (internal_c_variable))
-      right: (character))
+        index: (trace32_hll_variable))
+      right: (hll_char_literal
+        (hll_escape_sequence)))
     (command_expression
       command: (identifier)
       arguments: (argument_list
-        (unary_expression
-          argument: (internal_c_variable))))))
+        (hll_update_expression
+          argument: (trace32_hll_variable))))))
 
 
 ==================

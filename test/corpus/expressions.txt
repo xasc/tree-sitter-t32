@@ -36,27 +36,6 @@ Recursive macro expansion
     (identifier)))
 
 ==================
-Internal C-style variable definitions
-==================
-
-Var.NEWLOCAL int \i
-Var.NEWGLOBAL char[10][128] \myStr
-
----
-
-(script
-  (command_expression
-    command: (identifier)
-    arguments: (argument_list
-      type: (type_identifier)
-      variable: (internal_c_variable)))
-  (command_expression
-    command: (identifier)
-    arguments: (argument_list
-      type: (type_identifier)
-      variable: (internal_c_variable))))
-
-==================
 Parameter declarations
 ==================
 
@@ -363,7 +342,6 @@ Symbol literals
 &c = \`ops::operator<<=`
 
 List \\sieve\sieve\fill_buffer+0x64
-Var.set `class1::operator+(int)\i`
 
 List main\47
 Data.dump func4\4+0x0e
@@ -411,10 +389,6 @@ Data.dump func4\4+0x0e
       (binary_expression
         left: (symbol)
         right: (integer))))
-  (command_expression
-    command: (identifier)
-    arguments: (argument_list
-      (symbol)))
   (command_expression
     command: (identifier)
     arguments: (argument_list
@@ -798,7 +772,9 @@ Commands
 ==================
 
 ::B::WinPrint.Data.dump  0x1000 /Byte
+Var.DRAW flags[0..16] /Alternate 3
 Data.DRAWFFT ,%Decimal.Byte,VM:0++0x4f ,, 2.0 512., ,
+COVerage.ListModule %MULTI.OBC \sieve
 List ,,Register(PC)
 
 PEDIT *
@@ -820,11 +796,25 @@ LOGGER.Mode.64Bit
     command: (identifier)
     arguments: (argument_list
       (integer)
-      (identifier)))
+      (option_expression
+        option: (identifier))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
-      (identifier)
+      (hll_subscript_expression
+        argument: (identifier)
+        index: (hll_range_expression
+          left: (hll_number_literal)
+          right: (hll_number_literal)))
+      (option_expression
+        option: (identifier)
+        value: (integer))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (format_expression
+        value: (identifier)
+        value: (identifier))
       (address
         access: (access_class)
         location: (binary_expression
@@ -832,6 +822,13 @@ LOGGER.Mode.64Bit
           right: (integer)))
       (float)
       (integer)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (format_expression
+        value: (identifier)
+        value: (identifier))
+      (symbol)))
   (command_expression
     command: (identifier)
     arguments: (argument_list
@@ -848,35 +845,24 @@ LOGGER.Mode.64Bit
     arguments: (argument_list
       (file_handle)
       (string)
-      (identifier)))
+      (option_expression
+        option: (identifier))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
-      (string
-        (macro))
-      (literal)
-      (string
-        (macro))))
-  (command_expression
-    command: (identifier)
-    arguments: (argument_list
-      (identifier)
-      (macro)
-      (literal)
-      (macro)))
-  (command_expression
-    command: (identifier)
-    arguments: (argument_list
-      (identifier)
-      (identifier)
-      (macro)
-      (literal)
       (macro)
       (macro)))
   (command_expression
     command: (identifier)
     arguments: (argument_list
-      (identifier)))
+      (macro)
+      (macro)
+      (macro)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (option_expression
+        option: (identifier))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
@@ -939,175 +925,6 @@ MYNAME: POS 22. 0. 24. 1.
       arguments: (argument_list
         (string)
         (string)))))
-
-==================
-Commands with internal C-style variables
-==================
-
-Var.Set \i=0x42
-Var.Set \myStr[5]="hello"
-ECHO %Hex Var.VALUE(\i)
-ECHO Var.STRing(\myStr[5])
-Var.View %all \i \myStr
-Var.Assign \myarr[&i]="&val"
-
----
-
-(script
-  (command_expression
-    command: (identifier)
-    arguments: (argument_list
-      (assignment_expression
-        left: (internal_c_variable)
-        right: (integer))))
-  (command_expression
-    command: (identifier)
-    arguments: (argument_list
-      (assignment_expression
-        left: (internal_c_variable)
-        right: (string))))
-  (command_expression
-    command: (identifier)
-    arguments: (argument_list
-      (identifier)
-      (call_expression
-        function: (identifier)
-        arguments: (argument_list
-          (internal_c_variable)))))
-  (command_expression
-    command: (identifier)
-    arguments: (argument_list
-      (call_expression
-        function: (identifier)
-        arguments: (argument_list
-          (internal_c_variable)))))
-  (command_expression
-    command: (identifier)
-    arguments: (argument_list
-      (identifier)
-      (internal_c_variable)
-      (internal_c_variable)))
-  (command_expression
-    command: (identifier)
-    arguments: (argument_list
-      (assignment_expression
-        left: (c_subscript_expression
-          argument: (internal_c_variable)
-          index: (macro))
-        right: (string
-          (macro))))))
-
-==================
-Commands with C expression
-==================
-
-Var.set *0x2000 = 1
-
-Var.view *(&flags+20)
-Var.set (long)__START
-
-Var.set (0xdeadbeef)(1,5.0,3)
-Var.set strcmp("123" , "abc")
-
-Var.set vdblarray[2..4][(i-1)..(i+1)]
-Var.ASSIGN \string_array[2]="element2"
-
-Var.set  flags[\a++]
-Var.set  flags[--\a]
-
-Var.View ast->left=(left_t *)ast->left->right
-
----
-
-(script
-  (command_expression
-    command: (identifier)
-    arguments: (argument_list
-      (assignment_expression
-        left: (c_pointer_expression
-          argument: (integer))
-        right: (integer))))
-  (command_expression
-    command: (identifier)
-    arguments: (argument_list
-      (c_pointer_expression
-        argument: (binary_expression
-          left: (macro)
-          right: (integer)))))
-  (command_expression
-    command: (identifier)
-    arguments: (argument_list
-      (c_cast_expression
-        type: (identifier)
-        value: (identifier))))
-  (command_expression
-    command: (identifier)
-    arguments: (argument_list
-      (call_expression
-        function: (integer)
-        arguments: (argument_list
-          (integer)
-          (float)
-          (integer)))))
-  (command_expression
-    command: (identifier)
-    arguments: (argument_list
-      (call_expression
-        function: (identifier)
-        arguments: (argument_list
-          (string)
-          (string)))))
-  (command_expression
-    command: (identifier)
-    arguments: (argument_list
-      (c_subscript_expression
-        argument: (c_subscript_expression
-          argument: (identifier)
-          index: (binary_expression
-            left: (integer)
-            right: (integer)))
-        index: (binary_expression
-          left: (binary_expression
-            left: (identifier)
-            right: (integer))
-          right: (binary_expression
-            left: (identifier)
-            right: (integer))))))
-  (command_expression
-    command: (identifier)
-    arguments: (argument_list
-      (assignment_expression
-        left: (internal_c_variable)
-        right: (string))))
-  (command_expression
-    command: (identifier)
-    arguments: (argument_list
-      (c_subscript_expression
-        argument: (identifier)
-        index: (unary_expression
-          argument: (internal_c_variable)))))
-  (command_expression
-    command: (identifier)
-    arguments: (argument_list
-      (c_subscript_expression
-        argument: (identifier)
-        index: (unary_expression
-          argument: (internal_c_variable)))))
-  (command_expression
-    command: (identifier)
-    arguments: (argument_list
-      (assignment_expression
-        left: (c_field_expression
-          argument: (identifier)
-          field: (identifier))
-        right: (c_cast_expression
-          type: (identifier
-            (identifier))
-          value: (c_field_expression
-            argument: (c_field_expression
-              argument: (identifier)
-              field: (identifier))
-            field: (identifier)))))))
 
 ==================
 Assignment expression
