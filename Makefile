@@ -44,5 +44,5 @@ test-all: build
 	yarn test
 
 
-src/parser.c: grammar.js
+src/parser.c: grammar.js src/scanner.c
 	yarn build
