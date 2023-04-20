@@ -540,8 +540,7 @@ module.exports = grammar({
     _command_argument: $ => choice(
       $._expression,
       $._command_option,
-      alias($._command_format, $.identifier),
-      $.path
+      alias($._command_format, $.identifier)
     ),
 
     _command_argument_separator: $ => choice(
@@ -688,6 +687,14 @@ module.exports = grammar({
       'bool'
     ),
 
+    _path_expression: $ => choice(
+      $.path,
+      seq(
+        $.macro,
+        $.path
+      ),
+    ),
+
     _literal: $ => choice(
       $.address,
       $.bitmask,
@@ -811,7 +818,8 @@ module.exports = grammar({
       $.unary_expression,
       $.internal_c_variable,
       $.macro,
-      $._parenthesized_expression
+      $._parenthesized_expression,
+      $._path_expression
     ),
 
     identifier: $ => /[a-zA-Z_][\w_]*/,

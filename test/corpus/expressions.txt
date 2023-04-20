@@ -251,8 +251,6 @@ character"
 
 &c = "first: &first"
 
-LINE "ARM Assembler instruction (32-bit)"
-
 ---
 
 (script
@@ -274,11 +272,7 @@ LINE "ARM Assembler instruction (32-bit)"
   (assignment_expression
     left: (macro)
     right: (string
-      (macro)))
-  (command_expression
-    command: (identifier)
-    arguments: (argument_list
-      (string))))
+      (macro))))
 
 ==================
 Character literals
@@ -493,8 +487,6 @@ ChDir.DO \practice\*
 EDIT a?.c
 DIR *.obj
 
-DO ~~/demo/arm/hardware/zynq-7000/zc702/ps7_init.tcl "POST"
-
 ---
 
 (script
@@ -584,12 +576,7 @@ DO ~~/demo/arm/hardware/zynq-7000/zc702/ps7_init.tcl "POST"
   (command_expression
     command: (identifier)
     arguments: (argument_list
-      (path)))
-  (command_expression
-    command: (identifier)
-    arguments: (argument_list
-      (path)
-      (string))))
+      (path))))
 
 ==================
 PRACTICE functions

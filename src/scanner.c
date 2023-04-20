@@ -63,6 +63,8 @@ typedef struct pathScan_s {
 	bool has_file_suffix;
 	bool has_drive;
 	bool has_wildcard;
+	bool has_root;
+	bool has_letters;
 	sequences_t seq[1];
 	unsigned num_total_slashes;
 }
@@ -125,12 +127,12 @@ void tree_sitter_t32_external_scanner_deserialize(
 
 
 static bool IsAlpha(
-int32_t const glyph)
+	int32_t const glyph)
 {
-return (
-	(glyph >= 'A' && glyph <= 'Z') ||
-	(glyph >= 'a' && glyph <= 'z')
-);
+	return (
+		(glyph >= 'A' && glyph <= 'Z') ||
+		(glyph >= 'a' && glyph <= 'z')
+	);
 }
 
 
@@ -395,11 +397,15 @@ static bool ScanPathLiteral(
 
 			if (ii == 0) {
 				is_option = true;
+				scan->has_root = true;
 			}
 		}
 		else if (lexer->lookahead == '\\' && scan->seq->num_backslashes) {
 			is_symbol = true;
 			break;
+		}
+		else if (IsAlpha(lexer->lookahead)) {
+			scan->has_letters = true;
 		}
 
 		if (ii == 1 && lexer->lookahead == ':') {
@@ -453,7 +459,8 @@ static bool ScanPathLiteral(
 		scan->has_dir_shorthand ||
 		scan->has_file_suffix ||
 		scan->has_drive ||
-		scan->has_wildcard
+		scan->has_wildcard ||
+		(scan->has_root && scan->has_letters && scan->num_total_slashes > 1u)
 	);
 }
 

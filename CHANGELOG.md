@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Added support for ENTRY %LINE
+- Added support for parameterized paths starting with a macro
 
 ### Fixed
 
