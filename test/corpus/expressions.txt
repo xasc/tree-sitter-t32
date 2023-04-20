@@ -251,6 +251,8 @@ character"
 
 &c = "first: &first"
 
+LINE "ARM Assembler instruction (32-bit)"
+
 ---
 
 (script
@@ -272,7 +274,11 @@ character"
   (assignment_expression
     left: (macro)
     right: (string
-      (macro))))
+      (macro)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (string))))
 
 ==================
 Character literals
