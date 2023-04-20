@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added support for ENTRY %LINE
 
+### Fixed
+
+- Fixed detection of paths with hypens
+
 ## [1.2.1] - 2022-12-16
 
 ### Fixed

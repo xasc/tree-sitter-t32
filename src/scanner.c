@@ -375,7 +375,6 @@ static bool ScanPathLiteral(
 			lexer->lookahead == '&' ||
 			lexer->lookahead == '%' ||
 			lexer->lookahead == '+' ||
-			lexer->lookahead == '-' ||
 			lexer->lookahead == '"' ||
 			lexer->lookahead == '`' ||
 			lexer->lookahead == '\'' ||

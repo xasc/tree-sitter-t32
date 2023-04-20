@@ -487,6 +487,8 @@ ChDir.DO \practice\*
 EDIT a?.c
 DIR *.obj
 
+DO ~~/demo/arm/hardware/zynq-7000/zc702/ps7_init.tcl "POST"
+
 ---
 
 (script
@@ -576,7 +578,12 @@ DIR *.obj
   (command_expression
     command: (identifier)
     arguments: (argument_list
-      (path))))
+      (path)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (path)
+      (string))))
 
 ==================
 PRACTICE functions
