@@ -822,7 +822,7 @@ module.exports = grammar({
       $._path_expression
     ),
 
-    identifier: $ => /[a-zA-Z_][\w_]*/,
+    identifier: $ => /[\w_]*/,
 
     comment: $ => /[ \t]*(;|\/\/)(\\\r?\n|[^\n])*\n+/,
 

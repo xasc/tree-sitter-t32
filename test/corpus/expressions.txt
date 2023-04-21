@@ -600,6 +600,8 @@ PRACTICE functions
 
 WAIT !RUN()
 
+PRINT SOFTWARE.64BIT()
+
 ---
 
 (script
@@ -678,7 +680,13 @@ WAIT !RUN()
         (unary_expression
           argument: (call_expression
             function: (identifier)
-            arguments: (argument_list))))))
+            arguments: (argument_list)))))
+    (command_expression
+      command: (identifier)
+      arguments: (argument_list
+        (call_expression
+          function: (identifier)
+          arguments: (argument_list)))))
 
 ==================
 Commands
@@ -697,6 +705,8 @@ OS.Hidden copy /b &a + &b  &c
 
 CD.DO /home
 do a/b/c
+
+LOGGER.Mode.64Bit
 
 ---
 
@@ -767,7 +777,9 @@ do a/b/c
         left: (binary_expression
           left: (identifier)
           right: (identifier))
-        right: (identifier)))))
+        right: (identifier))))
+  (command_expression
+    command: (identifier)))
 
 ==================
 Commands with embedded blocks

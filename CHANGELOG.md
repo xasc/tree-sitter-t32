@@ -12,9 +12,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added support for ENTRY %LINE
 - Added support for parameterized paths starting with a macro
 
+### Changed
+
+- To support more PRACTICE command and functions identifiers can now start with a number
+
 ### Fixed
 
-- Fixed detection of paths with hypens
+- Fixed detection of paths with hyphens
 
 ## [1.2.1] - 2022-12-16
 
