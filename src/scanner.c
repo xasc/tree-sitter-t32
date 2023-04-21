@@ -281,6 +281,8 @@ static unsigned ScanLengthDecimalNumber(
 	 *
 	 * LOCAL &e
 	 * &e = 1.0%
+	 *
+	 * WINPOS A 50%,0
 	 */
 	MarkEnd(lexer);
 
@@ -329,10 +331,10 @@ static unsigned ScanLengthDecimalNumber(
 		return 0;
 	}
 
-	// Check for percentage literals
+	// Check for percentage literals separated by space or argument separator
 	if (lexer->lookahead == '%') {
 		Advance(lexer);
-		if (IsSpace(lexer->lookahead)) {
+		if (IsSpace(lexer->lookahead) || lexer->lookahead == ',') {
 			return 0;
 		}
 	}

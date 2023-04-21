@@ -32,4 +32,3 @@ Data.LOAD.Elf &workspace/ultra96-vx7vip64/default/vxWorks
     arguments: (argument_list
       (macro)
       (path))))
-

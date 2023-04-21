@@ -227,6 +227,8 @@ Percentage literals
 
 WinPOS 0% 30.70%
 
+InterCom.execute A FramePOS 50%,0,49%,83%
+
 ---
 
 (script
@@ -234,7 +236,17 @@ WinPOS 0% 30.70%
     command: (identifier)
     arguments: (argument_list
       (percentage)
+      (percentage)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)
+      (identifier)
+      (percentage)
+      (integer)
+      (percentage)
       (percentage))))
+
 
 ==================
 String literals
