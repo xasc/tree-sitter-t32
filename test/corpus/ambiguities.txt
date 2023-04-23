@@ -1,5 +1,5 @@
 ==================
-String literals with operator
+String literals with operators
 ==================
 
 LINE "3*(32-bit)"
@@ -32,3 +32,44 @@ Data.LOAD.Elf &workspace/ultra96-vx7vip64/default/vxWorks
     arguments: (argument_list
       (macro)
       (path))))
+
+==================
+Addresses with nested expressions
+==================
+
+&a = P:&HEAD
+&a = EA:&HEAD+0x4
+
+&b = NS:&nVmid:::0x0::0x0
+&b = N:&mid:::0
+
+---
+
+(script
+  (assignment_expression
+    left: (macro)
+    right: (address
+      access: (access_class)
+      location: (macro)))
+  (assignment_expression
+    left: (macro)
+    right: (address
+      access: (access_class)
+      location: (binary_expression
+        left: (macro)
+        right: (integer))))
+  (assignment_expression
+    left: (macro)
+    right: (address
+      access: (access_class)
+      (memory_space
+        machine: (macro)
+        space: (integer))
+      location: (integer)))
+  (assignment_expression
+    left: (macro)
+    right: (address
+      access: (access_class)
+      (memory_space
+        machine: (macro))
+      location: (integer))))

@@ -509,7 +509,12 @@ ON CATRIGGER DEFault
     (identifier)
     (argument_list
       (identifier)
-      (address)
+      (address
+        (access_class)
+        (memory_space
+          (integer)
+          (integer))
+        (integer))
       (identifier)))
   (command_expression
     (identifier)
@@ -784,7 +789,12 @@ GLOBALON PBREAKAT P:3:::42:0xfff8000 DO run.cmm
     (identifier)
     (argument_list
       (identifier)
-      (address)
+      (address
+        (access_class)
+        (memory_space
+          (integer)
+          (integer))
+        (integer))
       (identifier)
       (path))))
 

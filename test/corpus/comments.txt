@@ -39,19 +39,22 @@ Comments before line with trailing whitespaces
   (command_expression
     (identifier)
     (argument_list
-      (access_class)
-      (binary_expression
-        (call_expression
-          (identifier)
-          (argument_list))
-        (integer))
+      (address
+        (access_class)
+        (binary_expression
+          (call_expression
+            (identifier)
+            (argument_list))
+          (integer)))
       (identifier)
       (integer))
     (comment))
   (command_expression
     (identifier)
     (argument_list
-      (address)
+      (address
+        (access_class)
+        (integer))
       (identifier)
       (bitmask))
     (comment)))

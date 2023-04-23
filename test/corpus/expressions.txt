@@ -432,42 +432,127 @@ Address literals
 
 &a = P:0x1af
 &a = P:1234
-&a = P:1234.
+&a = L1:1234.
 
 &b = UD:0x1000
 &b = NSP:1:::50.::0x0000:0xffff000008080004
 
-&c = P:&HEAD
-&c = EA:&HEAD+0x4
+&c = A:0y1:::2.:0xffff000008080004
+&c = B:0xa::22:10
+&c = C:10:0x00ffffff
+
+&d = 0xa:0xffff000008080004
+&d = 0xa::0xffff000008080004
+&d = 0xa:::0xffff000008080004
+
+&e = 1::2:0xffff000008080004
+&e = 1:::2::0xffff000008080004
+&e = 1:::2:0xffff000008080004
+
+&f = 1:::2::3:0xffff000008080004
 
 ---
 
 (script
   (assignment_expression
     left: (macro)
-    right: (address))
+    right: (address
+      access: (access_class)
+      location: (integer)))
   (assignment_expression
     left: (macro)
-    right: (address))
+    right: (address
+      access: (access_class)
+      location: (integer)))
   (assignment_expression
     left: (macro)
-    right: (address))
+    right: (address
+      access: (access_class)
+      location: (integer)))
   (assignment_expression
     left: (macro)
-    right: (address))
+    right: (address
+      access: (access_class)
+      location: (integer)))
   (assignment_expression
     left: (macro)
-    right: (address))
+    right: (address
+      access: (access_class)
+      (memory_space
+        machine: (integer)
+        space: (integer)
+        segment: (integer))
+      location: (integer)))
   (assignment_expression
     left: (macro)
-    right: (access_class)
-    right: (macro))
+    right: (address
+      access: (access_class)
+      (memory_space
+        machine: (integer)
+        segment: (integer))
+      location: (integer)))
   (assignment_expression
     left: (macro)
-    right: (access_class)
-    right: (binary_expression
-      left: (macro)
-      right: (integer))))
+    right: (address
+      access: (access_class)
+      (memory_space
+        space: (integer)
+        segment: (integer))
+      location: (integer)))
+  (assignment_expression
+    left: (macro)
+    right: (address
+      access: (access_class)
+      (memory_space
+        segment: (integer))
+      location: (integer)))
+  (assignment_expression
+    left: (macro)
+    right: (address
+      (memory_space
+        segment: (integer))
+      location: (integer)))
+  (assignment_expression
+    left: (macro)
+    right: (address
+      (memory_space
+        space: (integer))
+      location: (integer)))
+  (assignment_expression
+    left: (macro)
+    right: (address
+      (memory_space
+        machine: (integer))
+      location: (integer)))
+  (assignment_expression
+    left: (macro)
+    right: (address
+      (memory_space
+        space: (integer)
+        segment: (integer))
+      location: (integer)))
+  (assignment_expression
+    left: (macro)
+    right: (address
+      (memory_space
+        machine: (integer)
+        space: (integer))
+      location: (integer)))
+  (assignment_expression
+    left: (macro)
+    right: (address
+      (memory_space
+        machine: (integer)
+        segment: (integer))
+      location: (integer)))
+  (assignment_expression
+    left: (macro)
+    right: (address
+      (memory_space
+        machine: (integer)
+        space: (integer)
+        segment: (integer))
+      location: (integer))))
 
 ==================
 Path literals
@@ -639,7 +724,9 @@ PRINT SOFTWARE.64BIT()
     right: (call_expression
       function: (identifier)
       arguments: (argument_list
-        (address))))
+        (address
+          access: (access_class)
+          location: (integer)))))
   (assignment_expression
     left: (macro)
     right: (call_expression
@@ -732,9 +819,11 @@ LOGGER.Mode.64Bit
     command: (identifier)
     arguments: (argument_list
       (identifier)
-      (binary_expression
-        left: (address)
-        right: (integer))
+      (address
+        access: (access_class)
+        location: (binary_expression
+          left: (integer)
+          right: (integer)))
       (float)
       (integer)))
   (command_expression

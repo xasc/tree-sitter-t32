@@ -22,7 +22,8 @@
 
 const PREC = {
   os_command_operators: -1,
-  address: 1,
+  memory_space: 1,
+  address: 2,
   logical_or: 10,
   logical_xor: 11,
   logical_and: 12,
@@ -48,8 +49,6 @@ const RE_BIN_HEX_NUMBER = [
   /0[xX][0-9a-fA-F]+/,  // Hexadecimal
 ]
 
-const ALPHANUM = '[a-zA-Z0-9]+'
-
 module.exports = grammar({
   name: 't32',
 
@@ -67,8 +66,13 @@ module.exports = grammar({
     [$._binary_expression, $._and_expression],
     [$._expression, $._function_identifier],
     [$._expression, $.c_type_declaration],
+    [$._expression, $.c_type_declaration],
+    [$._expression, $._address_expression],
     [$._command_argument, $.assignment_expression],
-    [$.argument_list, $.assignment_expression]
+    [$.argument_list, $.assignment_expression],
+    [$._address_expression, $._literal],
+    [$.memory_space],
+    [$.address]
   ],
 
   extras: $ => [
@@ -264,12 +268,12 @@ module.exports = grammar({
       $._terminator
     )),
 
-   unary_expression: $ => choice(
+    unary_expression: $ => choice(
       $._prefix_postfix_expression,
       $._unary_expression
     ),
 
-   _unary_expression: $ => prec.left(PREC.unary, seq(
+    _unary_expression: $ => prec.left(PREC.unary, seq(
       field('operator', choice(
         '+', '-', '~', '!'
       )),
@@ -342,11 +346,11 @@ module.exports = grammar({
     },
 
     assignment_expression: $ => prec.right(seq(
-        field('left', $._expression),
-        repeat($._blank),
-        field('operator', '='),
-        repeat($._blank),
-        field('right', $._expression)
+      field('left', $._expression),
+      repeat($._blank),
+      field('operator', '='),
+      repeat($._blank),
+      field('right', $._expression)
     )),
 
     _label: $ => seq(
@@ -699,7 +703,6 @@ module.exports = grammar({
       $.address,
       $.bitmask,
       $.character,
-      $._compound_address,
       $.file_handle,
       $.float,
       $.frequency,
@@ -710,6 +713,107 @@ module.exports = grammar({
       $.symbol,
       $.time
     ),
+
+    _address_expression: $ => choice(
+      $.integer,
+      $.macro,
+      alias($._address_binary_expression, $.binary_expression),
+      $.call_expression,
+      $._parenthesized_address_expression
+    ),
+
+    memory_space: $ => prec(PREC.memory_space, choice(
+      // Machine identifier:::Memory space identifier::Memory segment identifier:
+      seq(
+        field('machine', $._address_expression),
+        ':::',
+        field('space', $._address_expression),
+        '::',
+        field('segment', $._address_expression),
+        ':'
+      ),
+      seq(
+        field('machine', $._address_expression),
+        ':::',
+        choice(
+          seq(
+            field('space', $._address_expression),
+            '::'
+          ),
+          seq(
+            field('segment', $._address_expression),
+            ':'
+          )
+        )
+      ),
+      seq(
+        field('space', $._address_expression),
+        '::',
+        field('segment', $._address_expression),
+        ':'
+      ),
+      seq(
+        field('machine', $._address_expression),
+        ':::'
+      ),
+      seq(
+        field('space', $._address_expression),
+        '::'
+      ),
+      seq(
+        field('segment', $._address_expression),
+        ':'
+      )
+    )),
+
+    access_class: $ => /[a-zA-Z][a-zA-Z0-9]*:/,
+
+    address: $ => prec(PREC.address, seq(
+      choice(
+        seq(
+          field('access', $.access_class),
+          optional($.memory_space)
+        ),
+        $.memory_space
+      ),
+      field('location', $._address_expression)
+    )),
+
+    _parenthesized_address_expression: $ => choice(
+      seq(
+        '(',
+        $._address_expression,
+        ')'
+      ),
+      seq(
+        '{',
+        $._address_expression,
+        '}'
+      )
+    ),
+
+    _address_binary_expression: $ => {
+      const operators = [
+        ['+', PREC.add_sub],
+        ['-', PREC.add_sub],
+        ['*', PREC.mul_div_mod],
+        ['/', PREC.mul_div_mod],
+        ['%', PREC.mul_div_mod],
+        ['|', PREC.bitwise_or],
+        ['^', PREC.bitwise_xor],
+        ['..', PREC.range],
+        ['--', PREC.range],
+        ['++', PREC.range]
+      ];
+
+      return choice(...operators.map(([op, pre]) => {
+        return prec.left(pre, seq(
+          field('left', $._address_expression),
+          field('operator', op),
+          field('right', $._address_expression)
+        ))
+      }));
+    },
 
     integer: $ => choice(
       ...RE_BIN_HEX_NUMBER,
@@ -725,29 +829,6 @@ module.exports = grammar({
       /0y[0-9xX]+/,  // Bitmask
       /0x[0-9a-fA-FxX]+/,  // Hexmask
     ),
-
-    _compound_address: $ => prec.left(seq(
-      $.access_class,
-      $._expression
-    )),
-
-    access_class: $ => {
-      return new RegExp(ALPHANUM + ':')
-    },
-
-    address: $ => {
-      return prec(PREC.address, seq(
-        alias($.access_class, 'access_class'),
-        repeat(new RegExp(ALPHANUM + '[.]?:+')),  // Machine identifier:::Memory space identifier::Memory segment identifier:
-        choice(
-          ...RE_BIN_HEX_NUMBER,
-          seq(
-            $._decimal_number_pre_hook,
-            $._decimal_number
-          )
-        )
-      ))
-    },
 
     string: $ => seq(
       '"',
@@ -822,7 +903,7 @@ module.exports = grammar({
       $._path_expression
     ),
 
-    identifier: $ => /[0-9]*[A-Za-z_][\w_]*/,
+    identifier: $ => /[0-9]*[A-Za-z_]\w*/,
 
     comment: $ => /[ \t]*(;|\/\/)(\\\r?\n|[^\n])*\n+/,
 

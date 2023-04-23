@@ -11,10 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added support for ENTRY %LINE
 - Added support for parameterized paths starting with a macro
+- Added token (memory_space) for machine, memory space and memory segment identifiers
+- Improved support for nested expressions in memory space
 
 ### Changed
 
 - To support more PRACTICE command and functions identifiers can now start with a number
+- The structure of the access class and memory space components of addresses are
+  checked for correctness.
 
 ### Fixed
 
