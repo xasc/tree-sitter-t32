@@ -314,10 +314,9 @@ static unsigned ScanLengthDecimalNumber(
 	}
 
 	// Check for binary, hexadecimal numbers, time and frequency
-	// literals, and addresses
+	// literals, strings and symbols
 	if (
-		// addresses
-		lexer->lookahead == ':' || lexer->lookahead ==  '\'' ||
+		lexer->lookahead ==  '\'' || lexer->lookahead ==  '`' ||
 		// bitmasks
 		lexer->lookahead == 'x' || lexer->lookahead == 'X' ||
 		lexer->lookahead == 'y' || lexer->lookahead == 'Y' ||
