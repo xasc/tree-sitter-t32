@@ -10,6 +10,8 @@ pipeline:
       - cargo check
       - cargo test
       - cargo install tree-sitter-cli
+      - apt-get update
+      - apt-get install --no-install-recommends --yes nodejs
       - tree-sitter generate
       - tree-sitter test
 
