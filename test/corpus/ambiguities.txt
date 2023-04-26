@@ -73,3 +73,17 @@ Addresses with nested expressions
       (memory_space
         machine: (macro))
       location: (integer))))
+
+==================
+Core names with numeric suffixes
+==================
+
+SYStem.CPU ZYNQ-7000
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier))))
