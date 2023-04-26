@@ -1,3 +1,6 @@
+matrix:
+  RUST: [stable]
+
 pipeline:
   build:
     image: node:bullseye
@@ -9,3 +12,13 @@ pipeline:
       - yarn install
       - yarn run tree-sitter generate
       - yarn run tree-sitter test
+
+  test:
+    image: rust
+    environment: [CARGO_TERM_COLOR=always]
+    commands:
+      - rustup default $RUST
+      - cargo check
+      - cargo test
+      - cargo install tree-sitter-cli
+      - tree-sitter test
