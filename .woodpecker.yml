@@ -2,7 +2,18 @@ matrix:
   RUST: [stable]
 
 pipeline:
-  build:
+  test-rust:
+    image: rust
+    environment: [CARGO_TERM_COLOR=always]
+    commands:
+      - rustup default $RUST
+      - cargo check
+      - cargo test
+      - cargo install tree-sitter-cli
+      - tree-sitter generate
+      - tree-sitter test
+
+  test-nodejs:
     image: node:bullseye
     environment:
       - DEBIAN_FRONTEND=noninteractive
@@ -12,13 +23,6 @@ pipeline:
       - yarn install
       - yarn run tree-sitter generate
       - yarn run tree-sitter test
+    when:
+      path: "package.json"
 
-  test:
-    image: rust
-    environment: [CARGO_TERM_COLOR=always]
-    commands:
-      - rustup default $RUST
-      - cargo check
-      - cargo test
-      - cargo install tree-sitter-cli
-      - tree-sitter test
