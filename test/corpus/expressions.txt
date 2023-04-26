@@ -451,6 +451,8 @@ Address literals
 
 &f = 1:::2::3:0xffff000008080004
 
+&g = N:
+
 ---
 
 (script
@@ -552,7 +554,11 @@ Address literals
         machine: (integer)
         space: (integer)
         segment: (integer))
-      location: (integer))))
+      location: (integer)))
+  (assignment_expression
+    left: (macro)
+    right: (address
+      (access_class))))
 
 ==================
 Path literals

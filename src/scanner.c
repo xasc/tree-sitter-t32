@@ -459,7 +459,7 @@ static bool ScanPathLiteral(
 	return (
 		scan->has_dir_shorthand ||
 		scan->has_file_suffix ||
-		scan->has_drive ||
+		(scan->has_drive && ii > 2u) ||  // Drive letter + ':' + '\\'
 		scan->has_wildcard ||
 		(scan->has_root && scan->has_letters && scan->num_total_slashes > 1u)
 	);

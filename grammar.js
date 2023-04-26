@@ -790,15 +790,18 @@ module.exports = grammar({
 
     access_class: $ => /[a-zA-Z][a-zA-Z0-9]*:/,
 
-    address: $ => seq(
-      choice(
-        seq(
-          field('access', $.access_class),
-          optional($.memory_space)
+    address: $ => choice(
+      seq(
+        choice(
+          seq(
+            field('access', $.access_class),
+            optional($.memory_space)
+          ),
+          $.memory_space
         ),
-        $.memory_space
+        field('location', $._address_expression)
       ),
-      field('location', $._address_expression)
+      $.access_class
     ),
 
     _parenthesized_address_expression: $ => choice(
