@@ -75,10 +75,11 @@ Addresses with nested expressions
       location: (integer))))
 
 ==================
-Core names with numeric suffixes
+Commands with multi-part names
 ==================
 
 SYStem.CPU ZYNQ-7000
+SYStem.CONFIG L2CACHE Type L2C-310
 
 ---
 
@@ -86,4 +87,10 @@ SYStem.CPU ZYNQ-7000
   (command_expression
     command: (identifier)
     arguments: (argument_list
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)
+      (identifier)
       (identifier))))

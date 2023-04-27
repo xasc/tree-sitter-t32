@@ -421,29 +421,6 @@ module.exports = grammar({
       optional(')')
     )),
 
-    _core_selection_command: $ => seq(
-      field('command', alias(token(seq(
-        longAndShortForm('SYStem'),
-        '.',
-        longAndShortForm('CPU')
-        )),
-        $.identifier
-      )),
-      repeat1($._blank),
-      field('arguments', alias($._core_selection_command_arguments, $.argument_list)),
-      $._terminator
-    ),
-
-    _core_selection_command_arguments: $ => alias(
-      token(seq(
-        /[A-Za-z][A-Za-z0-9]+/,
-        repeat(seq(
-          '-',
-          /[A-Za-z0-9]+/
-        ))
-      )),
-      $.identifier),
-
     _var_command: $ => choice(
       seq(
         field('command', alias($._var_definition_command_identifier, $.identifier)),
@@ -526,8 +503,7 @@ module.exports = grammar({
           field('command', alias($._command_identifier, $.identifier)),
           field('arguments', optional(alias($._command_arguments, $.argument_list))),
           $._terminator
-        ),
-        $._core_selection_command
+        )
       )
     ),
 
@@ -725,6 +701,7 @@ module.exports = grammar({
       $.address,
       $.bitmask,
       $.character,
+      alias($._composed_name, $.identifier),
       $.file_handle,
       $.float,
       $.frequency,
@@ -882,6 +859,14 @@ module.exports = grammar({
       /[\\]{2,3}([\w_]+|`[^`\n]+`)/,  // Machine or program name
       /\\`[^`\n]+`/,  // Quoted module name only
       /[\w_]+\\[0-9]+/,  // Function name with line number offset
+    )),
+
+    _composed_name: $ => token(seq(
+      /[A-Za-z][A-Za-z0-9]+/,
+      repeat1(seq(
+        '-',
+        /[A-Za-z0-9]+/
+      ))
     )),
 
     time: $ => /[0-9]+\.?[0-9]*[mnu]*s/,
