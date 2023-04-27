@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2022 Christoph Sax
+  Copyright (c) 2022-2023 Christoph Sax
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal
@@ -60,8 +60,8 @@ pub const NODE_TYPES: &'static str = include_str!("../../src/node-types.json");
 
 pub const HIGHLIGHTS_QUERY: &'static str = include_str!("../../queries/highlights.scm");
 pub const LOCALS_QUERY: &'static str = include_str!("../../queries/locals.scm");
-// pub const INJECTIONS_QUERY: &'static str = include_str!("../../queries/injections.scm");
-// pub const TAGS_QUERY: &'static str = include_str!("../../queries/tags.scm");
+pub const INJECTIONS_QUERY: &'static str = include_str!("../../queries/injections.scm");
+pub const TAGS_QUERY: &'static str = include_str!("../../queries/tags.scm");
 
 #[cfg(test)]
 mod tests {

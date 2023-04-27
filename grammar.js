@@ -1,5 +1,5 @@
 /*
-   Copyright (c) 2022 Christoph Sax
+   Copyright (c) 2022-2023 Christoph Sax
 
    Permission is hereby granted, free of charge, to any person obtaining a copy
    of this software and associated documentation files (the "Software"), to deal
