@@ -87,10 +87,11 @@ verify_password:
 ;                     ^ number
     SYStem.Mode.Attach
 
-    Data.Set EAXI:0x34000000 %Long 0x34000100 0x34000021 /verify
+    Data.Set N: EAXI:0x34000000 %Long 0x34000100 0x34000021 /verify
 ;            ^ number
-;                             ^ constant.builtin
-;                                                         ^ constant
+;               ^ number
+;                                ^ constant.builtin
+;                                                            ^ constant
 
     RETURN TRUE()
 ;   ^ keyword.return
