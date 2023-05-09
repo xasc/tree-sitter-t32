@@ -1,7 +1,7 @@
 [package]
 name = "tree-sitter-t32"
 description = "Lauterbach TRACE32 script language grammar for tree-sitter"
-version = "1.3.0"
+version = "1.3.1"
 keywords = ["parser", "lexer", "trace32", "t32", "lauterbach", "practice"]
 categories = ["parsing", "text-editors"]
 repository = "https://codeberg.org/xasc/tree-sitter-t32/"
