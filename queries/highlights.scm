@@ -95,6 +95,7 @@
 ; Parameter declarations
 (parameter_declaration
   command: (identifier) @keyword
+  (identifier)? @constant.builtin
   macro: (macro) @variable.parameter)
 
 ; Variables, constants and labels

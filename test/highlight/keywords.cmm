@@ -5,6 +5,11 @@ ENTRY &password
 ; <- keyword
 ;        ^ variable.parameter
 
+ENTRY %LINE &salt
+; <- keyword
+;      ^ constant.builtin
+;            ^ variable.parameter
+
 IF "&password"==""
 ; <- conditional
 ;  ^ string
