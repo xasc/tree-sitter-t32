@@ -61,7 +61,7 @@ ELSE
     (else_block
       command: (identifier)
       (command_expression
-      command: (identifier))))
+        command: (identifier))))
   (if_block
     command: (identifier)
     condition: (macro)
@@ -73,7 +73,7 @@ ELSE
         command: (identifier)
         condition: (macro)
         (command_expression
-      command: (identifier)))))
+          command: (identifier)))))
   (if_block
     command: (identifier)
     condition: (macro)
@@ -973,7 +973,7 @@ printA:
   RETURN
 )
 
-SUBROUTINE printB
+sUBROUtINE printB
 (
   ENTRY &in
 
