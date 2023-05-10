@@ -30,7 +30,9 @@
 
 
 #if defined(_MSC_VER)
-# define _Static_assert(c__, msg__)  static_assert((c__))
+# define STATIC_ASSERT(c__, msg__)  static_assert(c__, msg__)
+#else
+# define STATIC_ASSERT(c__, msg__)  _Static_assert(c__, msg__)
 #endif
 
 
@@ -104,7 +106,7 @@ unsigned tree_sitter_t32_external_scanner_serialize(
 	scannerState_t *const s = (scannerState_t *) payload;
 
 	size_t const num = sizeof(s[0]);
-	_Static_assert(sizeof(s[0]) <= TREE_SITTER_SERIALIZATION_BUFFER_SIZE, "Buffer too small");
+	STATIC_ASSERT(sizeof(s[0]) <= TREE_SITTER_SERIALIZATION_BUFFER_SIZE, "Buffer too small");
 
 	memcpy(buffer, s, num);
 	return num;
