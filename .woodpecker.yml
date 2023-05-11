@@ -16,7 +16,7 @@ pipeline:
       - tree-sitter test
     when:
       path:
-        exclude: [ 'README.md', 'CHANGELOG.md', 'LICENSE' ]
+        exclude: [ './*.md', 'LICENSE' ]
 
   test-nodejs:
     image: node:bullseye
