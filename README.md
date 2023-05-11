@@ -290,7 +290,6 @@ TearDownTestCase:
 
 </details>
 
-```
 
 ```bash
 tree-sitter tags <path>
