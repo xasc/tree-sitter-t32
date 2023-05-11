@@ -14,6 +14,9 @@ pipeline:
       - apt-get install --no-install-recommends --yes nodejs
       - tree-sitter generate
       - tree-sitter test
+    when:
+      path:
+        exclude: [ 'README.md', 'CHANGELOG.md', 'LICENSE' ]
 
   test-nodejs:
     image: node:bullseye
