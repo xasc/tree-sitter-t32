@@ -158,7 +158,6 @@ tree-sitter parse <path>
   (command_expression [33, 0] - [34, 0]
     command: (identifier [33, 0] - [33, 5])))
 ```
-
 </details>
 
 #### Highlight TRACE32 Script
@@ -167,6 +166,154 @@ Use tree-sitter to highlight a TRACE32 script.
 ```bash
 tree-sitter highlight <path>
 ```
+
+#### Create Code Navigation Tags
+
+<details>
+
+<summary>Use tree-sitter to create a tags file from a TRACE32 script.</summary>
+```
+; --------------------------------------------------------------------------------
+; @Title: Example test case for Unittests
+; @Description:
+;   This is an example for a test case which can be executed with lbunit.cmm.
+; @Keywords: lbtest test case
+; @Author: MOB
+; @Copyright: (C) 1989-2015 Lauterbach GmbH, licensed for use with TRACE32(R) only
+; --------------------------------------------------------------------------------
+; $Id: test_example.cmm 8648 2015-09-03 17:04:05Z mobermeir $
+
+; the following block must be present in the beginning of every test case
+PRIVATE &func &args &result
+ENTRY &func %LINE &args
+GOSUB &func &args // call subroutine and return result
+ENTRY %LINE &result
+ENDDO &result
+; end of mandatory block
+
+; SetupTestCase will be called once at the beginning of the test case
+; It can be removed if it is not needed.
+SetupTestCase:
+(
+  PRIVATE &date
+  &date=DATE.DATE()+" "+DATE.TIME()
+  PUTS "test case started at: &date"
+  RETURN
+)
+
+; SetupTest will be called just before every test
+; It can be removed if it is not needed.
+SetupTest:
+(
+  ; here can be some setup
+  Data.Set VM:0x0--0xFF 0xA
+  RETURN
+)
+
+; All tests must start with "Test_"
+Test_MyFirstTest:
+(
+  ; Assertions can be used:
+  A_FALSE FALSE()
+  A_TRUE (1.+1.==2.)
+  RETURN
+)
+
+Test_MySecondTest:
+(
+  A_NUM_EQ 0xA Data.Byte(VM:0x0)
+  A_X_PASS Data.Set VM:0x0 0xB
+  A_NUM_EQ 0xB Data.Byte(VM:0x0)
+  RETURN
+)
+
+Test_MyThirdTest:
+(
+  ; Tests can return "PASS", "FAIL" or "NOT_EXEC"
+  ; (alternatively or in addition to assertions)
+  IF (0xA!=Data.Byte(VM:0x0))
+  (
+    RETURN "FAIL"
+  )
+  ELSE IF (0xB==Data.Byte(VM:0x0))
+  (
+    RETURN "NOT_EXEC"
+  )
+  ELSE
+  (
+    RETURN "PASS"
+  )
+  RETURN // same as "PASS"
+)
+
+MyHelper:
+(
+  A_NUM_EQ 0xA Data.Byte(VM:0x10)
+  RETURN
+)
+
+Test_MyFourthTest:
+(
+  ; tests can call helper functions
+  RePeaT 2.
+  (
+    GOSUB MyHelper
+  )
+  RETURN
+)
+
+DisabledTest_MyFifthTest:
+(
+  ; this routine will not be executed since it doesn't start with "Test_"
+  RETURN
+)
+
+; TearDownTest will be called just after every test
+; It can be removed if it is not needed.
+TearDownTest:
+(
+  ; here could be some cleanup
+  Break.RESet
+  RETURN
+)
+
+; TearDownTestCase will be called once at the end of the test case
+; It can be removed if it is not needed.
+TearDownTestCase:
+(
+  PRIVATE &date
+  &date=DATE.DATE()+" "+DATE.TIME()
+  PUTS "test case ended at: &date"
+  RETURN
+)
+```
+
+</details>
+
+```
+
+```bash
+tree-sitter tags <path>
+```
+
+<details>
+
+<summary>Prints a list of tags</summary>
+```
+func      	 | call    	ref (13, 7) - (13, 11) `GOSUB &func &args // call subroutine and return result`
+SetupTestCase	 | function	def (20, 0) - (20, 13) `SetupTestCase:`
+SetupTest 	 | function	def (30, 0) - (30, 9) `SetupTest:`
+Test_MyFirstTest	 | function	def (38, 0) - (38, 16) `Test_MyFirstTest:`
+Test_MySecondTest	 | function	def (46, 0) - (46, 17) `Test_MySecondTest:`
+Test_MyThirdTest	 | function	def (54, 0) - (54, 16) `Test_MyThirdTest:`
+MyHelper  	 | function	def (73, 0) - (73, 8) `MyHelper:`
+Test_MyFourthTest	 | function	def (79, 0) - (79, 17) `Test_MyFourthTest:`
+MyHelper  	 | call    	ref (84, 10) - (84, 18) `GOSUB MyHelper`
+DisabledTest_MyFifthTest	 | function	def (89, 0) - (89, 24) `DisabledTest_MyFifthTest:`
+TearDownTest	 | function	def (97, 0) - (97, 12) `TearDownTest:`
+TearDownTestCase	 | function	def (106, 0) - (106, 16) `TearDownTestCase:`
+```
+</details>
 
 ## Syntax Highlighting
 
