@@ -27,6 +27,7 @@ tree-sitter generate
 <summary>Use tree-sitter to parse a TRACE32 script</summary>
 
 Example:
+
 ```
 ; --------------------------------------------------------------------------------
 ; @Title: Beautify an existing PRACTICE script
@@ -63,6 +64,7 @@ ELSE
 
 ENDDO
 ```
+
 </details>
 
 ```bash
@@ -158,6 +160,7 @@ tree-sitter parse <path>
   (command_expression [33, 0] - [34, 0]
     command: (identifier [33, 0] - [33, 5])))
 ```
+
 </details>
 
 #### Highlight TRACE32 Script
@@ -172,6 +175,7 @@ tree-sitter highlight <path>
 <details>
 
 <summary>Use tree-sitter to create a tags file from a TRACE32 script.</summary>
+
 ```
 ; --------------------------------------------------------------------------------
 ; @Title: Example test case for Unittests
@@ -290,14 +294,14 @@ TearDownTestCase:
 
 </details>
 
-
 ```bash
 tree-sitter tags <path>
 ```
 
 <details>
 
-<summary>Prints a list of tags</summary>
+<summary>Prints a list of tags.</summary>
+
 ```
 func      	 | call    	ref (13, 7) - (13, 11) `GOSUB &func &args // call subroutine and return result`
 SetupTestCase	 | function	def (20, 0) - (20, 13) `SetupTestCase:`
@@ -312,6 +316,7 @@ DisabledTest_MyFifthTest	 | function	def (89, 0) - (89, 24) `DisabledTest_MyFift
 TearDownTest	 | function	def (97, 0) - (97, 12) `TearDownTest:`
 TearDownTestCase	 | function	def (106, 0) - (106, 16) `TearDownTestCase:`
 ```
+
 </details>
 
 ## Syntax Highlighting
