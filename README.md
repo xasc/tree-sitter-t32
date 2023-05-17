@@ -170,6 +170,14 @@ Use tree-sitter to highlight a TRACE32 script.
 tree-sitter highlight <path>
 ```
 
+<details>
+
+<summary>Prints the highlighted file</summary>
+
+[![asciicast](https://asciinema.org/a/fY05yHO74XYG6vPngFG3zAgUb.svg)](https://asciinema.org/a/fY05yHO74XYG6vPngFG3zAgUb)
+
+</details>
+
 #### Create Code Navigation Tags
 
 <details>
