@@ -308,7 +308,7 @@ tree-sitter tags <path>
 
 <details>
 
-<summary>Prints a list of tags.</summary>
+<summary>Prints a list of tags</summary>
 
 ```
 func      	 | call    	ref (13, 7) - (13, 11) `GOSUB &func &args // call subroutine and return result`
