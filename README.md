@@ -331,7 +331,7 @@ TearDownTestCase	 | function	def (106, 0) - (106, 16) `TearDownTestCase:`
 
 | Editor                                     | Plugin                                                                | Syntax Highlighting | Local Variables  | Folds  | Indents  |
 | -------------                              | -------------                                                         | :-----------------: | :--------------: | :----: | :------: |
-| [Neovim](https://github.com/neovim/neovim) | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) | ✓                   | ✓                | ✓      | −        |
+| [Neovim](https://github.com/neovim/neovim) | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) | ✓                   | ✓                | ✓      | ✓        |
 
 ## References
 
