@@ -24,7 +24,7 @@ tree-sitter generate
 
 <details>
 
-<summary>Use tree-sitter to parse a TRACE32 script</summary>
+<summary>Use tree-sitter to parse a TRACE32 script.</summary>
 
 Example:
 
