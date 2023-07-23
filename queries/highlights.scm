@@ -1,3 +1,26 @@
+; Operators in command and conditional HLL expressions
+(hll_comma_expression
+  "," @operator)
+
+(hll_conditional_expression
+  [
+   "?"
+   ":"
+] @conditional.ternary)
+
+[
+  "enum"
+  "struct"
+  "union"
+] @keyword
+
+"sizeof" @keyword.operator
+
+[
+  "const"
+  "volatile"
+] @type.qualifier
+
 [
   "="
   "^^"
@@ -28,6 +51,18 @@
   "&"
   "->"
   "*"
+  "-="
+  "+="
+  "*="
+  "/="
+  "%="
+  "|="
+  "&="
+  "^="
+  ">>="
+  "<<="
+  "--"
+  "++"
 ] @operator
 
 [
@@ -53,17 +88,69 @@
   (integer)
   (percentage)
   (time)
+  (hll_number_literal) @number
 ] @number
 
 (float) @float
 
-(string) @string
+[
+  (string)
+  (hll_string_literal)
+] @string
+
+(hll_escape_sequence) @string.escape
 
 (path) @string.special
-
 (symbol) @string.special
 
-(character) @character
+[
+  (character)
+  (hll_char_literal)
+] @character
+
+; Types in HLL expressions
+[
+ (hll_type_identifier)
+ (hll_type_descriptor)
+] @type
+
+(hll_type_qualifier) @type.qualifier
+
+(hll_primitive_type) @type.builtin
+
+; HLL expressions
+(hll_call_expression
+  function: (hll_field_expression
+    field: (hll_field_identifier) @function.call))
+
+(hll_call_expression
+  function: (identifier) @function.call)
+
+((hll_field_expression
+  (hll_field_identifier) @field)) @variable
+
+(hll_field_identifier) @field
+
+(hll_subscript_expression
+  argument: (identifier) @variable)
+
+(hll_pointer_expression
+  argument: (identifier) @variable)
+
+(hll_cast_expression
+  value: (identifier) @variable)
+
+(hll_binary_expression
+  (identifier) @variable)
+
+(hll_unary_expression
+  (identifier) @variable)
+
+(hll_update_expression
+  (identifier) @variable)
+
+(hll_assignment_expression
+  left: (identifier) @variable)
 
 ; Returns
 (
@@ -84,7 +171,7 @@
 
 ; Subroutine blocks
 (subroutine_block
-  command: (identifier) @keyword
+  command: (identifier) @keyword.function
   subroutine: (identifier) @function)
 
 (labeled_expression
@@ -110,14 +197,14 @@
 (labeled_expression
   label: (identifier) @label)
 
-(option_expression) @constant
+(option_expression) @constant.builtin
 (format_expression) @constant.builtin
 (
  (argument_list (identifier) @constant.builtin)
  (#match? @constant.builtin "^[%/][a-zA-Z][a-zA-Z0-9.]*$")
 )
 (argument_list
-  (identifier) @constant)
+  (identifier) @constant.builtin)
 
 ; Commands
 (command_expression command: (identifier) @keyword)
@@ -136,10 +223,5 @@
 
 (call_expression
   function: (identifier) @function.call)
-
-[
-  (hll_primitive_type)
-  (hll_type_identifier)
-] @type
 
 (comment) @comment

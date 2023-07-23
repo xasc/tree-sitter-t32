@@ -61,7 +61,7 @@ RePeaT &num PRINT "Password: &password"
 WinCLEAR
 FramePOS ,,,,Maximized
 ;        ^ punctuation.delimiter
-;            ^ constant
+;            ^ constant.builtin
 WinPOS 0% 50% 100% 35%
 ;      ^ number
 COVerage.ListFunc
@@ -91,7 +91,7 @@ verify_password:
 ;            ^ number
 ;               ^ number
 ;                                ^ constant.builtin
-;                                                            ^ constant
+;                                                            ^ constant.builtin
 
     RETURN TRUE()
 ;   ^ keyword.return
@@ -99,8 +99,20 @@ verify_password:
 
 
 SUBROUTINE start_debug
+; <- keyword.function
 ;          ^ function
 (
+    COVerage.ListModule %MULTI.OBC \sieve
+;    ^ keyword
+;                        ^ constant.builtin
+;                                  ^ string.special
+
+    Var.DRAW flags[0..16] /Alternate 3
+;    ^ keyword
+;             ^ variable
+;                          ^ constant.builtin
+;                                    ^ number
+
     Go main
     RETURN
 ;   ^ keyword.return

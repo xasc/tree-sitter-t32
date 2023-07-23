@@ -29,4 +29,7 @@
   command: (identifier)
   subroutine: (identifier) @local.reference)
 
-(macro) @local.reference
+[
+  (macro)
+  (trace32_hll_variable)
+] @local.reference

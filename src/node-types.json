@@ -108,6 +108,10 @@
           "named": true
         },
         {
+          "type": "format_expression",
+          "named": true
+        },
+        {
           "type": "frequency",
           "named": true
         },
@@ -132,10 +136,6 @@
           "named": true
         },
         {
-          "type": "hll_concatenated_string",
-          "named": true
-        },
-        {
           "type": "hll_conditional_expression",
           "named": true
         },
@@ -144,15 +144,7 @@
           "named": true
         },
         {
-          "type": "hll_false",
-          "named": true
-        },
-        {
           "type": "hll_field_expression",
-          "named": true
-        },
-        {
-          "type": "hll_null",
           "named": true
         },
         {
@@ -180,7 +172,7 @@
           "named": true
         },
         {
-          "type": "hll_true",
+          "type": "hll_type_pattern",
           "named": true
         },
         {
@@ -970,9 +962,29 @@
         ]
       },
       "command": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
+          {
+            "type": "AddSticker",
+            "named": false
+          },
+          {
+            "type": "EXPORT",
+            "named": false
+          },
+          {
+            "type": "PATtern",
+            "named": false
+          },
+          {
+            "type": "Var",
+            "named": false
+          },
+          {
+            "type": "WRITE",
+            "named": false
+          },
           {
             "type": "identifier",
             "named": true
@@ -1066,11 +1078,27 @@
     }
   },
   {
+    "type": "format_expression",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "hll_abstract_array_declarator",
     "named": true,
     "fields": {
       "declarator": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
           {
@@ -1092,7 +1120,7 @@
         ]
       },
       "size": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
           {
@@ -1120,23 +1148,11 @@
             "named": true
           },
           {
-            "type": "hll_concatenated_string",
-            "named": true
-          },
-          {
             "type": "hll_conditional_expression",
             "named": true
           },
           {
-            "type": "hll_false",
-            "named": true
-          },
-          {
             "type": "hll_field_expression",
-            "named": true
-          },
-          {
-            "type": "hll_null",
             "named": true
           },
           {
@@ -1161,10 +1177,6 @@
           },
           {
             "type": "hll_subscript_expression",
-            "named": true
-          },
-          {
-            "type": "hll_true",
             "named": true
           },
           {
@@ -1207,7 +1219,7 @@
     "fields": {
       "declarator": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "hll_abstract_array_declarator",
@@ -1333,23 +1345,11 @@
           "named": true
         },
         {
-          "type": "hll_concatenated_string",
-          "named": true
-        },
-        {
           "type": "hll_conditional_expression",
           "named": true
         },
         {
-          "type": "hll_false",
-          "named": true
-        },
-        {
           "type": "hll_field_expression",
-          "named": true
-        },
-        {
-          "type": "hll_null",
           "named": true
         },
         {
@@ -1374,10 +1374,6 @@
         },
         {
           "type": "hll_subscript_expression",
-          "named": true
-        },
-        {
-          "type": "hll_true",
           "named": true
         },
         {
@@ -1434,7 +1430,7 @@
         ]
       },
       "size": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
           {
@@ -1462,23 +1458,11 @@
             "named": true
           },
           {
-            "type": "hll_concatenated_string",
-            "named": true
-          },
-          {
             "type": "hll_conditional_expression",
             "named": true
           },
           {
-            "type": "hll_false",
-            "named": true
-          },
-          {
             "type": "hll_field_expression",
-            "named": true
-          },
-          {
-            "type": "hll_null",
             "named": true
           },
           {
@@ -1503,10 +1487,6 @@
           },
           {
             "type": "hll_subscript_expression",
-            "named": true
-          },
-          {
-            "type": "hll_true",
             "named": true
           },
           {
@@ -1656,23 +1636,11 @@
             "named": true
           },
           {
-            "type": "hll_concatenated_string",
-            "named": true
-          },
-          {
             "type": "hll_conditional_expression",
             "named": true
           },
           {
-            "type": "hll_false",
-            "named": true
-          },
-          {
             "type": "hll_field_expression",
-            "named": true
-          },
-          {
-            "type": "hll_null",
             "named": true
           },
           {
@@ -1697,10 +1665,6 @@
           },
           {
             "type": "hll_subscript_expression",
-            "named": true
-          },
-          {
-            "type": "hll_true",
             "named": true
           },
           {
@@ -1756,23 +1720,11 @@
             "named": true
           },
           {
-            "type": "hll_concatenated_string",
-            "named": true
-          },
-          {
             "type": "hll_conditional_expression",
             "named": true
           },
           {
-            "type": "hll_false",
-            "named": true
-          },
-          {
             "type": "hll_field_expression",
-            "named": true
-          },
-          {
-            "type": "hll_null",
             "named": true
           },
           {
@@ -1797,10 +1749,6 @@
           },
           {
             "type": "hll_subscript_expression",
-            "named": true
-          },
-          {
-            "type": "hll_true",
             "named": true
           },
           {
@@ -1928,23 +1876,11 @@
             "named": true
           },
           {
-            "type": "hll_concatenated_string",
-            "named": true
-          },
-          {
             "type": "hll_conditional_expression",
             "named": true
           },
           {
-            "type": "hll_false",
-            "named": true
-          },
-          {
             "type": "hll_field_expression",
-            "named": true
-          },
-          {
-            "type": "hll_null",
             "named": true
           },
           {
@@ -1969,10 +1905,6 @@
           },
           {
             "type": "hll_subscript_expression",
-            "named": true
-          },
-          {
-            "type": "hll_true",
             "named": true
           },
           {
@@ -2038,23 +1970,11 @@
             "named": true
           },
           {
-            "type": "hll_concatenated_string",
-            "named": true
-          },
-          {
             "type": "hll_conditional_expression",
             "named": true
           },
           {
-            "type": "hll_false",
-            "named": true
-          },
-          {
             "type": "hll_field_expression",
-            "named": true
-          },
-          {
-            "type": "hll_null",
             "named": true
           },
           {
@@ -2079,10 +1999,6 @@
           },
           {
             "type": "hll_subscript_expression",
-            "named": true
-          },
-          {
-            "type": "hll_true",
             "named": true
           },
           {
@@ -2148,23 +2064,11 @@
             "named": true
           },
           {
-            "type": "hll_concatenated_string",
-            "named": true
-          },
-          {
             "type": "hll_conditional_expression",
             "named": true
           },
           {
-            "type": "hll_false",
-            "named": true
-          },
-          {
             "type": "hll_field_expression",
-            "named": true
-          },
-          {
-            "type": "hll_null",
             "named": true
           },
           {
@@ -2189,10 +2093,6 @@
           },
           {
             "type": "hll_subscript_expression",
-            "named": true
-          },
-          {
-            "type": "hll_true",
             "named": true
           },
           {
@@ -2225,8 +2125,12 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
+        {
+          "type": "character",
+          "named": true
+        },
         {
           "type": "hll_escape_sequence",
           "named": true
@@ -2263,23 +2167,11 @@
             "named": true
           },
           {
-            "type": "hll_concatenated_string",
-            "named": true
-          },
-          {
             "type": "hll_conditional_expression",
             "named": true
           },
           {
-            "type": "hll_false",
-            "named": true
-          },
-          {
             "type": "hll_field_expression",
-            "named": true
-          },
-          {
-            "type": "hll_null",
             "named": true
           },
           {
@@ -2304,10 +2196,6 @@
           },
           {
             "type": "hll_subscript_expression",
-            "named": true
-          },
-          {
-            "type": "hll_true",
             "named": true
           },
           {
@@ -2361,23 +2249,11 @@
             "named": true
           },
           {
-            "type": "hll_concatenated_string",
-            "named": true
-          },
-          {
             "type": "hll_conditional_expression",
             "named": true
           },
           {
-            "type": "hll_false",
-            "named": true
-          },
-          {
             "type": "hll_field_expression",
-            "named": true
-          },
-          {
-            "type": "hll_null",
             "named": true
           },
           {
@@ -2405,10 +2281,6 @@
             "named": true
           },
           {
-            "type": "hll_true",
-            "named": true
-          },
-          {
             "type": "hll_unary_expression",
             "named": true
           },
@@ -2430,21 +2302,6 @@
           }
         ]
       }
-    }
-  },
-  {
-    "type": "hll_concatenated_string",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "hll_string_literal",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -2476,23 +2333,11 @@
             "named": true
           },
           {
-            "type": "hll_concatenated_string",
-            "named": true
-          },
-          {
             "type": "hll_conditional_expression",
             "named": true
           },
           {
-            "type": "hll_false",
-            "named": true
-          },
-          {
             "type": "hll_field_expression",
-            "named": true
-          },
-          {
-            "type": "hll_null",
             "named": true
           },
           {
@@ -2517,10 +2362,6 @@
           },
           {
             "type": "hll_subscript_expression",
-            "named": true
-          },
-          {
-            "type": "hll_true",
             "named": true
           },
           {
@@ -2570,23 +2411,11 @@
             "named": true
           },
           {
-            "type": "hll_concatenated_string",
-            "named": true
-          },
-          {
             "type": "hll_conditional_expression",
             "named": true
           },
           {
-            "type": "hll_false",
-            "named": true
-          },
-          {
             "type": "hll_field_expression",
-            "named": true
-          },
-          {
-            "type": "hll_null",
             "named": true
           },
           {
@@ -2611,10 +2440,6 @@
           },
           {
             "type": "hll_subscript_expression",
-            "named": true
-          },
-          {
-            "type": "hll_true",
             "named": true
           },
           {
@@ -2641,7 +2466,7 @@
       },
       "consequence": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "hll_assignment_expression",
@@ -2664,23 +2489,11 @@
             "named": true
           },
           {
-            "type": "hll_concatenated_string",
-            "named": true
-          },
-          {
             "type": "hll_conditional_expression",
             "named": true
           },
           {
-            "type": "hll_false",
-            "named": true
-          },
-          {
             "type": "hll_field_expression",
-            "named": true
-          },
-          {
-            "type": "hll_null",
             "named": true
           },
           {
@@ -2705,10 +2518,6 @@
           },
           {
             "type": "hll_subscript_expression",
-            "named": true
-          },
-          {
-            "type": "hll_true",
             "named": true
           },
           {
@@ -2852,23 +2661,11 @@
             "named": true
           },
           {
-            "type": "hll_concatenated_string",
-            "named": true
-          },
-          {
             "type": "hll_conditional_expression",
             "named": true
           },
           {
-            "type": "hll_false",
-            "named": true
-          },
-          {
             "type": "hll_field_expression",
-            "named": true
-          },
-          {
-            "type": "hll_null",
             "named": true
           },
           {
@@ -2893,10 +2690,6 @@
           },
           {
             "type": "hll_subscript_expression",
-            "named": true
-          },
-          {
-            "type": "hll_true",
             "named": true
           },
           {
@@ -3156,23 +2949,11 @@
           "named": true
         },
         {
-          "type": "hll_concatenated_string",
-          "named": true
-        },
-        {
           "type": "hll_conditional_expression",
           "named": true
         },
         {
-          "type": "hll_false",
-          "named": true
-        },
-        {
           "type": "hll_field_expression",
-          "named": true
-        },
-        {
-          "type": "hll_null",
           "named": true
         },
         {
@@ -3197,10 +2978,6 @@
         },
         {
           "type": "hll_subscript_expression",
-          "named": true
-        },
-        {
-          "type": "hll_true",
           "named": true
         },
         {
@@ -3297,23 +3074,11 @@
             "named": true
           },
           {
-            "type": "hll_concatenated_string",
-            "named": true
-          },
-          {
             "type": "hll_conditional_expression",
             "named": true
           },
           {
-            "type": "hll_false",
-            "named": true
-          },
-          {
             "type": "hll_field_expression",
-            "named": true
-          },
-          {
-            "type": "hll_null",
             "named": true
           },
           {
@@ -3338,10 +3103,6 @@
           },
           {
             "type": "hll_subscript_expression",
-            "named": true
-          },
-          {
-            "type": "hll_true",
             "named": true
           },
           {
@@ -3411,23 +3172,11 @@
             "named": true
           },
           {
-            "type": "hll_concatenated_string",
-            "named": true
-          },
-          {
             "type": "hll_conditional_expression",
             "named": true
           },
           {
-            "type": "hll_false",
-            "named": true
-          },
-          {
             "type": "hll_field_expression",
-            "named": true
-          },
-          {
-            "type": "hll_null",
             "named": true
           },
           {
@@ -3452,10 +3201,6 @@
           },
           {
             "type": "hll_subscript_expression",
-            "named": true
-          },
-          {
-            "type": "hll_true",
             "named": true
           },
           {
@@ -3515,23 +3260,11 @@
             "named": true
           },
           {
-            "type": "hll_concatenated_string",
-            "named": true
-          },
-          {
             "type": "hll_conditional_expression",
             "named": true
           },
           {
-            "type": "hll_false",
-            "named": true
-          },
-          {
             "type": "hll_field_expression",
-            "named": true
-          },
-          {
-            "type": "hll_null",
             "named": true
           },
           {
@@ -3556,10 +3289,6 @@
           },
           {
             "type": "hll_subscript_expression",
-            "named": true
-          },
-          {
-            "type": "hll_true",
             "named": true
           },
           {
@@ -3641,23 +3370,11 @@
             "named": true
           },
           {
-            "type": "hll_concatenated_string",
-            "named": true
-          },
-          {
             "type": "hll_conditional_expression",
             "named": true
           },
           {
-            "type": "hll_false",
-            "named": true
-          },
-          {
             "type": "hll_field_expression",
-            "named": true
-          },
-          {
-            "type": "hll_null",
             "named": true
           },
           {
@@ -3682,10 +3399,6 @@
           },
           {
             "type": "hll_subscript_expression",
-            "named": true
-          },
-          {
-            "type": "hll_true",
             "named": true
           },
           {
@@ -3772,23 +3485,11 @@
             "named": true
           },
           {
-            "type": "hll_concatenated_string",
-            "named": true
-          },
-          {
             "type": "hll_conditional_expression",
             "named": true
           },
           {
-            "type": "hll_false",
-            "named": true
-          },
-          {
             "type": "hll_field_expression",
-            "named": true
-          },
-          {
-            "type": "hll_null",
             "named": true
           },
           {
@@ -3813,10 +3514,6 @@
           },
           {
             "type": "hll_subscript_expression",
-            "named": true
-          },
-          {
-            "type": "hll_true",
             "named": true
           },
           {
@@ -3866,23 +3563,11 @@
             "named": true
           },
           {
-            "type": "hll_concatenated_string",
-            "named": true
-          },
-          {
             "type": "hll_conditional_expression",
             "named": true
           },
           {
-            "type": "hll_false",
-            "named": true
-          },
-          {
             "type": "hll_field_expression",
-            "named": true
-          },
-          {
-            "type": "hll_null",
             "named": true
           },
           {
@@ -3911,10 +3596,6 @@
           },
           {
             "type": "hll_subscript_expression",
-            "named": true
-          },
-          {
-            "type": "hll_true",
             "named": true
           },
           {
@@ -4010,6 +3691,11 @@
     }
   },
   {
+    "type": "hll_type_pattern",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "hll_type_qualifier",
     "named": true,
     "fields": {}
@@ -4043,23 +3729,11 @@
             "named": true
           },
           {
-            "type": "hll_concatenated_string",
-            "named": true
-          },
-          {
             "type": "hll_conditional_expression",
             "named": true
           },
           {
-            "type": "hll_false",
-            "named": true
-          },
-          {
             "type": "hll_field_expression",
-            "named": true
-          },
-          {
-            "type": "hll_null",
             "named": true
           },
           {
@@ -4084,10 +3758,6 @@
           },
           {
             "type": "hll_subscript_expression",
-            "named": true
-          },
-          {
-            "type": "hll_true",
             "named": true
           },
           {
@@ -4181,23 +3851,11 @@
             "named": true
           },
           {
-            "type": "hll_concatenated_string",
-            "named": true
-          },
-          {
             "type": "hll_conditional_expression",
             "named": true
           },
           {
-            "type": "hll_false",
-            "named": true
-          },
-          {
             "type": "hll_field_expression",
-            "named": true
-          },
-          {
-            "type": "hll_null",
             "named": true
           },
           {
@@ -4222,10 +3880,6 @@
           },
           {
             "type": "hll_subscript_expression",
-            "named": true
-          },
-          {
-            "type": "hll_true",
             "named": true
           },
           {
@@ -4354,23 +4008,11 @@
             "named": true
           },
           {
-            "type": "hll_concatenated_string",
-            "named": true
-          },
-          {
             "type": "hll_conditional_expression",
             "named": true
           },
           {
-            "type": "hll_false",
-            "named": true
-          },
-          {
             "type": "hll_field_expression",
-            "named": true
-          },
-          {
-            "type": "hll_null",
             "named": true
           },
           {
@@ -4395,10 +4037,6 @@
           },
           {
             "type": "hll_subscript_expression",
-            "named": true
-          },
-          {
-            "type": "hll_true",
             "named": true
           },
           {
@@ -4773,6 +4411,11 @@
     }
   },
   {
+    "type": "module",
+    "named": false,
+    "fields": {}
+  },
+  {
     "type": "option_expression",
     "named": true,
     "fields": {
@@ -4791,11 +4434,59 @@
         "required": false,
         "types": [
           {
+            "type": "address",
+            "named": true
+          },
+          {
+            "type": "bitmask",
+            "named": true
+          },
+          {
+            "type": "character",
+            "named": true
+          },
+          {
+            "type": "file_handle",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "frequency",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
           {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "literal",
+            "named": true
+          },
+          {
             "type": "macro",
+            "named": true
+          },
+          {
+            "type": "percentage",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "symbol",
+            "named": true
+          },
+          {
+            "type": "time",
             "named": true
           }
         ]
@@ -5194,6 +4885,11 @@
     }
   },
   {
+    "type": "symbol",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "trace32_hll_variable",
     "named": true,
     "fields": {}
@@ -5423,23 +5119,11 @@
             "named": true
           },
           {
-            "type": "hll_concatenated_string",
-            "named": true
-          },
-          {
             "type": "hll_conditional_expression",
             "named": true
           },
           {
-            "type": "hll_false",
-            "named": true
-          },
-          {
             "type": "hll_field_expression",
-            "named": true
-          },
-          {
-            "type": "hll_null",
             "named": true
           },
           {
@@ -5464,10 +5148,6 @@
           },
           {
             "type": "hll_subscript_expression",
-            "named": true
-          },
-          {
-            "type": "hll_true",
             "named": true
           },
           {
@@ -5749,6 +5429,14 @@
     "named": false
   },
   {
+    "type": "AddSticker",
+    "named": false
+  },
+  {
+    "type": "EXPORT",
+    "named": false
+  },
+  {
     "type": "GLOBAL",
     "named": false
   },
@@ -5785,6 +5473,10 @@
     "named": false
   },
   {
+    "type": "PATtern",
+    "named": false
+  },
+  {
     "type": "PRIVATE",
     "named": false
   },
@@ -5810,6 +5502,10 @@
   },
   {
     "type": "WHILE",
+    "named": false
+  },
+  {
+    "type": "WRITE",
     "named": false
   },
   {
@@ -5865,10 +5561,6 @@
     "named": true
   },
   {
-    "type": "format",
-    "named": false
-  },
-  {
     "type": "frequency",
     "named": true
   },
@@ -5881,15 +5573,7 @@
     "named": true
   },
   {
-    "type": "hll_false",
-    "named": true
-  },
-  {
     "type": "hll_field_identifier",
-    "named": true
-  },
-  {
-    "type": "hll_null",
     "named": true
   },
   {
@@ -5898,10 +5582,6 @@
   },
   {
     "type": "hll_primitive_type",
-    "named": true
-  },
-  {
-    "type": "hll_true",
     "named": true
   },
   {
@@ -5945,20 +5625,16 @@
     "named": false
   },
   {
-    "type": "subformat",
-    "named": false
-  },
-  {
     "type": "subfunction",
     "named": false
   },
   {
-    "type": "symbol",
+    "type": "time",
     "named": true
   },
   {
-    "type": "time",
-    "named": true
+    "type": "type",
+    "named": false
   },
   {
     "type": "u\"",

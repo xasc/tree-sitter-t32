@@ -90,7 +90,9 @@ module.exports = grammar({
 
   inline: $ => [
     $._hll_expression_separator,
-    $._hll_number_literal
+    $._hll_number_literal,
+    $._terminator,
+    $._top_level
   ],
 
   extras: $ => [
