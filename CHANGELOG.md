@@ -5,16 +5,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.0.0] - 2023-07-23
+## [2.1.0] - 2023-07-23
+
+### Added
+
+- Extended tests for syntax highlighting
 
 ### Changed
 
-- Integrated [tree-sitter-c](https://github.com/tree-sitter/tree-sitter-c) C grammar with TRACE32 HLL extensions (range operator, symbols, ...)
+- Interpret nodes `(float)`, `(frequency)`, `(percentage)` and `(time)` as floating point
+  instead of integers numbers
+- Interpret node `(access_class)` as constant instead of number
+
+### Fixed
+
+- Fix highlighting of `(identifier)` nodes as variables
+
+## [2.0.0] - 2023-07-23
+
+### Added
+
 - New node types for PRACTICE commands with HLL expressions, for example
   `(hll_update_expression)`.
-- Command options with option values are supported
-- All values of command format parameters accessible
+- Integrated [tree-sitter-c](https://github.com/tree-sitter/tree-sitter-c) C grammar with TRACE32 HLL extensions (range operator, symbols, ...)
 - Updated queries for syntax highlighting and tests
+- Command options with option values are supported
+
+### Changed
+
+- All values of command format parameters accessible
 
 ### Removed
 

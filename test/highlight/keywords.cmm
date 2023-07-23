@@ -35,7 +35,7 @@ ELSE
         RETURNVALUES &pass
 ;                     ^ variable.parameter
         WAIT 10.ms
-;            ^ number
+;            ^ float
     )
 
     IF !&pass
@@ -63,7 +63,7 @@ FramePOS ,,,,Maximized
 ;        ^ punctuation.delimiter
 ;            ^ constant.builtin
 WinPOS 0% 50% 100% 35%
-;      ^ number
+;      ^ float
 COVerage.ListFunc
 
 ENDDO
@@ -84,13 +84,15 @@ verify_password:
 
     SYStem.Option.KEYCODE "&password"
     SYStem.JtagClock  1kHz
-;                     ^ number
+;                     ^ float
     SYStem.Mode.Attach
 
     Data.Set N: EAXI:0x34000000 %Long 0x34000100 0x34000021 /verify
-;            ^ number
-;               ^ number
+;            ^ constant.builtin
+;               ^ constant.builtin
+;                    ^ number
 ;                                ^ constant.builtin
+;                                     ^ number
 ;                                                            ^ constant.builtin
 
     RETURN TRUE()

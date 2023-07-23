@@ -79,19 +79,22 @@
   "."
 ] @punctuation.delimiter
 
+(access_class) @constant.builtin
+
 [
-  (access_class)
   (address)
   (bitmask)
   (file_handle)
-  (frequency)
   (integer)
-  (percentage)
-  (time)
-  (hll_number_literal) @number
+  (hll_number_literal)
 ] @number
 
-(float) @float
+[
+  (float)
+  (frequency)
+  (percentage)
+  (time)
+] @float
 
 [
   (string)
@@ -125,6 +128,10 @@
 
 (hll_call_expression
   function: (identifier) @function.call)
+
+(hll_call_expression
+  (hll_argument_list
+    (identifier) @variable))
 
 ((hll_field_expression
   (hll_field_identifier) @field)) @variable
