@@ -5,6 +5,12 @@
 Lauterbach TRACE32 script language grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter).
 Support for HLL expressions was adapted from [tree-sitter-c](https://github.com/tree-sitter/tree-sitter-c.git).
 
+## Scope
+
+- Full coverage of PRACTICE Script Language and TRACE32 commands & functions
+- Extended support for HLL expressions
+
+
 ## Quick Start
 
 ### Dependencies
@@ -342,8 +348,8 @@ TearDownTestCase	 | function	def (106, 0) - (106, 16) `TearDownTestCase:`
 - `(symbol)` nodes that represent an unquoted module, like `\module`, cannot be
   differentiated from node type `(trace32_hll_variable)`, e.g. `\x`.
 - Line selection syntax for `(symbol)` nodes (e.g. `main\10`) not supported, yet.
-- Commands in the `Var` command group that contain multiple chained
-  `(format_expression) (_hll_expression)`
+- Commands from the `Var` command group that contain multiple chained
+  `(format_expression) (_hll_expression)` blocks
 
 
 ## References
