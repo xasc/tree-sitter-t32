@@ -350,6 +350,8 @@ TearDownTestCase	 | function	def (106, 0) - (106, 16) `TearDownTestCase:`
 - Line selection syntax for `(symbol)` nodes (e.g. `main\10`) not supported, yet.
 - Commands from the `Var` command group that contain multiple chained
   `(format_expression) (_hll_expression)` blocks
+- Unquoted `(path)` nodes are not clearly distinguishable from other literal node
+  in command argument lists.
 
 
 ## References
