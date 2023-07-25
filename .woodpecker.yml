@@ -16,7 +16,7 @@ pipeline:
       - tree-sitter test
     when:
       path:
-        exclude: [ './*.md', 'LICENSE' ]
+        exclude: [ '*.md', 'LICENSE' ]
 
   test-nodejs:
     image: node:bullseye
@@ -30,4 +30,4 @@ pipeline:
       - yarn run tree-sitter test
     when:
       path: "package.json"
-
+      exclude: [ '*.md', 'LICENSE' ]
