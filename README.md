@@ -328,12 +328,23 @@ TearDownTestCase	 | function	def (106, 0) - (106, 16) `TearDownTestCase:`
 
 </details>
 
+
 ## Editor Support
 
 | Editor                                                     | Plugin                                                                | Syntax Highlighting | Local Variables  | Folds  | Indents  |
 | -------------                                              | -------------                                                         | :-----------------: | :--------------: | :----: | :------: |
 | [Neovim](https://github.com/neovim/neovim)                 | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) | ✓                   | ✓                | ✓      | ✓        |
 | [Helix](https://github.com/helix-editor/helix/tree/master) |                                                                       | ✓                   |                  |        |          |
+
+
+## Limitations
+
+- `(symbol)` nodes that represent an unquoted module, like `\module`, cannot be
+  differentiated from node type `(trace32_hll_variable)`, e.g. `\x`.
+- Line selection syntax for `(symbol)` nodes (e.g. `main\10`) not supported, yet.
+- Commands in the `Var` command group that contain multiple chained
+  `(format_expression) (_hll_expression)`
+
 
 ## References
 
