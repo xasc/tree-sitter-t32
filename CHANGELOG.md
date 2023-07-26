@@ -29,7 +29,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `(hll_update_expression)`.
 - Integrated [tree-sitter-c](https://github.com/tree-sitter/tree-sitter-c) C grammar with TRACE32 HLL extensions (range operator, symbols, ...)
 - Updated queries for syntax highlighting and tests
-- Command options with option values are supported
+- Node `(option_expression)` supports command options with option values
+- Node `(format_expression)` identifies format parameters in commands
 
 ### Changed
 
