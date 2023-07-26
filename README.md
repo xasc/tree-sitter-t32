@@ -5,9 +5,9 @@
 Lauterbach TRACE32 script language grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter).
 Support for HLL expressions was adapted from [tree-sitter-c](https://github.com/tree-sitter/tree-sitter-c.git).
 
-## Scope
+## Features
 
-- Full coverage of PRACTICE script language and TRACE32 commands & functions
+- Full coverage of the PRACTICE script language including TRACE32 commands & functions
 - Extended support for HLL expressions
 
 
@@ -17,6 +17,9 @@ Support for HLL expressions was adapted from [tree-sitter-c](https://github.com/
 
 - [Tree-sitter CLI](https://github.com/tree-sitter/tree-sitter/blob/master/cli/README.md) for generating the parser from the grammar.
 - A C compiler
+- [Make](https://www.gnu.org/software/make/manual) [optional]
+- [Yarn](https://yarnpkg.com/) [optional]
+
 
 ### Commands
 
@@ -333,6 +336,20 @@ TearDownTestCase	 | function	def (106, 0) - (106, 16) `TearDownTestCase:`
 ```
 
 </details>
+
+
+## Development
+
+There is a makefile to simplify the most common activities. The makefile expects you to have Yarn installed and set up.
+
+To build the parser from the grammar:
+
+    make build
+
+
+To run all tests:
+
+    make test-all
 
 
 ## Editor Support
