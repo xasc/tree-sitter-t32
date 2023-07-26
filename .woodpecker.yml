@@ -19,7 +19,7 @@ pipeline:
         exclude: [ '*.md', 'LICENSE' ]
 
   test-nodejs:
-    image: node:bullseye
+    image: node:bookworm
     environment:
       - DEBIAN_FRONTEND=noninteractive
     commands:
