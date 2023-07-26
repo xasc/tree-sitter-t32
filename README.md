@@ -7,7 +7,7 @@ Support for HLL expressions was adapted from [tree-sitter-c](https://github.com/
 
 ## Scope
 
-- Full coverage of PRACTICE Script Language and TRACE32 commands & functions
+- Full coverage of PRACTICE script language and TRACE32 commands & functions
 - Extended support for HLL expressions
 
 
@@ -352,6 +352,8 @@ TearDownTestCase	 | function	def (106, 0) - (106, 16) `TearDownTestCase:`
   `(format_expression) (_hll_expression)` blocks
 - Unquoted `(path)` nodes are not clearly distinguishable from other literal types
   in command argument lists.
+- For HLL expressions used at the top level of commands, the use of spaces is more restricted
+  than for nested expressions inside parentheses. This behavior is not modeled by the grammar.
 
 
 ## References
