@@ -353,7 +353,7 @@ TearDownTestCase	 | function	def (106, 0) - (106, 16) `TearDownTestCase:`
 - Unquoted `(path)` nodes are not clearly distinguishable from other literal types
   in command argument lists.
 - For HLL expressions used at the top level of commands, the use of spaces is more restricted
-  than for nested expressions inside parentheses. This behavior is not modeled by the grammar.
+  than for nested expressions inside parentheses. The grammar only models the strict behavior.
 
 
 ## References
