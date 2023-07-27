@@ -373,6 +373,9 @@ To run all tests:
   in command argument lists.
 - For HLL expressions used at the top level of commands, the use of spaces is more restricted
   than for nested expressions inside parentheses. The grammar only models the strict behavior.
+- PRACTICE comments start with either `//` or `;`. However, in HLL expressions
+  `;` can be used as separator for multiple statements. The grammar will always interpret `;`
+  as the start of `(comment)` node.
 
 
 ## References
