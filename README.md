@@ -5,6 +5,8 @@
 Lauterbach TRACE32 script language grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter).
 Support for HLL expressions was adapted from [tree-sitter-c](https://github.com/tree-sitter/tree-sitter-c.git).
 
+A demo is available [here](https://xasc.codeberg.page/tree-sitter-t32-playground/).
+
 ## Features
 
 - Full coverage of the PRACTICE script language including TRACE32 commands & functions
