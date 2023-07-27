@@ -229,6 +229,6 @@
   command: (identifier) @repeat)
 
 (call_expression
-  function: (identifier) @function.call)
+  function: (identifier) @function.builtin)
 
 (comment) @comment
