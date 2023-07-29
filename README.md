@@ -377,6 +377,11 @@ To run all tests:
   as the start of `(comment)` node.
 
 
+## Mirrors
+
+This repository is mirrored to https://gitlab.com/xasc/tree-sitter-t32. The main repository is https://codeberg.org/xasc/tree-sitter-t32.
+
+
 ## References
 
 - [PRACTICE Script Language User’s Guide](https://www.lauterbach.com/pdf/practice_user.pdf)
