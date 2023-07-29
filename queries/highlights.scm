@@ -8,6 +8,8 @@
    ":"
 ] @conditional.ternary)
 
+
+; Keywords, punctuation and operators
 [
   "enum"
   "struct"
@@ -66,12 +68,12 @@
 ] @operator
 
 [
- "("
- ")"
- "{"
- "}"
- "["
- "]"
+  "("
+  ")"
+  "{"
+  "}"
+  "["
+  "]"
 ] @punctuation.bracket
 
 [
@@ -79,6 +81,8 @@
   "."
 ] @punctuation.delimiter
 
+
+; Strings and others literal types
 (access_class) @constant.builtin
 
 [
@@ -111,17 +115,19 @@
   (hll_char_literal)
 ] @character
 
+
 ; Types in HLL expressions
 [
- (hll_type_identifier)
- (hll_type_descriptor)
+  (hll_type_identifier)
+  (hll_type_descriptor)
 ] @type
 
 (hll_type_qualifier) @type.qualifier
 
 (hll_primitive_type) @type.builtin
 
-; HLL expressions
+
+; HLL call expressions
 (hll_call_expression
   function: (hll_field_expression
     field: (hll_field_identifier) @function.call))
@@ -129,35 +135,6 @@
 (hll_call_expression
   function: (identifier) @function.call)
 
-(hll_call_expression
-  (hll_argument_list
-    (identifier) @variable))
-
-((hll_field_expression
-  (hll_field_identifier) @field)) @variable
-
-(hll_field_identifier) @field
-
-(hll_subscript_expression
-  argument: (identifier) @variable)
-
-(hll_pointer_expression
-  argument: (identifier) @variable)
-
-(hll_cast_expression
-  value: (identifier) @variable)
-
-(hll_binary_expression
-  (identifier) @variable)
-
-(hll_unary_expression
-  (identifier) @variable)
-
-(hll_update_expression
-  (identifier) @variable)
-
-(hll_assignment_expression
-  left: (identifier) @variable)
 
 ; Returns
 (
@@ -171,10 +148,12 @@
   (#match? @keyword.return "^[rR][eE][tT][uU][rR][nN]$")
 )
 
+
 ; Subroutine calls
 (subroutine_call_expression
   command: (identifier) @keyword
   subroutine: (identifier) @function.call)
+
 
 ; Subroutine blocks
 (subroutine_block
@@ -185,11 +164,13 @@
   label: (identifier) @function
   (block))
 
+
 ; Parameter declarations
 (parameter_declaration
   command: (identifier) @keyword
   (identifier)? @constant.builtin
   macro: (macro) @variable.parameter)
+
 
 ; Variables, constants and labels
 (macro) @variable.builtin
@@ -204,18 +185,27 @@
 (labeled_expression
   label: (identifier) @label)
 
-(option_expression) @constant.builtin
-(format_expression) @constant.builtin
+(option_expression
+  (identifier) @constant.builtin)
+
+(format_expression
+  (identifier) @constant.builtin)
+
 (
- (argument_list (identifier) @constant.builtin)
- (#match? @constant.builtin "^[%/][a-zA-Z][a-zA-Z0-9.]*$")
+  (argument_list (identifier) @constant.builtin)
+  (#match? @constant.builtin "^[%/][a-zA-Z][a-zA-Z0-9.]*$")
 )
 (argument_list
   (identifier) @constant.builtin)
 
+
 ; Commands
 (command_expression command: (identifier) @keyword)
 (macro_definition command: (identifier) @keyword)
+
+(call_expression
+  function: (identifier) @function.builtin)
+
 
 ; Control flow
 (if_block
@@ -228,7 +218,10 @@
 (repeat_block
   command: (identifier) @repeat)
 
-(call_expression
-  function: (identifier) @function.builtin)
+
+; HLL variables
+(identifier) @variable
+(hll_field_identifier) @field
+
 
 (comment) @comment
