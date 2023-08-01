@@ -15,8 +15,9 @@ pipeline:
       - tree-sitter generate
       - tree-sitter test
     when:
-      path:
+      - path:
         exclude: [ '*.md', 'LICENSE' ]
+      - branch: [main, dev]
 
   test-nodejs:
     image: node:bookworm
@@ -29,5 +30,7 @@ pipeline:
       - yarn run tree-sitter generate
       - yarn run tree-sitter test
     when:
-      path: "package.json"
-      exclude: [ '*.md', 'LICENSE' ]
+      - path:
+        include: [ "package.json" ]
+        exclude: [ '*.md', 'LICENSE' ]
+      - branch: [main, dev]
