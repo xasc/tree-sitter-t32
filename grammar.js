@@ -574,12 +574,14 @@ module.exports = grammar({
     _host_command_argument_list_default_format: $ => seq(
       choice(
         $.macro,
+        $.string,
         repeat1(/[^ \t]/)
       ),
       repeat(seq(
         repeat1($._blank),
         choice(
           $.macro,
+          $.string,
           repeat1(/[^ \t]/)
         )
       ))

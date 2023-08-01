@@ -780,10 +780,6 @@ List ,,Register(PC)
 PEDIT *
 OPEN #1,"~~/license.t32" /Read
 
-OS.Command "&in" > "&out"
-OS.Hidden cat &src >> &dst
-OS.Hidden copy /b &a + &b  &c
-
 CD.DO /home
 do a/b/c
 
@@ -850,17 +846,6 @@ LOGGER.Mode.64Bit
   (command_expression
     command: (identifier)
     arguments: (argument_list
-      (macro)
-      (macro)))
-  (command_expression
-    command: (identifier)
-    arguments: (argument_list
-      (macro)
-      (macro)
-      (macro)))
-  (command_expression
-    command: (identifier)
-    arguments: (argument_list
       (option_expression
         option: (identifier))))
   (command_expression
@@ -873,6 +858,42 @@ LOGGER.Mode.64Bit
         right: (identifier))))
   (command_expression
     command: (identifier)))
+
+==================
+Host Commands
+==================
+
+OS.Command "&in" > "&out"
+OS.Hidden cat &src >> &dst
+OS.Hidden copy /b &a + &b  &c
+OS.OPEN "&ppd/report/index.html"
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (string
+        (macro))
+      (string
+        (macro))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (macro)
+      (macro)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (macro)
+      (macro)
+      (macro)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (string
+        (macro)))))
 
 ==================
 Commands with embedded blocks

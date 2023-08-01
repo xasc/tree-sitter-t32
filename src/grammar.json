@@ -2698,6 +2698,10 @@
               "name": "macro"
             },
             {
+              "type": "SYMBOL",
+              "name": "string"
+            },
+            {
               "type": "REPEAT1",
               "content": {
                 "type": "PATTERN",
@@ -2724,6 +2728,10 @@
                   {
                     "type": "SYMBOL",
                     "name": "macro"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "string"
                   },
                   {
                     "type": "REPEAT1",
