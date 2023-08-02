@@ -2705,7 +2705,7 @@
               "type": "REPEAT1",
               "content": {
                 "type": "PATTERN",
-                "value": "[^ \\t]"
+                "value": "[^ \\t\\r\\n]"
               }
             }
           ]
@@ -2737,7 +2737,7 @@
                     "type": "REPEAT1",
                     "content": {
                       "type": "PATTERN",
-                      "value": "[^ \\t]"
+                      "value": "[^ \\t\\r\\n]"
                     }
                   }
                 ]
