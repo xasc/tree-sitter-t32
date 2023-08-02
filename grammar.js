@@ -575,14 +575,14 @@ module.exports = grammar({
       choice(
         $.macro,
         $.string,
-        repeat1(/[^ \t]/)
+        repeat1(/[^ \t\r\n]/)
       ),
       repeat(seq(
         repeat1($._blank),
         choice(
           $.macro,
           $.string,
-          repeat1(/[^ \t]/)
+          repeat1(/[^ \t\r\n]/)
         )
       ))
     ),
