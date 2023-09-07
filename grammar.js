@@ -108,7 +108,7 @@ module.exports = grammar({
     _top_level: $ => choice(
       $.block,
       $._statement,
-      $._terminator
+      $._terminator,
     ),
 
     block: $ => prec.right(seq(
@@ -119,6 +119,7 @@ module.exports = grammar({
       ),
       repeat(choice(
         $._statement,
+        $._terminator,
         $.block
       )),
       seq(
@@ -1644,7 +1645,7 @@ module.exports = grammar({
 
     _terminator: $ => choice(
       $.comment,
-      /\s*\r?\n/
+      /[ \t]*\r?\n/
     ),
 
     _line_continuation: $ => /\\\r?\n/,
