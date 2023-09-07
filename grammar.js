@@ -1641,7 +1641,7 @@ module.exports = grammar({
 
     identifier: $ => /[0-9]*[A-Za-z_]\w*/,
 
-    comment: $ => /[ \t]*(;|\/\/)(\\\r?\n|[^\n])*\n+/,
+    comment: $ => /[ \t]*(;|\/\/)(\\\r?\n|[^\n])*\n/,
 
     _terminator: $ => choice(
       $.comment,
