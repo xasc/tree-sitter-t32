@@ -63,10 +63,6 @@
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "_terminator"
-                },
-                {
-                  "type": "SYMBOL",
                   "name": "block"
                 }
               ]
@@ -7617,7 +7613,7 @@
     },
     "comment": {
       "type": "PATTERN",
-      "value": "[ \\t]*(;|\\/\\/)(\\\\\\r?\\n|[^\\n])*\\n"
+      "value": "[ \\t]*(;|\\/\\/)(\\\\\\r?\\n|[^\\n])*\\n+"
     },
     "_terminator": {
       "type": "CHOICE",
@@ -7628,7 +7624,7 @@
         },
         {
           "type": "PATTERN",
-          "value": "[ \\t]*\\r?\\n"
+          "value": "\\s*\\r?\\n"
         }
       ]
     },
