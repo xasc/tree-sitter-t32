@@ -1,0 +1,215 @@
+==================
+Blocks with line breaks
+==================
+
+(
+
+  PRINT %CONTinue "*"
+
+
+  WAIT 100.ms
+
+)
+
+---
+
+(script
+  (block
+    (command_expression
+      command: (identifier)
+      arguments: (argument_list
+        (format_expression
+          value: (identifier))
+        (string)))
+    (command_expression
+      command: (identifier)
+      arguments: (argument_list
+        (time)))))
+
+==================
+WHILE blocks with line breaks
+==================
+
+WHILE Register(PC)==0x1111
+
+
+  Step
+
+
+WHILE STATE.RUN()
+
+
+(
+
+  Break
+)
+
+---
+
+(script
+  (while_block
+    command: (identifier)
+    condition: (binary_expression
+      left: (call_expression
+        function: (identifier)
+        arguments: (argument_list
+          (identifier)))
+      right: (integer))
+    (command_expression
+      command: (identifier)))
+  (while_block
+    command: (identifier)
+    condition: (call_expression
+      function: (identifier)
+      arguments: (argument_list))
+    (block
+      (command_expression
+        command: (identifier)))))
+
+==================
+RePeaT blocks with line breaks
+==================
+
+RePeaT 3.
+
+(
+
+
+  READ #1 %LINE &code
+  PRINT "&code"
+
+
+)
+
+
+RePeaT
+
+
+(
+
+  READ #1 %LINE &line
+  PRINT "&line"
+
+)
+
+
+WHILE !FILE.EOFLASTREAD()
+
+RePeaT
+
+  PRINT &c
+
+---
+
+(script
+  (repeat_block
+    command: (identifier)
+    condition: (integer)
+    (block
+      (command_expression
+        command: (identifier)
+        arguments: (argument_list
+          (file_handle)
+          (format_expression
+            value: (identifier))
+          (macro)))
+      (command_expression
+        command: (identifier)
+        arguments: (argument_list
+          (string
+            (macro))))))
+  (repeat_block
+    command: (identifier)
+    (block
+      (command_expression
+        command: (identifier)
+        arguments: (argument_list
+          (file_handle)
+          (format_expression
+            value: (identifier))
+          (macro)))
+      (command_expression
+        command: (identifier)
+        arguments: (argument_list
+          (string
+            (macro)))))
+    condition: (unary_expression
+      argument: (call_expression
+        function: (identifier)
+        arguments: (argument_list))))
+  (repeat_block
+    command: (identifier)
+    (command_expression
+      command: (identifier)
+      arguments: (argument_list
+        (macro)))))
+
+==================
+IF blocks with line breaks
+==================
+
+IF &char=='A'
+
+
+  PRINT "A"
+
+
+ELSE
+
+
+  PRINT "B"
+
+
+
+IF &char=='C'
+
+
+(
+  PRINT "C"
+
+)
+
+
+ELSE IF &char=='D'
+
+  PRINT "D"
+
+---
+
+(script
+  (if_block
+    command: (identifier)
+    condition: (binary_expression
+      left: (macro)
+      right: (character))
+    (command_expression
+      command: (identifier)
+      arguments: (argument_list
+        (string)))
+    (else_block
+      command: (identifier)
+      (command_expression
+        command: (identifier)
+        arguments: (argument_list
+          (string)))))
+  (if_block
+    command: (identifier)
+    condition: (binary_expression
+      left: (macro)
+      right: (character))
+    (block
+      (command_expression
+        command: (identifier)
+        arguments: (argument_list
+          (string))))
+    (else_block
+      command: (identifier)
+      (if_block
+        command: (identifier)
+        condition: (binary_expression
+          left: (macro)
+          right: (character))
+        (command_expression
+          command: (identifier)
+          arguments: (argument_list
+            (string)))))))

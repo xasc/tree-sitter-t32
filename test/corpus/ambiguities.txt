@@ -94,3 +94,52 @@ SYStem.CONFIG L2CACHE Type L2C-310
       (identifier)
       (identifier)
       (identifier))))
+
+==================
+WHILE after RePeaT blocks
+==================
+
+rpt 10.
+(
+  s
+)
+
+WHILE &a
+(
+)
+
+RPT
+(
+  b
+)
+
+rpt
+(
+  s
+)
+WHILE &a
+
+---
+
+(script
+  (repeat_block
+    command: (identifier)
+    condition: (integer)
+    (block
+      (command_expression
+        command: (identifier))))
+  (while_block
+    command: (identifier)
+    condition: (macro)
+    (block))
+  (repeat_block
+    command: (identifier)
+    (block
+      (command_expression
+        command: (identifier))))
+  (repeat_block
+    command: (identifier)
+    (block
+      (command_expression
+        command: (identifier)))
+    condition: (macro)))

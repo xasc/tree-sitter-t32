@@ -68,9 +68,9 @@ module.exports = grammar({
   ],
 
   conflicts: $ => [
-    [$._hll_declaration_specifiers],
-    [$._hll_pointer_declarator_specifier],
     [$.address],
+    [$.argument_list, $.assignment_expression],
+    [$.hll_array_declarator, $.hll_abstract_array_declarator],
     [$.hll_pointer_declarator],
     [$.hll_sized_type_specifier],
     [$.hll_type_descriptor],
@@ -80,12 +80,13 @@ module.exports = grammar({
     [$._command_argument, $.assignment_expression],
     [$._expression, $._function_identifier],
     [$._expression, $._address_expression],
-    [$.argument_list, $.assignment_expression],
+    [$._hll_declaration_specifiers],
+    [$._hll_pointer_declarator_specifier],
     [$._hll_expression, $._hll_assignment_left_expression],
     [$._hll_expression, $._hll_type_identifier],
     [$._hll_expression, $._hll_assignment_left_expression, $._hll_type_identifier],
     [$._hll_expression, $._hll_assignment_left_expression, $.symbol],
-    [$.hll_array_declarator, $.hll_abstract_array_declarator]
+    [$._repeat_block_pre_condition_format, $._repeat_block_post_condition_format],
   ],
 
   inline: $ => [
@@ -108,7 +109,7 @@ module.exports = grammar({
     _top_level: $ => choice(
       $.block,
       $._statement,
-      $._terminator,
+      $._blank_line
     ),
 
     block: $ => prec.right(seq(
@@ -119,7 +120,7 @@ module.exports = grammar({
       ),
       repeat(choice(
         $._statement,
-        $._terminator,
+        $._blank_line,
         $.block
       )),
       seq(
@@ -214,6 +215,7 @@ module.exports = grammar({
       ),
       seq(
         $._terminator,
+        repeat($._blank_line),
         choice(
           $._statement,
           seq(
@@ -221,7 +223,10 @@ module.exports = grammar({
             $.block
           )
         ),
-        repeat($._blank),
+        repeat(choice(
+          $._blank,
+          $._blank_line
+        )),
         optional($.else_block)
       )
     )),
@@ -231,6 +236,7 @@ module.exports = grammar({
       choice(
         seq(
           $._terminator,
+          repeat($._blank_line),
           choice(
             $._statement,
             $.block
@@ -263,6 +269,7 @@ module.exports = grammar({
         )
       ),
       $._terminator,
+      repeat($._blank_line),
       choice(
         $._statement,
         seq(
@@ -272,7 +279,12 @@ module.exports = grammar({
       )
     ),
 
-    repeat_block: $ => prec.right(seq(
+    repeat_block: $ => choice(
+      $._repeat_block_pre_condition_format,
+      $._repeat_block_post_condition_format,
+    ),
+
+    _repeat_block_pre_condition_format: $ => seq(
       field('command', alias(longAndShortForm('RePeaT'), $.identifier)),
       choice(
         seq(
@@ -282,6 +294,7 @@ module.exports = grammar({
             $._statement,
             seq(
               $._terminator,
+              repeat($._blank_line),
               choice(
                 $._statement,
                 seq(
@@ -294,6 +307,7 @@ module.exports = grammar({
         ),
         seq(
           $._terminator,
+          repeat($._blank_line),
           choice(
             $._statement,
             seq(
@@ -301,12 +315,30 @@ module.exports = grammar({
               $.block
             )
           ),
-          optional(seq(
+        )
+      )
+    ),
+
+    _repeat_block_post_condition_format: $ => prec.dynamic(1, seq(
+      field('command', alias(longAndShortForm('RePeaT'), $.identifier)),
+      choice(
+        seq(
+          $._terminator,
+          repeat($._blank_line),
+          choice(
+            $._statement,
+            seq(
+              repeat($.comment),
+              $.block
+            )
+          ),
+          seq(
+            repeat($._blank_line),
             longAndShortForm('WHILE'),
             repeat1($._blank),
             field('condition', $._expression),
             $._terminator
-          ))
+          )
         )
       )
     )),
@@ -1643,10 +1675,14 @@ module.exports = grammar({
 
     comment: $ => /[ \t]*(;|\/\/)(\\\r?\n|[^\n])*\n/,
 
+    _blank_line: $ => /[ \t]*\r?\n/,
+
     _terminator: $ => choice(
       $.comment,
-      /[ \t]*\r?\n/
+      $._blank_line
     ),
+
+    _blank_line: $ => /[ \t]*\r?\n/,
 
     _line_continuation: $ => /\\\r?\n/,
 

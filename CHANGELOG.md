@@ -9,6 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Better support for scripts with both `(repeat_block)` in post condition format
+  and `(while_block)` nodes. Ambiguities are resolved during runtime.
+
+### Fixed
+
+- Fix parsing of `(block)`, `(if_block)`, `(while_block)` and `(repeat_block)` nodes with
+  additional line breaks.
+
+## [2.3.0] - 2023-09-07
+
+### Changed
+
 - Do not include empty lines in range of last expression
 
 ### Fixed
