@@ -4741,10 +4741,6 @@
           "named": true
         },
         {
-          "type": "comment",
-          "named": true
-        },
-        {
           "type": "if_block",
           "named": true
         },
