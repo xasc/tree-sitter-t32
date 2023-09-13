@@ -1,7 +1,7 @@
 matrix:
   RUST: [stable]
 
-pipeline:
+steps:
   test-rust:
     image: rust
     environment: [CARGO_TERM_COLOR=always]
