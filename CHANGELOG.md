@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Added
+
+- Support `(symbol)` nodes with `\<line number>\<column number>\<instance number>` postfix
+
 ## [2.4.0] - 2023-09-13
 
 ### Changed
@@ -41,7 +47,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Reduced number of highlighting queries for variables in HLL expressions.
+- Reduce number of highlighting queries for variables in HLL expressions.
   A single `(identifier) @variable` capture is sufficient.
 
 ## [2.1.1] - 2023-07-27
@@ -54,7 +60,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Extended tests for syntax highlighting
+- Extend tests for syntax highlighting
 
 ### Changed
 

@@ -1630,12 +1630,29 @@ module.exports = grammar({
     // During parsing there is no way to differentiate.
     symbol: $ => prec(PREC.symbol, choice(
       token(choice(
-        /\\\\\\([\w_]+|`[^`\n]+`)\\\\([\w_]*|`[^`\n]+`)\\([\w_]*|`[^`\n]+`)\\([\w_]+|`[^`\n]+`)(\\([\w_]+|`[^`\n]+`))*/,  // Includes machine name
-        /((\\\\([\w_]+|`[^`\n]+`))?\\([\w_]*|`[^`\n]+`)\\)?`[^`\n]+`(\\([\w_]+|`[^`\n]+`))*/,  // Quoted function name only
-        /(\\\\([\w_]+|`[^`\n]+`))?\\([\w_]*|`[^`\n]+`)\\[\w_]+(\\([\w_]+|`[^`\n]+`))*/,  // Module name with unquoted function name
-        /[\\]{2,3}([\w_]+|`[^`\n]+`)/,  // Machine or program name
-        /\\`[^`\n]+`/,  // Quoted module name only
-        /[\w_]+\\[0-9]+/,  // Function name with line number offset
+        seq(
+          choice(
+            /\\\\\\([\w_]+|`[^`\n]+`)\\\\([\w_]*|`[^`\n]+`)\\([\w_]*|`[^`\n]+`)\\([\w_]+|`[^`\n]+`)(\\([\w_]+|`[^`\n]+`))*/,  // Includes machine name
+            /((\\\\([\w_]+|`[^`\n]+`))?\\([\w_]*|`[^`\n]+`)\\)?`[^`\n]+`(\\([\w_]+|`[^`\n]+`))*/,  // Quoted function name only
+            /(\\\\([\w_]+|`[^`\n]+`))?\\([\w_]*|`[^`\n]+`)\\[\w_]+(\\([\w_]+|`[^`\n]+`))*/,  // Module name with unquoted function name
+            /[\\]{2,3}([\w_]+|`[^`\n]+`)/,  // Machine or program name
+            /\\`[^`\n]+`/,  // Quoted module name only
+          ),
+          optional(seq(
+            /\\[0-9]+/,  // Line number offset
+            optional(choice(
+              /\\[0-9]+/,  // Column number offset
+              /\\[0-9]*\\[0-9]+/  // Instance number offset
+            ))
+          ))
+        ),
+        seq(
+          /[\w_]+\\[0-9]+/,  // Function name with line number offeset
+          optional(choice(
+            /\\[0-9]+/,   // Column number offset
+            /\\[0-9]*\\[0-9]+/  // Instance number offset
+          ))
+        )
       )),
       alias($.trace32_hll_variable, 'module')
     )),

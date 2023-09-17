@@ -1114,6 +1114,56 @@ Var.set ( x==y )?f1():(f2())
             arguments: (hll_argument_list)))))))
 
 ==================
+Symbols with line, column and instance offsets
+==================
+
+List function\1
+List function\2\10
+List function\3\10\200
+List function\4\\200
+
+List \`module`\1
+List \`module`\2\10
+List \`module`\3\10\200
+List \`module`\4\\200
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (symbol)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (symbol)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (symbol)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (symbol)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (symbol)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (symbol)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (symbol)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (symbol))))
+
+==================
 Extension: Range operator
 ==================
 
