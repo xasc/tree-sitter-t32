@@ -366,7 +366,6 @@ To run all tests:
 
 - `(symbol)` nodes that represent an unquoted module, like `\module`, cannot be
   differentiated from node type `(trace32_hll_variable)`, e.g. `\x`.
-- Line selection syntax for `(symbol)` nodes (e.g. `main\10`) not supported, yet.
 - Commands from the `Var` command group that contain multiple chained
   `(format_expression) (_hll_expression)` blocks
 - Unquoted `(path)` nodes are not clearly distinguishable from other literal types
