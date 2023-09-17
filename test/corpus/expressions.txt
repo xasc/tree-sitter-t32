@@ -346,7 +346,6 @@ List \\sieve\sieve\fill_buffer+0x64
 List main\47
 Data.dump func4\4+0x0e
 
-
 ---
 
 (script
@@ -399,6 +398,50 @@ Data.dump func4\4+0x0e
       (binary_expression
         left: (symbol)
         right: (integer)))))
+
+==================
+Symbol literals with file-as-module aliases
+==================
+
+&a = \"C:/T32/demo/arm/compiler/gcc/sieve.c"
+
+&b = \\program\"C:/dir/file.c"
+
+&c = \\\machine\"C:/dir/file.c"
+
+&d = \\\machine\\program\"C:/dir/file.c"
+
+&e = \\\machine\\program\"C:/dir/file.c"\function\10\2\300
+
+&f = \\\machine\\program\"C:/dir/file.c"\1
+
+---
+
+(script
+  (assignment_expression
+    left: (macro)
+    right: (symbol
+      (string)))
+  (assignment_expression
+    left: (macro)
+    right: (symbol
+      (string)))
+  (assignment_expression
+    left: (macro)
+    right: (symbol
+      (string)))
+  (assignment_expression
+    left: (macro)
+    right: (symbol
+      (string)))
+  (assignment_expression
+    left: (macro)
+    right: (symbol
+      (string)))
+  (assignment_expression
+    left: (macro)
+    right: (symbol
+      (string))))
 
 ==================
 Address literals

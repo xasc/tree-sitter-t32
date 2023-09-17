@@ -1654,6 +1654,24 @@ module.exports = grammar({
           ))
         )
       )),
+      seq(
+        choice(
+          token(choice(
+            /\\\\\\([\w_]+|`[^`\n]+`)(\\\\([\w_]+|`[^`\n]+`))?\\/,  // Includes machine name
+            /\\\\([\w_]+|`[^`\n]+`)\\/,  // Starts with program name
+          )),
+          '\\'
+        ),
+        $.string,
+        optional(token(seq(
+          repeat(/\\([\w_]+|`[^`\n]+`)/),  // Functions and variables
+          /\\[0-9]+/,  // Line number offset
+          optional(choice(
+            /\\[0-9]+/,  // Column number offset
+            /\\[0-9]*\\[0-9]+/  // Instance number offset
+          ))
+        )))
+      ),
       alias($.trace32_hll_variable, 'module')
     )),
 
