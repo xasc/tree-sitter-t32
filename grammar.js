@@ -22,8 +22,11 @@
  */
 
 const PREC = {
-  string: 1,
+  symbol: -1,
   declarator: 1,
+  escape_sequence: 1,
+  repeat_post_condition: 1,
+  string: 1,
   logical_or: 10,
   logical_xor: 11,
   logical_and: 12,
@@ -319,7 +322,7 @@ module.exports = grammar({
       )
     ),
 
-    _repeat_block_post_condition_format: $ => prec.dynamic(1, seq(
+    _repeat_block_post_condition_format: $ => prec.dynamic(PREC.repeat_post_condition, seq(
       field('command', alias(longAndShortForm('RePeaT'), $.identifier)),
       choice(
         seq(
@@ -1442,7 +1445,7 @@ module.exports = grammar({
       ')'
     ),
 
-    hll_escape_sequence: $ => token(prec(1, seq(
+    hll_escape_sequence: $ => token(prec(PREC.escape_sequence, seq(
       '\\',
       choice(
         /[^xuU]/,
@@ -1625,7 +1628,7 @@ module.exports = grammar({
 
     // Module names with single backslash are handled as internal c-style variables.
     // During parsing there is no way to differentiate.
-    symbol: $ => prec(-1, choice(
+    symbol: $ => prec(PREC.symbol, choice(
       token(choice(
         /\\\\\\([\w_]+|`[^`\n]+`)\\\\([\w_]*|`[^`\n]+`)\\([\w_]*|`[^`\n]+`)\\([\w_]+|`[^`\n]+`)(\\([\w_]+|`[^`\n]+`))*/,  // Includes machine name
         /((\\\\([\w_]+|`[^`\n]+`))?\\([\w_]*|`[^`\n]+`)\\)?`[^`\n]+`(\\([\w_]+|`[^`\n]+`))*/,  // Quoted function name only
