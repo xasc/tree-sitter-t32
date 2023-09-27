@@ -800,38 +800,40 @@ module.exports = grammar({
       longAndShortForm('IF')
     ),
 
-    _hll_var_command_argument_list_default_format: $ => choice(
+    _hll_var_command_argument_list_default_format: $ => seq(
       seq(
         repeat(seq(
-          $.format_expression,
-          repeat1($._blank)
-        )),
-        seq(
-          repeat(seq(
-            $._hll_expression,
-            choice(
-              $._hll_expression_separator,
-              repeat1($._blank)
+          choice(
+            $.format_expression,
+            seq(
+              repeat(seq(
+                $._hll_expression,
+                $._hll_expression_separator
+              )),
+              $._hll_expression
             )
-          )),
-          $._hll_expression
-        ),
-        optional(seq(
-          repeat1($._blank),
-          repeat(seq(
-            $.option_expression,
-            repeat1($._blank)
-          )),
-          $.option_expression
-        ))
-      ),
-      seq(
-        repeat(seq(
-          $.format_expression,
+          ),
           repeat1($._blank)
         )),
-        $.format_expression
-      )
+        choice(
+          seq(
+            repeat(seq(
+              $._hll_expression,
+              $._hll_expression_separator
+            )),
+            $._hll_expression
+          ),
+          $.format_expression
+        ),
+      ),
+      optional(seq(
+        repeat1($._blank),
+        repeat(seq(
+          $.option_expression,
+          repeat1($._blank)
+        )),
+        $.option_expression
+      ))
     ),
 
     _hll_var_command_argument_list_non_default_format: $ => choice(
@@ -843,18 +845,27 @@ module.exports = grammar({
         ),
         repeat1($._blank),
         repeat(seq(
-          $.format_expression,
+          choice(
+            $.format_expression,
+            seq(
+              repeat(seq(
+                $._hll_expression,
+                $._hll_expression_separator
+              )),
+              $._hll_expression
+            )
+          ),
           repeat1($._blank)
         )),
-        seq(
-          repeat(seq(
-            $._hll_expression,
-            choice(
-              $._hll_expression_separator,
-              repeat1($._blank)
-            )
-          )),
-          $._hll_expression
+        choice(
+          seq(
+            repeat(seq(
+              $._hll_expression,
+              $._hll_expression_separator
+            )),
+            $._hll_expression
+          ),
+          $.format_expression
         ),
         optional(seq(
           repeat1($._blank),

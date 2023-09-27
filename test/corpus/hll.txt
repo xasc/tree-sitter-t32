@@ -4,6 +4,7 @@ Var commands with default format
 
 Var.AddWatch ast.left vtripplearray
 Var.AddWatch %format ast.left vtripplearray
+Var.AddWatch vtripplearray %STanDard %Hex ast.left *ast.right
 
 Var.Assign *0x2000 = 1
 Var.Assign %format *0x2000 = 1
@@ -89,6 +90,8 @@ Var.view  flags[a++]
 Var.view  flags[--a]
 Var.view *(&flags+20)
 
+Var.Watch %Index flags %Hex mstatic1 %Hex.OFF %SpotLight ast
+
 ---
 
 (script
@@ -108,6 +111,21 @@ Var.view *(&flags+20)
         argument: (identifier)
         field: (hll_field_identifier))
       (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)
+      (format_expression
+        value: (identifier))
+      (format_expression
+        value: (identifier))
+      (hll_field_expression
+        argument: (identifier)
+        field: (hll_field_identifier))
+      (hll_pointer_expression
+        argument: (hll_field_expression
+          argument: (identifier)
+          field: (hll_field_identifier)))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
@@ -477,7 +495,22 @@ Var.view *(&flags+20)
           (hll_binary_expression
             left: (hll_pointer_expression
               argument: (identifier))
-            right: (hll_number_literal)))))))
+            right: (hll_number_literal))))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (format_expression
+        value: (identifier))
+      (identifier)
+      (format_expression
+        value: (identifier))
+      (identifier)
+      (format_expression
+        value: (identifier)
+        value: (identifier))
+      (format_expression
+        value: (identifier))
+      (identifier))))
 
 ==================
 Var commands with non default format
@@ -485,7 +518,9 @@ Var commands with non default format
 
 Var.AddSticker main\10 %Hex mcount
 Var.EXPORT ~~~\export.csv %Type %Location %Index flags ast /Append
+
 Var.WRITE #1 %CONTinue vdiarray[2]
+Var.WRITE #99 %CONTinue %Recursive.on ast %STanDard %SCALED vtripplearray
 
 Var.PRINT cstr1 ", " mstatic1
 Var.PRINT %CONTinue "cstr1=" cstr1 ", mstatic1=" mstatic1
@@ -526,6 +561,21 @@ Var.PATtern %Type * struct struct?
       (hll_subscript_expression
         argument: (identifier)
         index: (hll_number_literal))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (file_handle)
+      (format_expression
+        value: (identifier))
+      (format_expression
+        value: (identifier)
+        value: (identifier))
+      (identifier)
+      (format_expression
+        value: (identifier))
+      (format_expression
+        value: (identifier))
+      (identifier)))
   (command_expression
     command: (identifier)
     arguments: (argument_list
