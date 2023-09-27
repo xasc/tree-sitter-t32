@@ -518,6 +518,7 @@ Var commands with non default format
 
 Var.AddSticker main\10 %Hex mcount
 Var.EXPORT ~~~\export.csv %Type %Location %Index flags ast /Append
+Var.EXPORT "vbfield_export.csv" vbfield /Append
 
 Var.WRITE #1 %CONTinue vdiarray[2]
 Var.WRITE #99 %CONTinue %Recursive.on ast %STanDard %SCALED vtripplearray
@@ -549,6 +550,13 @@ Var.PATtern %Type * struct struct?
       (format_expression
         value: (identifier))
       (identifier)
+      (identifier)
+      (option_expression
+        option: (identifier))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (string)
       (identifier)
       (option_expression
         option: (identifier))))

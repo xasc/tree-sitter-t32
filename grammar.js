@@ -839,9 +839,10 @@ module.exports = grammar({
     _hll_var_command_argument_list_non_default_format: $ => choice(
       seq(
         choice(
-          $.symbol,
+          $.file_handle,
           $.path,
-          $.file_handle
+          $.symbol,
+          $.string
         ),
         repeat1($._blank),
         repeat(seq(

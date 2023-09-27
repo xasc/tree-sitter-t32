@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Var` commands with multiple `(format_expression) (_hll_expression)` blocks
   are supported.
 
+### Fixed
+
+- `Var` commands with string as first parameter
+
 ## [2.5.0] - 2023-09-17
 
 ### Added
