@@ -143,3 +143,20 @@ WHILE &a
       (command_expression
         command: (identifier)))
     condition: (macro)))
+
+==================
+Semicolon in HLL expression
+==================
+
+Var.TYPE ast->left;ast->count
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_field_expression
+        argument: (identifier)
+        field: (hll_field_identifier)))
+    (comment)))
