@@ -32,7 +32,7 @@
     "node-gyp": "^9.4.0",
     "tree-sitter-cli": "^0.20.8"
   },
-  "packageManager": "yarn@3.6.1",
+  "packageManager": "yarn@4.0.0",
   "main": "bindings/node",
   "tree-sitter": [
     {
