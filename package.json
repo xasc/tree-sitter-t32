@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-t32",
-  "version": "2.5.0",
+  "version": "2.6.1",
   "description": "Lauterbach TRACE32 script language grammar for tree-sitter",
   "author": "Christoph Sax",
   "license": "MIT",
