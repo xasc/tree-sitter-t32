@@ -446,7 +446,7 @@ module.exports = grammar({
     ),
 
     macro_definition: $ => seq(
-      optional(/(::)*B::/),
+      optional(/(::)?B::/),
       field('command', alias($.macro_definition_command, $.identifier)),
       repeat1(seq(
         repeat1($._blank),
@@ -456,7 +456,7 @@ module.exports = grammar({
     ),
 
     parameter_declaration: $ => seq(
-      optional(/(::)*B::/),
+      optional(/(::)?B::/),
       choice(
         field('command', alias(longAndShortForm('PARAMETERS'), $.identifier)),
         field('command', alias(longAndShortForm('RETURNVALUES'), $.identifier)),
@@ -476,7 +476,7 @@ module.exports = grammar({
     ),
 
     subroutine_call_expression: $ => seq(
-      optional(/(::)*B::/),
+      optional(/(::)?B::/),
       field('command', alias('GOSUB', $.identifier)),
       repeat1($._blank),
       field('subroutine', $.identifier),
@@ -517,7 +517,7 @@ module.exports = grammar({
     ),
 
     command_expression: $ => seq(
-      optional(/(::)*B::/),
+      optional(/(::)?B::/),
       choice(
         seq(
           $._var_command,

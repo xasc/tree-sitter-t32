@@ -2007,7 +2007,7 @@
           "members": [
             {
               "type": "PATTERN",
-              "value": "(::)*B::"
+              "value": "(::)?B::"
             },
             {
               "type": "BLANK"
@@ -2064,7 +2064,7 @@
           "members": [
             {
               "type": "PATTERN",
-              "value": "(::)*B::"
+              "value": "(::)?B::"
             },
             {
               "type": "BLANK"
@@ -2206,7 +2206,7 @@
           "members": [
             {
               "type": "PATTERN",
-              "value": "(::)*B::"
+              "value": "(::)?B::"
             },
             {
               "type": "BLANK"
@@ -2428,7 +2428,7 @@
           "members": [
             {
               "type": "PATTERN",
-              "value": "(::)*B::"
+              "value": "(::)?B::"
             },
             {
               "type": "BLANK"

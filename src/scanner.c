@@ -209,22 +209,25 @@ static bool IsSign(
 }
 
 
-static void ScanLabelIdentifier(
+static unsigned ScanLengthLabelIdentifier(
 	TSLexer * lexer)
 {
 	assert(lexer != NULL);
 
-	Advance(lexer);
+	unsigned len = 0;
 	while (
 		IsAlphaNum(lexer->lookahead) ||
 		lexer->lookahead == '_' ||
 		lexer->lookahead == '.'
 	) {
 		Advance(lexer);
+		len += 1u;
+
 		if (IsEof(lexer)) {
 			break;
 		}
 	}
+	return len;
 }
 
 
@@ -790,17 +793,19 @@ bool tree_sitter_t32_external_scanner_scan(
 
 	// Labels must start in the first column
 	if (valid_symbols[LABEL_IDENTIFIER] && lexer->get_column(lexer) == 0) {
-		if (
-			IsAlpha(lexer->lookahead) ||
-			lexer->lookahead == '_' ||
-			lexer->lookahead == '.'
-		) {
-			ScanLabelIdentifier(lexer);
+		bool const starts_with_device_prefix = (lexer->lookahead == 'B');
 
-			if (lexer->lookahead == ':') {
-				lexer->result_symbol = LABEL_IDENTIFIER;
-				return true;
+		unsigned const len = ScanLengthLabelIdentifier(lexer);
+		if (len > 0 && lexer->lookahead == ':') {
+			MarkEnd(lexer);
+			Advance(lexer);
+
+			/* B:: is a device prefix at the beginning of commands */
+			if (len == 1 && starts_with_device_prefix && lexer->lookahead == ':') {
+				return false;
 			}
+			lexer->result_symbol = LABEL_IDENTIFIER;
+			return true;
 		}
 	}
 	else if (valid_symbols[AND_OPERATOR_PRE_HOOK] && lexer->lookahead == '&') {

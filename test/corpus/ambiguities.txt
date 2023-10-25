@@ -160,3 +160,19 @@ Var.TYPE ast->left;ast->count
         argument: (identifier)
         field: (hll_field_identifier)))
     (comment)))
+
+==================
+Commands with device prefix
+==================
+
+B::WinPrint.Data.dump 0x1000 /Byte
+
+---
+
+(script
+(command_expression
+  command: (identifier)
+  arguments: (argument_list
+    (integer)
+    (option_expression
+      option: (identifier)))))
