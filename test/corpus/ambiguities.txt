@@ -176,3 +176,32 @@ B::WinPrint.Data.dump 0x1000 /Byte
     (integer)
     (option_expression
       option: (identifier)))))
+
+==================
+Boolean Expressions with parentheses and macros
+==================
+
+IF (&selection>1.)&&(&selection<6.)
+(
+    PRINT %ERROR "ERROR!!"
+)
+
+---
+
+(script
+  (if_block
+    command: (identifier)
+    condition: (binary_expression
+      left: (binary_expression
+        left: (macro)
+        right: (integer))
+      right: (binary_expression
+        left: (macro)
+        right: (integer)))
+    (block
+      (command_expression
+        command: (identifier)
+        arguments: (argument_list
+          (format_expression
+            value: (identifier))
+          (string))))))

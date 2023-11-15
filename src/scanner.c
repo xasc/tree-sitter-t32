@@ -266,7 +266,10 @@ static unsigned ScanLengthAndOperator(
 	 * &e = 0xf&14.
 	 *
 	 * LOCAL &f
-	 * &e = FALSE()&&sYmbol.Exit(main)
+	 * &f = FALSE()&&sYmbol.Exit(main)
+	 *
+	 * LOCAL &g
+	 * &g = FALSE()&&(&macro!=0)
 	 */
 
 	MarkEnd(lexer);
@@ -278,7 +281,7 @@ static unsigned ScanLengthAndOperator(
 		lexer->lookahead == '(' ||
 		lexer->lookahead == '{'
 	) {
-		if (lexer->lookahead == '&') {
+		if (macro_delim == '\0' && lexer->lookahead == '&') {
 			len += 1u;
 		}
 		else if (lexer->lookahead == '(') {
