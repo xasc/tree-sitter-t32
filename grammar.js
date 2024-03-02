@@ -74,7 +74,6 @@ module.exports = grammar({
     [$.address],
     [$.argument_list, $.assignment_expression],
     [$.hll_array_declarator, $.hll_abstract_array_declarator],
-    [$.hll_pointer_declarator],
     [$.hll_sized_type_specifier],
     [$.hll_type_descriptor],
     [$.memory_space],

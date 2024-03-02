@@ -17,7 +17,7 @@
     "practice"
   ],
   "scripts": {
-    "build": "tree-sitter generate && node-gyp build",
+    "build": "tree-sitter generate",
     "build-wasm": "tree-sitter build-wasm",
     "parse": "tree-sitter parse",
     "tags": "tree-sitter tags",
@@ -25,14 +25,10 @@
     "highlight": "tree-sitter highlight",
     "playground": "tree-sitter playground"
   },
-  "dependencies": {
-    "nan": "2.16.0"
-  },
   "devDependencies": {
-    "node-gyp": "^9.4.0",
-    "tree-sitter-cli": "^0.20.8"
+    "tree-sitter-cli": "^0.21.0"
   },
-  "packageManager": "yarn@4.0.0",
+  "packageManager": "yarn@4.1.0",
   "main": "bindings/node",
   "tree-sitter": [
     {
@@ -43,7 +39,8 @@
       ],
       "injection-regex": "t32",
       "highlights": "queries/highlights.scm",
-      "locals": "queries/locals.scm"
+      "locals": "queries/locals.scm",
+      "tags": "queries/tags.scm"
     }
   ]
 }
