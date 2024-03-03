@@ -7979,9 +7979,6 @@
       "hll_abstract_array_declarator"
     ],
     [
-      "hll_pointer_declarator"
-    ],
-    [
       "hll_sized_type_specifier"
     ],
     [
@@ -8086,4 +8083,3 @@
   ],
   "supertypes": []
 }
-

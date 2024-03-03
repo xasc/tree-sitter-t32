@@ -1,4 +1,4 @@
-#include <tree_sitter/parser.h>
+#include "tree_sitter/parser.h"
 
 #if defined(__GNUC__) || defined(__clang__)
 #pragma GCC diagnostic push
@@ -16,7 +16,7 @@
 #define MAX_ALIAS_SEQUENCE_LENGTH 10
 #define PRODUCTION_ID_COUNT 126
 
-enum {
+enum ts_symbol_identifiers {
   sym_identifier = 1,
   aux_sym_block_token1 = 2,
   anon_sym_RPAREN = 3,
@@ -2071,7 +2071,7 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
   },
 };
 
-enum {
+enum ts_field_identifiers {
   field_access = 1,
   field_alternative = 2,
   field_argument = 3,
@@ -10428,112 +10428,6 @@ static const TSLexMode ts_lex_modes[STATE_COUNT] = {
   [2277] = {.lex_state = 23},
   [2278] = {.lex_state = 106},
   [2279] = {.lex_state = 23},
-};
-
-enum {
-  ts_external_token_label_identifier = 0,
-  ts_external_token__and_operator_pre_hook = 1,
-  ts_external_token__decimal_number = 2,
-  ts_external_token__decimal_number_pre_hook = 3,
-  ts_external_token_hll_number_literal = 4,
-  ts_external_token__hll_number_literal_pre_hook = 5,
-  ts_external_token_path = 6,
-  ts_external_token_AMP_AMP = 7,
-  ts_external_token_AMP = 8,
-};
-
-static const TSSymbol ts_external_scanner_symbol_map[EXTERNAL_TOKEN_COUNT] = {
-  [ts_external_token_label_identifier] = sym_label_identifier,
-  [ts_external_token__and_operator_pre_hook] = sym__and_operator_pre_hook,
-  [ts_external_token__decimal_number] = sym__decimal_number,
-  [ts_external_token__decimal_number_pre_hook] = sym__decimal_number_pre_hook,
-  [ts_external_token_hll_number_literal] = sym_hll_number_literal,
-  [ts_external_token__hll_number_literal_pre_hook] = sym__hll_number_literal_pre_hook,
-  [ts_external_token_path] = sym_path,
-  [ts_external_token_AMP_AMP] = anon_sym_AMP_AMP,
-  [ts_external_token_AMP] = anon_sym_AMP,
-};
-
-static const bool ts_external_scanner_states[17][EXTERNAL_TOKEN_COUNT] = {
-  [1] = {
-    [ts_external_token_label_identifier] = true,
-    [ts_external_token__and_operator_pre_hook] = true,
-    [ts_external_token__decimal_number] = true,
-    [ts_external_token__decimal_number_pre_hook] = true,
-    [ts_external_token_hll_number_literal] = true,
-    [ts_external_token__hll_number_literal_pre_hook] = true,
-    [ts_external_token_path] = true,
-    [ts_external_token_AMP] = true,
-  },
-  [2] = {
-    [ts_external_token_label_identifier] = true,
-    [ts_external_token_AMP_AMP] = true,
-    [ts_external_token_AMP] = true,
-  },
-  [3] = {
-    [ts_external_token_label_identifier] = true,
-    [ts_external_token__and_operator_pre_hook] = true,
-    [ts_external_token__decimal_number_pre_hook] = true,
-    [ts_external_token_path] = true,
-    [ts_external_token_AMP_AMP] = true,
-    [ts_external_token_AMP] = true,
-  },
-  [4] = {
-    [ts_external_token__and_operator_pre_hook] = true,
-    [ts_external_token__decimal_number_pre_hook] = true,
-    [ts_external_token_path] = true,
-    [ts_external_token_AMP] = true,
-  },
-  [5] = {
-    [ts_external_token__hll_number_literal_pre_hook] = true,
-    [ts_external_token_AMP_AMP] = true,
-    [ts_external_token_AMP] = true,
-  },
-  [6] = {
-    [ts_external_token_label_identifier] = true,
-    [ts_external_token__and_operator_pre_hook] = true,
-    [ts_external_token_AMP_AMP] = true,
-    [ts_external_token_AMP] = true,
-  },
-  [7] = {
-    [ts_external_token__decimal_number_pre_hook] = true,
-    [ts_external_token_path] = true,
-    [ts_external_token_AMP] = true,
-  },
-  [8] = {
-    [ts_external_token__hll_number_literal_pre_hook] = true,
-    [ts_external_token_AMP] = true,
-  },
-  [9] = {
-    [ts_external_token_label_identifier] = true,
-    [ts_external_token__and_operator_pre_hook] = true,
-    [ts_external_token_path] = true,
-    [ts_external_token_AMP_AMP] = true,
-    [ts_external_token_AMP] = true,
-  },
-  [10] = {
-    [ts_external_token_AMP_AMP] = true,
-    [ts_external_token_AMP] = true,
-  },
-  [11] = {
-    [ts_external_token__and_operator_pre_hook] = true,
-    [ts_external_token_path] = true,
-  },
-  [12] = {
-    [ts_external_token__and_operator_pre_hook] = true,
-  },
-  [13] = {
-    [ts_external_token_path] = true,
-  },
-  [14] = {
-    [ts_external_token_AMP] = true,
-  },
-  [15] = {
-    [ts_external_token__decimal_number] = true,
-  },
-  [16] = {
-    [ts_external_token_hll_number_literal] = true,
-  },
 };
 
 static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
@@ -110022,6 +109916,112 @@ static const TSParseActionEntry ts_parse_actions[] = {
   [5378] = {.entry = {.count = 1, .reusable = true}}, SHIFT(2126),
   [5380] = {.entry = {.count = 1, .reusable = true}}, SHIFT(1386),
   [5382] = {.entry = {.count = 1, .reusable = true}}, SHIFT(236),
+};
+
+enum ts_external_scanner_symbol_identifiers {
+  ts_external_token_label_identifier = 0,
+  ts_external_token__and_operator_pre_hook = 1,
+  ts_external_token__decimal_number = 2,
+  ts_external_token__decimal_number_pre_hook = 3,
+  ts_external_token_hll_number_literal = 4,
+  ts_external_token__hll_number_literal_pre_hook = 5,
+  ts_external_token_path = 6,
+  ts_external_token_AMP_AMP = 7,
+  ts_external_token_AMP = 8,
+};
+
+static const TSSymbol ts_external_scanner_symbol_map[EXTERNAL_TOKEN_COUNT] = {
+  [ts_external_token_label_identifier] = sym_label_identifier,
+  [ts_external_token__and_operator_pre_hook] = sym__and_operator_pre_hook,
+  [ts_external_token__decimal_number] = sym__decimal_number,
+  [ts_external_token__decimal_number_pre_hook] = sym__decimal_number_pre_hook,
+  [ts_external_token_hll_number_literal] = sym_hll_number_literal,
+  [ts_external_token__hll_number_literal_pre_hook] = sym__hll_number_literal_pre_hook,
+  [ts_external_token_path] = sym_path,
+  [ts_external_token_AMP_AMP] = anon_sym_AMP_AMP,
+  [ts_external_token_AMP] = anon_sym_AMP,
+};
+
+static const bool ts_external_scanner_states[17][EXTERNAL_TOKEN_COUNT] = {
+  [1] = {
+    [ts_external_token_label_identifier] = true,
+    [ts_external_token__and_operator_pre_hook] = true,
+    [ts_external_token__decimal_number] = true,
+    [ts_external_token__decimal_number_pre_hook] = true,
+    [ts_external_token_hll_number_literal] = true,
+    [ts_external_token__hll_number_literal_pre_hook] = true,
+    [ts_external_token_path] = true,
+    [ts_external_token_AMP] = true,
+  },
+  [2] = {
+    [ts_external_token_label_identifier] = true,
+    [ts_external_token_AMP_AMP] = true,
+    [ts_external_token_AMP] = true,
+  },
+  [3] = {
+    [ts_external_token_label_identifier] = true,
+    [ts_external_token__and_operator_pre_hook] = true,
+    [ts_external_token__decimal_number_pre_hook] = true,
+    [ts_external_token_path] = true,
+    [ts_external_token_AMP_AMP] = true,
+    [ts_external_token_AMP] = true,
+  },
+  [4] = {
+    [ts_external_token__and_operator_pre_hook] = true,
+    [ts_external_token__decimal_number_pre_hook] = true,
+    [ts_external_token_path] = true,
+    [ts_external_token_AMP] = true,
+  },
+  [5] = {
+    [ts_external_token__hll_number_literal_pre_hook] = true,
+    [ts_external_token_AMP_AMP] = true,
+    [ts_external_token_AMP] = true,
+  },
+  [6] = {
+    [ts_external_token_label_identifier] = true,
+    [ts_external_token__and_operator_pre_hook] = true,
+    [ts_external_token_AMP_AMP] = true,
+    [ts_external_token_AMP] = true,
+  },
+  [7] = {
+    [ts_external_token__decimal_number_pre_hook] = true,
+    [ts_external_token_path] = true,
+    [ts_external_token_AMP] = true,
+  },
+  [8] = {
+    [ts_external_token__hll_number_literal_pre_hook] = true,
+    [ts_external_token_AMP] = true,
+  },
+  [9] = {
+    [ts_external_token_label_identifier] = true,
+    [ts_external_token__and_operator_pre_hook] = true,
+    [ts_external_token_path] = true,
+    [ts_external_token_AMP_AMP] = true,
+    [ts_external_token_AMP] = true,
+  },
+  [10] = {
+    [ts_external_token_AMP_AMP] = true,
+    [ts_external_token_AMP] = true,
+  },
+  [11] = {
+    [ts_external_token__and_operator_pre_hook] = true,
+    [ts_external_token_path] = true,
+  },
+  [12] = {
+    [ts_external_token__and_operator_pre_hook] = true,
+  },
+  [13] = {
+    [ts_external_token_path] = true,
+  },
+  [14] = {
+    [ts_external_token_AMP] = true,
+  },
+  [15] = {
+    [ts_external_token__decimal_number] = true,
+  },
+  [16] = {
+    [ts_external_token_hll_number_literal] = true,
+  },
 };
 
 #ifdef __cplusplus
