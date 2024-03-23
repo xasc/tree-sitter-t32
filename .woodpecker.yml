@@ -9,11 +9,6 @@ steps:
       - rustup default $RUST
       - cargo check
       - cargo test
-      - cargo install tree-sitter-cli
-      - apt-get update
-      - apt-get install --no-install-recommends --yes nodejs
-      - tree-sitter generate
-      - tree-sitter test
     when:
       - path:
         exclude: [ '*.md', 'LICENSE' ]
@@ -26,8 +21,7 @@ steps:
     commands:
       - apt-get update
       - apt-get install --no-install-recommends --yes build-essential
-      - yarn add node-gyp
-      - yarn install
+      - yarn install --immutable
       - yarn run tree-sitter generate
       - yarn run tree-sitter test
     when:

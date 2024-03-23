@@ -670,7 +670,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-gyp@npm:latest":
+"node-gyp@npm:^10.0.1, node-gyp@npm:latest":
   version: 10.0.1
   resolution: "node-gyp@npm:10.0.1"
   dependencies:
@@ -1001,6 +1001,7 @@ __metadata:
   resolution: "tree-sitter-t32@workspace:."
   dependencies:
     node-addon-api: "npm:^8.0.0"
+    node-gyp: "npm:^10.0.1"
     node-gyp-build: "npm:^4.8.0"
     prebuildify: "npm:^6.0.0"
     tree-sitter-cli: "npm:^0.22.2"
