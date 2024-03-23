@@ -9,27 +9,41 @@
     "url": "https://codeberg.org/xasc/tree-sitter-t32/"
   },
   "keywords": [
-    "parser",
     "lexer",
+    "incremental",
+    "parsing",
+    "tree-sitter",
     "trace32",
     "t32",
     "lauterbach",
     "practice"
   ],
+  "files": [
+    "grammar.js",
+    "binding.gyp",
+    "prebuilds/**",
+    "bindings/node/*",
+    "queries/*",
+    "src/**"
+  ],
   "scripts": {
     "build": "tree-sitter generate",
-    "build-wasm": "tree-sitter build-wasm",
+    "build-wasm": "tree-sitter build --wasm",
     "parse": "tree-sitter parse",
     "tags": "tree-sitter tags",
     "test": "tree-sitter test",
     "highlight": "tree-sitter highlight",
-    "playground": "tree-sitter playground"
+    "playground": "tree-sitter playground",
+    "install": "node-gyp-build",
+    "prebuildify": "prebuildify --napi --strip"
   },
   "devDependencies": {
-    "tree-sitter-cli": "^0.21.0"
+    "prebuildify": "^6.0.0",
+    "tree-sitter-cli": "^0.22.2"
   },
-  "packageManager": "yarn@4.1.0",
+  "packageManager": "yarn@4.1.1",
   "main": "bindings/node",
+  "types": "bindings/node",
   "tree-sitter": [
     {
       "scope": "source.t32",
@@ -42,5 +56,16 @@
       "locals": "queries/locals.scm",
       "tags": "queries/tags.scm"
     }
-  ]
+  ],
+  "dependencies": {
+    "node-gyp-build": "^4.8.0"
+  },
+  "peerDependencies": {
+    "tree-sitter": "^0.21.0"
+  },
+  "peerDependenciesMeta": {
+    "tree_sitter": {
+      "optional": true
+    }
+  }
 }

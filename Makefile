@@ -17,7 +17,7 @@ filterFlag = $(call commas-to-spaces,$(addprefix --filter ,$(call spaces-to-comm
 build: src/parser.c
 
 build-wasm:
-	yarn build-wasm
+	yarn build-wasm --output tree-sitter-t32.wasm
 
 parse: build
 	yarn parse "$(file)"
