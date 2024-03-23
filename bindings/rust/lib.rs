@@ -5,10 +5,17 @@
 //! tree-sitter [Parser][], and then use the parser to parse some code:
 //!
 //! ```
-//! let code = r#"PRINT "tree-sitter-t32""#;
+//! let code = r#"
+//! SUBROUTINE func
+//! (
+//!   ENTRY &a
+//!   PRINT &a
+//! )
+//! "#;
 //! let mut parser = tree_sitter::Parser::new();
-//! parser.set_language(tree_sitter_t32::language()).expect("Error loading t32 grammar");
+//! parser.set_language(&tree_sitter_t32::language()).expect("Error loading t32 grammar");
 //! let tree = parser.parse(code, None).unwrap();
+//! assert!(!tree.root_node().has_error());
 //! ```
 //!
 //! [Language]: https://docs.rs/tree-sitter/*/tree_sitter/struct.Language.html
@@ -37,8 +44,6 @@ pub const NODE_TYPES: &'static str = include_str!("../../src/node-types.json");
 // Uncomment these to include any queries that this grammar contains
 
 pub const HIGHLIGHTS_QUERY: &'static str = include_str!("../../queries/highlights.scm");
-pub const LOCALS_QUERY: &'static str = include_str!("../../queries/locals.scm");
-pub const INJECTIONS_QUERY: &'static str = include_str!("../../queries/injections.scm");
 pub const TAGS_QUERY: &'static str = include_str!("../../queries/tags.scm");
 
 #[cfg(test)]
@@ -47,7 +52,7 @@ mod tests {
     fn test_can_load_grammar() {
         let mut parser = tree_sitter::Parser::new();
         parser
-            .set_language(super::language())
+            .set_language(&super::language())
             .expect("Error loading t32 language grammar");
     }
 }
