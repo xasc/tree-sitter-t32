@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2022 Christoph Sax <c_sax@mailbox.org>
+#
+# SPDX-License-Identifier: MIT
+
 [build-system]
 requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"

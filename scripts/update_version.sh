@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# SPDX-FileCopyrightText: 2022 Christoph Sax <c_sax@mailbox.org>
+#
+# SPDX-License-Identifier: MIT
+
 readonly version_node=$(cat << EOF
 "version": "$1",
 EOF

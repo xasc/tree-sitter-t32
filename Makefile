@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2022 Christoph Sax <c_sax@mailbox.org>
+#
+# SPDX-License-Identifier: MIT
+
 .PHONY: build build-wasm highlight parse tags test test-all test-debug test-graph
 
 filter ?=

@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2022 Christoph Sax <c_sax@mailbox.org>
+
+SPDX-License-Identifier: MIT
+-->
+
 # tree-sitter-t32
 [![CI Status](https://ci.codeberg.org/api/badges/xasc/tree-sitter-t32/status.svg)](https://ci.codeberg.org/xasc/tree-sitter-t32)
 [![status-badge](https://ci.codeberg.org/api/badges/10985/status.svg?branch=dev)](https://codeberg.org/xasc/tree-sitter-t32/src/branch/dev)
