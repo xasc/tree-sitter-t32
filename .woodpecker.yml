@@ -26,6 +26,7 @@ steps:
     commands:
       - apt-get update
       - apt-get install --no-install-recommends --yes build-essential
+      - yarn add node-gyp
       - yarn install
       - yarn run tree-sitter generate
       - yarn run tree-sitter test
