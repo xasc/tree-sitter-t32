@@ -209,6 +209,8 @@
 ; Control flow
 (if_block
   command: (identifier) @conditional)
+(elif_block
+  command: (identifier) @conditional)
 (else_block
   command: (identifier) @conditional)
 

@@ -9,6 +9,7 @@
 const PREC = {
   symbol: -1,
   declarator: 1,
+  elif: 1,
   escape_sequence: 1,
   repeat_post_condition: 1,
   string: 1,
@@ -214,12 +215,38 @@ module.exports = grammar({
           $._blank,
           $._blank_line
         )),
+        repeat($.elif_block),
         optional($.else_block)
       )
     )),
 
-    else_block: $ => seq(
+    elif_block: $ => prec.right(PREC.elif, seq(
       field('command', alias(longAndShortForm('ELSE'), $.identifier)),
+      repeat1($._blank),
+      field('command', alias(longAndShortForm('IF'), $.identifier)),
+      repeat1($._blank),
+      field('condition', $._expression),
+      seq(
+        $._terminator,
+        repeat($._blank_line),
+        choice(
+          $._statement,
+          seq(
+            repeat($.comment),
+            $.block
+          )
+        ),
+        repeat(choice(
+          $._blank,
+          $._blank_line
+        ))
+      )
+    )),
+
+    else_block: $ => seq(
+      field('command', alias(
+        longAndShortForm('ELSE'), $.identifier)
+      ),
       choice(
         seq(
           $._terminator,

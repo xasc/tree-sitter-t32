@@ -67,36 +67,33 @@ ELSE
     condition: (macro)
     (command_expression
       command: (identifier))
-    (else_block
+    (elif_block
       command: (identifier)
-      (if_block
-        command: (identifier)
-        condition: (macro)
-        (command_expression
-          command: (identifier)))))
+      command: (identifier)
+      condition: (macro)
+      (command_expression
+        command: (identifier))))
   (if_block
     command: (identifier)
     condition: (macro)
     (command_expression
       command: (identifier))
+    (elif_block
+      command: (identifier)
+      command: (identifier)
+      condition: (macro)
+      (command_expression
+        command: (identifier)))
+    (elif_block
+      command: (identifier)
+      command: (identifier)
+      condition: (macro)
+      (command_expression
+        command: (identifier)))
     (else_block
       command: (identifier)
-      (if_block
-        command: (identifier)
-        condition: (macro)
-        (command_expression
-          command: (identifier))
-        (else_block
-          command: (identifier)
-          (if_block
-            command: (identifier)
-            condition: (macro)
-            (command_expression
-            command: (identifier))
-            (else_block
-              command: (identifier)
-              (command_expression
-                command: (identifier)))))))))
+      (command_expression
+        command: (identifier)))))
 
 ==================
 Nested blocks
@@ -212,21 +209,20 @@ ELSE
     (block
       (command_expression
         command: (identifier)))
+    (elif_block
+      command: (identifier)
+      command: (identifier)
+      condition: (macro)
+      (comment)
+      (block
+        (command_expression
+          command: (identifier))))
     (else_block
       command: (identifier)
-      (if_block
-        command: (identifier)
-        condition: (macro)
-        (comment)
-        (block
-          (command_expression
-            command: (identifier)))
-          (else_block
-            command: (identifier)
-            (comment)
-            (block
-              (command_expression
-                command: (identifier))))))))
+      (comment)
+      (block
+        (command_expression
+          command: (identifier))))))
 
 ==================
 WHILE block statements

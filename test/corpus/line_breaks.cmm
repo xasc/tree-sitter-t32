@@ -202,14 +202,13 @@ ELSE IF &char=='D'
         command: (identifier)
         arguments: (argument_list
           (string))))
-    (else_block
+    (elif_block
       command: (identifier)
-      (if_block
+      command: (identifier)
+      condition: (binary_expression
+        left: (macro)
+        right: (character))
+      (command_expression
         command: (identifier)
-        condition: (binary_expression
-          left: (macro)
-          right: (character))
-        (command_expression
-          command: (identifier)
-          arguments: (argument_list
-            (string)))))))
+        arguments: (argument_list
+          (string))))))
