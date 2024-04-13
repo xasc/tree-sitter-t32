@@ -14,8 +14,8 @@ steps:
       - cargo check
       - cargo test
     when:
-      - path:
-        exclude: [ '*.md', 'LICENSE' ]
+      - event: [push, pull_request, tag]
+      - path: ['src/*', 'test/*', 'grammar.js', 'package.json']
       - branch: [main, dev]
 
   test-nodejs:
@@ -29,7 +29,6 @@ steps:
       - yarn run tree-sitter generate
       - yarn run tree-sitter test
     when:
-      - path:
-        include: [ "package.json" ]
-        exclude: [ '*.md', 'LICENSE' ]
+      - event: [push, pull_request, tag]
+      - path: ['src/*', 'test/*', 'grammar.js', 'package.json']
       - branch: [main, dev]
