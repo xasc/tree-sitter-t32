@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-t32",
-  "version": "2.8.1",
+  "version": "3.0.0",
   "description": "Lauterbach TRACE32 script language grammar for Tree-sitter",
   "author": "Christoph Sax <c_sax@mailbox.org>",
   "license": "MIT",
@@ -38,36 +38,23 @@
     "prebuildify": "prebuildify --napi --strip"
   },
   "devDependencies": {
-    "prebuildify": "^6.0.0",
-    "tree-sitter-cli": "^0.22.2"
+    "prebuildify": "^6.0.1",
+    "tree-sitter-cli": "^0.24.3"
   },
-  "packageManager": "yarn@4.1.1",
+  "packageManager": "yarn@4.5.0",
   "main": "bindings/node",
   "types": "bindings/node",
-  "tree-sitter": [
-    {
-      "scope": "source.t32",
-      "file-types": [
-        "cmm",
-        "t32"
-      ],
-      "injection-regex": "t32",
-      "highlights": "queries/highlights.scm",
-      "locals": "queries/locals.scm",
-      "tags": "queries/tags.scm"
-    }
-  ],
-  "dependencies": {
-    "node-addon-api": "^8.0.0",
-    "node-gyp": "^10.0.1",
-    "node-gyp-build": "^4.8.0"
-  },
-  "peerDependencies": {
-    "tree-sitter": "^0.21.0"
-  },
   "peerDependenciesMeta": {
     "tree_sitter": {
       "optional": true
     }
+  },
+  "dependencies": {
+    "node-addon-api": "^8.2.1",
+    "node-gyp": "^10.2.0",
+    "node-gyp-build": "^4.8.2"
+  },
+  "peerDependencies": {
+    "tree-sitter": "^0.24.0"
   }
 }

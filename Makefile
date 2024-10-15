@@ -17,36 +17,37 @@ commas-to-spaces = $(subst $(,),$( ),$1)
 
 filterFlag = $(call commas-to-spaces,$(addprefix --filter ,$(call spaces-to-commas,"$(filter)")))
 
+yarn := yarnpkg
 
 build: src/parser.c
 
 build-wasm:
-	yarn build-wasm --output tree-sitter-t32.wasm
+	$(yarn) build-wasm --output tree-sitter-t32.wasm
 
 parse: build
-	yarn parse "$(file)"
+	$(yarn) parse "$(file)"
 
 highlight: build
-	yarn highlight "$(file)"
+	$(yarn) highlight "$(file)"
 
 tags: build
-	yarn tags "$(file)"
+	$(yarn) tags "$(file)"
 
 playground:
-	yarn playground
+	$(yarn) playground
 
 test: build
-	yarn test "$(filterFlag)"
+	$(yarn) test "$(filterFlag)"
 
 test-debug: build
-	yarn test --debug $(filterFlag)
+	$(yarn) test --debug $(filterFlag)
 
 test-graph: build
-	yarn test --debug-graph $(filterFlag)
+	$(yarn) test --debug-graph $(filterFlag)
 
 test-all: build
-	yarn test
+	$(yarn) test
 
 
 src/parser.c: grammar.js src/scanner.c
-	yarn build
+	$(yarn) build

@@ -9,7 +9,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "tree-sitter-t32"
 description = "Lauterbach TRACE32 script language grammar for Tree-sitter"
-version = "2.8.1"
+version = "3.0.0"
 keywords = [
   "lexer",
   "incremental",
@@ -35,7 +35,7 @@ readme = "README.md"
 Homepage = "https://codeberg.org/xasc/tree-sitter-t32"
 
 [project.optional-dependencies]
-core = ["tree-sitter~=0.21"]
+core = ["tree-sitter~=0.24"]
 
 [tool.cibuildwheel]
 build = "cp38-*"

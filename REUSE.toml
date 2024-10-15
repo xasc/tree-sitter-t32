@@ -1,0 +1,46 @@
+version = 1
+SPDX-PackageName = "tree-sitter-t32"
+SPDX-PackageSupplier = "Christoph Sax <c_sax@mailbox.org>"
+SPDX-PackageDownloadLocation = "https://codeberg.org/xasc/tree-sitter-t32"
+
+[[annotations]]
+path = "binding.gyp"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2022 Christoph Sax <c_sax@mailbox.org>"
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "bindings/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2022 Christoph Sax <c_sax@mailbox.org>"
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "package.json"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2022 Christoph Sax <c_sax@mailbox.org>"
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = ["src/grammar.json", "src/node-types.json", "src/parser.c", "src/tree_sitter/**"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2022 Christoph Sax <c_sax@mailbox.org>"
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "test/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2022 Christoph Sax <c_sax@mailbox.org>"
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = ".yarn/releases/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2016-present, Yarn Contributors. All rights reserved."
+SPDX-License-Identifier = "BSD-2-Clause"
+
+[[annotations]]
+path = "yarn.lock"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2022 Christoph Sax <c_sax@mailbox.org>"
+SPDX-License-Identifier = "MIT"

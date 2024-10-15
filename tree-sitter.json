@@ -1,0 +1,40 @@
+{
+  "grammars": [
+    {
+      "name": "t32",
+      "camelcase": "T32",
+      "scope": "source.t32",
+      "path": ".",
+      "file-types": [
+        "cmm",
+        "t32"
+      ],
+      "highlights": "queries/highlights.scm",
+      "locals": "queries/locals.scm",
+      "tags": "queries/tags.scm",
+      "injection-regex": "t32"
+    }
+  ],
+  "metadata": {
+    "version": "3.0.0",
+    "license": "MIT",
+    "description": "Lauterbach TRACE32 script language grammar for Tree-sitter",
+    "authors": [
+      {
+        "name": "Christoph Sax",
+        "email": "c_sax@mailbox.org"
+      }
+    ],
+    "links": {
+      "repository": "https://codeberg.org/xasc/tree-sitter-t32/"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}

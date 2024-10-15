@@ -16,3 +16,4 @@ prebuilds/
 samples/
 src/*.o
 target/
+*.wasm

@@ -15,7 +15,9 @@ EOF
 )
 
 readonly version_python="$version_rust"
+readonly version_treesitter="$version_node"
 
 sed --in-place "s#\(.*\)\"version\":.*\$#\1$version_node#" "package.json"
-sed --in-place "s#\(.*\)version\s*=.*\$#\1$version_rust#" "Cargo.toml"
 sed --in-place "s#\(.*\)version\s*=.*\$#\1$version_python#" "pyproject.toml"
+sed --in-place "s#\(.*\)version\s*=.*\$#\1$version_rust#" "Cargo.toml"
+sed --in-place "s#\(.*\)\"version\":.*\$#\1$version_treesitter#" "tree-sitter.json"

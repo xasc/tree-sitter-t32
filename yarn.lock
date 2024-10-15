@@ -281,15 +281,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"execspawn@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "execspawn@npm:1.0.1"
-  dependencies:
-    util-extend: "npm:^1.0.1"
-  checksum: 10/fc2be7fb6de7b4c4cd779ca3f6cf4bf19f0fd22e7967194dcec3c379ac7d914587652c933bac774f0b6bba8f15069969921065553f1e19eb58e25ab675f68689
-  languageName: node
-  linkType: hard
-
 "exponential-backoff@npm:^3.1.1":
   version: 3.1.1
   resolution: "exponential-backoff@npm:3.1.1"
@@ -650,27 +641,47 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-addon-api@npm:^8.0.0":
-  version: 8.0.0
-  resolution: "node-addon-api@npm:8.0.0"
+"node-addon-api@npm:^8.2.1":
+  version: 8.2.1
+  resolution: "node-addon-api@npm:8.2.1"
   dependencies:
     node-gyp: "npm:latest"
-  checksum: 10/a9b3a1b5d7236bfc4cb2e781f14786ef5526f2be095f4fad1684b6374253336b3a70f2333605f2d8a6e4e0cb9ecf186ac21250328833fda7fe3e8b32910d1297
+  checksum: 10/c38065a50d3ed4cd7d1cdaa5e1faff3df38e48c71699def29f2e2424442a7733d5d01ffc01e7863f7c978570ff40f6b553a7ba0893cce85641f010aecf161d02
   languageName: node
   linkType: hard
 
-"node-gyp-build@npm:^4.8.0":
-  version: 4.8.0
-  resolution: "node-gyp-build@npm:4.8.0"
+"node-gyp-build@npm:^4.8.2":
+  version: 4.8.2
+  resolution: "node-gyp-build@npm:4.8.2"
   bin:
     node-gyp-build: bin.js
     node-gyp-build-optional: optional.js
     node-gyp-build-test: build-test.js
-  checksum: 10/80f410ab412df38e84171d3634a5716b6c6f14ecfa4eb971424d289381fb76f8bcbe1b666419ceb2c81060e558fd7c6d70cc0f60832bcca6a1559098925d9657
+  checksum: 10/e3a365eed7a2d950864a1daa34527588c16fe43ae189d0aeb8fd1dfec91ba42a0e1b499322bff86c2832029fec4f5901bf26e32005e1e17a781dcd5177b6a657
   languageName: node
   linkType: hard
 
-"node-gyp@npm:^10.0.1, node-gyp@npm:latest":
+"node-gyp@npm:^10.2.0":
+  version: 10.2.0
+  resolution: "node-gyp@npm:10.2.0"
+  dependencies:
+    env-paths: "npm:^2.2.0"
+    exponential-backoff: "npm:^3.1.1"
+    glob: "npm:^10.3.10"
+    graceful-fs: "npm:^4.2.6"
+    make-fetch-happen: "npm:^13.0.0"
+    nopt: "npm:^7.0.0"
+    proc-log: "npm:^4.1.0"
+    semver: "npm:^7.3.5"
+    tar: "npm:^6.2.1"
+    which: "npm:^4.0.0"
+  bin:
+    node-gyp: bin/node-gyp.js
+  checksum: 10/41773093b1275751dec942b985982fd4e7a69b88cae719b868babcef3880ee6168aaec8dcaa8cd0b9fa7c84873e36cc549c6cac6a124ee65ba4ce1f1cc108cfe
+  languageName: node
+  linkType: hard
+
+"node-gyp@npm:latest":
   version: 10.0.1
   resolution: "node-gyp@npm:10.0.1"
   dependencies:
@@ -745,11 +756,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prebuildify@npm:^6.0.0":
-  version: 6.0.0
-  resolution: "prebuildify@npm:6.0.0"
+"prebuildify@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "prebuildify@npm:6.0.1"
   dependencies:
-    execspawn: "npm:^1.0.1"
     minimist: "npm:^1.2.5"
     mkdirp-classic: "npm:^0.5.3"
     node-abi: "npm:^3.3.0"
@@ -758,7 +768,7 @@ __metadata:
     tar-fs: "npm:^2.1.0"
   bin:
     prebuildify: bin.js
-  checksum: 10/b12c0758d8ca4d0ff24b3e6bbc37db59c7093e1e4900fe58969d604d9d9b8ce090239fc1c18c6ce85d7a99d2e5757b3ef1d2be71efcf832ea947040e55ba7f54
+  checksum: 10/3dbec178a5bc41690a8ae9b7bb808637f8aae42fe649cff0b373b502ebd54e11cab12e49dbdbf067f4c21866420f593933ec5b100d31c647dedcfd3ff6653c53
   languageName: node
   linkType: hard
 
@@ -766,6 +776,13 @@ __metadata:
   version: 3.0.0
   resolution: "proc-log@npm:3.0.0"
   checksum: 10/02b64e1b3919e63df06f836b98d3af002b5cd92655cab18b5746e37374bfb73e03b84fe305454614b34c25b485cc687a9eebdccf0242cda8fda2475dd2c97e02
+  languageName: node
+  linkType: hard
+
+"proc-log@npm:^4.1.0":
+  version: 4.2.0
+  resolution: "proc-log@npm:4.2.0"
+  checksum: 10/4e1394491b717f6c1ade15c570ecd4c2b681698474d3ae2d303c1e4b6ab9455bd5a81566211e82890d5a5ae9859718cc6954d5150bb18b09b72ecb297beae90a
   languageName: node
   linkType: hard
 
@@ -973,7 +990,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tar@npm:^6.1.11, tar@npm:^6.1.2":
+"tar@npm:^6.1.11, tar@npm:^6.1.2, tar@npm:^6.2.1":
   version: 6.2.1
   resolution: "tar@npm:6.2.1"
   dependencies:
@@ -987,12 +1004,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tree-sitter-cli@npm:^0.22.2":
-  version: 0.22.2
-  resolution: "tree-sitter-cli@npm:0.22.2"
+"tree-sitter-cli@npm:^0.24.3":
+  version: 0.24.3
+  resolution: "tree-sitter-cli@npm:0.24.3"
   bin:
     tree-sitter: cli.js
-  checksum: 10/1bbba2154a1707b5c4ae9793549f4c276fb50bf6d8fca59007079aa848677f244700a7884852f2313be82ea719b92382fcdd013323514196a24ccde84f207402
+  checksum: 10/b9d95432872c0eeaa4b7a1b0ae25f1a0ad46b262efc44dfe8527e8821535aa4924ae9cdf11eca86be60713e0794ffa0668961d82c4dce2541370e0eeb1f049a7
   languageName: node
   linkType: hard
 
@@ -1000,13 +1017,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "tree-sitter-t32@workspace:."
   dependencies:
-    node-addon-api: "npm:^8.0.0"
-    node-gyp: "npm:^10.0.1"
-    node-gyp-build: "npm:^4.8.0"
-    prebuildify: "npm:^6.0.0"
-    tree-sitter-cli: "npm:^0.22.2"
+    node-addon-api: "npm:^8.2.1"
+    node-gyp: "npm:^10.2.0"
+    node-gyp-build: "npm:^4.8.2"
+    prebuildify: "npm:^6.0.1"
+    tree-sitter-cli: "npm:^0.24.3"
   peerDependencies:
-    tree-sitter: ^0.21.0
+    tree-sitter: ^0.24.0
   peerDependenciesMeta:
     tree_sitter:
       optional: true
@@ -1035,13 +1052,6 @@ __metadata:
   version: 1.0.2
   resolution: "util-deprecate@npm:1.0.2"
   checksum: 10/474acf1146cb2701fe3b074892217553dfcf9a031280919ba1b8d651a068c9b15d863b7303cb15bd00a862b498e6cf4ad7b4a08fb134edd5a6f7641681cb54a2
-  languageName: node
-  linkType: hard
-
-"util-extend@npm:^1.0.1":
-  version: 1.0.3
-  resolution: "util-extend@npm:1.0.3"
-  checksum: 10/da57f399b331f40fe2cea5409b1f4939231433db9b52dac5593e4390a98b7b0d1318a0daefbcc48123fffe5026ef49f418b3e4df7a4cd7649a2583e559c608a5
   languageName: node
   linkType: hard
 
