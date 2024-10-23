@@ -57,8 +57,18 @@ LOCAL &num
 ;      ^ number
 
 RePeaT &num PRINT "Password: &password"
+; <- repeat
 ;       ^ variable.builtin
 ;                             ^ variable.parameter
+
+RePeaT
+; <- repeat
+(
+    PRINT "Password: &password"
+)
+WHILE &num
+; <- repeat
+;      ^ variable.builtin
 
 WinCLEAR
 FramePOS ,,,,Maximized

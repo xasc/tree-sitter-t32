@@ -142,6 +142,7 @@ WHILE &a
     (block
       (command_expression
         command: (identifier)))
+    command: (identifier)
     condition: (macro)))
 
 ==================

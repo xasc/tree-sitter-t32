@@ -133,6 +133,7 @@ RePeaT
         arguments: (argument_list
           (string
             (macro)))))
+    command: (identifier)
     condition: (unary_expression
       argument: (call_expression
         function: (identifier)

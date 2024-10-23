@@ -344,6 +344,7 @@ REPEAT TRUE()
     (block
       (command_expression
         command: (identifier)))
+    command: (identifier)
     condition: (macro))
   (repeat_block
     command: (identifier)

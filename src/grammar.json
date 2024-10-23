@@ -1094,13 +1094,22 @@
                         }
                       },
                       {
-                        "type": "ALIAS",
+                        "type": "FIELD",
+                        "name": "command",
                         "content": {
-                          "type": "PATTERN",
-                          "value": "[wW][hH][iI][lL][eE]|[wW][hH][iI][lL][eE]"
-                        },
-                        "named": false,
-                        "value": "WHILE"
+                          "type": "ALIAS",
+                          "content": {
+                            "type": "ALIAS",
+                            "content": {
+                              "type": "PATTERN",
+                              "value": "[wW][hH][iI][lL][eE]|[wW][hH][iI][lL][eE]"
+                            },
+                            "named": false,
+                            "value": "WHILE"
+                          },
+                          "named": true,
+                          "value": "identifier"
+                        }
                       },
                       {
                         "type": "REPEAT1",

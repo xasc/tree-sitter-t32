@@ -348,7 +348,7 @@ module.exports = grammar({
           ),
           seq(
             repeat($._blank_line),
-            longAndShortForm('WHILE'),
+            field('command', alias(longAndShortForm('WHILE'), $.identifier)),
             repeat1($._blank),
             field('condition', $._expression),
             $._terminator
