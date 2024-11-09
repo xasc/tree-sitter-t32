@@ -8,14 +8,11 @@ description = "Lauterbach TRACE32 script language grammar for Tree-sitter"
 version = "4.0.0"
 authors = ["Christoph Sax <c_sax@mailbox.org>"]
 keywords = [
-  "lexer",
   "incremental",
   "parsing",
   "tree-sitter",
   "trace32",
-  "t32",
-  "lauterbach",
-  "practice"
+  "lauterbach"
 ]
 categories = ["parsing", "text-editors"]
 repository = "https://codeberg.org/xasc/tree-sitter-t32/"
