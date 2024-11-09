@@ -19,7 +19,7 @@ keywords = [
 ]
 categories = ["parsing", "text-editors"]
 repository = "https://codeberg.org/xasc/tree-sitter-t32/"
-edition = "2018"
+edition = "2021"
 license = "MIT"
 
 build = "bindings/rust/build.rs"
@@ -29,6 +29,9 @@ include = ["bindings/rust/*", "grammar.js", "queries/*", "src/*"]
 path = "bindings/rust/lib.rs"
 
 [dependencies]
+tree-sitter-language = ">=0.1.0"
+
+[dev-dependencies]
 tree-sitter = ">=0.24.0"
 
 [build-dependencies]
