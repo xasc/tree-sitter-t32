@@ -8,14 +8,14 @@ SPDX-License-Identifier: MIT
 [![CI Status](https://ci.codeberg.org/api/badges/xasc/tree-sitter-t32/status.svg)](https://ci.codeberg.org/xasc/tree-sitter-t32)
 [![status-badge](https://ci.codeberg.org/api/badges/10985/status.svg?branch=dev)](https://codeberg.org/xasc/tree-sitter-t32/src/branch/dev)
 
-Lauterbach TRACE32 script language grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter).
+Lauterbach TRACE32® script language grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter).
 Support for HLL expressions was adapted from [tree-sitter-c](https://github.com/tree-sitter/tree-sitter-c.git).
 
 A demo is available [here](https://xasc.codeberg.page/tree-sitter-t32-playground/).
 
 ## Features
 
-- Full coverage of the PRACTICE script language including TRACE32 commands & functions
+- Full coverage of the PRACTICE script language including TRACE32® commands & functions
 - Extended support for HLL expressions
 
 
@@ -33,16 +33,16 @@ A demo is available [here](https://xasc.codeberg.page/tree-sitter-t32-playground
 
 #### Generate parser
 
-Create and build the tree-sitter parser for the TRACE32 grammar.
+Create and build the tree-sitter parser for the TRACE32® grammar.
 ```bash
 tree-sitter generate
 ```
 
-#### Parse TRACE32 Script
+#### Parse TRACE32® Script
 
 <details>
 
-<summary>Use tree-sitter to parse a TRACE32 script.</summary>
+<summary>Use tree-sitter to parse a TRACE32® script.</summary>
 
 Example:
 
@@ -187,9 +187,9 @@ tree-sitter parse <path>
 
 </details>
 
-#### Highlight TRACE32 Script
+#### Highlight TRACE32® Script
 
-Use tree-sitter to highlight a TRACE32 script.
+Use tree-sitter to highlight a TRACE32® script.
 ```bash
 tree-sitter highlight <path>
 ```
@@ -206,7 +206,7 @@ tree-sitter highlight <path>
 
 <details>
 
-<summary>Use tree-sitter to create a tags file from a TRACE32 script.</summary>
+<summary>Use tree-sitter to create a tags file from a TRACE32® script.</summary>
 
 ```
 ; --------------------------------------------------------------------------------

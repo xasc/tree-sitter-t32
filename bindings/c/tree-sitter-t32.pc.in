@@ -3,7 +3,7 @@ libdir=@LIBDIR@
 includedir=@INCLUDEDIR@
 
 Name: tree-sitter-t32
-Description: Lauterbach TRACE32 script language grammar for Tree-sitter
+Description: Lauterbach TRACE32(R) script language grammar for Tree-sitter
 URL: @URL@
 Version: @VERSION@
 Requires: @REQUIRES@

@@ -4,7 +4,7 @@
 
 [package]
 name = "tree-sitter-t32"
-description = "Lauterbach TRACE32 script language grammar for Tree-sitter"
+description = "Lauterbach TRACE32® script language grammar for Tree-sitter"
 version = "4.0.0"
 authors = ["Christoph Sax <c_sax@mailbox.org>"]
 keywords = [
