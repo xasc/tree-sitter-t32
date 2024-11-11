@@ -16,7 +16,31 @@ SPDX-FileCopyrightText = "2022 Christoph Sax <c_sax@mailbox.org>"
 SPDX-License-Identifier = "MIT"
 
 [[annotations]]
+path = "Cargo.lock"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2022 Christoph Sax <c_sax@mailbox.org>"
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "CMakeLists.txt"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2022 Christoph Sax <c_sax@mailbox.org>"
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "go.mod"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2022 Christoph Sax <c_sax@mailbox.org>"
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
 path = "package.json"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2022 Christoph Sax <c_sax@mailbox.org>"
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "REUSE.toml"
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2022 Christoph Sax <c_sax@mailbox.org>"
 SPDX-License-Identifier = "MIT"
@@ -29,6 +53,12 @@ SPDX-License-Identifier = "MIT"
 
 [[annotations]]
 path = "test/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2022 Christoph Sax <c_sax@mailbox.org>"
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "tree-sitter.json"
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2022 Christoph Sax <c_sax@mailbox.org>"
 SPDX-License-Identifier = "MIT"
