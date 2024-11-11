@@ -1,8 +1,8 @@
 package tree_sitter_t32
 
-// #cgo CFLAGS: -std=c11 -fPIC
-// #include "../../src/parser.c"
-// #include "../../src/scanner.c"
+#cgo CFLAGS: -std=c11 -fPIC
+#include "../../src/parser.c"
+#include "../../src/scanner.c"
 import "C"
 
 import "unsafe"
