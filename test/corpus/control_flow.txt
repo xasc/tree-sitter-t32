@@ -5,6 +5,9 @@ Labels
 abc:
 a_b.c: PRINT "A"
 
+export:
+  STOP
+
 ---
 
 (script
@@ -15,7 +18,11 @@ a_b.c: PRINT "A"
     (command_expression
       command: (identifier)
       arguments: (argument_list
-        (string)))))
+        (string))))
+  (labeled_expression
+    label: (identifier))
+  (command_expression
+    command: (identifier)))
 
 ==================
 IF block statements

@@ -164,7 +164,7 @@ module.exports = grammar({
       seq(
         $.macro,
         $.path
-      ),
+      )
     ),
 
     labeled_expression: $ => prec.right(seq(
@@ -173,10 +173,12 @@ module.exports = grammar({
         $._statement,
         seq(
           $._terminator,
-          repeat($.comment),
-          optional($.block)
+          choice(
+            repeat($._blank),
+            optional($.block)
+          )
         )
-      ),
+      )
     )),
 
     subroutine_block: $ => seq(
@@ -1742,8 +1744,6 @@ module.exports = grammar({
       $.comment,
       $._blank_line
     ),
-
-    _blank_line: $ => /[ \t]*\r?\n/,
 
     _line_continuation: $ => /\\\r?\n/,
 
