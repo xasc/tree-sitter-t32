@@ -680,6 +680,9 @@ Var.NEWLOCAL intptr_t \f
 Var.NEWLOCAL size_t \g
 Var.NEWLOCAL ssize_t \g
 
+Var.NEWLOCAL char[32] \c = ",/<>:|?*\"\\ "
+Var.NEWLOCAL int \i = 0
+
 ---
 
 (script
@@ -754,7 +757,25 @@ Var.NEWLOCAL ssize_t \g
     arguments: (argument_list
       (hll_declaration
         type: (hll_primitive_type)
-        declarator: (trace32_hll_variable)))))
+        declarator: (trace32_hll_variable))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_primitive_type)
+        declarator: (hll_array_declarator
+          size: (hll_number_literal)
+          declarator: (trace32_hll_variable))))
+    value: (hll_string_literal
+      (hll_escape_sequence)
+      (hll_escape_sequence)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_primitive_type)
+        declarator: (trace32_hll_variable)))
+    value: (integer)))
 
 ==================
 Internal C-style variable definitions from primitive types with fixed size

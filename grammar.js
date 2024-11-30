@@ -11,6 +11,7 @@ const PREC = {
   declarator: 1,
   elif: 1,
   escape_sequence: 1,
+  option: 1,
   repeat_post_condition: 1,
   string: 1,
   logical_or: 10,
@@ -33,7 +34,6 @@ const PREC = {
   field: 27,
   subscript: 28,
   range: 29,
-  option: 30,
 }
 
 const RE_BIN_HEX_NUMBER = [
@@ -54,6 +54,7 @@ module.exports = grammar({
     $.path,  // Unquoted path literals
     '&&',
     '&',
+    $._ampersand_char  // Differentiate between embedded macros and ampersand in PRACTICE strings
   ],
 
   conflicts: $ => [
@@ -63,6 +64,7 @@ module.exports = grammar({
     [$.hll_sized_type_specifier],
     [$.hll_type_descriptor],
     [$.memory_space],
+    [$.option_expression],
     [$._address_expression, $._literal],
     [$._binary_expression, $._and_expression],
     [$._command_argument, $.assignment_expression],
@@ -493,7 +495,10 @@ module.exports = grammar({
       field('command', alias('GOSUB', $.identifier)),
       repeat1($._blank),
       field('subroutine', $.identifier),
-      field('arguments', optional(alias($._command_arguments, $.argument_list))),
+      optional(seq(
+        repeat1($._blank),
+        field('arguments', alias($._command_arguments, $.argument_list)),
+      )),
       $._terminator
     ),
 
@@ -541,8 +546,7 @@ module.exports = grammar({
           $._terminator
         ),
         seq(
-          field('command', alias($._command_identifier, $.identifier)),
-          field('arguments', optional(alias($._command_arguments, $.argument_list))),
+          $._other_command,
           $._terminator
         )
       )
@@ -562,6 +566,14 @@ module.exports = grammar({
       )
     ),
 
+    _other_command: $ => seq(
+      field('command', alias($._command_identifier, $.identifier)),
+      optional(seq(
+        repeat1($._blank),
+        field('arguments', optional(alias($._command_arguments, $.argument_list))),
+      ))
+    ),
+
     _command_identifier: $ => seq(
       alias($.identifier, 'command'),
       repeat(seq(
@@ -570,55 +582,54 @@ module.exports = grammar({
       ))
     ),
 
-    _command_arguments: $ => choice(
+    _command_arguments: $ => seq(choice(
       seq(
-        choice(
-          seq(
-            repeat1($._blank),
-            optional(','),
-            $._command_argument,
-          ),
-          seq(
-            repeat($._blank),
-            ',',
-          )
-        ),
         repeat(choice(
           seq(
-            choice(
-              repeat1($._blank),
-              ','
-            ),
-            $._command_argument
+            optional(seq(
+              $._command_argument,
+              repeat($._blank)
+            )),
+            ',',
+            repeat($._blank)
           ),
           seq(
-            repeat($._blank),
-            ','
+            $._command_argument,
+            repeat1($._blank)
           )
         )),
-        repeat(seq(
+        choice(
+          seq(
+            $._command_argument,
+            optional(',')
+          ),
+          ','
+        ),
+        optional(seq(
           repeat1($._blank),
-          $.option_expression
+          repeat(seq(
+            $.option_expression,
+            repeat1($._blank)
+          )),
+          $.option_expression,
+          repeat(seq(
+            repeat1($._blank),
+            $.macro
+          ))
         ))
       ),
       seq(
-        choice(
-          seq(
-            repeat1($._blank),
-            optional(','),
-            $.option_expression,
-          ),
-          seq(
-            repeat($._blank),
-            ',',
-          )
-        ),
+        repeat(seq(
+          $.option_expression,
+          repeat1($._blank)
+        )),
+        $.option_expression,
         repeat(seq(
           repeat1($._blank),
-          $.option_expression
+          $.macro
         ))
       )
-    ),
+    )),
 
     _host_command_argument_list_default_format: $ => seq(
       choice(
@@ -646,11 +657,11 @@ module.exports = grammar({
       ',',
     ),
 
-    option_expression: $ => prec.right(PREC.option, seq(
+    option_expression: $ => prec(PREC.option, seq(
       '/',
       field('option', $.identifier),
       optional(seq(
-        $._blank,
+        repeat1($._blank),
         field('value', choice(
           $.identifier,
           $.macro,
@@ -764,7 +775,16 @@ module.exports = grammar({
         seq(
           repeat1($._blank),
           field('arguments', alias($._var_definition_command_argument_list_format, $.argument_list))
-        )
+        ),
+        optional(seq(
+          /[ \t]*=[ \t]*/,
+          field('value', choice(
+            $.integer,
+            $.hll_char_literal,
+            $.hll_string_literal,
+            $.hll_number_literal
+          ))
+        ))
       )
     ),
 
@@ -956,8 +976,8 @@ module.exports = grammar({
 
     // On top level TRACE32 does not allow to separate operators
     // by spaces from the remainder of the expression. The only
-    // exception seem to be assignment opeators. Howver, as soon
-    // as the expression is nested and encloded in parens spaces
+    // exception seem to be assignment opeators. However, as soon
+    // as the expression is nested and enclosed in parens spaces
     // are tolerated.
     _hll_expression: $ => choice(
       $._hll_number_literal,
@@ -1637,6 +1657,7 @@ module.exports = grammar({
       repeat(choice(
         /[^"&]+/,
         /""/,  // Escape sequence
+        $._ampersand_char,
         $.macro
       )),
       '"'
@@ -1747,7 +1768,7 @@ module.exports = grammar({
 
     _line_continuation: $ => /\\\r?\n/,
 
-    _blank: $ => /[ \t]/
+    _blank: $ => /[ \t]/,
   }
 })
 

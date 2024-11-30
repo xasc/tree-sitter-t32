@@ -242,6 +242,8 @@ character"
 
 &c = "first: &first"
 
+&d = "&"
+
 ---
 
 (script
@@ -263,7 +265,10 @@ character"
   (assignment_expression
     left: (macro)
     right: (string
-      (macro))))
+      (macro)))
+  (assignment_expression
+    left: (macro)
+    right: (string)))
 
 ==================
 Character literals
@@ -828,6 +833,11 @@ do a/b/c
 
 LOGGER.Mode.64Bit
 
+List /AA /BB
+
+List /AA bb /CC dd
+List.EXPORT.Mix /COVerage /Append &option_sorder &option_nodata
+
 ---
 
 (script
@@ -900,7 +910,32 @@ LOGGER.Mode.64Bit
           right: (identifier))
         right: (identifier))))
   (command_expression
-    command: (identifier)))
+    command: (identifier))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (option_expression
+        option: (identifier))
+      (option_expression
+        option: (identifier))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (option_expression
+        option: (identifier)
+        value: (identifier))
+      (option_expression
+        option: (identifier)
+        value: (identifier))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (option_expression
+        option: (identifier))
+      (option_expression
+        option: (identifier)
+        value: (macro))
+      (macro))))
 
 ==================
 Host Commands

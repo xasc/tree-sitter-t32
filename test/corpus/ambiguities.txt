@@ -206,3 +206,59 @@ IF (&selection>1.)&&(&selection<6.)
           (format_expression
             value: (identifier))
           (string))))))
+
+==================
+String/character literals with escape sequences and ampersand chars
+==================
+
+&a = "abc&macro""&"
+
+Var.NEWGLOBAL char[0xa] \str = "&abc\""
+Var.NEWGLOBAL char[5] \str = "&"
+
+Var.NEWLOCAL char \ch = '\''
+Var.NEWLOCAL char \ch = '&'
+
+---
+
+(script
+  (assignment_expression
+    left: (macro)
+    right: (string
+      (macro)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_primitive_type)
+        declarator: (hll_array_declarator
+          size: (hll_number_literal)
+          declarator: (trace32_hll_variable))))
+    value: (hll_string_literal
+      (hll_escape_sequence)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_primitive_type)
+        declarator: (hll_array_declarator
+          size: (hll_number_literal)
+          declarator: (trace32_hll_variable))))
+    value: (hll_string_literal))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_primitive_type)
+        declarator: (trace32_hll_variable)))
+    value: (hll_char_literal
+      (hll_escape_sequence)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        type: (hll_primitive_type)
+        declarator: (trace32_hll_variable)))
+    value: (hll_char_literal
+      (character))))
+

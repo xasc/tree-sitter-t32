@@ -11,6 +11,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- `Var.NEWGLOBAL` and `Var.NEWLOCAL` commands with value assignment.
+- Better PRACTICE macro detection in strings.
+
+### Changed
+
+- `(option_expression)` can capture multiple macros as values.
+
+### Fixed
+
+- Fix parsing of commands with multiple options and options that are specified
+  as macros.
+- Fix detection of `"&"` as string literal.
+- Do not accept comma as command option delimiter.
+- Allow multiple spaces between option and its value.
+
 ## [4.0.2] - 2024-11-26
 
 ### Fixed
