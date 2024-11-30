@@ -24,7 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Fix parsing of commands with multiple options and options that are specified
+- Fix parsing of commands with multiple options and trailing options that are specified
   as macros.
 - Fix detection of `"&"` as string literal.
 - Do not accept comma as command option delimiter.
