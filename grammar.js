@@ -277,11 +277,11 @@ module.exports = grammar({
           field('condition', $._expression),
         ),
         seq(
-          field('command', alias(seq(
+          field('command', alias(token(seq(
             longAndShortForm('Var'),
             '.',
             longAndShortForm('WHILE')
-          ), $.identifier)),
+          )), $.identifier)),
           repeat1($._blank),
           field('condition', $._hll_expression),
         )
@@ -938,12 +938,14 @@ module.exports = grammar({
 
     _var_definition_command_argument_list_format: $ => $.hll_declaration,
 
-    _hll_var_call_expression: $ => seq(
-      field('function', alias(seq(
+    _hll_var_call_expression_function: $ => seq(
         longAndShortForm('Var'),
         '.',
         alias($.identifier, 'subfunction')
-      ), $.identifier)),
+    ),
+
+    _hll_var_call_expression: $ => seq(
+      field('function', alias($._hll_var_call_expression_function, $.identifier)),
       field('arguments', alias($.hll_var_call_expression_argument_list, $.argument_list))
     ),
 

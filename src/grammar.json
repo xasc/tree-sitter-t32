@@ -783,31 +783,34 @@
                   "content": {
                     "type": "ALIAS",
                     "content": {
-                      "type": "SEQ",
-                      "members": [
-                        {
-                          "type": "ALIAS",
-                          "content": {
-                            "type": "PATTERN",
-                            "value": "[vV]|[vV][aA][rR]"
+                      "type": "TOKEN",
+                      "content": {
+                        "type": "SEQ",
+                        "members": [
+                          {
+                            "type": "ALIAS",
+                            "content": {
+                              "type": "PATTERN",
+                              "value": "[vV]|[vV][aA][rR]"
+                            },
+                            "named": false,
+                            "value": "Var"
                           },
-                          "named": false,
-                          "value": "Var"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "."
-                        },
-                        {
-                          "type": "ALIAS",
-                          "content": {
-                            "type": "PATTERN",
-                            "value": "[wW][hH][iI][lL][eE]|[wW][hH][iI][lL][eE]"
+                          {
+                            "type": "STRING",
+                            "value": "."
                           },
-                          "named": false,
-                          "value": "WHILE"
-                        }
-                      ]
+                          {
+                            "type": "ALIAS",
+                            "content": {
+                              "type": "PATTERN",
+                              "value": "[wW][hH][iI][lL][eE]|[wW][hH][iI][lL][eE]"
+                            },
+                            "named": false,
+                            "value": "WHILE"
+                          }
+                        ]
+                      }
                     },
                     "named": true,
                     "value": "identifier"
@@ -4299,6 +4302,33 @@
       "type": "SYMBOL",
       "name": "hll_declaration"
     },
+    "_hll_var_call_expression_function": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[vV]|[vV][aA][rR]"
+          },
+          "named": false,
+          "value": "Var"
+        },
+        {
+          "type": "STRING",
+          "value": "."
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          },
+          "named": false,
+          "value": "subfunction"
+        }
+      ]
+    },
     "_hll_var_call_expression": {
       "type": "SEQ",
       "members": [
@@ -4308,31 +4338,8 @@
           "content": {
             "type": "ALIAS",
             "content": {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[vV]|[vV][aA][rR]"
-                  },
-                  "named": false,
-                  "value": "Var"
-                },
-                {
-                  "type": "STRING",
-                  "value": "."
-                },
-                {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "identifier"
-                  },
-                  "named": false,
-                  "value": "subfunction"
-                }
-              ]
+              "type": "SYMBOL",
+              "name": "_hll_var_call_expression_function"
             },
             "named": true,
             "value": "identifier"

@@ -847,10 +847,6 @@
             "named": false
           },
           {
-            "type": "Var",
-            "named": false
-          },
-          {
             "type": "address",
             "named": true
           },
@@ -913,10 +909,6 @@
           {
             "type": "string",
             "named": true
-          },
-          {
-            "type": "subfunction",
-            "named": false
           },
           {
             "type": "symbol",
@@ -5238,17 +5230,9 @@
     "named": true,
     "fields": {
       "command": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "Var",
-            "named": false
-          },
-          {
-            "type": "WHILE",
-            "named": false
-          },
           {
             "type": "identifier",
             "named": true
@@ -5703,10 +5687,6 @@
   },
   {
     "type": "Var",
-    "named": false
-  },
-  {
-    "type": "WHILE",
     "named": false
   },
   {
