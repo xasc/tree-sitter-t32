@@ -29,11 +29,18 @@ Recursive macro expansion
 
 &&cmd
 
+&&text="&text"
+
 ---
 
 (script
   (recursive_macro_expansion
-    (identifier)))
+    (identifier))
+  (assignment_expression
+    left: (recursive_macro_expansion
+      (identifier))
+    right: (string
+      (macro))))
 
 ==================
 Parameter declarations

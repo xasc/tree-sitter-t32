@@ -1149,7 +1149,7 @@
     },
     "macro_assignment_expression": {
       "type": "PREC_RIGHT",
-      "value": 0,
+      "value": 1,
       "content": {
         "type": "SEQ",
         "members": [
@@ -1157,8 +1157,17 @@
             "type": "FIELD",
             "name": "left",
             "content": {
-              "type": "SYMBOL",
-              "name": "macro"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "macro"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "recursive_macro_expansion"
+                }
+              ]
             }
           },
           {

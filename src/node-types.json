@@ -311,6 +311,10 @@
             "named": true
           },
           {
+            "type": "recursive_macro_expansion",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           },

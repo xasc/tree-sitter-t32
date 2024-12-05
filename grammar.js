@@ -11,6 +11,7 @@ const PREC = {
   declarator: 1,
   elif: 1,
   escape_sequence: 1,
+  macro_assignment: 1,
   option: 1,
   repeat_post_condition: 1,
   string: 1,
@@ -361,8 +362,11 @@ module.exports = grammar({
       )
     )),
 
-    macro_assignment_expression: $ => prec.right(seq(
-      field('left', $.macro),
+    macro_assignment_expression: $ => prec.right(PREC.macro_assignment, seq(
+      field('left', choice(
+        $.macro,
+        $.recursive_macro_expansion,
+      )),
       repeat($._blank),
       field('operator', '='),
       repeat($._blank),
