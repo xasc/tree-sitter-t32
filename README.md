@@ -387,6 +387,9 @@ To run all tests:
 - PRACTICE comments start with either `//` or `;`. However, in HLL expressions
   `;` can be used as separator for multiple statements. The grammar will always interpret `;`
   as the start of `(comment)` node.
+- `(recursive_macro_expansion)` nodes are restricted to the left-hand side of assignment
+  expressions. In other contexts, recursive PRACTICE macro expansions cannot be distinguished
+  from `&&` operators.
 
 
 ## Mirrors
