@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: MIT
 
-.PHONY: build build-wasm highlight parse tags test test-all test-debug test-graph
+.PHONY: build build-wasm highlight parse playground publish tags test test-all test-debug test-graph
 
 filter ?=
 file ?=
@@ -32,6 +32,9 @@ highlight: build
 
 tags: build
 	$(yarn) tags "$(file)"
+
+publish:
+	cargo publish
 
 playground:
 	$(yarn) playground
