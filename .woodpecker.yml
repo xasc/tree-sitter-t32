@@ -8,7 +8,8 @@ matrix:
 steps:
   test-rust:
     image: rust
-    environment: [CARGO_TERM_COLOR=always]
+    environment:
+      CARGO_TERM_COLOR: always
     commands:
       - rustup default $RUST
       - cargo check
@@ -21,7 +22,7 @@ steps:
   test-nodejs:
     image: node:bookworm
     environment:
-      DEBIAN_FRONTEND=noninteractive
+      DEBIAN_FRONTEND: noninteractive
     commands:
       - apt-get update
       - apt-get install --no-install-recommends --yes build-essential
