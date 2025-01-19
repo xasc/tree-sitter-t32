@@ -16,8 +16,8 @@ steps:
       - cargo test
     when:
       - event: [push, pull_request, tag]
-      - path: ['src/*', 'test/*', 'grammar.js', 'package.json']
-      - branch: [main, dev]
+        path: ['src/*', 'test/*', 'grammar.js', 'package.json']
+        branch: [main, dev]
 
   test-nodejs:
     image: node:bookworm
@@ -31,5 +31,5 @@ steps:
       - yarn run tree-sitter test
     when:
       - event: [push, pull_request, tag]
-      - path: ['src/*', 'test/*', 'grammar.js', 'package.json']
-      - branch: [main, dev]
+        path: ['src/*', 'test/*', 'grammar.js', 'package.json']
+        branch: [main, dev]
