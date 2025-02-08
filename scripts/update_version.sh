@@ -23,7 +23,7 @@ readonly version_python="$version_rust"
 readonly version_treesitter="$version_node"
 
 readonly version_zig=$(cat << EOF
-.version = "$1"
+.version = "$1",
 EOF
 )
 
