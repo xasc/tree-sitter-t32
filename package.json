@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "prebuildify": "^6.0.1",
-    "tree-sitter-cli": "^0.24.7"
+    "tree-sitter-cli": "^0.25.1"
   },
   "packageManager": "yarn@4.5.0",
   "main": "bindings/node",
