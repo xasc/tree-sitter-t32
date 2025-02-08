@@ -1290,7 +1290,7 @@ __metadata:
     prebuildify: "npm:^6.0.1"
     tree-sitter-cli: "npm:^0.25.1"
   peerDependencies:
-    tree-sitter: ^0.24.0
+    tree-sitter: ^0.25.0
   peerDependenciesMeta:
     tree_sitter:
       optional: true
