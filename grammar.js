@@ -1792,7 +1792,7 @@ function longAndShortForm(keyword, aliasAsWord = true) {
     .join('')
 
   let result = new RegExp([short, long].join('|'))
-  if (!short) {
+  if (!short || short === long) {
     result = new RegExp(long)
   }
 
