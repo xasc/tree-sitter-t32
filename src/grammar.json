@@ -2377,7 +2377,12 @@
           "content": {
             "type": "ALIAS",
             "content": {
-              "type": "STRING",
+              "type": "ALIAS",
+              "content": {
+                "type": "PATTERN",
+                "value": "[gG][oO][sS][uU][bB]|[gG][oO][sS][uU][bB]"
+              },
+              "named": false,
               "value": "GOSUB"
             },
             "named": true,

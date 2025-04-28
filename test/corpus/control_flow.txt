@@ -1022,20 +1022,20 @@ SUBROUTINE printC
           (string)))
       (command_expression
         command: (identifier))))
-    (subroutine_block
-      command: (identifier)
-      subroutine: (identifier)
-      (block
-        (parameter_declaration
-          command: (identifier)
-          macro: (macro))
-        (command_expression
-          command: (identifier)
-          arguments: (argument_list
-            (string
-              (macro))))
-        (command_expression
-          command: (identifier))))
+  (subroutine_block
+    command: (identifier)
+    subroutine: (identifier)
+    (block
+      (parameter_declaration
+        command: (identifier)
+        macro: (macro))
+      (command_expression
+        command: (identifier)
+        arguments: (argument_list
+          (string
+            (macro))))
+      (command_expression
+        command: (identifier))))
     (subroutine_block
       command: (identifier)
       subroutine: (identifier)

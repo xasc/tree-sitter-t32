@@ -496,7 +496,7 @@ module.exports = grammar({
 
     subroutine_call_expression: $ => seq(
       optional(/(::)?B::/),
-      field('command', alias('GOSUB', $.identifier)),
+      field('command', alias(longAndShortForm('GOSUB'), $.identifier)),
       repeat1($._blank),
       field('subroutine', $.identifier),
       optional(seq(
