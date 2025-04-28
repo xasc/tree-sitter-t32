@@ -71,7 +71,7 @@ enum ts_symbol_identifiers {
   aux_sym_parameter_declaration_token2 = 41,
   aux_sym_parameter_declaration_token3 = 42,
   aux_sym_parameter_declaration_token4 = 43,
-  anon_sym_GOSUB = 44,
+  aux_sym_subroutine_call_expression_token1 = 44,
   aux_sym_macro_definition_command_token1 = 45,
   aux_sym_macro_definition_command_token2 = 46,
   aux_sym_macro_definition_command_token3 = 47,
@@ -373,7 +373,7 @@ static const char * const ts_symbol_names[] = {
   [aux_sym_parameter_declaration_token2] = "identifier",
   [aux_sym_parameter_declaration_token3] = "identifier",
   [aux_sym_parameter_declaration_token4] = "identifier",
-  [anon_sym_GOSUB] = "identifier",
+  [aux_sym_subroutine_call_expression_token1] = "identifier",
   [aux_sym_macro_definition_command_token1] = "GLOBAL",
   [aux_sym_macro_definition_command_token2] = "LOCAL",
   [aux_sym_macro_definition_command_token3] = "PRIVATE",
@@ -675,7 +675,7 @@ static const TSSymbol ts_symbol_map[] = {
   [aux_sym_parameter_declaration_token2] = sym_identifier,
   [aux_sym_parameter_declaration_token3] = sym_identifier,
   [aux_sym_parameter_declaration_token4] = sym_identifier,
-  [anon_sym_GOSUB] = sym_identifier,
+  [aux_sym_subroutine_call_expression_token1] = sym_identifier,
   [aux_sym_macro_definition_command_token1] = aux_sym_macro_definition_command_token1,
   [aux_sym_macro_definition_command_token2] = aux_sym_macro_definition_command_token2,
   [aux_sym_macro_definition_command_token3] = aux_sym_macro_definition_command_token3,
@@ -1109,7 +1109,7 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = true,
     .named = true,
   },
-  [anon_sym_GOSUB] = {
+  [aux_sym_subroutine_call_expression_token1] = {
     .visible = true,
     .named = true,
   },
@@ -7638,938 +7638,938 @@ static bool ts_lex_keywords(TSLexer *lexer, TSStateId state) {
     case 0:
       ADVANCE_MAP(
         'E', 1,
-        'G', 2,
-        'I', 3,
-        'L', 4,
-        'S', 5,
-        'V', 6,
-        'b', 7,
-        'c', 8,
-        'd', 9,
-        'e', 10,
-        'f', 11,
-        'g', 12,
-        'i', 13,
-        'l', 14,
-        's', 15,
-        'u', 16,
-        'v', 17,
-        'A', 18,
-        'a', 18,
-        'N', 19,
-        'n', 19,
-        'O', 20,
-        'o', 20,
-        'P', 21,
-        'p', 21,
-        'R', 22,
-        'r', 22,
-        'T', 23,
-        't', 23,
-        'W', 24,
-        'w', 24,
+        'I', 2,
+        'L', 3,
+        'S', 4,
+        'V', 5,
+        'b', 6,
+        'c', 7,
+        'd', 8,
+        'e', 9,
+        'f', 10,
+        'i', 11,
+        'l', 12,
+        's', 13,
+        'u', 14,
+        'v', 15,
+        'A', 16,
+        'a', 16,
+        'G', 17,
+        'g', 17,
+        'N', 18,
+        'n', 18,
+        'O', 19,
+        'o', 19,
+        'P', 20,
+        'p', 20,
+        'R', 21,
+        'r', 21,
+        'T', 22,
+        't', 22,
+        'W', 23,
+        'w', 23,
       );
       END_STATE();
     case 1:
       if (lookahead == 'L' ||
-          lookahead == 'l') ADVANCE(25);
+          lookahead == 'l') ADVANCE(24);
       if (lookahead == 'N' ||
-          lookahead == 'n') ADVANCE(26);
+          lookahead == 'n') ADVANCE(25);
       if (lookahead == 'X' ||
-          lookahead == 'x') ADVANCE(27);
+          lookahead == 'x') ADVANCE(26);
       END_STATE();
     case 2:
-      if (lookahead == 'O') ADVANCE(28);
-      if (lookahead == 'L' ||
-          lookahead == 'l') ADVANCE(29);
+      if (lookahead == 'F' ||
+          lookahead == 'f') ADVANCE(27);
       END_STATE();
     case 3:
-      if (lookahead == 'F' ||
-          lookahead == 'f') ADVANCE(30);
+      if (lookahead == 'O' ||
+          lookahead == 'o') ADVANCE(28);
       END_STATE();
     case 4:
-      if (lookahead == 'O' ||
-          lookahead == 'o') ADVANCE(31);
+      if (lookahead == 'U' ||
+          lookahead == 'u') ADVANCE(29);
       END_STATE();
     case 5:
-      if (lookahead == 'U' ||
-          lookahead == 'u') ADVANCE(32);
+      ACCEPT_TOKEN(aux_sym__hll_non_default_format_var_command_token1);
+      if (lookahead == 'A' ||
+          lookahead == 'a') ADVANCE(30);
       END_STATE();
     case 6:
-      ACCEPT_TOKEN(aux_sym__hll_non_default_format_var_command_token1);
-      if (lookahead == 'A' ||
-          lookahead == 'a') ADVANCE(33);
+      if (lookahead == 'o') ADVANCE(31);
       END_STATE();
     case 7:
-      if (lookahead == 'o') ADVANCE(34);
+      if (lookahead == 'h') ADVANCE(32);
+      if (lookahead == 'o') ADVANCE(33);
       END_STATE();
     case 8:
-      if (lookahead == 'h') ADVANCE(35);
-      if (lookahead == 'o') ADVANCE(36);
+      if (lookahead == 'o') ADVANCE(34);
       END_STATE();
     case 9:
-      if (lookahead == 'o') ADVANCE(37);
+      if (lookahead == 'N') ADVANCE(25);
+      if (lookahead == 'n') ADVANCE(35);
+      if (lookahead == 'L' ||
+          lookahead == 'l') ADVANCE(24);
+      if (lookahead == 'X' ||
+          lookahead == 'x') ADVANCE(26);
       END_STATE();
     case 10:
-      if (lookahead == 'N') ADVANCE(26);
-      if (lookahead == 'n') ADVANCE(38);
-      if (lookahead == 'L' ||
-          lookahead == 'l') ADVANCE(25);
-      if (lookahead == 'X' ||
-          lookahead == 'x') ADVANCE(27);
+      if (lookahead == 'l') ADVANCE(36);
       END_STATE();
     case 11:
-      if (lookahead == 'l') ADVANCE(39);
+      if (lookahead == 'n') ADVANCE(37);
+      if (lookahead == 'F' ||
+          lookahead == 'f') ADVANCE(27);
       END_STATE();
     case 12:
-      if (lookahead == 'L' ||
-          lookahead == 'l') ADVANCE(29);
+      if (lookahead == 'O') ADVANCE(28);
+      if (lookahead == 'o') ADVANCE(38);
       END_STATE();
     case 13:
-      if (lookahead == 'n') ADVANCE(40);
-      if (lookahead == 'F' ||
-          lookahead == 'f') ADVANCE(30);
+      if (lookahead == 'h') ADVANCE(39);
+      if (lookahead == 'i') ADVANCE(40);
+      if (lookahead == 's') ADVANCE(41);
+      if (lookahead == 't') ADVANCE(42);
+      if (lookahead == 'U' ||
+          lookahead == 'u') ADVANCE(29);
       END_STATE();
     case 14:
-      if (lookahead == 'O') ADVANCE(31);
-      if (lookahead == 'o') ADVANCE(41);
+      if (lookahead == 'i') ADVANCE(43);
+      if (lookahead == 'n') ADVANCE(44);
       END_STATE();
     case 15:
-      if (lookahead == 'h') ADVANCE(42);
-      if (lookahead == 'i') ADVANCE(43);
-      if (lookahead == 's') ADVANCE(44);
-      if (lookahead == 't') ADVANCE(45);
-      if (lookahead == 'U' ||
-          lookahead == 'u') ADVANCE(32);
+      ACCEPT_TOKEN(aux_sym__hll_non_default_format_var_command_token1);
+      if (lookahead == 'o') ADVANCE(45);
+      if (lookahead == 'A' ||
+          lookahead == 'a') ADVANCE(30);
       END_STATE();
     case 16:
-      if (lookahead == 'i') ADVANCE(46);
-      if (lookahead == 'n') ADVANCE(47);
+      if (lookahead == 'D' ||
+          lookahead == 'd') ADVANCE(46);
+      if (lookahead == 'S' ||
+          lookahead == 's') ADVANCE(47);
       END_STATE();
     case 17:
-      ACCEPT_TOKEN(aux_sym__hll_non_default_format_var_command_token1);
-      if (lookahead == 'o') ADVANCE(48);
-      if (lookahead == 'A' ||
-          lookahead == 'a') ADVANCE(33);
+      if (lookahead == 'L' ||
+          lookahead == 'l') ADVANCE(48);
+      if (lookahead == 'O' ||
+          lookahead == 'o') ADVANCE(49);
       END_STATE();
     case 18:
-      if (lookahead == 'D' ||
-          lookahead == 'd') ADVANCE(49);
-      if (lookahead == 'S' ||
-          lookahead == 's') ADVANCE(50);
+      if (lookahead == 'E' ||
+          lookahead == 'e') ADVANCE(50);
       END_STATE();
     case 19:
-      if (lookahead == 'E' ||
-          lookahead == 'e') ADVANCE(51);
+      if (lookahead == 'S' ||
+          lookahead == 's') ADVANCE(51);
       END_STATE();
     case 20:
-      if (lookahead == 'S' ||
-          lookahead == 's') ADVANCE(52);
+      if (lookahead == 'A' ||
+          lookahead == 'a') ADVANCE(52);
+      if (lookahead == 'R' ||
+          lookahead == 'r') ADVANCE(53);
       END_STATE();
     case 21:
-      if (lookahead == 'A' ||
-          lookahead == 'a') ADVANCE(53);
-      if (lookahead == 'R' ||
-          lookahead == 'r') ADVANCE(54);
-      END_STATE();
-    case 22:
       ACCEPT_TOKEN(aux_sym__var_command_with_non_hll_format_token2);
       if (lookahead == 'E' ||
-          lookahead == 'e') ADVANCE(55);
+          lookahead == 'e') ADVANCE(54);
       if (lookahead == 'P' ||
-          lookahead == 'p') ADVANCE(56);
+          lookahead == 'p') ADVANCE(55);
+      END_STATE();
+    case 22:
+      if (lookahead == 'R' ||
+          lookahead == 'r') ADVANCE(56);
       END_STATE();
     case 23:
+      if (lookahead == 'H' ||
+          lookahead == 'h') ADVANCE(57);
       if (lookahead == 'R' ||
-          lookahead == 'r') ADVANCE(57);
+          lookahead == 'r') ADVANCE(58);
       END_STATE();
     case 24:
-      if (lookahead == 'H' ||
-          lookahead == 'h') ADVANCE(58);
-      if (lookahead == 'R' ||
-          lookahead == 'r') ADVANCE(59);
+      if (lookahead == 'S' ||
+          lookahead == 's') ADVANCE(59);
       END_STATE();
     case 25:
-      if (lookahead == 'S' ||
-          lookahead == 's') ADVANCE(60);
+      if (lookahead == 'T' ||
+          lookahead == 't') ADVANCE(60);
       END_STATE();
     case 26:
-      if (lookahead == 'T' ||
-          lookahead == 't') ADVANCE(61);
+      if (lookahead == 'P' ||
+          lookahead == 'p') ADVANCE(61);
       END_STATE();
     case 27:
-      if (lookahead == 'P' ||
-          lookahead == 'p') ADVANCE(62);
-      END_STATE();
-    case 28:
-      if (lookahead == 'S') ADVANCE(63);
-      END_STATE();
-    case 29:
-      if (lookahead == 'O' ||
-          lookahead == 'o') ADVANCE(64);
-      END_STATE();
-    case 30:
       ACCEPT_TOKEN(aux_sym_if_block_token1);
       END_STATE();
-    case 31:
+    case 28:
       if (lookahead == 'C' ||
-          lookahead == 'c') ADVANCE(65);
+          lookahead == 'c') ADVANCE(62);
+      END_STATE();
+    case 29:
+      if (lookahead == 'B' ||
+          lookahead == 'b') ADVANCE(63);
+      END_STATE();
+    case 30:
+      if (lookahead == 'R' ||
+          lookahead == 'r') ADVANCE(64);
+      END_STATE();
+    case 31:
+      if (lookahead == 'o') ADVANCE(65);
       END_STATE();
     case 32:
-      if (lookahead == 'B' ||
-          lookahead == 'b') ADVANCE(66);
+      if (lookahead == 'a') ADVANCE(66);
       END_STATE();
     case 33:
-      if (lookahead == 'R' ||
-          lookahead == 'r') ADVANCE(67);
+      if (lookahead == 'n') ADVANCE(67);
       END_STATE();
     case 34:
-      if (lookahead == 'o') ADVANCE(68);
+      if (lookahead == 'u') ADVANCE(68);
       END_STATE();
     case 35:
-      if (lookahead == 'a') ADVANCE(69);
+      if (lookahead == 'u') ADVANCE(69);
+      if (lookahead == 'T' ||
+          lookahead == 't') ADVANCE(60);
       END_STATE();
     case 36:
-      if (lookahead == 'n') ADVANCE(70);
+      if (lookahead == 'o') ADVANCE(70);
       END_STATE();
     case 37:
-      if (lookahead == 'u') ADVANCE(71);
+      if (lookahead == 't') ADVANCE(71);
       END_STATE();
     case 38:
-      if (lookahead == 'u') ADVANCE(72);
-      if (lookahead == 'T' ||
-          lookahead == 't') ADVANCE(61);
+      if (lookahead == 'n') ADVANCE(72);
+      if (lookahead == 'C' ||
+          lookahead == 'c') ADVANCE(62);
       END_STATE();
     case 39:
       if (lookahead == 'o') ADVANCE(73);
       END_STATE();
     case 40:
-      if (lookahead == 't') ADVANCE(74);
+      if (lookahead == 'g') ADVANCE(74);
+      if (lookahead == 'z') ADVANCE(75);
       END_STATE();
     case 41:
-      if (lookahead == 'n') ADVANCE(75);
-      if (lookahead == 'C' ||
-          lookahead == 'c') ADVANCE(65);
+      if (lookahead == 'i') ADVANCE(76);
       END_STATE();
     case 42:
-      if (lookahead == 'o') ADVANCE(76);
+      if (lookahead == 'r') ADVANCE(77);
       END_STATE();
     case 43:
-      if (lookahead == 'g') ADVANCE(77);
-      if (lookahead == 'z') ADVANCE(78);
+      if (lookahead == 'n') ADVANCE(78);
       END_STATE();
     case 44:
       if (lookahead == 'i') ADVANCE(79);
+      if (lookahead == 's') ADVANCE(80);
       END_STATE();
     case 45:
-      if (lookahead == 'r') ADVANCE(80);
+      if (lookahead == 'i') ADVANCE(81);
+      if (lookahead == 'l') ADVANCE(82);
       END_STATE();
     case 46:
-      if (lookahead == 'n') ADVANCE(81);
+      if (lookahead == 'D' ||
+          lookahead == 'd') ADVANCE(83);
       END_STATE();
     case 47:
-      if (lookahead == 'i') ADVANCE(82);
-      if (lookahead == 's') ADVANCE(83);
-      END_STATE();
-    case 48:
-      if (lookahead == 'i') ADVANCE(84);
-      if (lookahead == 'l') ADVANCE(85);
-      END_STATE();
-    case 49:
-      if (lookahead == 'D' ||
-          lookahead == 'd') ADVANCE(86);
-      END_STATE();
-    case 50:
       ACCEPT_TOKEN(aux_sym__hll_non_default_format_var_command_token2);
       END_STATE();
-    case 51:
-      if (lookahead == 'W' ||
-          lookahead == 'w') ADVANCE(87);
+    case 48:
+      if (lookahead == 'O' ||
+          lookahead == 'o') ADVANCE(84);
       END_STATE();
-    case 52:
+    case 49:
+      if (lookahead == 'S' ||
+          lookahead == 's') ADVANCE(85);
+      END_STATE();
+    case 50:
+      if (lookahead == 'W' ||
+          lookahead == 'w') ADVANCE(86);
+      END_STATE();
+    case 51:
       ACCEPT_TOKEN(aux_sym__host_command_with_default_format_token1);
       END_STATE();
-    case 53:
+    case 52:
       if (lookahead == 'R' ||
-          lookahead == 'r') ADVANCE(88);
+          lookahead == 'r') ADVANCE(87);
       if (lookahead == 'T' ||
-          lookahead == 't') ADVANCE(89);
+          lookahead == 't') ADVANCE(88);
+      END_STATE();
+    case 53:
+      if (lookahead == 'I' ||
+          lookahead == 'i') ADVANCE(89);
       END_STATE();
     case 54:
-      if (lookahead == 'I' ||
-          lookahead == 'i') ADVANCE(90);
+      if (lookahead == 'F' ||
+          lookahead == 'f') ADVANCE(90);
+      if (lookahead == 'P' ||
+          lookahead == 'p') ADVANCE(91);
+      if (lookahead == 'T' ||
+          lookahead == 't') ADVANCE(92);
       END_STATE();
     case 55:
-      if (lookahead == 'F' ||
-          lookahead == 'f') ADVANCE(91);
-      if (lookahead == 'P' ||
-          lookahead == 'p') ADVANCE(92);
       if (lookahead == 'T' ||
           lookahead == 't') ADVANCE(93);
       END_STATE();
     case 56:
-      if (lookahead == 'T' ||
-          lookahead == 't') ADVANCE(94);
+      if (lookahead == 'E' ||
+          lookahead == 'e') ADVANCE(94);
       END_STATE();
     case 57:
-      if (lookahead == 'E' ||
-          lookahead == 'e') ADVANCE(95);
+      if (lookahead == 'I' ||
+          lookahead == 'i') ADVANCE(95);
       END_STATE();
     case 58:
       if (lookahead == 'I' ||
           lookahead == 'i') ADVANCE(96);
       END_STATE();
     case 59:
-      if (lookahead == 'I' ||
-          lookahead == 'i') ADVANCE(97);
+      if (lookahead == 'E' ||
+          lookahead == 'e') ADVANCE(97);
       END_STATE();
     case 60:
-      if (lookahead == 'E' ||
-          lookahead == 'e') ADVANCE(98);
+      if (lookahead == 'R' ||
+          lookahead == 'r') ADVANCE(98);
       END_STATE();
     case 61:
-      if (lookahead == 'R' ||
-          lookahead == 'r') ADVANCE(99);
+      if (lookahead == 'O' ||
+          lookahead == 'o') ADVANCE(99);
       END_STATE();
     case 62:
-      if (lookahead == 'O' ||
-          lookahead == 'o') ADVANCE(100);
+      if (lookahead == 'A' ||
+          lookahead == 'a') ADVANCE(100);
       END_STATE();
     case 63:
-      if (lookahead == 'U') ADVANCE(101);
+      if (lookahead == 'R' ||
+          lookahead == 'r') ADVANCE(101);
       END_STATE();
     case 64:
-      if (lookahead == 'B' ||
-          lookahead == 'b') ADVANCE(102);
-      END_STATE();
-    case 65:
-      if (lookahead == 'A' ||
-          lookahead == 'a') ADVANCE(103);
-      END_STATE();
-    case 66:
-      if (lookahead == 'R' ||
-          lookahead == 'r') ADVANCE(104);
-      END_STATE();
-    case 67:
       ACCEPT_TOKEN(aux_sym__hll_non_default_format_var_command_token1);
       END_STATE();
+    case 65:
+      if (lookahead == 'l') ADVANCE(102);
+      END_STATE();
+    case 66:
+      if (lookahead == 'r') ADVANCE(103);
+      END_STATE();
+    case 67:
+      if (lookahead == 's') ADVANCE(104);
+      END_STATE();
     case 68:
-      if (lookahead == 'l') ADVANCE(105);
+      if (lookahead == 'b') ADVANCE(105);
       END_STATE();
     case 69:
-      if (lookahead == 'r') ADVANCE(106);
+      if (lookahead == 'm') ADVANCE(106);
       END_STATE();
     case 70:
-      if (lookahead == 's') ADVANCE(107);
+      if (lookahead == 'a') ADVANCE(107);
       END_STATE();
     case 71:
-      if (lookahead == 'b') ADVANCE(108);
+      ACCEPT_TOKEN(sym_hll_primitive_type);
+      if (lookahead == '1') ADVANCE(108);
+      if (lookahead == '3') ADVANCE(109);
+      if (lookahead == '6') ADVANCE(110);
+      if (lookahead == '8') ADVANCE(111);
+      if (lookahead == 'p') ADVANCE(112);
       END_STATE();
     case 72:
-      if (lookahead == 'm') ADVANCE(109);
+      if (lookahead == 'g') ADVANCE(113);
       END_STATE();
     case 73:
-      if (lookahead == 'a') ADVANCE(110);
+      if (lookahead == 'r') ADVANCE(114);
       END_STATE();
     case 74:
-      ACCEPT_TOKEN(sym_hll_primitive_type);
-      if (lookahead == '1') ADVANCE(111);
-      if (lookahead == '3') ADVANCE(112);
-      if (lookahead == '6') ADVANCE(113);
-      if (lookahead == '8') ADVANCE(114);
-      if (lookahead == 'p') ADVANCE(115);
+      if (lookahead == 'n') ADVANCE(115);
       END_STATE();
     case 75:
-      if (lookahead == 'g') ADVANCE(116);
+      if (lookahead == 'e') ADVANCE(116);
       END_STATE();
     case 76:
-      if (lookahead == 'r') ADVANCE(117);
+      if (lookahead == 'z') ADVANCE(117);
       END_STATE();
     case 77:
-      if (lookahead == 'n') ADVANCE(118);
+      if (lookahead == 'u') ADVANCE(118);
       END_STATE();
     case 78:
-      if (lookahead == 'e') ADVANCE(119);
+      if (lookahead == 't') ADVANCE(119);
       END_STATE();
     case 79:
-      if (lookahead == 'z') ADVANCE(120);
+      if (lookahead == 'o') ADVANCE(120);
       END_STATE();
     case 80:
-      if (lookahead == 'u') ADVANCE(121);
+      if (lookahead == 'i') ADVANCE(121);
       END_STATE();
     case 81:
-      if (lookahead == 't') ADVANCE(122);
+      if (lookahead == 'd') ADVANCE(102);
       END_STATE();
     case 82:
-      if (lookahead == 'o') ADVANCE(123);
+      if (lookahead == 'a') ADVANCE(122);
       END_STATE();
     case 83:
-      if (lookahead == 'i') ADVANCE(124);
+      if (lookahead == 'S' ||
+          lookahead == 's') ADVANCE(123);
       END_STATE();
     case 84:
-      if (lookahead == 'd') ADVANCE(105);
+      if (lookahead == 'B' ||
+          lookahead == 'b') ADVANCE(124);
       END_STATE();
     case 85:
-      if (lookahead == 'a') ADVANCE(125);
+      if (lookahead == 'U' ||
+          lookahead == 'u') ADVANCE(125);
       END_STATE();
     case 86:
-      if (lookahead == 'S' ||
-          lookahead == 's') ADVANCE(126);
+      if (lookahead == 'G' ||
+          lookahead == 'g') ADVANCE(126);
+      if (lookahead == 'L' ||
+          lookahead == 'l') ADVANCE(127);
       END_STATE();
     case 87:
-      if (lookahead == 'G' ||
-          lookahead == 'g') ADVANCE(127);
-      if (lookahead == 'L' ||
-          lookahead == 'l') ADVANCE(128);
+      if (lookahead == 'A' ||
+          lookahead == 'a') ADVANCE(128);
       END_STATE();
     case 88:
-      if (lookahead == 'A' ||
-          lookahead == 'a') ADVANCE(129);
-      END_STATE();
-    case 89:
       ACCEPT_TOKEN(aux_sym__hll_non_default_format_var_command_token5);
       if (lookahead == 'T' ||
-          lookahead == 't') ADVANCE(130);
+          lookahead == 't') ADVANCE(129);
+      END_STATE();
+    case 89:
+      if (lookahead == 'V' ||
+          lookahead == 'v') ADVANCE(130);
       END_STATE();
     case 90:
-      if (lookahead == 'V' ||
-          lookahead == 'v') ADVANCE(131);
-      END_STATE();
-    case 91:
       ACCEPT_TOKEN(aux_sym__var_command_with_non_hll_format_token2);
       END_STATE();
-    case 92:
+    case 91:
       if (lookahead == 'E' ||
-          lookahead == 'e') ADVANCE(132);
+          lookahead == 'e') ADVANCE(131);
+      END_STATE();
+    case 92:
+      if (lookahead == 'U' ||
+          lookahead == 'u') ADVANCE(132);
       END_STATE();
     case 93:
-      if (lookahead == 'U' ||
-          lookahead == 'u') ADVANCE(133);
-      END_STATE();
-    case 94:
       ACCEPT_TOKEN(aux_sym__repeat_block_pre_condition_format_token1);
       END_STATE();
-    case 95:
+    case 94:
       if (lookahead == 'E' ||
-          lookahead == 'e') ADVANCE(134);
+          lookahead == 'e') ADVANCE(133);
+      END_STATE();
+    case 95:
+      if (lookahead == 'L' ||
+          lookahead == 'l') ADVANCE(134);
       END_STATE();
     case 96:
-      if (lookahead == 'L' ||
-          lookahead == 'l') ADVANCE(135);
+      if (lookahead == 'T' ||
+          lookahead == 't') ADVANCE(135);
       END_STATE();
     case 97:
-      if (lookahead == 'T' ||
-          lookahead == 't') ADVANCE(136);
-      END_STATE();
-    case 98:
       ACCEPT_TOKEN(aux_sym_elif_block_token1);
       END_STATE();
-    case 99:
+    case 98:
       if (lookahead == 'Y' ||
-          lookahead == 'y') ADVANCE(137);
+          lookahead == 'y') ADVANCE(136);
+      END_STATE();
+    case 99:
+      if (lookahead == 'R' ||
+          lookahead == 'r') ADVANCE(137);
       END_STATE();
     case 100:
-      if (lookahead == 'R' ||
-          lookahead == 'r') ADVANCE(138);
+      if (lookahead == 'L' ||
+          lookahead == 'l') ADVANCE(138);
       END_STATE();
     case 101:
-      if (lookahead == 'B') ADVANCE(139);
+      if (lookahead == 'O' ||
+          lookahead == 'o') ADVANCE(139);
       END_STATE();
     case 102:
-      if (lookahead == 'A' ||
-          lookahead == 'a') ADVANCE(140);
+      ACCEPT_TOKEN(sym_hll_primitive_type);
       END_STATE();
     case 103:
-      if (lookahead == 'L' ||
-          lookahead == 'l') ADVANCE(141);
+      ACCEPT_TOKEN(sym_hll_primitive_type);
+      if (lookahead == '1') ADVANCE(140);
+      if (lookahead == '3') ADVANCE(141);
+      if (lookahead == '6') ADVANCE(142);
+      if (lookahead == '8') ADVANCE(143);
+      if (lookahead == 'p') ADVANCE(144);
       END_STATE();
     case 104:
-      if (lookahead == 'O' ||
-          lookahead == 'o') ADVANCE(142);
+      if (lookahead == 't') ADVANCE(145);
       END_STATE();
     case 105:
-      ACCEPT_TOKEN(sym_hll_primitive_type);
+      if (lookahead == 'l') ADVANCE(146);
       END_STATE();
     case 106:
-      ACCEPT_TOKEN(sym_hll_primitive_type);
-      if (lookahead == '1') ADVANCE(143);
-      if (lookahead == '3') ADVANCE(144);
-      if (lookahead == '6') ADVANCE(145);
-      if (lookahead == '8') ADVANCE(146);
-      if (lookahead == 'p') ADVANCE(147);
-      END_STATE();
-    case 107:
-      if (lookahead == 't') ADVANCE(148);
-      END_STATE();
-    case 108:
-      if (lookahead == 'l') ADVANCE(149);
-      END_STATE();
-    case 109:
       ACCEPT_TOKEN(anon_sym_enum);
       END_STATE();
+    case 107:
+      if (lookahead == 't') ADVANCE(102);
+      END_STATE();
+    case 108:
+      if (lookahead == '6') ADVANCE(147);
+      END_STATE();
+    case 109:
+      if (lookahead == '2') ADVANCE(148);
+      END_STATE();
     case 110:
-      if (lookahead == 't') ADVANCE(105);
+      if (lookahead == '4') ADVANCE(149);
       END_STATE();
     case 111:
-      if (lookahead == '6') ADVANCE(150);
+      if (lookahead == '_') ADVANCE(150);
       END_STATE();
     case 112:
-      if (lookahead == '2') ADVANCE(151);
+      if (lookahead == 't') ADVANCE(151);
       END_STATE();
     case 113:
-      if (lookahead == '4') ADVANCE(152);
-      END_STATE();
-    case 114:
-      if (lookahead == '_') ADVANCE(153);
-      END_STATE();
-    case 115:
-      if (lookahead == 't') ADVANCE(154);
-      END_STATE();
-    case 116:
       ACCEPT_TOKEN(anon_sym_long);
       END_STATE();
-    case 117:
-      if (lookahead == 't') ADVANCE(155);
+    case 114:
+      if (lookahead == 't') ADVANCE(152);
       END_STATE();
-    case 118:
+    case 115:
+      if (lookahead == 'e') ADVANCE(153);
+      END_STATE();
+    case 116:
+      if (lookahead == '_') ADVANCE(154);
+      if (lookahead == 'o') ADVANCE(155);
+      END_STATE();
+    case 117:
       if (lookahead == 'e') ADVANCE(156);
       END_STATE();
+    case 118:
+      if (lookahead == 'c') ADVANCE(157);
+      END_STATE();
     case 119:
-      if (lookahead == '_') ADVANCE(157);
-      if (lookahead == 'o') ADVANCE(158);
+      if (lookahead == '1') ADVANCE(158);
+      if (lookahead == '3') ADVANCE(159);
+      if (lookahead == '6') ADVANCE(160);
+      if (lookahead == '8') ADVANCE(161);
+      if (lookahead == 'p') ADVANCE(162);
       END_STATE();
     case 120:
-      if (lookahead == 'e') ADVANCE(159);
+      if (lookahead == 'n') ADVANCE(163);
       END_STATE();
     case 121:
-      if (lookahead == 'c') ADVANCE(160);
+      if (lookahead == 'g') ADVANCE(164);
       END_STATE();
     case 122:
-      if (lookahead == '1') ADVANCE(161);
-      if (lookahead == '3') ADVANCE(162);
-      if (lookahead == '6') ADVANCE(163);
-      if (lookahead == '8') ADVANCE(164);
-      if (lookahead == 'p') ADVANCE(165);
+      if (lookahead == 't') ADVANCE(165);
       END_STATE();
     case 123:
-      if (lookahead == 'n') ADVANCE(166);
+      if (lookahead == 'T' ||
+          lookahead == 't') ADVANCE(166);
       END_STATE();
     case 124:
-      if (lookahead == 'g') ADVANCE(167);
+      if (lookahead == 'A' ||
+          lookahead == 'a') ADVANCE(167);
       END_STATE();
     case 125:
-      if (lookahead == 't') ADVANCE(168);
+      if (lookahead == 'B' ||
+          lookahead == 'b') ADVANCE(168);
       END_STATE();
     case 126:
-      if (lookahead == 'T' ||
-          lookahead == 't') ADVANCE(169);
+      if (lookahead == 'L' ||
+          lookahead == 'l') ADVANCE(169);
       END_STATE();
     case 127:
-      if (lookahead == 'L' ||
-          lookahead == 'l') ADVANCE(170);
+      if (lookahead == 'O' ||
+          lookahead == 'o') ADVANCE(170);
       END_STATE();
     case 128:
-      if (lookahead == 'O' ||
-          lookahead == 'o') ADVANCE(171);
+      if (lookahead == 'M' ||
+          lookahead == 'm') ADVANCE(171);
       END_STATE();
     case 129:
-      if (lookahead == 'M' ||
-          lookahead == 'm') ADVANCE(172);
+      if (lookahead == 'E' ||
+          lookahead == 'e') ADVANCE(172);
       END_STATE();
     case 130:
-      if (lookahead == 'E' ||
-          lookahead == 'e') ADVANCE(173);
+      if (lookahead == 'A' ||
+          lookahead == 'a') ADVANCE(173);
       END_STATE();
     case 131:
       if (lookahead == 'A' ||
           lookahead == 'a') ADVANCE(174);
       END_STATE();
     case 132:
-      if (lookahead == 'A' ||
-          lookahead == 'a') ADVANCE(175);
+      if (lookahead == 'R' ||
+          lookahead == 'r') ADVANCE(175);
       END_STATE();
     case 133:
-      if (lookahead == 'R' ||
-          lookahead == 'r') ADVANCE(176);
+      ACCEPT_TOKEN(aux_sym__var_command_with_non_hll_format_token3);
       END_STATE();
     case 134:
-      ACCEPT_TOKEN(aux_sym__var_command_with_non_hll_format_token3);
+      if (lookahead == 'E' ||
+          lookahead == 'e') ADVANCE(176);
       END_STATE();
     case 135:
       if (lookahead == 'E' ||
           lookahead == 'e') ADVANCE(177);
       END_STATE();
     case 136:
-      if (lookahead == 'E' ||
-          lookahead == 'e') ADVANCE(178);
-      END_STATE();
-    case 137:
       ACCEPT_TOKEN(aux_sym_parameter_declaration_token3);
       END_STATE();
-    case 138:
+    case 137:
       if (lookahead == 'T' ||
-          lookahead == 't') ADVANCE(179);
+          lookahead == 't') ADVANCE(178);
       END_STATE();
-    case 139:
-      ACCEPT_TOKEN(anon_sym_GOSUB);
-      END_STATE();
-    case 140:
-      if (lookahead == 'L' ||
-          lookahead == 'l') ADVANCE(180);
-      END_STATE();
-    case 141:
+    case 138:
       ACCEPT_TOKEN(aux_sym_macro_definition_command_token2);
       END_STATE();
-    case 142:
+    case 139:
       if (lookahead == 'U' ||
-          lookahead == 'u') ADVANCE(181);
+          lookahead == 'u') ADVANCE(179);
+      END_STATE();
+    case 140:
+      if (lookahead == '6') ADVANCE(180);
+      END_STATE();
+    case 141:
+      if (lookahead == '2') ADVANCE(181);
+      END_STATE();
+    case 142:
+      if (lookahead == '4') ADVANCE(182);
       END_STATE();
     case 143:
-      if (lookahead == '6') ADVANCE(182);
+      if (lookahead == '_') ADVANCE(183);
       END_STATE();
     case 144:
-      if (lookahead == '2') ADVANCE(183);
+      if (lookahead == 't') ADVANCE(184);
       END_STATE();
     case 145:
-      if (lookahead == '4') ADVANCE(184);
-      END_STATE();
-    case 146:
-      if (lookahead == '_') ADVANCE(185);
-      END_STATE();
-    case 147:
-      if (lookahead == 't') ADVANCE(186);
-      END_STATE();
-    case 148:
       ACCEPT_TOKEN(anon_sym_const);
       END_STATE();
-    case 149:
-      if (lookahead == 'e') ADVANCE(105);
+    case 146:
+      if (lookahead == 'e') ADVANCE(102);
       END_STATE();
-    case 150:
+    case 147:
+      if (lookahead == '_') ADVANCE(185);
+      END_STATE();
+    case 148:
+      if (lookahead == '_') ADVANCE(186);
+      END_STATE();
+    case 149:
       if (lookahead == '_') ADVANCE(187);
       END_STATE();
+    case 150:
+      if (lookahead == 't') ADVANCE(102);
+      END_STATE();
     case 151:
-      if (lookahead == '_') ADVANCE(188);
+      if (lookahead == 'r') ADVANCE(188);
       END_STATE();
     case 152:
-      if (lookahead == '_') ADVANCE(189);
-      END_STATE();
-    case 153:
-      if (lookahead == 't') ADVANCE(105);
-      END_STATE();
-    case 154:
-      if (lookahead == 'r') ADVANCE(190);
-      END_STATE();
-    case 155:
       ACCEPT_TOKEN(anon_sym_short);
       END_STATE();
+    case 153:
+      if (lookahead == 'd') ADVANCE(189);
+      END_STATE();
+    case 154:
+      if (lookahead == 't') ADVANCE(102);
+      END_STATE();
+    case 155:
+      if (lookahead == 'f') ADVANCE(190);
+      END_STATE();
     case 156:
-      if (lookahead == 'd') ADVANCE(191);
+      if (lookahead == '_') ADVANCE(191);
       END_STATE();
     case 157:
-      if (lookahead == 't') ADVANCE(105);
+      if (lookahead == 't') ADVANCE(192);
       END_STATE();
     case 158:
-      if (lookahead == 'f') ADVANCE(192);
+      if (lookahead == '6') ADVANCE(193);
       END_STATE();
     case 159:
-      if (lookahead == '_') ADVANCE(193);
+      if (lookahead == '2') ADVANCE(194);
       END_STATE();
     case 160:
-      if (lookahead == 't') ADVANCE(194);
+      if (lookahead == '4') ADVANCE(195);
       END_STATE();
     case 161:
-      if (lookahead == '6') ADVANCE(195);
+      if (lookahead == '_') ADVANCE(196);
       END_STATE();
     case 162:
-      if (lookahead == '2') ADVANCE(196);
+      if (lookahead == 't') ADVANCE(197);
       END_STATE();
     case 163:
-      if (lookahead == '4') ADVANCE(197);
-      END_STATE();
-    case 164:
-      if (lookahead == '_') ADVANCE(198);
-      END_STATE();
-    case 165:
-      if (lookahead == 't') ADVANCE(199);
-      END_STATE();
-    case 166:
       ACCEPT_TOKEN(anon_sym_union);
       END_STATE();
+    case 164:
+      if (lookahead == 'n') ADVANCE(198);
+      END_STATE();
+    case 165:
+      if (lookahead == 'i') ADVANCE(199);
+      END_STATE();
+    case 166:
+      if (lookahead == 'I' ||
+          lookahead == 'i') ADVANCE(200);
+      END_STATE();
     case 167:
-      if (lookahead == 'n') ADVANCE(200);
+      if (lookahead == 'L' ||
+          lookahead == 'l') ADVANCE(201);
       END_STATE();
     case 168:
-      if (lookahead == 'i') ADVANCE(201);
+      ACCEPT_TOKEN(aux_sym_subroutine_call_expression_token1);
       END_STATE();
     case 169:
-      if (lookahead == 'I' ||
-          lookahead == 'i') ADVANCE(202);
+      if (lookahead == 'O' ||
+          lookahead == 'o') ADVANCE(202);
       END_STATE();
     case 170:
-      if (lookahead == 'O' ||
-          lookahead == 'o') ADVANCE(203);
+      if (lookahead == 'C' ||
+          lookahead == 'c') ADVANCE(203);
       END_STATE();
     case 171:
-      if (lookahead == 'C' ||
-          lookahead == 'c') ADVANCE(204);
+      if (lookahead == 'E' ||
+          lookahead == 'e') ADVANCE(204);
       END_STATE();
     case 172:
-      if (lookahead == 'E' ||
-          lookahead == 'e') ADVANCE(205);
+      if (lookahead == 'R' ||
+          lookahead == 'r') ADVANCE(205);
       END_STATE();
     case 173:
-      if (lookahead == 'R' ||
-          lookahead == 'r') ADVANCE(206);
+      if (lookahead == 'T' ||
+          lookahead == 't') ADVANCE(206);
       END_STATE();
     case 174:
       if (lookahead == 'T' ||
-          lookahead == 't') ADVANCE(207);
+          lookahead == 't') ADVANCE(93);
       END_STATE();
     case 175:
-      if (lookahead == 'T' ||
-          lookahead == 't') ADVANCE(94);
+      if (lookahead == 'N' ||
+          lookahead == 'n') ADVANCE(207);
       END_STATE();
     case 176:
-      if (lookahead == 'N' ||
-          lookahead == 'n') ADVANCE(208);
-      END_STATE();
-    case 177:
       ACCEPT_TOKEN(aux_sym_while_block_token1);
       END_STATE();
-    case 178:
+    case 177:
       ACCEPT_TOKEN(aux_sym__hll_non_default_format_var_command_token4);
       END_STATE();
-    case 179:
+    case 178:
       ACCEPT_TOKEN(aux_sym__hll_non_default_format_var_command_token3);
       END_STATE();
+    case 179:
+      if (lookahead == 'T' ||
+          lookahead == 't') ADVANCE(208);
+      END_STATE();
     case 180:
-      ACCEPT_TOKEN(aux_sym_macro_definition_command_token1);
+      if (lookahead == '_') ADVANCE(209);
       END_STATE();
     case 181:
-      if (lookahead == 'T' ||
-          lookahead == 't') ADVANCE(209);
-      END_STATE();
-    case 182:
       if (lookahead == '_') ADVANCE(210);
       END_STATE();
-    case 183:
+    case 182:
       if (lookahead == '_') ADVANCE(211);
       END_STATE();
+    case 183:
+      if (lookahead == 't') ADVANCE(102);
+      END_STATE();
     case 184:
-      if (lookahead == '_') ADVANCE(212);
+      if (lookahead == 'r') ADVANCE(212);
       END_STATE();
     case 185:
-      if (lookahead == 't') ADVANCE(105);
+      if (lookahead == 't') ADVANCE(102);
       END_STATE();
     case 186:
-      if (lookahead == 'r') ADVANCE(213);
+      if (lookahead == 't') ADVANCE(102);
       END_STATE();
     case 187:
-      if (lookahead == 't') ADVANCE(105);
+      if (lookahead == 't') ADVANCE(102);
       END_STATE();
     case 188:
-      if (lookahead == 't') ADVANCE(105);
+      if (lookahead == '_') ADVANCE(213);
       END_STATE();
     case 189:
-      if (lookahead == 't') ADVANCE(105);
-      END_STATE();
-    case 190:
-      if (lookahead == '_') ADVANCE(214);
-      END_STATE();
-    case 191:
       ACCEPT_TOKEN(anon_sym_signed);
       END_STATE();
-    case 192:
+    case 190:
       ACCEPT_TOKEN(anon_sym_sizeof);
       END_STATE();
-    case 193:
-      if (lookahead == 't') ADVANCE(105);
+    case 191:
+      if (lookahead == 't') ADVANCE(102);
       END_STATE();
-    case 194:
+    case 192:
       ACCEPT_TOKEN(anon_sym_struct);
       END_STATE();
-    case 195:
+    case 193:
+      if (lookahead == '_') ADVANCE(214);
+      END_STATE();
+    case 194:
       if (lookahead == '_') ADVANCE(215);
       END_STATE();
-    case 196:
+    case 195:
       if (lookahead == '_') ADVANCE(216);
       END_STATE();
+    case 196:
+      if (lookahead == 't') ADVANCE(102);
+      END_STATE();
     case 197:
-      if (lookahead == '_') ADVANCE(217);
+      if (lookahead == 'r') ADVANCE(217);
       END_STATE();
     case 198:
-      if (lookahead == 't') ADVANCE(105);
+      if (lookahead == 'e') ADVANCE(218);
       END_STATE();
     case 199:
-      if (lookahead == 'r') ADVANCE(218);
+      if (lookahead == 'l') ADVANCE(219);
       END_STATE();
     case 200:
-      if (lookahead == 'e') ADVANCE(219);
+      if (lookahead == 'C' ||
+          lookahead == 'c') ADVANCE(220);
       END_STATE();
     case 201:
-      if (lookahead == 'l') ADVANCE(220);
+      ACCEPT_TOKEN(aux_sym_macro_definition_command_token1);
       END_STATE();
     case 202:
-      if (lookahead == 'C' ||
-          lookahead == 'c') ADVANCE(221);
+      if (lookahead == 'B' ||
+          lookahead == 'b') ADVANCE(221);
       END_STATE();
     case 203:
-      if (lookahead == 'B' ||
-          lookahead == 'b') ADVANCE(222);
+      if (lookahead == 'A' ||
+          lookahead == 'a') ADVANCE(222);
       END_STATE();
     case 204:
-      if (lookahead == 'A' ||
-          lookahead == 'a') ADVANCE(223);
+      if (lookahead == 'T' ||
+          lookahead == 't') ADVANCE(223);
       END_STATE();
     case 205:
-      if (lookahead == 'T' ||
-          lookahead == 't') ADVANCE(224);
+      if (lookahead == 'N' ||
+          lookahead == 'n') ADVANCE(224);
       END_STATE();
     case 206:
-      if (lookahead == 'N' ||
-          lookahead == 'n') ADVANCE(225);
+      if (lookahead == 'E' ||
+          lookahead == 'e') ADVANCE(225);
       END_STATE();
     case 207:
-      if (lookahead == 'E' ||
-          lookahead == 'e') ADVANCE(226);
+      if (lookahead == 'V' ||
+          lookahead == 'v') ADVANCE(226);
       END_STATE();
     case 208:
-      if (lookahead == 'V' ||
-          lookahead == 'v') ADVANCE(227);
+      if (lookahead == 'I' ||
+          lookahead == 'i') ADVANCE(227);
       END_STATE();
     case 209:
-      if (lookahead == 'I' ||
-          lookahead == 'i') ADVANCE(228);
+      if (lookahead == 't') ADVANCE(102);
       END_STATE();
     case 210:
-      if (lookahead == 't') ADVANCE(105);
+      if (lookahead == 't') ADVANCE(102);
       END_STATE();
     case 211:
-      if (lookahead == 't') ADVANCE(105);
+      if (lookahead == 't') ADVANCE(102);
       END_STATE();
     case 212:
-      if (lookahead == 't') ADVANCE(105);
+      if (lookahead == '_') ADVANCE(228);
       END_STATE();
     case 213:
-      if (lookahead == '_') ADVANCE(229);
+      if (lookahead == 't') ADVANCE(102);
       END_STATE();
     case 214:
-      if (lookahead == 't') ADVANCE(105);
+      if (lookahead == 't') ADVANCE(102);
       END_STATE();
     case 215:
-      if (lookahead == 't') ADVANCE(105);
+      if (lookahead == 't') ADVANCE(102);
       END_STATE();
     case 216:
-      if (lookahead == 't') ADVANCE(105);
+      if (lookahead == 't') ADVANCE(102);
       END_STATE();
     case 217:
-      if (lookahead == 't') ADVANCE(105);
+      if (lookahead == '_') ADVANCE(229);
       END_STATE();
     case 218:
-      if (lookahead == '_') ADVANCE(230);
+      if (lookahead == 'd') ADVANCE(230);
       END_STATE();
     case 219:
-      if (lookahead == 'd') ADVANCE(231);
+      if (lookahead == 'e') ADVANCE(231);
       END_STATE();
     case 220:
-      if (lookahead == 'e') ADVANCE(232);
+      if (lookahead == 'K' ||
+          lookahead == 'k') ADVANCE(232);
       END_STATE();
     case 221:
-      if (lookahead == 'K' ||
-          lookahead == 'k') ADVANCE(233);
+      if (lookahead == 'A' ||
+          lookahead == 'a') ADVANCE(233);
       END_STATE();
     case 222:
-      if (lookahead == 'A' ||
-          lookahead == 'a') ADVANCE(234);
+      if (lookahead == 'L' ||
+          lookahead == 'l') ADVANCE(234);
       END_STATE();
     case 223:
-      if (lookahead == 'L' ||
-          lookahead == 'l') ADVANCE(235);
+      if (lookahead == 'E' ||
+          lookahead == 'e') ADVANCE(235);
       END_STATE();
     case 224:
-      if (lookahead == 'E' ||
-          lookahead == 'e') ADVANCE(236);
-      END_STATE();
-    case 225:
       ACCEPT_TOKEN(aux_sym__hll_non_default_format_var_command_token5);
       END_STATE();
-    case 226:
+    case 225:
       ACCEPT_TOKEN(aux_sym_macro_definition_command_token3);
       END_STATE();
-    case 227:
+    case 226:
       if (lookahead == 'A' ||
-          lookahead == 'a') ADVANCE(237);
+          lookahead == 'a') ADVANCE(236);
+      END_STATE();
+    case 227:
+      if (lookahead == 'N' ||
+          lookahead == 'n') ADVANCE(237);
       END_STATE();
     case 228:
-      if (lookahead == 'N' ||
-          lookahead == 'n') ADVANCE(238);
+      if (lookahead == 't') ADVANCE(102);
       END_STATE();
     case 229:
-      if (lookahead == 't') ADVANCE(105);
+      if (lookahead == 't') ADVANCE(102);
       END_STATE();
     case 230:
-      if (lookahead == 't') ADVANCE(105);
-      END_STATE();
-    case 231:
       ACCEPT_TOKEN(anon_sym_unsigned);
       END_STATE();
-    case 232:
+    case 231:
       ACCEPT_TOKEN(anon_sym_volatile);
       END_STATE();
-    case 233:
+    case 232:
       if (lookahead == 'E' ||
-          lookahead == 'e') ADVANCE(239);
+          lookahead == 'e') ADVANCE(238);
+      END_STATE();
+    case 233:
+      if (lookahead == 'L' ||
+          lookahead == 'l') ADVANCE(239);
       END_STATE();
     case 234:
-      if (lookahead == 'L' ||
-          lookahead == 'l') ADVANCE(240);
-      END_STATE();
-    case 235:
       ACCEPT_TOKEN(aux_sym__hll_var_definition_command_expression_token1);
       END_STATE();
-    case 236:
+    case 235:
       if (lookahead == 'R' ||
-          lookahead == 'r') ADVANCE(241);
+          lookahead == 'r') ADVANCE(240);
+      END_STATE();
+    case 236:
+      if (lookahead == 'L' ||
+          lookahead == 'l') ADVANCE(241);
       END_STATE();
     case 237:
-      if (lookahead == 'L' ||
-          lookahead == 'l') ADVANCE(242);
+      if (lookahead == 'E' ||
+          lookahead == 'e') ADVANCE(242);
       END_STATE();
     case 238:
-      if (lookahead == 'E' ||
-          lookahead == 'e') ADVANCE(243);
+      if (lookahead == 'R' ||
+          lookahead == 'r') ADVANCE(47);
       END_STATE();
     case 239:
-      if (lookahead == 'R' ||
-          lookahead == 'r') ADVANCE(50);
-      END_STATE();
-    case 240:
       ACCEPT_TOKEN(aux_sym__hll_var_definition_command_expression_token2);
       END_STATE();
-    case 241:
+    case 240:
       if (lookahead == 'S' ||
-          lookahead == 's') ADVANCE(244);
+          lookahead == 's') ADVANCE(243);
+      END_STATE();
+    case 241:
+      if (lookahead == 'U' ||
+          lookahead == 'u') ADVANCE(244);
       END_STATE();
     case 242:
-      if (lookahead == 'U' ||
-          lookahead == 'u') ADVANCE(245);
-      END_STATE();
-    case 243:
       ACCEPT_TOKEN(aux_sym_subroutine_block_token1);
       END_STATE();
-    case 244:
+    case 243:
       ACCEPT_TOKEN(aux_sym_parameter_declaration_token1);
       END_STATE();
-    case 245:
+    case 244:
       if (lookahead == 'E' ||
-          lookahead == 'e') ADVANCE(246);
+          lookahead == 'e') ADVANCE(245);
+      END_STATE();
+    case 245:
+      if (lookahead == 'S' ||
+          lookahead == 's') ADVANCE(246);
       END_STATE();
     case 246:
-      if (lookahead == 'S' ||
-          lookahead == 's') ADVANCE(247);
-      END_STATE();
-    case 247:
       ACCEPT_TOKEN(aux_sym_parameter_declaration_token2);
       END_STATE();
     default:
@@ -10971,7 +10971,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [aux_sym_parameter_declaration_token1] = ACTIONS(1),
     [aux_sym_parameter_declaration_token2] = ACTIONS(1),
     [aux_sym_parameter_declaration_token3] = ACTIONS(1),
-    [anon_sym_GOSUB] = ACTIONS(1),
+    [aux_sym_subroutine_call_expression_token1] = ACTIONS(1),
     [aux_sym_macro_definition_command_token1] = ACTIONS(1),
     [aux_sym_macro_definition_command_token2] = ACTIONS(1),
     [aux_sym_macro_definition_command_token3] = ACTIONS(1),
@@ -11069,7 +11069,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [aux_sym_parameter_declaration_token1] = ACTIONS(27),
     [aux_sym_parameter_declaration_token2] = ACTIONS(27),
     [aux_sym_parameter_declaration_token3] = ACTIONS(29),
-    [anon_sym_GOSUB] = ACTIONS(31),
+    [aux_sym_subroutine_call_expression_token1] = ACTIONS(31),
     [aux_sym_macro_definition_command_token1] = ACTIONS(33),
     [aux_sym_macro_definition_command_token2] = ACTIONS(33),
     [aux_sym_macro_definition_command_token3] = ACTIONS(33),
@@ -11148,7 +11148,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [aux_sym_parameter_declaration_token1] = ACTIONS(53),
     [aux_sym_parameter_declaration_token2] = ACTIONS(53),
     [aux_sym_parameter_declaration_token3] = ACTIONS(53),
-    [anon_sym_GOSUB] = ACTIONS(53),
+    [aux_sym_subroutine_call_expression_token1] = ACTIONS(53),
     [aux_sym_macro_definition_command_token1] = ACTIONS(53),
     [aux_sym_macro_definition_command_token2] = ACTIONS(53),
     [aux_sym_macro_definition_command_token3] = ACTIONS(53),
@@ -11246,7 +11246,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [aux_sym_parameter_declaration_token1] = ACTIONS(104),
     [aux_sym_parameter_declaration_token2] = ACTIONS(104),
     [aux_sym_parameter_declaration_token3] = ACTIONS(104),
-    [anon_sym_GOSUB] = ACTIONS(104),
+    [aux_sym_subroutine_call_expression_token1] = ACTIONS(104),
     [aux_sym_macro_definition_command_token1] = ACTIONS(104),
     [aux_sym_macro_definition_command_token2] = ACTIONS(104),
     [aux_sym_macro_definition_command_token3] = ACTIONS(104),
@@ -12089,7 +12089,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [aux_sym_parameter_declaration_token1] = ACTIONS(27),
     [aux_sym_parameter_declaration_token2] = ACTIONS(27),
     [aux_sym_parameter_declaration_token3] = ACTIONS(29),
-    [anon_sym_GOSUB] = ACTIONS(31),
+    [aux_sym_subroutine_call_expression_token1] = ACTIONS(31),
     [aux_sym_macro_definition_command_token1] = ACTIONS(33),
     [aux_sym_macro_definition_command_token2] = ACTIONS(33),
     [aux_sym_macro_definition_command_token3] = ACTIONS(33),
@@ -12170,7 +12170,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [aux_sym_parameter_declaration_token1] = ACTIONS(27),
     [aux_sym_parameter_declaration_token2] = ACTIONS(27),
     [aux_sym_parameter_declaration_token3] = ACTIONS(29),
-    [anon_sym_GOSUB] = ACTIONS(31),
+    [aux_sym_subroutine_call_expression_token1] = ACTIONS(31),
     [aux_sym_macro_definition_command_token1] = ACTIONS(33),
     [aux_sym_macro_definition_command_token2] = ACTIONS(33),
     [aux_sym_macro_definition_command_token3] = ACTIONS(33),
@@ -32265,7 +32265,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -32360,7 +32360,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -32463,7 +32463,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -32566,7 +32566,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -32681,7 +32681,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(1345), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(1348), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(1354), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(1357), 1,
@@ -32774,7 +32774,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -32889,7 +32889,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -32994,7 +32994,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -33089,7 +33089,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -33194,7 +33194,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -33299,7 +33299,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -33404,7 +33404,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -33517,7 +33517,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -33622,7 +33622,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -33717,7 +33717,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -33820,7 +33820,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -33925,7 +33925,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -34030,7 +34030,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -34135,7 +34135,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -34238,7 +34238,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -34353,7 +34353,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -34458,7 +34458,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -34563,7 +34563,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -34668,7 +34668,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -34773,7 +34773,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -34878,7 +34878,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -34983,7 +34983,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -35088,7 +35088,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -35193,7 +35193,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(1462), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(1465), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(1471), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(1474), 1,
@@ -35286,7 +35286,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -35391,7 +35391,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -35504,7 +35504,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -35596,7 +35596,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -35698,7 +35698,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -35810,7 +35810,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -35900,7 +35900,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -36010,7 +36010,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -36098,7 +36098,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -36194,7 +36194,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -36292,7 +36292,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -36400,7 +36400,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -36496,7 +36496,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -36582,7 +36582,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -36678,7 +36678,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -36784,7 +36784,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -36868,7 +36868,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(29), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(31), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(35), 1,
       aux_sym__host_command_with_default_format_token1,
     ACTIONS(37), 1,
@@ -38989,7 +38989,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -39048,7 +39048,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -39101,7 +39101,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -39155,7 +39155,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -39211,7 +39211,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -39269,7 +39269,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -39321,7 +39321,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -39374,7 +39374,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -39427,7 +39427,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -39480,7 +39480,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -39533,7 +39533,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -39596,7 +39596,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -39720,7 +39720,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -39776,7 +39776,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -39903,7 +39903,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -39955,7 +39955,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -40008,7 +40008,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -40133,7 +40133,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -40186,7 +40186,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -40249,7 +40249,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -40314,7 +40314,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -40365,7 +40365,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -40423,7 +40423,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -40475,7 +40475,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -40529,7 +40529,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -40587,7 +40587,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -40644,7 +40644,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -40769,7 +40769,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -40835,7 +40835,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -41322,7 +41322,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -41520,7 +41520,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -41655,7 +41655,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -41859,7 +41859,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -42130,7 +42130,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -42257,7 +42257,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -42678,7 +42678,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -42883,7 +42883,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -43156,7 +43156,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -43297,7 +43297,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -43367,7 +43367,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -43491,7 +43491,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -43551,7 +43551,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -43762,7 +43762,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -43818,7 +43818,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -43944,7 +43944,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -44678,7 +44678,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -44865,7 +44865,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -45052,7 +45052,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -47618,7 +47618,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -47734,7 +47734,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -47850,7 +47850,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -48158,7 +48158,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -48538,7 +48538,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -48588,7 +48588,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -48638,7 +48638,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -48886,7 +48886,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -49266,7 +49266,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -49316,7 +49316,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -49432,7 +49432,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -49614,7 +49614,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -49664,7 +49664,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -86519,7 +86519,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -86868,7 +86868,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -86984,7 +86984,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -87165,7 +87165,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -87205,7 +87205,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -87292,7 +87292,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -87329,7 +87329,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -87549,7 +87549,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -87589,7 +87589,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -87625,7 +87625,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -87753,7 +87753,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -88061,7 +88061,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -88101,7 +88101,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -88276,7 +88276,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -88316,7 +88316,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -88405,7 +88405,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -88441,7 +88441,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -88478,7 +88478,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -88515,7 +88515,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -88552,7 +88552,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -88589,7 +88589,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -88626,7 +88626,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -88667,7 +88667,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -89112,7 +89112,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -89413,7 +89413,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -90568,7 +90568,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -90643,7 +90643,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -92729,7 +92729,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -92765,7 +92765,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -92803,7 +92803,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -92838,7 +92838,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -92874,7 +92874,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -92910,7 +92910,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -93765,7 +93765,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -93843,7 +93843,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -94003,7 +94003,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -94215,7 +94215,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -94248,7 +94248,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -94379,7 +94379,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -94414,7 +94414,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -94445,7 +94445,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -94478,7 +94478,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -94510,7 +94510,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -94614,7 +94614,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -94647,7 +94647,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -94758,7 +94758,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -94857,7 +94857,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -95037,7 +95037,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -95070,7 +95070,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -95153,7 +95153,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -95189,7 +95189,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -95221,7 +95221,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -95257,7 +95257,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -95321,7 +95321,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -95389,7 +95389,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -95419,7 +95419,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -95450,7 +95450,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -95481,7 +95481,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -95544,7 +95544,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -95575,7 +95575,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -95606,7 +95606,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -95637,7 +95637,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -95699,7 +95699,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -95730,7 +95730,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -95761,7 +95761,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -95792,7 +95792,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -95823,7 +95823,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -95854,7 +95854,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -95885,7 +95885,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -95916,7 +95916,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -95947,7 +95947,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -95978,7 +95978,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -96009,7 +96009,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -96040,7 +96040,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -96071,7 +96071,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -96102,7 +96102,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -96133,7 +96133,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -96164,7 +96164,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -96195,7 +96195,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -96226,7 +96226,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -96257,7 +96257,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -96288,7 +96288,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -96319,7 +96319,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -96350,7 +96350,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -96381,7 +96381,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -96412,7 +96412,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -96443,7 +96443,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -96474,7 +96474,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -96505,7 +96505,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -96536,7 +96536,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -96567,7 +96567,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -96598,7 +96598,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -96629,7 +96629,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -96660,7 +96660,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -96691,7 +96691,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -96722,7 +96722,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -96753,7 +96753,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -96784,7 +96784,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -96815,7 +96815,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -96846,7 +96846,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -96877,7 +96877,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -96908,7 +96908,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -96939,7 +96939,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -96970,7 +96970,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -97001,7 +97001,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -97032,7 +97032,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -97063,7 +97063,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -97094,7 +97094,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -97125,7 +97125,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -97156,7 +97156,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -97187,7 +97187,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -97251,7 +97251,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -97282,7 +97282,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -97313,7 +97313,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -97344,7 +97344,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -97375,7 +97375,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -97406,7 +97406,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -97437,7 +97437,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -97468,7 +97468,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -97499,7 +97499,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -97530,7 +97530,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -97561,7 +97561,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -97592,7 +97592,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -97608,7 +97608,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(3415), 1,
       aux_sym_parameter_declaration_token3,
     ACTIONS(3417), 1,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
     ACTIONS(3419), 1,
       aux_sym__hll_non_default_format_var_command_token1,
     STATE(1940), 1,
@@ -97747,7 +97747,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -97819,7 +97819,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -97850,7 +97850,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -97991,7 +97991,7 @@ static const uint16_t ts_small_parse_table[] = {
       aux_sym_parameter_declaration_token1,
       aux_sym_parameter_declaration_token2,
       aux_sym_parameter_declaration_token3,
-      anon_sym_GOSUB,
+      aux_sym_subroutine_call_expression_token1,
       aux_sym_macro_definition_command_token1,
       aux_sym_macro_definition_command_token2,
       aux_sym_macro_definition_command_token3,
@@ -114622,7 +114622,7 @@ TS_PUBLIC const TSLanguage *tree_sitter_t32(void) {
     .metadata = {
       .major_version = 5,
       .minor_version = 4,
-      .patch_version = 0,
+      .patch_version = 2,
     },
   };
   return &language;

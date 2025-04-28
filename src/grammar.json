@@ -331,7 +331,7 @@
               "type": "ALIAS",
               "content": {
                 "type": "PATTERN",
-                "value": "[sS][uU][bB][rR][oO][uU][tT][iI][nN][eE]|[sS][uU][bB][rR][oO][uU][tT][iI][nN][eE]"
+                "value": "[sS][uU][bB][rR][oO][uU][tT][iI][nN][eE]"
               },
               "named": false,
               "value": "SUBROUTINE"
@@ -426,7 +426,7 @@
                         "type": "ALIAS",
                         "content": {
                           "type": "PATTERN",
-                          "value": "[iI][fF]|[iI][fF]"
+                          "value": "[iI][fF]"
                         },
                         "named": false,
                         "value": "IF"
@@ -548,7 +548,7 @@
                 "type": "ALIAS",
                 "content": {
                   "type": "PATTERN",
-                  "value": "[eE][lL][sS][eE]|[eE][lL][sS][eE]"
+                  "value": "[eE][lL][sS][eE]"
                 },
                 "named": false,
                 "value": "ELSE"
@@ -573,7 +573,7 @@
                 "type": "ALIAS",
                 "content": {
                   "type": "PATTERN",
-                  "value": "[iI][fF]|[iI][fF]"
+                  "value": "[iI][fF]"
                 },
                 "named": false,
                 "value": "IF"
@@ -669,7 +669,7 @@
               "type": "ALIAS",
               "content": {
                 "type": "PATTERN",
-                "value": "[eE][lL][sS][eE]|[eE][lL][sS][eE]"
+                "value": "[eE][lL][sS][eE]"
               },
               "named": false,
               "value": "ELSE"
@@ -748,7 +748,7 @@
                       "type": "ALIAS",
                       "content": {
                         "type": "PATTERN",
-                        "value": "[wW][hH][iI][lL][eE]|[wW][hH][iI][lL][eE]"
+                        "value": "[wW][hH][iI][lL][eE]"
                       },
                       "named": false,
                       "value": "WHILE"
@@ -804,7 +804,7 @@
                             "type": "ALIAS",
                             "content": {
                               "type": "PATTERN",
-                              "value": "[wW][hH][iI][lL][eE]|[wW][hH][iI][lL][eE]"
+                              "value": "[wW][hH][iI][lL][eE]"
                             },
                             "named": false,
                             "value": "WHILE"
@@ -1110,7 +1110,7 @@
                             "type": "ALIAS",
                             "content": {
                               "type": "PATTERN",
-                              "value": "[wW][hH][iI][lL][eE]|[wW][hH][iI][lL][eE]"
+                              "value": "[wW][hH][iI][lL][eE]"
                             },
                             "named": false,
                             "value": "WHILE"
@@ -2241,7 +2241,7 @@
                   "type": "ALIAS",
                   "content": {
                     "type": "PATTERN",
-                    "value": "[pP][aA][rR][aA][mM][eE][tT][eE][rR][sS]|[pP][aA][rR][aA][mM][eE][tT][eE][rR][sS]"
+                    "value": "[pP][aA][rR][aA][mM][eE][tT][eE][rR][sS]"
                   },
                   "named": false,
                   "value": "PARAMETERS"
@@ -2259,7 +2259,7 @@
                   "type": "ALIAS",
                   "content": {
                     "type": "PATTERN",
-                    "value": "[rR][eE][tT][uU][rR][nN][vV][aA][lL][uU][eE][sS]|[rR][eE][tT][uU][rR][nN][vV][aA][lL][uU][eE][sS]"
+                    "value": "[rR][eE][tT][uU][rR][nN][vV][aA][lL][uU][eE][sS]"
                   },
                   "named": false,
                   "value": "RETURNVALUES"
@@ -2280,7 +2280,7 @@
                       "type": "ALIAS",
                       "content": {
                         "type": "PATTERN",
-                        "value": "[eE][nN][tT][rR][yY]|[eE][nN][tT][rR][yY]"
+                        "value": "[eE][nN][tT][rR][yY]"
                       },
                       "named": false,
                       "value": "ENTRY"
@@ -2308,7 +2308,7 @@
                             "type": "ALIAS",
                             "content": {
                               "type": "PATTERN",
-                              "value": "[%%][lL][iI][nN][eE]|[%%][lL][iI][nN][eE]"
+                              "value": "[%%][lL][iI][nN][eE]"
                             },
                             "named": false,
                             "value": "%LINE"
@@ -2380,7 +2380,7 @@
               "type": "ALIAS",
               "content": {
                 "type": "PATTERN",
-                "value": "[gG][oO][sS][uU][bB]|[gG][oO][sS][uU][bB]"
+                "value": "[gG][oO][sS][uU][bB]"
               },
               "named": false,
               "value": "GOSUB"
@@ -2570,7 +2570,7 @@
           "type": "ALIAS",
           "content": {
             "type": "PATTERN",
-            "value": "[gG][lL][oO][bB][aA][lL]|[gG][lL][oO][bB][aA][lL]"
+            "value": "[gG][lL][oO][bB][aA][lL]"
           },
           "named": false,
           "value": "GLOBAL"
@@ -2579,7 +2579,7 @@
           "type": "ALIAS",
           "content": {
             "type": "PATTERN",
-            "value": "[lL][oO][cC][aA][lL]|[lL][oO][cC][aA][lL]"
+            "value": "[lL][oO][cC][aA][lL]"
           },
           "named": false,
           "value": "LOCAL"
@@ -2588,7 +2588,7 @@
           "type": "ALIAS",
           "content": {
             "type": "PATTERN",
-            "value": "[pP][rR][iI][vV][aA][tT][eE]|[pP][rR][iI][vV][aA][tT][eE]"
+            "value": "[pP][rR][iI][vV][aA][tT][eE]"
           },
           "named": false,
           "value": "PRIVATE"
@@ -2701,7 +2701,7 @@
           "type": "ALIAS",
           "content": {
             "type": "PATTERN",
-            "value": "[oO][sS]|[oO][sS]"
+            "value": "[oO][sS]"
           },
           "named": false,
           "value": "OS"
@@ -3490,7 +3490,7 @@
                           "type": "ALIAS",
                           "content": {
                             "type": "PATTERN",
-                            "value": "[eE][xX][pP][oO][rR][tT]|[eE][xX][pP][oO][rR][tT]"
+                            "value": "[eE][xX][pP][oO][rR][tT]"
                           },
                           "named": false,
                           "value": "EXPORT"
@@ -3499,7 +3499,7 @@
                           "type": "ALIAS",
                           "content": {
                             "type": "PATTERN",
-                            "value": "[wW][rR][iI][tT][eE]|[wW][rR][iI][tT][eE]"
+                            "value": "[wW][rR][iI][tT][eE]"
                           },
                           "named": false,
                           "value": "WRITE"
@@ -3857,7 +3857,7 @@
                   "type": "ALIAS",
                   "content": {
                     "type": "PATTERN",
-                    "value": "[tT][rR][eE][eE]|[tT][rR][eE][eE]"
+                    "value": "[tT][rR][eE][eE]"
                   },
                   "named": false,
                   "value": "TREE"
@@ -3891,7 +3891,7 @@
               "type": "ALIAS",
               "content": {
                 "type": "PATTERN",
-                "value": "[nN][eE][wW][lL][oO][cC][aA][lL]|[nN][eE][wW][lL][oO][cC][aA][lL]"
+                "value": "[nN][eE][wW][lL][oO][cC][aA][lL]"
               },
               "named": false,
               "value": "NEWLOCAL"
@@ -3900,7 +3900,7 @@
               "type": "ALIAS",
               "content": {
                 "type": "PATTERN",
-                "value": "[nN][eE][wW][gG][lL][oO][bB][aA][lL]|[nN][eE][wW][gG][lL][oO][bB][aA][lL]"
+                "value": "[nN][eE][wW][gG][lL][oO][bB][aA][lL]"
               },
               "named": false,
               "value": "NEWGLOBAL"
@@ -3929,7 +3929,7 @@
           "type": "ALIAS",
           "content": {
             "type": "PATTERN",
-            "value": "[iI][fF]|[iI][fF]"
+            "value": "[iI][fF]"
           },
           "named": false,
           "value": "IF"
