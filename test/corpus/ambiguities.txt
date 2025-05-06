@@ -262,3 +262,35 @@ Var.NEWLOCAL char \ch = '&'
     value: (hll_char_literal
       (character))))
 
+==================
+Method name vs. address
+==================
+
+List foo::bar
+List namespace::f0o::BAR
+List foo::bar\var
+
+List 0xA::0x800
+
+---
+
+(script
+  (command_expression
+    (identifier)
+    (argument_list
+      (symbol)))
+  (command_expression
+    (identifier)
+    (argument_list
+      (symbol)))
+  (command_expression
+    (identifier)
+    (argument_list
+      (symbol)))
+  (command_expression
+    (identifier)
+    (argument_list
+      (address
+        (memory_space
+          (integer))
+        (integer)))))

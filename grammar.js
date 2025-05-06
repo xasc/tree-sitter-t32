@@ -1684,9 +1684,9 @@ module.exports = grammar({
       token(choice(
         seq(
           choice(
-            /\\\\\\([\w_]+|`[^`\n]+`)\\\\([\w_]*|`[^`\n]+`)\\([\w_]*|`[^`\n]+`)\\([\w_]+|`[^`\n]+`)(\\([\w_]+|`[^`\n]+`))*/,  // Includes machine name
+            /\\\\\\([\w_]+|`[^`\n]+`)\\\\([\w_]*|`[^`\n]+`)\\([\w_]*|`[^`\n]+`)\\([\w_]+(::[\w_]+)*|`[^`\n]+`)(\\([\w_]+|`[^`\n]+`))*/,  // Includes machine name
             /((\\\\([\w_]+|`[^`\n]+`))?\\([\w_]*|`[^`\n]+`)\\)?`[^`\n]+`(\\([\w_]+|`[^`\n]+`))*/,  // Quoted function name only
-            /(\\\\([\w_]+|`[^`\n]+`))?\\([\w_]*|`[^`\n]+`)\\[\w_]+(\\([\w_]+|`[^`\n]+`))*/,  // Module name with unquoted function name
+            /(\\\\([\w_]+|`[^`\n]+`))?\\([\w_]*|`[^`\n]+`)\\[\w_]+(::[\w_]+)*(\\([\w_]+|`[^`\n]+`))*/,  // Module name with unquoted function name
             /[\\]{2,3}([\w_]+|`[^`\n]+`)/,  // Machine or program name
             /\\`[^`\n]+`/,  // Quoted module name only
           ),
@@ -1699,10 +1699,21 @@ module.exports = grammar({
           ))
         ),
         seq(
-          /[\w_]+\\[0-9]+/,  // Function name with line number offeset
+          /[\w_]+\\[0-9]+/,  // Function name with line number offset
           optional(choice(
             /\\[0-9]+/,   // Column number offset
             /\\[0-9]*\\[0-9]+/  // Instance number offset
+          ))
+        ),
+        seq(
+          /[a-zA-Z_][\w_]*(::[a-zA-Z_][\w_]*)+/,  // Method name
+          repeat(/\\([\w_]+|`[^`\n]+`)/),  // Variables
+          optional(seq(
+            /\\[0-9]+/,  // Line number offset
+            optional(choice(
+              /\\[0-9]+/,  // Column number offset
+              /\\[0-9]*\\[0-9]+/  // Instance number offset
+            ))
           ))
         )
       )),
@@ -1716,7 +1727,10 @@ module.exports = grammar({
         ),
         $.string,
         optional(token(seq(
-          repeat(/\\([\w_]+|`[^`\n]+`)/),  // Functions and variables
+          optional(seq(
+            /\\([\w_]+(::[\w_]+)*|`[^`\n]+`)/,  // Function
+            repeat(/\\([\w_]+|`[^`\n]+`)/),  // Variables
+          )),
           /\\[0-9]+/,  // Line number offset
           optional(choice(
             /\\[0-9]+/,  // Column number offset
