@@ -9,7 +9,6 @@
     "url": "https://codeberg.org/xasc/tree-sitter-t32/"
   },
   "keywords": [
-    "lexer",
     "incremental",
     "parsing",
     "tree-sitter",
@@ -19,12 +18,15 @@
     "practice"
   ],
   "files": [
-    "grammar.js",
-    "binding.gyp",
-    "prebuilds/**",
     "bindings/node/*",
+    "binding.gyp",
+    "grammar.js",
+    "LICENSES/*",
+    "prebuilds/**",
     "queries/*",
-    "src/**"
+    "src/**",
+    "tree-sitter.json",
+    "*.wsm"
   ],
   "scripts": {
     "build": "tree-sitter generate",
