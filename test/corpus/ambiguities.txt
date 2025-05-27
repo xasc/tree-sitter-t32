@@ -18,6 +18,7 @@ Path literals with operators
 
 DO ~~/demo/arm/hardware/zynq-7000/zc702/ps7_init.tcl "POST"
 Data.LOAD.Elf &workspace/ultra96-vx7vip64/default/vxWorks
+DO ~~~~/../../../env/&environment/practice/load_sym
 
 ---
 
@@ -30,6 +31,12 @@ Data.LOAD.Elf &workspace/ultra96-vx7vip64/default/vxWorks
   (command_expression
     command: (identifier)
     arguments: (argument_list
+      (macro)
+      (path)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (path)
       (macro)
       (path))))
 

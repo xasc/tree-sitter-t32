@@ -162,13 +162,23 @@ module.exports = grammar({
       )
     ),
 
-    _path_expression: $ => choice(
+    _path_expression: $ => prec.left(choice(
       $.path,
       seq(
-        $.macro,
-        $.path
+        repeat1(seq(
+          $.path,
+          $.macro
+        )),
+        optional($.path)
+      ),
+      seq(
+        repeat1(seq(
+          $.macro,
+          $.path
+        )),
+        optional($.macro)
       )
-    ),
+    )),
 
     labeled_expression: $ => prec.right(seq(
       $._label,
