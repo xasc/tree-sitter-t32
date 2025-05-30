@@ -76,6 +76,12 @@ SPDX-FileCopyrightText = "2022 Christoph Sax <c_sax@mailbox.org>"
 SPDX-License-Identifier = "MIT"
 
 [[annotations]]
+path = ".yarnrc.yml"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2022 Christoph Sax <c_sax@mailbox.org>"
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
 path = ".yarn/releases/**"
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2016-present, Yarn Contributors. All rights reserved."

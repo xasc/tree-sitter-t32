@@ -353,6 +353,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fdir@npm:^6.4.4":
+  version: 6.4.4
+  resolution: "fdir@npm:6.4.4"
+  peerDependencies:
+    picomatch: ^3 || ^4
+  peerDependenciesMeta:
+    picomatch:
+      optional: true
+  checksum: 10/d0000d6b790059b35f4ed19acc8847a66452e0bc68b28766c929ffd523e5ec2083811fc8a545e4a1d4945ce70e887b3a610c145c681073b506143ae3076342ed
+  languageName: node
+  linkType: hard
+
 "foreground-child@npm:^3.1.0":
   version: 3.1.1
   resolution: "foreground-child@npm:3.1.1"
@@ -838,23 +850,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-gyp@npm:^11.1.0":
-  version: 11.1.0
-  resolution: "node-gyp@npm:11.1.0"
+"node-gyp@npm:^11.2.0":
+  version: 11.2.0
+  resolution: "node-gyp@npm:11.2.0"
   dependencies:
     env-paths: "npm:^2.2.0"
     exponential-backoff: "npm:^3.1.1"
-    glob: "npm:^10.3.10"
     graceful-fs: "npm:^4.2.6"
     make-fetch-happen: "npm:^14.0.3"
     nopt: "npm:^8.0.0"
     proc-log: "npm:^5.0.0"
     semver: "npm:^7.3.5"
     tar: "npm:^7.4.3"
+    tinyglobby: "npm:^0.2.12"
     which: "npm:^5.0.0"
   bin:
     node-gyp: bin/node-gyp.js
-  checksum: 10/3314ebfeb99dbcdf9e8c810df1ee52294045399873d4ab1e6740608c4fbe63adaf6580c0610b23c6eda125e298536553f5bb6fb0df714016a5c721ed31095e42
+  checksum: 10/806fd8e3adc9157e17bf0d4a2c899cf6b98a0bbe9f453f630094ce791866271f6cddcaf2133e6513715d934fcba2014d287c7053d5d7934937b3a34d5a3d84ad
   languageName: node
   linkType: hard
 
@@ -965,6 +977,13 @@ __metadata:
     lru-cache: "npm:^10.2.0"
     minipass: "npm:^5.0.0 || ^6.0.2 || ^7.0.0"
   checksum: 10/5e8845c159261adda6f09814d7725683257fcc85a18f329880ab4d7cc1d12830967eae5d5894e453f341710d5484b8fdbbd4d75181b4d6e1eb2f4dc7aeadc434
+  languageName: node
+  linkType: hard
+
+"picomatch@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "picomatch@npm:4.0.2"
+  checksum: 10/ce617b8da36797d09c0baacb96ca8a44460452c89362d7cb8f70ca46b4158ba8bc3606912de7c818eb4a939f7f9015cef3c766ec8a0c6bfc725fdc078e39c717
   languageName: node
   linkType: hard
 
@@ -1271,12 +1290,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tree-sitter-cli@npm:^0.25.3":
-  version: 0.25.3
-  resolution: "tree-sitter-cli@npm:0.25.3"
+"tinyglobby@npm:^0.2.12":
+  version: 0.2.14
+  resolution: "tinyglobby@npm:0.2.14"
+  dependencies:
+    fdir: "npm:^6.4.4"
+    picomatch: "npm:^4.0.2"
+  checksum: 10/3d306d319718b7cc9d79fb3f29d8655237aa6a1f280860a217f93417039d0614891aee6fc47c5db315f4fcc6ac8d55eb8e23e2de73b2c51a431b42456d9e5764
+  languageName: node
+  linkType: hard
+
+"tree-sitter-cli@npm:^0.25.4":
+  version: 0.25.4
+  resolution: "tree-sitter-cli@npm:0.25.4"
   bin:
     tree-sitter: cli.js
-  checksum: 10/058907d4004f978179bfb6ee835251299cc2071b3bc13a04622cf87564bdae53364817af45182f00e142a4d0dfbc3e26dbde118b36e4c4082fa513f8ef8e036d
+  checksum: 10/f35501a8e56e25f87b7a47c17ba36c0883514ad6f7067347c0dd6315bb1ba350d291add5ab4b8cc84db5472f8f96c4bf26ea5ae8fe598ec75dc36091c1b04513
   languageName: node
   linkType: hard
 
@@ -1285,10 +1314,10 @@ __metadata:
   resolution: "tree-sitter-t32@workspace:."
   dependencies:
     node-addon-api: "npm:^8.3.1"
-    node-gyp: "npm:^11.1.0"
+    node-gyp: "npm:^11.2.0"
     node-gyp-build: "npm:^4.8.4"
     prebuildify: "npm:^6.0.1"
-    tree-sitter-cli: "npm:^0.25.3"
+    tree-sitter-cli: "npm:^0.25.4"
   peerDependencies:
     tree-sitter: ^0.25.0
   peerDependenciesMeta:
