@@ -373,6 +373,13 @@ To run all tests:
 | [Neovim](https://github.com/neovim/neovim)                 | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) | ✓                   | ✓                | ✓      | ✓        |
 | [Helix](https://github.com/helix-editor/helix/tree/master) |                                                                       | ✓                   |                  |        |          |
 
+### nvim-treesitter
+
+Run
+```vim
+:TSInstall t32
+```
+to automatically install the supported grammar.
 
 ## Limitations
 
