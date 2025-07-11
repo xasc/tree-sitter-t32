@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-t32",
-  "version": "5.5.0",
+  "version": "5.5.2",
   "description": "Lauterbach TRACE32® script language grammar for Tree-sitter",
   "author": "Christoph Sax <c_sax@mailbox.org>",
   "license": "MIT",
@@ -43,7 +43,7 @@
     "prebuildify": "^6.0.1",
     "tree-sitter-cli": "^0.25.6"
   },
-  "packageManager": "yarn@4.9.1",
+  "packageManager": "yarn@4.9.2",
   "main": "bindings/node",
   "types": "bindings/node",
   "peerDependenciesMeta": {
