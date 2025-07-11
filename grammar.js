@@ -9,7 +9,6 @@
 const PREC = {
   symbol: -1,
   declarator: 1,
-  elif: 1,
   escape_sequence: 1,
   macro_assignment: 1,
   option: 1,
@@ -61,9 +60,12 @@ module.exports = grammar({
   conflicts: $ => [
     [$.address],
     [$.argument_list, $.assignment_expression],
+    [$.else_block],
     [$.hll_array_declarator, $.hll_abstract_array_declarator],
     [$.hll_sized_type_specifier],
     [$.hll_type_descriptor],
+    [$.if_block],
+    [$.if_block, $.else_block],
     [$.memory_space],
     [$.option_expression],
     [$._address_expression, $._literal],
@@ -77,7 +79,7 @@ module.exports = grammar({
     [$._hll_expression, $._hll_type_identifier],
     [$._hll_expression, $._hll_assignment_left_expression, $._hll_type_identifier],
     [$._hll_expression, $._hll_assignment_left_expression, $.symbol],
-    [$._repeat_block_pre_condition_format, $._repeat_block_post_condition_format],
+    [$._repeat_block_pre_condition_format, $._repeat_block_post_condition_format]
   ],
 
   inline: $ => [
@@ -203,7 +205,7 @@ module.exports = grammar({
       $.block
     ),
 
-    if_block: $ => prec.right(seq(
+    if_block: $ => seq(
       choice(
         seq(
           field('command', alias($._hll_var_if_command, $.identifier)),
@@ -227,15 +229,21 @@ module.exports = grammar({
           )
         ),
         repeat(choice(
+          $._blank_line,
           $._blank,
-          $._blank_line
+          $.elif_block
         )),
-        repeat($.elif_block),
-        optional($.else_block)
+        optional(seq(
+          repeat(choice(
+            $._blank,
+            $._blank_line
+          )),
+          $.else_block
+        )),
       )
-    )),
+    ),
 
-    elif_block: $ => prec.right(PREC.elif, seq(
+    elif_block: $ => seq(
       field('command', alias(longAndShortForm('ELSE'), $.identifier)),
       repeat1($._blank),
       field('command', alias(longAndShortForm('IF'), $.identifier)),
@@ -251,29 +259,20 @@ module.exports = grammar({
             $.block
           )
         ),
-        repeat(choice(
-          $._blank,
-          $._blank_line
-        ))
       )
-    )),
+    ),
 
     else_block: $ => seq(
+      repeat($._blank),
       field('command', alias(
         longAndShortForm('ELSE'), $.identifier)
       ),
-      choice(
-        seq(
-          $._terminator,
-          repeat($._blank_line),
-          choice(
-            $._statement,
-            $.block
-          )
-        ),
-        seq(
-          repeat1($._blank),
-          $.if_block
+      seq(
+        $._terminator,
+        repeat($._blank_line),
+        choice(
+          $._statement,
+          $.block
         )
       ),
     ),
