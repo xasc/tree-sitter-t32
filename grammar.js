@@ -60,12 +60,10 @@ module.exports = grammar({
   conflicts: $ => [
     [$.address],
     [$.argument_list, $.assignment_expression],
-    [$.else_block],
     [$.hll_array_declarator, $.hll_abstract_array_declarator],
     [$.hll_sized_type_specifier],
     [$.hll_type_descriptor],
     [$.if_block],
-    [$.if_block, $.else_block],
     [$.memory_space],
     [$.option_expression],
     [$._address_expression, $._literal],
@@ -228,18 +226,26 @@ module.exports = grammar({
             $.block
           )
         ),
-        repeat(choice(
-          $._blank_line,
-          $._blank,
-          $.elif_block
-        )),
-        optional(seq(
-          repeat(choice(
-            $._blank,
-            $._blank_line
-          )),
-          $.else_block
-        )),
+        optional(choice(
+          seq(
+            repeat(choice(
+              $._blank_line,
+              $._blank,
+              $.elif_block
+            )),
+            $.else_block
+          ),
+          seq(
+            repeat(choice(
+              $._blank_line,
+              $._blank,
+            )),
+            choice(
+              $.elif_block,
+              $.else_block
+            )
+          ),
+        ))
       )
     ),
 
@@ -263,7 +269,6 @@ module.exports = grammar({
     ),
 
     else_block: $ => seq(
-      repeat($._blank),
       field('command', alias(
         longAndShortForm('ELSE'), $.identifier)
       ),
