@@ -548,50 +548,73 @@
               ]
             },
             {
-              "type": "REPEAT",
-              "content": {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "_blank_line"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "_blank"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "elif_block"
-                  }
-                ]
-              }
-            },
-            {
               "type": "CHOICE",
               "members": [
                 {
-                  "type": "SEQ",
+                  "type": "CHOICE",
                   "members": [
                     {
-                      "type": "REPEAT",
-                      "content": {
-                        "type": "CHOICE",
-                        "members": [
-                          {
-                            "type": "SYMBOL",
-                            "name": "_blank"
-                          },
-                          {
-                            "type": "SYMBOL",
-                            "name": "_blank_line"
+                      "type": "SEQ",
+                      "members": [
+                        {
+                          "type": "REPEAT",
+                          "content": {
+                            "type": "CHOICE",
+                            "members": [
+                              {
+                                "type": "SYMBOL",
+                                "name": "_blank_line"
+                              },
+                              {
+                                "type": "SYMBOL",
+                                "name": "_blank"
+                              },
+                              {
+                                "type": "SYMBOL",
+                                "name": "elif_block"
+                              }
+                            ]
                           }
-                        ]
-                      }
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "else_block"
+                        }
+                      ]
                     },
                     {
-                      "type": "SYMBOL",
-                      "name": "else_block"
+                      "type": "SEQ",
+                      "members": [
+                        {
+                          "type": "REPEAT",
+                          "content": {
+                            "type": "CHOICE",
+                            "members": [
+                              {
+                                "type": "SYMBOL",
+                                "name": "_blank_line"
+                              },
+                              {
+                                "type": "SYMBOL",
+                                "name": "_blank"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "type": "CHOICE",
+                          "members": [
+                            {
+                              "type": "SYMBOL",
+                              "name": "elif_block"
+                            },
+                            {
+                              "type": "SYMBOL",
+                              "name": "else_block"
+                            }
+                          ]
+                        }
+                      ]
                     }
                   ]
                 },
@@ -711,13 +734,6 @@
     "else_block": {
       "type": "SEQ",
       "members": [
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_blank"
-          }
-        },
         {
           "type": "FIELD",
           "name": "command",
@@ -8358,9 +8374,6 @@
       "assignment_expression"
     ],
     [
-      "else_block"
-    ],
-    [
       "hll_array_declarator",
       "hll_abstract_array_declarator"
     ],
@@ -8372,10 +8385,6 @@
     ],
     [
       "if_block"
-    ],
-    [
-      "if_block",
-      "else_block"
     ],
     [
       "memory_space"
