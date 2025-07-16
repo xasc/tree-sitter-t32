@@ -8,7 +8,12 @@ default:
 variables:
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.pip-cache"
 
-linux:
+stages:
+  - build
+  - publish
+
+build-linux:
+  stage: build
   image: python:3.12
   # make a docker daemon available for cibuildwheel to use
   services:
@@ -28,7 +33,8 @@ linux:
     paths:
       - wheelhouse/
 
-windows:
+build-windows:
+  stage: build
   image: mcr.microsoft.com/windows/servercore:1809
   before_script:
     - choco install python -y --allow-downgrade --version 3.12.4
@@ -41,3 +47,11 @@ windows:
       - wheelhouse/
   tags:
     - saas-windows-medium-amd64
+
+publish:
+  stage: publish
+  needs:
+    - job: build-linux
+    - job: build-windows
+  script:
+    - TWINE_PASSWORD=${PYPI_TOKEN} TWINE_USERNAME=__token__ python -m twine upload --verbose dist/* wheelhouse/*
