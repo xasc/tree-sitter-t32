@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 [build-system]
-requires = ["setuptools>=42", "wheel"]
+requires = ["setuptools>=43", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -22,21 +22,32 @@ keywords = [
 ]
 classifiers = [
   "Intended Audience :: Developers",
-  "License :: OSI Approved :: MIT License",
   "Topic :: Software Development :: Compilers",
+  "Topic :: Software Development :: Debuggers",
   "Topic :: Text Processing :: Linguistic",
   "Typing :: Typed"
 ]
-requires-python = ">=3.8"
-license.text = "MIT"
+authors = [
+  {name = "Christoph Sax", email = "c_sax@mailbox.org"},
+]
+requires-python = ">=3.10"
+license = "MIT AND BSD-2-Clause"
+license-files = [
+  "LICENSES/*",
+]
 readme = "README.md"
 
 [project.urls]
 Homepage = "https://codeberg.org/xasc/tree-sitter-t32"
+Repository = "https://codeberg.org/xasc/tree-sitter-t32.git"
+Issues = "https://codeberg.org/xasc/tree-sitter-t32/issues"
+Changelog = "https://codeberg.org/xasc/tree-sitter-t32/src/branch/main/CHANGELOG.md"
 
 [project.optional-dependencies]
 core = ["tree-sitter~=0.25"]
 
 [tool.cibuildwheel]
-build = "cp38-*"
+build = "cp310-*"
 build-frontend = "build"
+test-extras = ["tests"]
+test-command = "python -munittest discover -s {project}/tests"

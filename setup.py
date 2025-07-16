@@ -22,7 +22,7 @@ class BdistWheel(bdist_wheel):
     def get_tag(self):
         python, abi, platform = super().get_tag()
         if python.startswith("cp"):
-            python, abi = "cp38", "abi3"
+            python, abi = "cp310", "abi3"
         return python, abi, platform
 
 
@@ -40,14 +40,19 @@ setup(
             sources=[
                 "bindings/python/tree_sitter_t32/binding.c",
                 "src/parser.c",
-                "src/scanner.c"
+                "src/scanner.c",
             ],
-            extra_compile_args=(
-                ["-std=c11"] if system() != 'Windows' else []
-            ),
+            extra_compile_args=[
+                "-std=c11",
+                "-fvisibility=hidden",
+            ] if system() != "Windows" else [
+                "/std:c11",
+                "/utf-8",
+            ],
             define_macros=[
-                ("Py_LIMITED_API", "0x03080000"),
-                ("PY_SSIZE_T_CLEAN", None)
+                ("Py_LIMITED_API", "0x03090000"),
+                ("PY_SSIZE_T_CLEAN", None),
+                ("TREE_SITTER_HIDE_SYMBOLS", None),
             ],
             include_dirs=["src"],
             py_limited_api=True,
