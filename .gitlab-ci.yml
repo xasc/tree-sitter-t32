@@ -1,3 +1,11 @@
+default:
+  cache:
+    paths:
+      - .pip-cache/
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.pip-cache"
+
 linux:
   image: python:3.12
   # make a docker daemon available for cibuildwheel to use
@@ -42,4 +50,4 @@ macos:
     paths:
       - wheelhouse/
   tags:
-    - saas-macos-medium-m1
+    - macos-medium-m1
