@@ -60,4 +60,4 @@ publish:
     - pip install --upgrade setuptools[core]
     - pip install --upgrade build twine
   script:
-    - TWINE_PASSWORD=${PYPI_TOKEN} TWINE_USERNAME=__token__ python -m twine upload --verbose dist/* wheelhouse/*
+    - TWINE_PASSWORD=${PYPI_TOKEN} TWINE_USERNAME=__token__ python -m twine upload --verbose wheelhouse/*
