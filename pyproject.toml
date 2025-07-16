@@ -49,5 +49,5 @@ core = ["tree-sitter~=0.25"]
 [tool.cibuildwheel]
 build = "cp310-*"
 build-frontend = "build"
-test-extras = ["tests"]
-test-command = "python -munittest discover -s {project}/tests"
+test-requires = ["pytest", "tree-sitter@git+https://github.com/tree-sitter/py-tree-sitter@v0.25.0"]
+test-command = "pytest {project}/bindings/python/tests"

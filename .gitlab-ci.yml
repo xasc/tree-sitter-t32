@@ -1,41 +1,45 @@
-default:
-  image: python:3.10
-  cache:
-    paths:
-      - .pip-cache/
-  before_script:
-    - python --version
-    - pip install --upgrade pip
-    - pip install --upgrade setuptools[core]
-    - pip install --upgrade build twine
-
-stages:
-  - build
-  - test
-  - publish
-
-variables:
-  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.pip-cache"
-
-build:
-  stage: build
+linux:
+  image: python:3.12
+  # make a docker daemon available for cibuildwheel to use
+  services:
+    - name: docker:dind
+      entrypoint: ["env", "-u", "DOCKER_HOST"]
+      command: ["dockerd-entrypoint.sh"]
+  variables:
+    DOCKER_HOST: tcp://docker:2375/
+    DOCKER_DRIVER: overlay2
+    # See https://github.com/docker-library/docker/pull/166
+    DOCKER_TLS_CERTDIR: ""
   script:
-    - python -m build --wheel
+    - curl -sSL https://get.docker.com/ | sh
+    - python -m pip install cibuildwheel==3.0.1
+    - cibuildwheel --output-dir wheelhouse
   artifacts:
     paths:
-      - dist/
+      - wheelhouse/
 
-test:
-  stage: test
+windows:
+  image: mcr.microsoft.com/windows/servercore:1809
+  before_script:
+    - choco install python -y --allow-downgrade --version 3.12.4
+    - choco install git.install -y
+    - py -m pip install cibuildwheel==3.0.1
   script:
-    - pip install --upgrade pytest
-    - pip install --upgrade tree-sitter@git+https://github.com/tree-sitter/py-tree-sitter@v0.25.0
-    - pip install dist/*.whl
-    - pytest
+    - py -m cibuildwheel --output-dir wheelhouse --platform windows
+  artifacts:
+    paths:
+      - wheelhouse/
+  tags:
+    - saas-windows-medium-amd64
 
-publish:
-  stage: publish
+macos:
+  image: macos-14-xcode-15
+  before_script:
+    - python3 -m pip install cibuildwheel==3.0.1
   script:
-    - TWINE_PASSWORD=${PYPI_TOKEN} TWINE_USERNAME=__token__ python -m twine upload --verbose dist/*
-  rules:
-    - if: $CI_COMMIT_TAG
+    - python3 -m cibuildwheel --output-dir wheelhouse
+  artifacts:
+    paths:
+      - wheelhouse/
+  tags:
+    - saas-macos-medium-m1
