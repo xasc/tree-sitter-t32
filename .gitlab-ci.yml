@@ -50,4 +50,4 @@ macos:
     paths:
       - wheelhouse/
   tags:
-    - macos-medium-m1
+    - saas-macos-medium-m1
