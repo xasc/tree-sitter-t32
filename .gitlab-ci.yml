@@ -1,6 +1,7 @@
 # macOS runners not available on GitLab free tier
 
 default:
+  image: python:3.12
   cache:
     paths:
       - .pip-cache/
@@ -53,5 +54,10 @@ publish:
   needs:
     - job: build-linux
     - job: build-windows
+  before_script:
+    - python --version
+    - pip install --upgrade pip
+    - pip install --upgrade setuptools[core]
+    - pip install --upgrade build twine
   script:
     - TWINE_PASSWORD=${PYPI_TOKEN} TWINE_USERNAME=__token__ python -m twine upload --verbose dist/* wheelhouse/*
