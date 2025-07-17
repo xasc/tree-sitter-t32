@@ -402,6 +402,13 @@ to automatically install the supported grammar.
   from `&&` operators.
 
 
+## Packages
+
+| Language      | Package                                               | Download                                              |
+| ------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| Python        | [PyPI](https://pypi.org/project/tree-sitter-t32/)     | [📦](https://pypi.org/project/tree-sitter-t32/#files) |
+| Rust          | [crates.io](https://crates.io/crates/tree-sitter-t32) |                                                       |
+
 ## Mirrors
 
 This repository is mirrored to https://gitlab.com/xasc/tree-sitter-t32. The main repository is https://codeberg.org/xasc/tree-sitter-t32.
