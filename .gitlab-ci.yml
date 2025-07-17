@@ -59,17 +59,30 @@ build-windows:
   rules:
     - when: manual
 
+build-sdist:
+  stage: build
+  before_script:
+    - python --version
+    - pip install --upgrade pip
+    - pip install --upgrade setuptools[core]
+  script:
+    - python -m build
+  artifacts:
+    paths:
+      - dist/
+
 publish:
   stage: publish
   needs:
     - job: build-linux
     - job: build-windows
+    - job: build-sdist
   before_script:
     - python --version
     - pip install --upgrade pip
     - pip install --upgrade setuptools[core]
     - pip install --upgrade build twine
   script:
-    - TWINE_PASSWORD=${PYPI_TOKEN} TWINE_USERNAME=__token__ python -m twine upload --verbose wheelhouse/*
+    - TWINE_PASSWORD=${PYPI_TOKEN} TWINE_USERNAME=__token__ python -m twine upload --verbose dist/* wheelhouse/*
   rules:
     - when: manual
