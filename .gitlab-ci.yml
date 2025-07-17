@@ -67,7 +67,7 @@ build-sdist:
     - pip install --upgrade setuptools[core]
     - pip install --upgrade build
   script:
-    - python -m build
+    - python -m build --sdist
   artifacts:
     paths:
       - dist/
