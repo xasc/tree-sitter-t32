@@ -9,11 +9,6 @@ default:
 variables:
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.pip-cache"
 
-workflow:
-  rules:
-    - if: ($CI_COMMIT_BRANCH == "main" && $CI_COMMIT_TAG)
-    - when: manual
-
 stages:
   - build
   - publish
@@ -38,6 +33,9 @@ build-linux:
   artifacts:
     paths:
       - wheelhouse/
+  rules:
+    - if: ($CI_COMMIT_BRANCH == "main" && $CI_COMMIT_TAG)
+    - when: manual
 
 build-windows:
   stage: build
@@ -53,6 +51,9 @@ build-windows:
       - wheelhouse/
   tags:
     - saas-windows-medium-amd64
+  rules:
+    - if: ($CI_COMMIT_BRANCH == "main" && $CI_COMMIT_TAG)
+    - when: manual
 
 publish:
   stage: publish
@@ -66,3 +67,6 @@ publish:
     - pip install --upgrade build twine
   script:
     - TWINE_PASSWORD=${PYPI_TOKEN} TWINE_USERNAME=__token__ python -m twine upload --verbose wheelhouse/*
+  rules:
+    - if: ($CI_COMMIT_BRANCH == "main" && $CI_COMMIT_TAG)
+    - when: manual
