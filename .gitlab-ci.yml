@@ -111,6 +111,7 @@ test-rust:
     - when: manual
 
 publish-rust:
+  stage: publish
   image: rust:latest
   needs:
     - job: test-rust
