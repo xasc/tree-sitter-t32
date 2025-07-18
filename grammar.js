@@ -84,6 +84,7 @@ module.exports = grammar({
     $._hll_expression_separator,
     $._hll_number_literal,
     $._terminator,
+    $._filler_line,
     $._top_level
   ],
 
