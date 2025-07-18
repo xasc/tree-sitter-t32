@@ -89,7 +89,6 @@ module.exports = grammar({
 
   extras: $ => [
     $._line_continuation,
-    $.comment
   ],
 
   word: $ => $.identifier,
@@ -100,7 +99,7 @@ module.exports = grammar({
     _top_level: $ => choice(
       $.block,
       $._statement,
-      $._blank_line
+      $._filler_line
     ),
 
     block: $ => prec.right(seq(
@@ -111,7 +110,7 @@ module.exports = grammar({
       ),
       repeat(choice(
         $._statement,
-        $._blank_line,
+        $._filler_line,
         $.block
       )),
       seq(
@@ -124,18 +123,22 @@ module.exports = grammar({
     _statement: $ => seq(
       repeat($._blank),
       choice(
-        alias($.macro_assignment_expression, $.assignment_expression),
-        $.command_expression,
         $.labeled_expression,
-        $.macro_definition,
-        $.if_block,
-        $.parameter_declaration,
-        $.recursive_macro_expansion,
-        $.repeat_block,
-        $.subroutine_block,
-        $.subroutine_call_expression,
-        $.while_block
+        $._non_labeled_statement
       )
+    ),
+
+    _non_labeled_statement: $ => choice(
+      alias($.macro_assignment_expression, $.assignment_expression),
+      $.command_expression,
+      $.macro_definition,
+      $.if_block,
+      $.parameter_declaration,
+      $.recursive_macro_expansion,
+      $.repeat_block,
+      $.subroutine_block,
+      $.subroutine_call_expression,
+      $.while_block
     ),
 
     _expression: $ => choice(
@@ -186,10 +189,14 @@ module.exports = grammar({
         $._statement,
         seq(
           $._terminator,
-          choice(
-            repeat($._blank),
-            optional($.block)
-          )
+          repeat1($._blank)
+        ),
+        seq(
+          $._terminator,
+          optional(seq(
+            repeat($.comment),
+            $.block
+          ))
         )
       )
     )),
@@ -199,7 +206,7 @@ module.exports = grammar({
       repeat1($._blank),
       field('subroutine', $.identifier),
       $._terminator,
-      repeat($.comment),
+      repeat($._filler_line),
       $.block
     ),
 
@@ -218,26 +225,23 @@ module.exports = grammar({
       ),
       seq(
         $._terminator,
-        repeat($._blank_line),
+        repeat($._filler_line),
         choice(
           $._statement,
-          seq(
-            repeat($.comment),
-            $.block
-          )
+          $.block
         ),
         optional(choice(
           seq(
             repeat(choice(
-              $._blank_line,
+              $._filler_line,
               $._blank,
-              $.elif_block
+              $.elif_block,
             )),
             $.else_block
           ),
           seq(
             repeat(choice(
-              $._blank_line,
+              $._filler_line,
               $._blank,
             )),
             choice(
@@ -257,13 +261,10 @@ module.exports = grammar({
       field('condition', $._expression),
       seq(
         $._terminator,
-        repeat($._blank_line),
+        repeat($._filler_line),
         choice(
           $._statement,
-          seq(
-            repeat($.comment),
-            $.block
-          )
+          $.block
         ),
       )
     ),
@@ -274,10 +275,10 @@ module.exports = grammar({
       ),
       seq(
         $._terminator,
-        repeat($._blank_line),
+        repeat($._filler_line),
         choice(
           $._statement,
-          $.block
+          $.block,
         )
       ),
     ),
@@ -302,13 +303,10 @@ module.exports = grammar({
         )
       ),
       $._terminator,
-      repeat($._blank_line),
+      repeat($._filler_line),
       choice(
         $._statement,
-        seq(
-          repeat($.comment),
-          $.block
-        )
+        $.block
       )
     ),
 
@@ -327,26 +325,20 @@ module.exports = grammar({
             $._statement,
             seq(
               $._terminator,
-              repeat($._blank_line),
+              repeat($._filler_line),
               choice(
                 $._statement,
-                seq(
-                  repeat($.comment),
-                  $.block
-                )
+                $.block
               )
             )
           )
         ),
         seq(
           $._terminator,
-          repeat($._blank_line),
+          repeat($._filler_line),
           choice(
             $._statement,
-            seq(
-              repeat($.comment),
-              $.block
-            )
+            $.block
           ),
         )
       )
@@ -357,16 +349,13 @@ module.exports = grammar({
       choice(
         seq(
           $._terminator,
-          repeat($._blank_line),
+          repeat($._filler_line),
           choice(
             $._statement,
-            seq(
-              repeat($.comment),
-              $.block
-            )
+            $.block
           ),
           seq(
-            repeat($._blank_line),
+            repeat($._filler_line),
             field('command', alias(longAndShortForm('WHILE'), $.identifier)),
             repeat1($._blank),
             field('condition', $._expression),
@@ -1678,7 +1667,7 @@ module.exports = grammar({
         /[^"&]+/,
         /""/,  // Escape sequence
         $._ampersand_char,
-        $.macro
+        $.macro,
       )),
       '"'
     ),
@@ -1794,6 +1783,11 @@ module.exports = grammar({
     comment: $ => /[ \t]*(;|\/\/)(\\\r?\n|[^\n])*\n/,
 
     _blank_line: $ => /[ \t]*\r?\n/,
+
+    _filler_line: $ => choice(
+      $._blank_line,
+      $.comment
+    ),
 
     _terminator: $ => choice(
       $.comment,

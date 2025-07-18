@@ -301,3 +301,18 @@ List 0xA::0x800
         (memory_space
           (integer))
         (integer)))))
+
+==================
+Comments in strings
+==================
+
+WRITE #1 "; This is comment"
+
+---
+
+(script
+  (command_expression
+    (identifier)
+    (argument_list
+      (file_handle)
+      (string))))

@@ -8,6 +8,10 @@ a_b.c: PRINT "A"
 export:
   STOP
 
+next:
+
+  NEW
+
 ---
 
 (script
@@ -19,6 +23,10 @@ export:
       command: (identifier)
       arguments: (argument_list
         (string))))
+  (labeled_expression
+    label: (identifier))
+  (command_expression
+    command: (identifier))
   (labeled_expression
     label: (identifier))
   (command_expression

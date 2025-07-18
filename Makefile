@@ -40,7 +40,7 @@ playground:
 	$(yarn) playground
 
 test: build
-	$(yarn) test "$(filterFlag)"
+	$(yarn) test $(filterFlag)
 
 test-debug: build
 	$(yarn) test --debug $(filterFlag)
