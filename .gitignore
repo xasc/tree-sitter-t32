@@ -17,3 +17,6 @@ samples/
 src/*.o
 target/
 *.wasm
+
+/*.cmm
+/*.txt

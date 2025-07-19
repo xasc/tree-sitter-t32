@@ -394,9 +394,6 @@ to automatically install the supported grammar.
   in command argument lists.
 - For HLL expressions used at the top level of commands, the use of spaces is more restricted
   than for nested expressions inside parentheses. The grammar only models the strict behavior.
-- PRACTICE comments start with either `//` or `;`. However, in HLL expressions
-  `;` can be used as separator for multiple statements. The grammar will always interpret `;`
-  as the start of `(comment)` node.
 - `(recursive_macro_expansion)` nodes are restricted to the left-hand side of assignment
   expressions. In other contexts, recursive PRACTICE macro expansions cannot be distinguished
   from `&&` operators.
@@ -412,6 +409,18 @@ to automatically install the supported grammar.
 ## Mirrors
 
 This repository is mirrored to https://gitlab.com/xasc/tree-sitter-t32. The main repository is https://codeberg.org/xasc/tree-sitter-t32.
+
+## Contributing
+
+For the time being, we are not accepting pull requests.
+However, please feel free to open issues for changes you would like to see.
+
+
+## License
+
+Distributed under the MIT license.
+[REUSE](https://reuse.software/) is used for managing licensing information throughout the project.
+For more accurate licensing information, please check the individual files.
 
 
 ## References
