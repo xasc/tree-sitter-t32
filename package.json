@@ -58,5 +58,20 @@
   },
   "peerDependencies": {
     "tree-sitter": "^0.25.0"
-  }
+  },
+  "files": [
+    "binding.gyp",
+    "bindings/node",
+    "CHANGELOG.md",
+    "grammar.js",
+    "LICENSES/",
+    "package.json",
+    "package.json.license",
+    "queries",
+    "README.md",
+    "REUSE.toml",
+    "src/",
+    "tree-sitter.json",
+    "tree-sitter-t32.wasm"
+  ]
 }
