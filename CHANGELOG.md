@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added missing license information.
 - Added "Contributing" and "License" sections to readme.
+- Switch to Tree-sitter v0.25.10
 
 ### Removed
 
