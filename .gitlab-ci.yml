@@ -104,6 +104,7 @@ build-sdist:
 
 publish-npm:
   stage: publish
+  image: node:22
   needs:
     - job: build-npm
   before_script:
