@@ -183,7 +183,7 @@ IF &a
     command: (identifier)
     condition: (macro)
     (if_block
-    command: (identifier)
+      command: (identifier)
       condition: (macro)
       (command_expression
       command: (identifier))
@@ -238,6 +238,139 @@ ELSE
       (block
         (command_expression
           command: (identifier))))))
+
+
+==================
+IF block statements with different indentation
+==================
+
+IF "&dlg_action"=="SET_DROPDOWN"
+(
+  PRINT &a
+)
+  ELSE IF "&dlg_action"=="SET_FORMAT"
+(
+  PRINT &b
+)
+ELSE IF "&dlg_action"=="SET_DEFAULT"
+(
+  PRINT &c
+)
+  ELSE IF "&dlg_action"=="RESTORE"
+(
+  PRINT &d
+)
+
+   IF "&dlg_action"=="SET_PARSER"
+(
+  PRINT &a
+)
+ELSE IF "&dlg_action"=="SET_PRIMARY"
+(
+  PRINT &b
+)
+ ELSE IF "&dlg_action"=="SET_LANGUAGE"
+(
+  PRINT &c
+)
+  ELSE
+(
+  PRINT &d
+)
+
+---
+
+(script
+  (if_block
+    command: (identifier)
+    condition: (binary_expression
+      left: (string
+        (macro))
+      right: (string))
+    (block
+      (command_expression
+        command: (identifier)
+        arguments: (argument_list
+          (macro))))
+    (elif_block
+      command: (identifier)
+      command: (identifier)
+      condition: (binary_expression
+        left: (string
+          (macro))
+        right: (string))
+      (block
+        (command_expression
+          command: (identifier)
+          arguments: (argument_list
+            (macro)))))
+    (elif_block
+      command: (identifier)
+      command: (identifier)
+      condition: (binary_expression
+        left: (string
+          (macro))
+        right: (string))
+      (block
+        (command_expression
+          command: (identifier)
+          arguments: (argument_list
+            (macro)))))
+    (elif_block
+      command: (identifier)
+      command: (identifier)
+      condition: (binary_expression
+        left: (string
+          (macro))
+        right: (string))
+      (block
+        (command_expression
+          command: (identifier)
+          arguments: (argument_list
+            (macro))))))
+  (if_block
+    command: (identifier)
+    condition: (binary_expression
+      left: (string
+        (macro))
+      right: (string))
+    (block
+      (command_expression
+        command: (identifier)
+        arguments: (argument_list
+          (macro))))
+    (elif_block
+      command: (identifier)
+      command: (identifier)
+      condition: (binary_expression
+        left: (string
+          (macro))
+        right: (string))
+      (block
+        (command_expression
+          command: (identifier)
+          arguments: (argument_list
+            (macro)))))
+    (elif_block
+      command: (identifier)
+      command: (identifier)
+      condition: (binary_expression
+        left: (string
+          (macro))
+        right: (string))
+      (block
+        (command_expression
+          command: (identifier)
+          arguments: (argument_list
+            (macro)))))
+    (else_block
+      command: (identifier)
+      (block
+        (command_expression
+          command: (identifier)
+          arguments: (argument_list
+            (macro)))))))
+
 
 ==================
 WHILE block statements

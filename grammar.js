@@ -231,25 +231,15 @@ module.exports = grammar({
           $._statement,
           $.block
         ),
-        optional(choice(
-          seq(
-            repeat(choice(
-              $._filler_line,
-              $._blank,
-              $.elif_block,
-            )),
-            $.else_block
-          ),
-          seq(
-            repeat(choice(
-              $._filler_line,
-              $._blank,
-            )),
-            choice(
-              $.elif_block,
-              $.else_block
-            )
-          ),
+        repeat(seq(
+          repeat($._filler_line),
+          repeat($._blank),
+          $.elif_block,
+        )),
+        optional(seq(
+          repeat($._filler_line),
+          repeat($._blank),
+          $.else_block
         ))
       )
     ),
