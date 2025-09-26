@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 
 project(tree-sitter-t32
-        VERSION "6.0.2"
+        VERSION "6.0.3"
         DESCRIPTION "Lauterbach TRACE32® script language grammar for Tree-sitter"
         HOMEPAGE_URL "https://codeberg.org/xasc/tree-sitter-t32/"
         LANGUAGES C)
