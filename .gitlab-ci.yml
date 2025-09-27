@@ -18,7 +18,7 @@ stages:
   - test
   - publish
 
-build-npm:
+build-npm-linux:
   stage: build
   image: node:22
   # make a docker daemon available for tree-sitter-cli
@@ -36,10 +36,45 @@ build-npm:
   script:
     - curl -sSL https://get.docker.com/ | sh
     - npm install tree-sitter-cli
+    - npm run prebuildify
     - npm run build-wasm
   artifacts:
     paths:
       - tree-sitter-t32.wasm
+      - prebuilds/
+  rules:
+    - if: $CI_COMMIT_TAG
+    - when: manual
+
+build-npm-windows:
+  stage: build
+  image: mcr.microsoft.com/windows/servercore:1809
+  before_script:
+    - choco install nodejs -y --allow-downgrade --version 22
+    - node --version
+    - npm --version
+  script:
+    - npm run prebuildify
+  artifacts:
+    paths:
+      - prebuilds/
+  tags:
+    - saas-windows-medium-amd64
+  rules:
+    - if: $CI_COMMIT_TAG
+    - when: manual
+
+test-npm:
+  stage: test
+  image: node:22
+  needs:
+    - job: build-npm-linux
+    - job: build-npm-windows
+  before_script:
+    - cargo --version
+  script:
+    - npm run install --verbose
+    - npm run test-bindings-node --verbose
   rules:
     - if: $CI_COMMIT_TAG
     - when: manual
@@ -48,7 +83,7 @@ publish-npm:
   stage: publish
   image: node:22
   needs:
-    - job: build-npm
+    - job: test-npm
   before_script:
     - npm --version
   script:

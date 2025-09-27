@@ -25,6 +25,7 @@
     "LICENSES/",
     "package.json",
     "package.json.license",
+    "prebuilds/",
     "queries",
     "README.md",
     "REUSE.toml",
@@ -38,10 +39,11 @@
     "parse": "tree-sitter parse",
     "tags": "tree-sitter tags",
     "test": "tree-sitter test",
+    "test-bindings-node": "node --test bindings/node/binding_test.js",
     "highlight": "tree-sitter highlight",
     "playground": "tree-sitter playground",
     "install": "node-gyp-build",
-    "prebuildify": "prebuildify --napi --strip"
+    "prebuildify": "prebuildify --napi"
   },
   "devDependencies": {
     "prebuildify": "^6.0.1",
