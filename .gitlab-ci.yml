@@ -31,13 +31,16 @@ build-npm-linux:
     DOCKER_DRIVER: overlay2
     # See https://github.com/docker-library/docker/pull/166
     DOCKER_TLS_CERTDIR: ""
+  cache:
+    paths:
+      - node_modules/
   before_script:
     - npm --version
   script:
     - curl -sSL https://get.docker.com/ | sh
     - npm install tree-sitter-cli
-    - npm run prebuildify
-    - npm run build-wasm
+    - npm run prebuildify --verbose
+    - npm run build-wasm --verbose
   artifacts:
     paths:
       - tree-sitter-t32.wasm
@@ -52,7 +55,10 @@ build-npm-windows:
   before_script:
     - choco install nodejs -y --allow-downgrade --version 22
     - node --version
+    - npm install --global npm
+    - npm --version
   script:
+    - npm install --verbose
     - npm run install --verbose
     - npm run prebuildify --verbose
   artifacts:
@@ -70,6 +76,9 @@ test-npm:
   needs:
     - job: build-npm-linux
     - job: build-npm-windows
+  cache:
+    paths:
+      - node_modules/
   before_script:
     - cargo --version
   script:
@@ -84,6 +93,9 @@ publish-npm:
   image: node:22
   needs:
     - job: test-npm
+  cache:
+    paths:
+      - node_modules/
   before_script:
     - npm --version
   script:
