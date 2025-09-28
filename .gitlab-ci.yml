@@ -20,7 +20,7 @@ stages:
 
 build-npm-linux:
   stage: build
-  image: node:22
+  image: node:lts
   # make a docker daemon available for tree-sitter-cli
   services:
     - name: docker:dind
@@ -57,7 +57,7 @@ build-npm-windows:
     - node --version
     - npm --version
   script:
-    - npm install --verbose
+    - npm install
     - npm run install --verbose
     - npm run prebuildify --verbose
   artifacts:
@@ -71,7 +71,7 @@ build-npm-windows:
 
 test-npm:
   stage: test
-  image: node:22
+  image: node:lts
   needs:
     - job: build-npm-linux
     - job: build-npm-windows
@@ -79,7 +79,8 @@ test-npm:
     paths:
       - node_modules/
   before_script:
-    - cargo --version
+    - node --version
+    - npm --version
   script:
     - npm run install --verbose
     - npm run test-bindings-node --verbose
@@ -89,13 +90,14 @@ test-npm:
 
 publish-npm:
   stage: publish
-  image: node:22
+  image: node:lts
   needs:
     - job: test-npm
   cache:
     paths:
       - node_modules/
   before_script:
+    - node --version
     - npm --version
   script:
     - npm set "//registry.npmjs.org/:_authToken=$NPM_TOKEN"
