@@ -83,6 +83,7 @@ test-npm:
     - node --version
     - npm --version
   script:
+    - npm install
     - npm run install --verbose
     - npm run test-bindings-node --verbose
   rules:
@@ -206,21 +207,23 @@ publish-rust:
     - if: $CI_COMMIT_TAG
     - when: manual
 
-release-artifacts:
+publish-release:
   stage: release
   image: registry.gitlab.com/gitlab-org/cli:latest
   needs:
     - job: build-npm-linux
   script:
-    - echo "Creating release files..."
+    - |
+      curl --location --header "JOB-TOKEN: ${CI_JOB_TOKEN}" \
+      --upload-file tree-sitter-t32.wasm \
+      "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/tree-sitter-t32/${CI_COMMIT_TAG}/tree-sitter-t32.wasm"
   release:
-    name: 'Release Executables $CI_COMMIT_TAG'
+    name: 'Release $CI_COMMIT_TAG'
     tag_name: '$CI_COMMIT_TAG'
     description: '$CI_COMMIT_TAG'
     assets:
       links:
-        - name: 'WebAssembly Module'
-          filepath: '/tree-sitter-t32.wasm'
-          url: 'https://gitlab.com/xasc/tree-sitter-t32/-/releases/$CI_COMMIT_TAG/downloads/tree-sitter-t32.wasm'
+        - name: 'tree-sitter-t32.wasm'
+          url: '${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/tree-sitter-t32/${CI_COMMIT_TAG}/tree-sitter-t32.wasm'
   rules:
     - if: $CI_COMMIT_TAG
