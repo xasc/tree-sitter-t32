@@ -5,7 +5,7 @@
 [package]
 name = "tree-sitter-t32"
 description = "Lauterbach TRACE32® script language grammar for Tree-sitter"
-version = "6.0.7"
+version = "6.0.8"
 authors = ["Christoph Sax <c_sax@mailbox.org>"]
 keywords = [
   "incremental",

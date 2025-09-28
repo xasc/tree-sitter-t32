@@ -36,6 +36,7 @@ build-npm-linux:
     paths:
       - node_modules/
   before_script:
+    - node --version
     - npm --version
   script:
     - curl -sSL https://get.docker.com/ | sh
@@ -212,6 +213,8 @@ publish-release:
   image: registry.gitlab.com/gitlab-org/cli:latest
   needs:
     - job: build-npm-linux
+  before_script:
+    - apk add curl
   script:
     - |
       curl --location --header "JOB-TOKEN: ${CI_JOB_TOKEN}" \
