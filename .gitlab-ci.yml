@@ -17,6 +17,7 @@ stages:
   - build
   - test
   - publish
+  - release
 
 build-npm-linux:
   stage: build
