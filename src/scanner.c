@@ -621,7 +621,7 @@ static unsigned ScanLengthHllNumberLiteral(
 	}
 
 	// Type suffixes
-	if (1u == 1u && IsFloatingPointLiteralSuffix(lexer->lookahead)) {
+	if (IsFloatingPointLiteralSuffix(lexer->lookahead)) {
 		len += 1u;
 		Advance(lexer);
 	}
