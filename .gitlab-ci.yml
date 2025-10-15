@@ -95,10 +95,9 @@ publish-npm:
   stage: publish
   image: node:lts
   needs:
+    - job: build-npm-linux
+    - job: build-npm-windows
     - job: test-npm
-  dependencies:
-    - build-npm-linux
-    - build-npm-windows
   cache:
     paths:
       - node_modules/
