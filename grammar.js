@@ -7,7 +7,6 @@
  */
 
 const PREC = {
-  symbol: -1,
   declarator: 1,
   escape_sequence: 1,
   macro_assignment: 1,
@@ -40,6 +39,10 @@ const RE_BIN_HEX_NUMBER = [
   /0y[0-9]+/,  // Binary
   /0[xX][0-9a-fA-F]+/,  // Hexadecimal
 ]
+const RE_SYMBOL_NAME = /\w+|`[^`\n]+`/
+const RE_QUOTED_SYMBOL_NAME = /`[^`\n]+`/
+const RE_FUNCTION_NAME = /[a-zA-Z]\w*(::[a-zA-Z]\w*)*|`[^`\n]+`/
+const RE_METHOD_NAME = /[a-zA-Z]\w*(::[a-zA-Z]\w*)+/
 
 module.exports = grammar({
   name: 't32',
@@ -66,17 +69,19 @@ module.exports = grammar({
     [$.if_block],
     [$.memory_space],
     [$.option_expression],
+    [$.symbol],
     [$._address_expression, $._literal],
     [$._binary_expression, $._and_expression],
     [$._command_argument, $.assignment_expression],
     [$._expression, $._function_identifier],
     [$._expression, $._address_expression],
     [$._hll_declaration_specifiers],
+    [$._hll_expression, $.symbol],
+    [$._hll_expression, $._hll_assignment_left_expression, $.symbol],
     [$._hll_pointer_declarator_specifier],
     [$._hll_expression, $._hll_assignment_left_expression],
     [$._hll_expression, $._hll_type_identifier],
     [$._hll_expression, $._hll_assignment_left_expression, $._hll_type_identifier],
-    [$._hll_expression, $._hll_assignment_left_expression, $.symbol],
     [$._repeat_block_pre_condition_format, $._repeat_block_post_condition_format]
   ],
 
@@ -1672,68 +1677,206 @@ module.exports = grammar({
       "'"
     ),
 
-    // Module names with single backslash are handled as internal c-style variables.
-    // During parsing there is no way to differentiate.
-    symbol: $ => prec(PREC.symbol, choice(
-      token(choice(
+    _line_specifier: $ => token(choice(
+      /\\[0-9]+(\\[0-9]+)?/,
+      /\\[0-9]+\\[0-9]*\\[0-9]+/
+    )),
+
+    // Symbol names may omit earlier segments. After the first included segments
+    // all later ones must be included. However, they may contain only the
+    // separator.
+    // Module names with single backslash are handled as internal C-style variables.
+    // During parsing there is no way to differentiate. We reuse the token for
+    // TRACE32 internal HLL variables to make the conflict obvious for the
+    // generator.
+    symbol: $ => {
+      return choice(
         seq(
           choice(
-            /\\\\\\([\w_]+|`[^`\n]+`)\\\\([\w_]*|`[^`\n]+`)\\([\w_]*|`[^`\n]+`)\\([\w_]+(::[\w_]+)*|`[^`\n]+`)(\\([\w_]+|`[^`\n]+`))*/,  // Includes machine name
-            /((\\\\([\w_]+|`[^`\n]+`))?\\([\w_]*|`[^`\n]+`)\\)?`[^`\n]+`(\\([\w_]+|`[^`\n]+`))*/,  // Quoted function name only
-            /(\\\\([\w_]+|`[^`\n]+`))?\\([\w_]*|`[^`\n]+`)\\[\w_]+(::[\w_]+)*(\\([\w_]+|`[^`\n]+`))*/,  // Module name with unquoted function name
-            /[\\]{2,3}([\w_]+|`[^`\n]+`)/,  // Machine or program name
-            /\\`[^`\n]+`/,  // Quoted module name only
+            seq(
+              '\\\\\\',
+              choice(
+                RE_SYMBOL_NAME,
+                repeat1($.macro)
+              )
+            ),
+            seq(
+              '\\\\\\',
+              choice(
+                RE_SYMBOL_NAME,
+                repeat1($.macro)
+              ),
+              seq(
+                '\\\\',
+                optional(choice(
+                  RE_SYMBOL_NAME,
+                  repeat1($.macro)
+                ))
+              ),
+              seq(
+                '\\',
+                optional(choice(
+                  RE_SYMBOL_NAME,
+                  repeat1($.macro),
+                  $.string,
+                ))
+              ),
+              seq(
+                '\\',
+                choice(
+                  RE_FUNCTION_NAME,
+                  repeat1($.macro)
+                )
+              ),
+              repeat(seq(
+                '\\',
+                choice(
+                  RE_SYMBOL_NAME,
+                  repeat1($.macro)
+                )
+              ))
+            ),
+            seq(
+              '\\\\\\',
+              choice(
+                RE_SYMBOL_NAME,
+                repeat1($.macro)
+              ),
+              seq(
+                '\\\\',
+                optional(choice(
+                  RE_SYMBOL_NAME,
+                  repeat1($.macro)
+                ))
+              ),
+              seq(
+                '\\',
+                optional(choice(
+                  RE_SYMBOL_NAME,
+                  repeat1($.macro),
+                  $.string,
+                ))
+              ),
+            ),
+            seq(
+              '\\\\',
+              choice(
+                RE_SYMBOL_NAME,
+                repeat1($.macro)
+              ),
+            ),
+            seq(
+              '\\\\',
+              choice(
+                RE_SYMBOL_NAME,
+                repeat1($.macro)
+              ),
+              seq(
+                '\\',
+                optional(choice(
+                  RE_SYMBOL_NAME,
+                  repeat1($.macro),
+                  $.string
+                ))
+              ),
+            ),
+            seq(
+              '\\\\',
+              choice(
+                RE_SYMBOL_NAME,
+                repeat1($.macro)
+              ),
+              seq(
+                '\\',
+                optional(choice(
+                  RE_SYMBOL_NAME,
+                  repeat1($.macro),
+                  $.string,
+                ))
+              ),
+              seq(
+                '\\',
+                choice(
+                  RE_FUNCTION_NAME,
+                  repeat1($.macro)
+                )
+              ),
+              repeat(seq(
+                '\\',
+                choice(
+                  RE_SYMBOL_NAME,
+                  repeat1($.macro)
+                ),
+              ))
+            ),
+            alias($.trace32_hll_variable, 'module'),
+            seq(
+              '\\',
+              choice(
+                RE_QUOTED_SYMBOL_NAME,
+                repeat1($.macro),
+                $.string,
+              ),
+            ),
+            seq(
+              choice(
+                alias($.trace32_hll_variable, 'module'),
+                seq(
+                  '\\',
+                  choice(
+                    RE_QUOTED_SYMBOL_NAME,
+                    $.string,
+                  ),
+                )
+              ),
+              seq(
+                '\\',
+                choice(
+                  RE_FUNCTION_NAME,
+                  repeat1($.macro)
+                )
+              ),
+              repeat(seq(
+                '\\',
+                choice(
+                  RE_SYMBOL_NAME,
+                  repeat1($.macro)
+                ),
+              ))
+            ),
+            seq(
+              RE_QUOTED_SYMBOL_NAME,
+              repeat(seq(
+                '\\',
+                choice(
+                  RE_SYMBOL_NAME,
+                  repeat1($.macro)
+                ),
+              ))
+            ),
           ),
-          optional(seq(
-            /\\[0-9]+/,  // Line number offset
-            optional(choice(
-              /\\[0-9]+/,  // Column number offset
-              /\\[0-9]*\\[0-9]+/  // Instance number offset
-            ))
-          ))
+          optional($._line_specifier)
         ),
         seq(
-          /[\w_]+\\[0-9]+/,  // Function name with line number offset
-          optional(choice(
-            /\\[0-9]+/,   // Column number offset
-            /\\[0-9]*\\[0-9]+/  // Instance number offset
-          ))
+          RE_QUOTED_SYMBOL_NAME,
+          optional($._line_specifier)
         ),
         seq(
-          /[a-zA-Z_][\w_]*(::[a-zA-Z_][\w_]*)+/,  // Method name
-          repeat(/\\([\w_]+|`[^`\n]+`)/),  // Variables
-          optional(seq(
-            /\\[0-9]+/,  // Line number offset
-            optional(choice(
-              /\\[0-9]+/,  // Column number offset
-              /\\[0-9]*\\[0-9]+/  // Instance number offset
-            ))
+          alias($.identifier, 'function'),
+          $._line_specifier
+        ),
+        seq(
+          RE_METHOD_NAME,
+          repeat(seq(
+            '\\',
+            choice(
+              RE_SYMBOL_NAME,
+              repeat1($.macro)
+            )
           ))
         )
-      )),
-      seq(
-        choice(
-          token(choice(
-            /\\\\\\([\w_]+|`[^`\n]+`)(\\\\([\w_]+|`[^`\n]+`))?\\/,  // Includes machine name
-            /\\\\([\w_]+|`[^`\n]+`)\\/,  // Starts with program name
-          )),
-          '\\'
-        ),
-        $.string,
-        optional(token(seq(
-          optional(seq(
-            /\\([\w_]+(::[\w_]+)*|`[^`\n]+`)/,  // Function
-            repeat(/\\([\w_]+|`[^`\n]+`)/),  // Variables
-          )),
-          /\\[0-9]+/,  // Line number offset
-          optional(choice(
-            /\\[0-9]+/,  // Column number offset
-            /\\[0-9]*\\[0-9]+/  // Instance number offset
-          ))
-        )))
-      ),
-      alias($.trace32_hll_variable, 'module')
-    )),
+      )
+    },
 
     _composed_name: $ => token(seq(
       /[A-Za-z][A-Za-z0-9]+/,

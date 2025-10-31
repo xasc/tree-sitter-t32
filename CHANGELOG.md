@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Accept `(file_handle)` nodes with one or more `(macro)` nodes. The macros
   contain the numerical value of the file handle.
+- `(symbol)` nodes are now supporting dynamic segments with `(macro)` nodes.
 
 ## [6.0.10] - 2025-10-15
 

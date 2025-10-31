@@ -419,7 +419,7 @@ Symbol literals with file-as-module aliases
 
 &b = \\program\"C:/dir/file.c"
 
-&c = \\\machine\"C:/dir/file.c"
+&c = \\\machine\\\"C:/dir/file.c"
 
 &d = \\\machine\\program\"C:/dir/file.c"
 
@@ -1450,3 +1450,111 @@ OPEN #&(a)2 in2.log
       (file_handle
         (macro))
       (path))))
+
+==================
+Symbol literals with nested macros
+==================
+
+List \\\&machine\\program\module\function\var
+List \\\&machine\\&program\module\function\var
+List \\\&machine\\&program\&module\function\var
+List \\\&machine\\&program\&module\&function\var
+List \\\&machine\\&program\&module\&function\&var
+
+List \\\machine\\&program\module\function\var
+List \\\machine\\program\&module\function\var
+List \\\machine\\program\module\&function\var
+List \\\machine\\program\module\function\&var
+
+List \\\&machine
+List \\&program
+List \&module
+
+List \\\machine\\&program\"C:\module"\method::name\&var
+
+&b = \\\&machine\\linux\do_mounts\load_ramdisk
+
+---
+
+(script
+  (command_expression
+    (identifier)
+      (argument_list
+        (symbol
+          (macro))))
+  (command_expression
+    (identifier)
+      (argument_list
+        (symbol
+          (macro)
+          (macro))))
+  (command_expression
+    (identifier)
+      (argument_list
+        (symbol
+          (macro)
+          (macro)
+          (macro))))
+  (command_expression
+    (identifier)
+      (argument_list
+        (symbol
+          (macro)
+          (macro)
+          (macro)
+          (macro))))
+  (command_expression
+    (identifier)
+      (argument_list
+        (symbol
+          (macro)
+          (macro)
+          (macro)
+          (macro)
+          (macro))))
+  (command_expression
+    (identifier)
+      (argument_list
+        (symbol
+          (macro))))
+  (command_expression
+    (identifier)
+      (argument_list
+        (symbol
+          (macro))))
+  (command_expression
+    (identifier)
+      (argument_list
+        (symbol
+          (macro))))
+  (command_expression
+    (identifier)
+      (argument_list
+        (symbol
+          (macro))))
+  (command_expression
+    (identifier)
+      (argument_list
+        (symbol
+          (macro))))
+  (command_expression
+    (identifier)
+      (argument_list
+        (symbol
+          (macro))))
+  (command_expression
+    (identifier)
+      (argument_list
+        (symbol
+          (macro))))
+  (command_expression
+    (identifier)
+      (argument_list
+        (symbol
+          (macro)
+          (string)
+          (macro))))
+  (assignment_expression
+    (macro)
+    (symbol
+      (macro))))
