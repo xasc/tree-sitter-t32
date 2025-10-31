@@ -1755,7 +1755,13 @@ module.exports = grammar({
 
     _file_dialog: $ => '*',
 
-    file_handle: $ => /#[0-9]+/,
+    file_handle: $ => seq(
+      '#',
+      prec.right(repeat1(choice(
+        /[0-9]+/,
+        $.macro
+      )))
+    ),
 
     _expression: $ => choice(
       $.assignment_expression,

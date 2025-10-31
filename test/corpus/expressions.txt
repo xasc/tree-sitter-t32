@@ -1427,3 +1427,26 @@ Expressions with parentheses
         left: (unary_expression
           argument: (macro))
         right: (integer)))))
+
+==================
+File handles with nested macros
+==================
+
+OPEN #&handle in1.log
+OPEN #&(a)2 in2.log
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (file_handle
+        (macro))
+      (path)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (file_handle
+        (macro))
+      (path))))
