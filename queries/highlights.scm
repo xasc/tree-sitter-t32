@@ -110,7 +110,6 @@
 (hll_escape_sequence) @string.escape
 
 (path) @string.special
-(symbol) @string.special
 
 [
   (character)
@@ -165,7 +164,7 @@
 
 ; Variables, constants and labels
 (macro) @variable.builtin
-(trace32_hll_variable) @variable.builtin
+(symbol) @variable
 
 (argument_list
   (identifier) @constant.builtin)

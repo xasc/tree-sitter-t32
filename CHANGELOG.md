@@ -13,11 +13,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- New node `(macro_text_expansion)` for situations where the script logic relies
+  on the text replacement properties of PRACTICE macros.
+
 ### Fixed
 
 - Accept `(file_handle)` nodes with one or more `(macro)` nodes. The macros
   contain the numerical value of the file handle.
 - `(symbol)` nodes are now supporting dynamic segments with `(macro)` nodes.
+
+### Removed
+
+- `(trace32_hll_variable)` nodes are removed. All instances are replaced by
+  `(symbol)` nodes. `(trace32_hll_variable)` and `(symbol)` have always shared
+  the same syntax and could be used interchangeably. However, `(symbol)` is
+  the more generic type.
 
 ## [6.0.10] - 2025-10-15
 

@@ -691,7 +691,7 @@ Var.NEWLOCAL int \i = 0
     arguments: (argument_list
       (hll_declaration
         type: (hll_primitive_type)
-        declarator: (trace32_hll_variable))))
+        declarator: (symbol))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
@@ -701,63 +701,63 @@ Var.NEWLOCAL int \i = 0
           size: (hll_number_literal)
           declarator: (hll_array_declarator
             size: (hll_number_literal)
-            declarator: (trace32_hll_variable))))))
+            declarator: (symbol))))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       (hll_declaration
         type: (hll_sized_type_specifier
           type: (hll_type_identifier))
-        declarator: (trace32_hll_variable))))
+        declarator: (symbol))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       (hll_declaration
         type: (hll_sized_type_specifier
           type: (hll_type_identifier))
-        declarator: (trace32_hll_variable))))
+        declarator: (symbol))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       (hll_declaration
         type: (hll_sized_type_specifier)
-        declarator: (trace32_hll_variable))))
+        declarator: (symbol))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       (hll_declaration
         type: (hll_sized_type_specifier)
-        declarator: (trace32_hll_variable))))
+        declarator: (symbol))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       (hll_declaration
         type: (hll_primitive_type)
-        declarator: (trace32_hll_variable))))
+        declarator: (symbol))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       (hll_declaration
         type: (hll_primitive_type)
-        declarator: (trace32_hll_variable))))
+        declarator: (symbol))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       (hll_declaration
         type: (hll_primitive_type)
-        declarator: (trace32_hll_variable))))
+        declarator: (symbol))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       (hll_declaration
         type: (hll_primitive_type)
-        declarator: (trace32_hll_variable))))
+        declarator: (symbol))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       (hll_declaration
         type: (hll_primitive_type)
-        declarator: (trace32_hll_variable))))
+        declarator: (symbol))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
@@ -765,7 +765,7 @@ Var.NEWLOCAL int \i = 0
         type: (hll_primitive_type)
         declarator: (hll_array_declarator
           size: (hll_number_literal)
-          declarator: (trace32_hll_variable))))
+          declarator: (symbol))))
     value: (hll_string_literal
       (hll_escape_sequence)
       (hll_escape_sequence)))
@@ -774,7 +774,7 @@ Var.NEWLOCAL int \i = 0
     arguments: (argument_list
       (hll_declaration
         type: (hll_primitive_type)
-        declarator: (trace32_hll_variable)))
+        declarator: (symbol)))
     value: (integer)))
 
 ==================
@@ -802,61 +802,61 @@ Var.NEWLOCAL char32_t \c
     arguments: (argument_list
       (hll_declaration
         type: (hll_primitive_type)
-        declarator: (trace32_hll_variable))))
+        declarator: (symbol))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       (hll_declaration
         type: (hll_primitive_type)
-        declarator: (trace32_hll_variable))))
+        declarator: (symbol))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       (hll_declaration
         type: (hll_primitive_type)
-        declarator: (trace32_hll_variable))))
+        declarator: (symbol))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       (hll_declaration
         type: (hll_primitive_type)
-        declarator: (trace32_hll_variable))))
+        declarator: (symbol))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       (hll_declaration
         type: (hll_primitive_type)
-        declarator: (trace32_hll_variable))))
+        declarator: (symbol))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       (hll_declaration
         type: (hll_primitive_type)
-        declarator: (trace32_hll_variable))))
+        declarator: (symbol))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       (hll_declaration
         type: (hll_primitive_type)
-        declarator: (trace32_hll_variable))))
+        declarator: (symbol))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       (hll_declaration
         type: (hll_primitive_type)
-        declarator: (trace32_hll_variable))))
+        declarator: (symbol))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       (hll_declaration
         type: (hll_primitive_type)
-        declarator: (trace32_hll_variable))))
+        declarator: (symbol))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       (hll_declaration
         type: (hll_primitive_type)
-        declarator: (trace32_hll_variable)))))
+        declarator: (symbol)))))
 
 ==================
 Internal C-style variable definitions from sized primitive types
@@ -876,33 +876,33 @@ Var.NEWLOCAL unsigned long \a
     arguments: (argument_list
       (hll_declaration
         type: (hll_sized_type_specifier)
-        declarator: (trace32_hll_variable))))
+        declarator: (symbol))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       (hll_declaration
         type: (hll_sized_type_specifier
           type: (hll_type_identifier))
-        declarator: (trace32_hll_variable))))
+        declarator: (symbol))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       (hll_declaration
         type: (hll_sized_type_specifier
           type: (hll_type_identifier))
-        declarator: (trace32_hll_variable))))
+        declarator: (symbol))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       (hll_declaration
         type: (hll_sized_type_specifier)
-        declarator: (trace32_hll_variable))))
+        declarator: (symbol))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       (hll_declaration
         type: (hll_sized_type_specifier)
-        declarator: (trace32_hll_variable)))))
+        declarator: (symbol)))))
 
 ==================
 Internal C-style variable definitions from struct types
@@ -919,7 +919,7 @@ Var.NEWLOCAL struct s1 \a
     (hll_declaration
       type: (hll_struct_specifier
         name: (hll_type_identifier))
-      declarator: (trace32_hll_variable)))))
+      declarator: (symbol)))))
 
 ==================
 Internal C-style variable definitions from union types
@@ -936,7 +936,7 @@ Var.NEWLOCAL union u1 \a
     (hll_declaration
       type: (hll_union_specifier
         name: (hll_type_identifier))
-      declarator: (trace32_hll_variable)))))
+      declarator: (symbol)))))
 
 ==================
 Internal C-style variable definitions from enum types
@@ -953,7 +953,7 @@ Var.NEWLOCAL enum e1 \a
     (hll_declaration
       type: (hll_enum_specifier
         name: (hll_type_identifier))
-      declarator: (trace32_hll_variable)))))
+      declarator: (symbol)))))
 
 ==================
 Internal C-style variable definitions from pointer types
@@ -972,7 +972,7 @@ Var.NEWGLOBAL int const * const \c
       (hll_declaration
         type: (hll_primitive_type)
         declarator: (hll_pointer_declarator
-          declarator: (trace32_hll_variable)))))
+          declarator: (symbol)))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
@@ -981,7 +981,7 @@ Var.NEWGLOBAL int const * const \c
         type: (hll_primitive_type)
         declarator: (hll_pointer_declarator
           declarator: (hll_pointer_declarator
-          declarator: (trace32_hll_variable))))))
+          declarator: (symbol))))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
@@ -990,7 +990,7 @@ Var.NEWGLOBAL int const * const \c
         (hll_type_qualifier)
         declarator: (hll_pointer_declarator
           (hll_type_qualifier)
-          declarator: (trace32_hll_variable))))))
+          declarator: (symbol))))))
 
 ==================
 Commands with TRACE32-internal C-style variables
@@ -1010,14 +1010,14 @@ Var.Assign \myarr[&i]="&val"
     command: (identifier)
     arguments: (argument_list
       (hll_assignment_expression
-        left: (trace32_hll_variable)
+        left: (symbol)
         right: (hll_number_literal))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       (hll_assignment_expression
         left: (hll_subscript_expression
-          argument: (trace32_hll_variable)
+          argument: (symbol)
           index: (hll_number_literal))
         right: (hll_string_literal))))
   (command_expression
@@ -1028,7 +1028,7 @@ Var.Assign \myarr[&i]="&val"
       (call_expression
         function: (identifier)
         arguments: (argument_list
-          (trace32_hll_variable)))))
+          (symbol)))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
@@ -1036,21 +1036,21 @@ Var.Assign \myarr[&i]="&val"
         function: (identifier)
         arguments: (argument_list
           (hll_subscript_expression
-            argument: (trace32_hll_variable)
+            argument: (symbol)
             index: (hll_number_literal))))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       (format_expression
         value: (identifier))
-      (trace32_hll_variable)
-      (trace32_hll_variable)))
+      (symbol)
+      (symbol)))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       (hll_assignment_expression
         left: (hll_subscript_expression
-          argument: (trace32_hll_variable)
+          argument: (symbol)
           index: (hll_pointer_expression
             argument: (identifier)))
         right: (hll_string_literal)))))
@@ -1137,7 +1137,7 @@ Var.set (CAddition * )&d
     command: (identifier)
     arguments: (argument_list
       (hll_assignment_expression
-        left: (trace32_hll_variable)
+        left: (symbol)
         right: (hll_cast_expression
           type: (hll_type_descriptor
             type: (hll_primitive_type))
@@ -1276,7 +1276,7 @@ Var.set flags[5..9]==0
     arguments: (argument_list
       (hll_assignment_expression
         left: (hll_subscript_expression
-          argument: (trace32_hll_variable)
+          argument: (symbol)
           index: (hll_range_expression
             left: (hll_number_literal)
             right: (hll_number_literal)))

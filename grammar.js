@@ -39,10 +39,13 @@ const RE_BIN_HEX_NUMBER = [
   /0y[0-9]+/,  // Binary
   /0[xX][0-9a-fA-F]+/,  // Hexadecimal
 ]
-const RE_SYMBOL_NAME = /\w+|`[^`\n]+`/
+
 const RE_QUOTED_SYMBOL_NAME = /`[^`\n]+`/
-const RE_FUNCTION_NAME = /[a-zA-Z]\w*(::[a-zA-Z]\w*)*|`[^`\n]+`/
-const RE_METHOD_NAME = /[a-zA-Z]\w*(::[a-zA-Z]\w*)+/
+const RE_UNQUOTED_SYMBOL_NAME = /[a-zA-Z_]\w*/
+const RE_MACHINE_PROG_MOD_NAME = /\w+/
+
+const RE_FUNCTION_NAME = /[a-zA-Z_]\w*(::[a-zA-Z_]\w*)*|`[^`\n]+`/
+const RE_METHOD_NAME = /[a-zA-Z_]\w*(::[a-zA-Z_]\w*)+/
 
 module.exports = grammar({
   name: 't32',
@@ -67,6 +70,7 @@ module.exports = grammar({
     [$.hll_sized_type_specifier],
     [$.hll_type_descriptor],
     [$.if_block],
+    [$.macro_text_expansion, $.symbol],
     [$.memory_space],
     [$.option_expression],
     [$.symbol],
@@ -76,8 +80,6 @@ module.exports = grammar({
     [$._expression, $._function_identifier],
     [$._expression, $._address_expression],
     [$._hll_declaration_specifiers],
-    [$._hll_expression, $.symbol],
-    [$._hll_expression, $._hll_assignment_left_expression, $.symbol],
     [$._hll_pointer_declarator_specifier],
     [$._hll_expression, $._hll_assignment_left_expression],
     [$._hll_expression, $._hll_type_identifier],
@@ -531,6 +533,19 @@ module.exports = grammar({
       optional(')')
     )),
 
+    macro_text_expansion: $ => prec.right(choice(
+      seq(
+        repeat1($.macro),
+        seq(
+          alias($.identifier, 'fragment'),
+          repeat(choice(
+            $.identifier,
+            $.macro
+          ))
+        )
+      )
+    )),
+
     macro_definition_command: $ => choice(
       longAndShortForm('GLOBAL'),
       longAndShortForm('LOCAL'),
@@ -966,11 +981,6 @@ module.exports = grammar({
       ))
     ),
 
-    trace32_hll_variable: $ => seq(
-      '\\',
-      alias($.identifier, 'name')
-    ),
-
     //////////////////////////////////////
     //////////////////////////////////////
 
@@ -1002,7 +1012,6 @@ module.exports = grammar({
       $.hll_parenthesized_expression,
       $.identifier,
       $.symbol,
-      $.trace32_hll_variable
     ),
 
     // TRACE32 does not allow any spaces between function name
@@ -1183,7 +1192,7 @@ module.exports = grammar({
       $.hll_pointer_expression,
       $.hll_subscript_expression,
       $.hll_parenthesized_expression,
-      $.trace32_hll_variable
+      $.symbol,
     ),
 
     // TRACE32 does not allow any spaces between the ternary
@@ -1356,7 +1365,7 @@ module.exports = grammar({
       $.hll_function_declarator,
       $.hll_array_declarator,
       $.hll_parenthesized_declarator,
-      $.trace32_hll_variable
+      $.symbol
     ),
 
     hll_pointer_declarator: $ => prec.right(seq(
@@ -1689,194 +1698,241 @@ module.exports = grammar({
     // During parsing there is no way to differentiate. We reuse the token for
     // TRACE32 internal HLL variables to make the conflict obvious for the
     // generator.
-    symbol: $ => {
-      return choice(
-        seq(
-          choice(
-            seq(
-              '\\\\\\',
-              choice(
-                RE_SYMBOL_NAME,
-                repeat1($.macro)
-              )
+    // The naming requirements for machine, program and module names are less strict
+    // than those for function or method names.
+    symbol: $ => choice(
+      seq(
+        choice(
+          seq(
+            '\\\\\\',
+            choice(
+              RE_QUOTED_SYMBOL_NAME,
+              seq(
+                RE_MACHINE_PROG_MOD_NAME,
+                optional(choice(
+                  $.macro,
+                  $.macro_text_expansion
+                ))
+              ),
+              repeat1($.macro),
+              $.macro_text_expansion
             ),
-            seq(
-              '\\\\\\',
-              choice(
-                RE_SYMBOL_NAME,
-                repeat1($.macro)
-              ),
-              seq(
-                '\\\\',
-                optional(choice(
-                  RE_SYMBOL_NAME,
-                  repeat1($.macro)
-                ))
-              ),
-              seq(
-                '\\',
-                optional(choice(
-                  RE_SYMBOL_NAME,
-                  repeat1($.macro),
-                  $.string,
-                ))
-              ),
-              seq(
-                '\\',
-                choice(
-                  RE_FUNCTION_NAME,
-                  repeat1($.macro)
-                )
-              ),
-              repeat(seq(
-                '\\',
-                choice(
-                  RE_SYMBOL_NAME,
-                  repeat1($.macro)
-                )
-              ))
-            ),
-            seq(
-              '\\\\\\',
-              choice(
-                RE_SYMBOL_NAME,
-                repeat1($.macro)
-              ),
-              seq(
-                '\\\\',
-                optional(choice(
-                  RE_SYMBOL_NAME,
-                  repeat1($.macro)
-                ))
-              ),
-              seq(
-                '\\',
-                optional(choice(
-                  RE_SYMBOL_NAME,
-                  repeat1($.macro),
-                  $.string,
-                ))
-              ),
-            ),
-            seq(
+            optional(seq(
               '\\\\',
-              choice(
-                RE_SYMBOL_NAME,
-                repeat1($.macro)
-              ),
-            ),
-            seq(
-              '\\\\',
-              choice(
-                RE_SYMBOL_NAME,
-                repeat1($.macro)
-              ),
-              seq(
-                '\\',
-                optional(choice(
-                  RE_SYMBOL_NAME,
-                  repeat1($.macro),
-                  $.string
-                ))
-              ),
-            ),
-            seq(
-              '\\\\',
-              choice(
-                RE_SYMBOL_NAME,
-                repeat1($.macro)
-              ),
-              seq(
-                '\\',
-                optional(choice(
-                  RE_SYMBOL_NAME,
-                  repeat1($.macro),
-                  $.string,
-                ))
-              ),
-              seq(
-                '\\',
-                choice(
-                  RE_FUNCTION_NAME,
-                  repeat1($.macro)
-                )
-              ),
-              repeat(seq(
-                '\\',
-                choice(
-                  RE_SYMBOL_NAME,
-                  repeat1($.macro)
+              optional(choice(
+                RE_QUOTED_SYMBOL_NAME,
+                seq(
+                  RE_MACHINE_PROG_MOD_NAME,
+                  optional(choice(
+                    $.macro,
+                    $.macro_text_expansion
+                  ))
                 ),
+                repeat1($.macro),
+                $.macro_text_expansion
               ))
-            ),
-            alias($.trace32_hll_variable, 'module'),
-            seq(
+            )),
+            optional(seq(
+              '\\',
+              optional(choice(
+                RE_QUOTED_SYMBOL_NAME,
+                seq(
+                  RE_MACHINE_PROG_MOD_NAME,
+                  optional(choice(
+                    $.macro,
+                    $.macro_text_expansion
+                  ))
+                ),
+                repeat1($.macro),
+                $.macro_text_expansion,
+                $.string
+              ))
+            )),
+            optional(seq(
+              '\\',
+              choice(
+                seq(
+                  RE_FUNCTION_NAME,
+                  optional(choice(
+                    $.macro,
+                    $.macro_text_expansion
+                  ))
+                ),
+                repeat1($.macro),
+                $.macro_text_expansion
+              )
+            )),
+            repeat(seq(
               '\\',
               choice(
                 RE_QUOTED_SYMBOL_NAME,
-                repeat1($.macro),
-                $.string,
-              ),
-            ),
-            seq(
-              choice(
-                alias($.trace32_hll_variable, 'module'),
                 seq(
-                  '\\',
-                  choice(
-                    RE_QUOTED_SYMBOL_NAME,
-                    $.string,
-                  ),
-                )
-              ),
-              seq(
-                '\\',
-                choice(
-                  RE_FUNCTION_NAME,
-                  repeat1($.macro)
-                )
-              ),
-              repeat(seq(
-                '\\',
-                choice(
-                  RE_SYMBOL_NAME,
-                  repeat1($.macro)
+                  RE_UNQUOTED_SYMBOL_NAME,
+                  optional(choice(
+                    $.macro,
+                    $.macro_text_expansion
+                  ))
                 ),
-              ))
-            ),
-            seq(
-              RE_QUOTED_SYMBOL_NAME,
-              repeat(seq(
-                '\\',
-                choice(
-                  RE_SYMBOL_NAME,
-                  repeat1($.macro)
-                ),
-              ))
-            ),
+                repeat1($.macro),
+                $.macro_text_expansion
+              )
+            ))
           ),
-          optional($._line_specifier)
-        ),
-        seq(
-          RE_QUOTED_SYMBOL_NAME,
-          optional($._line_specifier)
-        ),
-        seq(
-          alias($.identifier, 'function'),
-          $._line_specifier
-        ),
-        seq(
-          RE_METHOD_NAME,
-          repeat(seq(
+          seq(
+            '\\\\',
+            choice(
+              RE_QUOTED_SYMBOL_NAME,
+              seq(
+                RE_MACHINE_PROG_MOD_NAME,
+                optional(choice(
+                  $.macro,
+                  $.macro_text_expansion
+                ))
+              ),
+              repeat1($.macro),
+              $.macro_text_expansion
+            ),
+            optional(seq(
+              '\\',
+              optional(choice(
+                RE_QUOTED_SYMBOL_NAME,
+                seq(
+                  RE_MACHINE_PROG_MOD_NAME,
+                  optional(choice(
+                    $.macro,
+                    $.macro_text_expansion
+                  ))
+                ),
+                repeat1($.macro),
+                $.macro_text_expansion,
+                $.string,
+              ))
+            )),
+            optional(seq(
+              '\\',
+              choice(
+                seq(
+                  RE_FUNCTION_NAME,
+                  optional(choice(
+                    $.macro,
+                    $.macro_text_expansion
+                  ))
+                ),
+                repeat1($.macro),
+                $.macro_text_expansion
+              )
+            )),
+            repeat(seq(
+              '\\',
+              choice(
+                RE_QUOTED_SYMBOL_NAME,
+                seq(
+                  RE_UNQUOTED_SYMBOL_NAME,
+                  optional(choice(
+                    $.macro,
+                    $.macro_text_expansion
+                  ))
+                ),
+                repeat1($.macro),
+                $.macro_text_expansion
+              ),
+            ))
+          ),
+          seq(
             '\\',
             choice(
-              RE_SYMBOL_NAME,
-              repeat1($.macro)
-            )
+              RE_QUOTED_SYMBOL_NAME,
+              seq(
+                RE_MACHINE_PROG_MOD_NAME,
+                optional(choice(
+                  $.macro,
+                  $.macro_text_expansion
+                ))
+              ),
+              repeat1($.macro),
+              $.macro_text_expansion,
+              $.string,
+            ),
+            optional(seq(
+              '\\',
+              choice(
+                seq(
+                  RE_FUNCTION_NAME,
+                  optional(choice(
+                    $.macro,
+                    $.macro_text_expansion
+                  ))
+                ),
+                repeat1($.macro),
+                $.macro_text_expansion
+              )
+            )),
+            repeat(seq(
+              '\\',
+              choice(
+                RE_QUOTED_SYMBOL_NAME,
+                seq(
+                  RE_UNQUOTED_SYMBOL_NAME,
+                  optional(choice(
+                    $.macro,
+                    $.macro_text_expansion
+                  ))
+                ),
+                repeat1($.macro),
+                $.macro_text_expansion
+              )
+            ))
+          ),
+          seq(
+            RE_QUOTED_SYMBOL_NAME,
+            repeat(seq(
+              '\\',
+              choice(
+                RE_QUOTED_SYMBOL_NAME,
+                seq(
+                  RE_UNQUOTED_SYMBOL_NAME,
+                  optional(choice(
+                    $.macro,
+                    $.macro_text_expansion
+                  ))
+                ),
+                repeat1($.macro),
+                $.macro_text_expansion
+              ),
+            ))
+          ),
+        ),
+        optional($._line_specifier)
+      ),
+      seq(
+        alias($.identifier, 'function'),
+        $._line_specifier
+      ),
+      seq(
+        seq(
+          RE_METHOD_NAME,
+          optional(choice(
+            $.macro,
+            $.macro_text_expansion
           ))
-        )
+        ),
+        repeat(seq(
+          '\\',
+          choice(
+            RE_QUOTED_SYMBOL_NAME,
+            seq(
+              RE_UNQUOTED_SYMBOL_NAME,
+              optional(choice(
+                $.macro,
+                $.macro_text_expansion
+              ))
+            ),
+            $.macro,
+            $.macro_text_expansion
+          )
+        ))
       )
-    },
+    ),
 
     _composed_name: $ => token(seq(
       /[A-Za-z][A-Za-z0-9]+/,

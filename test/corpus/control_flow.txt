@@ -1072,7 +1072,7 @@ Var.IF \a<sizeof(array)
   (if_block
     command: (identifier)
     condition: (hll_binary_expression
-      left: (trace32_hll_variable)
+      left: (symbol)
       right: (hll_sizeof_expression
         type: (hll_type_descriptor
           type: (hll_type_identifier))))
@@ -1096,14 +1096,14 @@ Var.WHILE string_array[\i]!='\0'
     condition: (hll_binary_expression
       left: (hll_subscript_expression
         argument: (identifier)
-        index: (trace32_hll_variable))
+        index: (symbol))
       right: (hll_char_literal
         (hll_escape_sequence)))
     (command_expression
       command: (identifier)
       arguments: (argument_list
         (hll_update_expression
-          argument: (trace32_hll_variable))))))
+          argument: (symbol))))))
 
 
 ==================

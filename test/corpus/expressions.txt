@@ -1467,12 +1467,19 @@ List \\\machine\\program\module\&function\var
 List \\\machine\\program\module\function\&var
 
 List \\\&machine
+
+List \\&program\&module\&function\&var
+List \\&program\&module\&function
+List \\&program\&module
 List \\&program
+
+List \&module\&function\&var
+List \&module\&function
 List \&module
 
 List \\\machine\\&program\"C:\module"\method::name\&var
 
-&b = \\\&machine\\linux\do_mounts\load_ramdisk
+&b = \\\&{prefix}&machine&suffix\\&(prefix)program&{suffix}\&(prefix)module&(suffix)\&(prefix)function&suffix\&{prefix}var&{suffix}
 
 ---
 
@@ -1539,8 +1546,42 @@ List \\\machine\\&program\"C:\module"\method::name\&var
           (macro))))
   (command_expression
     (identifier)
+    (argument_list
+      (symbol
+        (macro)
+        (macro)
+        (macro)
+        (macro))))
+  (command_expression
+    (identifier)
       (argument_list
         (symbol
+          (macro)
+          (macro)
+          (macro))))
+  (command_expression
+    (identifier)
+      (argument_list
+        (symbol
+          (macro)
+          (macro))))
+  (command_expression
+    (identifier)
+      (argument_list
+        (symbol
+          (macro))))
+  (command_expression
+    (identifier)
+      (argument_list
+        (symbol
+          (macro)
+          (macro)
+          (macro))))
+  (command_expression
+    (identifier)
+      (argument_list
+        (symbol
+          (macro)
           (macro))))
   (command_expression
     (identifier)
@@ -1557,4 +1598,18 @@ List \\\machine\\&program\"C:\module"\method::name\&var
   (assignment_expression
     (macro)
     (symbol
-      (macro))))
+      (macro)
+      (macro)
+      (macro)
+      (macro_text_expansion
+        (macro)
+        (macro))
+      (macro_text_expansion
+        (macro)
+        (macro))
+      (macro_text_expansion
+        (macro)
+        (macro))
+      (macro_text_expansion
+        (macro)
+        (macro)))))

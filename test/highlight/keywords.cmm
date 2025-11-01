@@ -119,7 +119,7 @@ SUBROUTINE start_debug
     COVerage.ListModule %MULTI.OBC \sieve
 ;    ^ keyword
 ;                        ^ constant.builtin
-;                                  ^ string.special
+;                                  ^ variable
 
     Var.DRAW flags[0..16] /Alternate 3
 ;    ^ keyword

@@ -240,7 +240,7 @@ Var.NEWLOCAL char \ch = '&'
         type: (hll_primitive_type)
         declarator: (hll_array_declarator
           size: (hll_number_literal)
-          declarator: (trace32_hll_variable))))
+          declarator: (symbol))))
     value: (hll_string_literal
       (hll_escape_sequence)))
   (command_expression
@@ -250,14 +250,14 @@ Var.NEWLOCAL char \ch = '&'
         type: (hll_primitive_type)
         declarator: (hll_array_declarator
           size: (hll_number_literal)
-          declarator: (trace32_hll_variable))))
+          declarator: (symbol))))
     value: (hll_string_literal))
   (command_expression
     command: (identifier)
     arguments: (argument_list
       (hll_declaration
         type: (hll_primitive_type)
-        declarator: (trace32_hll_variable)))
+        declarator: (symbol)))
     value: (hll_char_literal
       (hll_escape_sequence)))
   (command_expression
@@ -265,7 +265,7 @@ Var.NEWLOCAL char \ch = '&'
     arguments: (argument_list
       (hll_declaration
         type: (hll_primitive_type)
-        declarator: (trace32_hll_variable)))
+        declarator: (symbol)))
     value: (hll_char_literal
       (character))))
 
