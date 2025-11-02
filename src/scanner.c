@@ -105,8 +105,8 @@ void tree_sitter_t32_external_scanner_deserialize(
 	const char * buffer,
 	unsigned length)
 {
-	assert(payload != NULL && (buffer != NULL || length <= 0));
-	if (length <= 0) {
+	assert(payload != NULL && (buffer != NULL || length <= 0u));
+	if (length <= 0u) {
 		return;
 	};
 
@@ -198,7 +198,7 @@ static unsigned ScanLengthLabelIdentifier(
 {
 	assert(lexer != NULL);
 
-	unsigned len = 0;
+	unsigned len = 0u;
 	while (
 		IsAlphaNum(lexer->lookahead) ||
 		lexer->lookahead == '_' ||
@@ -282,7 +282,7 @@ static unsigned ScanLengthAndOperator(
 	}
 
 	// Check for number literal on right hand side
-	if (len <= 0 || !IsAlpha(lexer->lookahead)) {
+	if (len <= 0u || !IsAlpha(lexer->lookahead)) {
 		return len;
 	}
 
@@ -323,8 +323,8 @@ static unsigned ScanLengthDecimalNumber(
 	 */
 	MarkEnd(lexer);
 
-	unsigned len = 0;
-	unsigned num_dots = 0;
+	unsigned len = 0u;
+	unsigned num_dots = 0u;
 	while (
 		IsDecimalDigit(lexer->lookahead) ||
 		lexer->lookahead == '.'
@@ -332,7 +332,7 @@ static unsigned ScanLengthDecimalNumber(
 		if (IsDecimalDigit(lexer->lookahead)) {
 			if (num_dots == 1u) {
 				// Floating point number detected
-				return 0;
+				return 0u;
 			}
 			else if (num_dots > 1u) {
 				// Number after range operator
@@ -364,14 +364,14 @@ static unsigned ScanLengthDecimalNumber(
 		lexer->lookahead == 'k' || lexer->lookahead == 'm' || lexer->lookahead == 'g' || lexer->lookahead == 'h' ||
 		lexer->lookahead == 'K' || lexer->lookahead == 'M' || lexer->lookahead == 'G' || lexer->lookahead == 'H'
 	) {
-		return 0;
+		return 0u;
 	}
 
 	// Check for percentage literals separated by space or argument separator
 	if (lexer->lookahead == '%') {
 		Advance(lexer);
 		if (IsSpace(lexer->lookahead) || lexer->lookahead == ',') {
-			return 0;
+			return 0u;
 		}
 	}
 
@@ -425,28 +425,29 @@ static unsigned ScanLengthHllNumberLiteral(
 	if (has_sign) {
 		Advance(lexer);
 		if (IsEof(lexer)) {
-			return 0;
+			return 0u;
 		}
 	}
 
-	/*
-	 * double x = 1.; // floating-point 1.0 (fractional part optional)
-	 * double y = .1; // floating-point 0.1 (whole-number part optional)
+	/* Floating point number formats:
+	 *
+	 *   double x = 1.; // floating-point 1.0 (fractional part optional)
+	 *   double y = .1; // floating-point 0.1 (whole-number part optional)
 	 */
 	bool const starts_with_fraction = (lexer->lookahead == '.');
 	if (starts_with_fraction) {
 		Advance(lexer);
 		if (IsEof(lexer)) {
-			return 0;
+			return 0u;
 		}
 	}
 
 	if (!IsDecimalDigit(lexer->lookahead)) {
-		return 0;
+		return 0u;
 	}
 
-	unsigned num_digits = 0;
-	unsigned len = 0;
+	unsigned num_digits = 0u;
+	unsigned len = 0u;
 	if (has_sign) {
 		len += 1u;
 	}
@@ -483,7 +484,7 @@ static unsigned ScanLengthHllNumberLiteral(
 		}
 	}
 
-	unsigned num_dots = 0;
+	unsigned num_dots = 0u;
 	if (is_hex) {
 		while (IsHexDigit(lexer->lookahead) || lexer->lookahead == '.') {
 			if (lexer->lookahead == '.') {
@@ -544,8 +545,8 @@ static unsigned ScanLengthHllNumberLiteral(
 		}
 	}
 
-	if (num_digits <= 0) {
-		return 0;
+	if (num_digits <= 0u) {
+		return 0u;
 	}
 
 	// Hex and decimal floating point constants
@@ -566,7 +567,7 @@ static unsigned ScanLengthHllNumberLiteral(
 		}
 
 		if (!IsHexDigit(lexer->lookahead)) {
-			return 0;
+			return 0u;
 		}
 
 		if (has_signed_exp) {
@@ -601,7 +602,7 @@ static unsigned ScanLengthHllNumberLiteral(
 		}
 
 		if (!IsDecimalDigit(lexer->lookahead)) {
-			return 0;
+			return 0u;
 		}
 
 		if (has_signed_exp) {
@@ -626,7 +627,7 @@ static unsigned ScanLengthHllNumberLiteral(
 		Advance(lexer);
 	}
 	else {
-		unsigned num_suffixes = 0;
+		unsigned num_suffixes = 0u;
 		while (IsIntegerLiteralSuffix(lexer->lookahead)) {
 			len += 1u;
 			num_suffixes += 1u;
@@ -652,7 +653,7 @@ static unsigned TrackConsecutiveSymbols(
 	if (glyph == sym) {
 		return counter + 1u;
 	}
-	return 0;
+	return 0u;
 }
 
 
@@ -669,7 +670,7 @@ static bool ScanPathLiteral(
 
 	pathScan_t scan[1] = {{0}};
 
-	unsigned ii = 0;
+	unsigned ii = 0u;
 	while (!(IsSpace(lexer->lookahead) || IsEof(lexer))) {
 		if (
 			lexer->lookahead == '(' ||
@@ -680,7 +681,7 @@ static bool ScanPathLiteral(
 			lexer->lookahead == '"' ||
 			lexer->lookahead == '`' ||
 			lexer->lookahead == '\'' ||
-			((ii == 0 || scan->seq->num_tildes > 0) && IsDecimalDigit(lexer->lookahead))
+			((ii == 0u || scan->seq->num_tildes > 0u) && IsDecimalDigit(lexer->lookahead))
 		) {
 			/*
 			 * Detect expressions containing tilde operators, macros or
@@ -690,12 +691,12 @@ static bool ScanPathLiteral(
 			break;
 		}
 		else if (lexer->lookahead == '/') {
-			if (scan->seq->num_slashes > 0) {
+			if (scan->seq->num_slashes > 0u) {
 				is_comment = true;
 				break;
 			}
 
-			if (ii == 0) {
+			if (ii == 0u) {
 				is_option = true;
 				scan->has_root = true;
 			}
@@ -715,16 +716,16 @@ static bool ScanPathLiteral(
 			scan->has_drive = (lexer->lookahead == '\\');
 		}
 		else if (lexer->lookahead == '*' || lexer->lookahead == '?') {
-			if (scan->seq->num_slashes > 0 || scan->seq->num_backslashes > 0) {
+			if (scan->seq->num_slashes > 0u || scan->seq->num_backslashes > 0u) {
 				scan->has_wildcard = true;
 			}
 		}
 		else if (lexer->lookahead == '/' || lexer->lookahead == '\\') {
-			if (scan->seq->num_tildes > 0 || scan->seq->num_dots > 0) {
+			if (scan->seq->num_tildes > 0u || scan->seq->num_dots > 0u) {
 				scan->has_dir_shorthand = true;
 			}
 		}
-		else if (scan->seq->num_dots > 0 && IsAlpha(lexer->lookahead)) {
+		else if (scan->seq->num_dots > 0u && IsAlpha(lexer->lookahead)) {
 			scan->has_file_suffix = true;
 		}
 
@@ -744,7 +745,7 @@ static bool ScanPathLiteral(
 		ii += 1u;
 	}
 
-	if (scan->seq->num_backslashes > 0 && (lexer->lookahead == '\r' || lexer->lookahead == '\n')) {
+	if (scan->seq->num_backslashes > 0u && (lexer->lookahead == '\r' || lexer->lookahead == '\n')) {
 		is_line_continuation = true;
 	}
 	else if (is_option && scan->num_total_slashes != 1u) {
@@ -789,16 +790,16 @@ bool tree_sitter_t32_external_scanner_scan(
 	}
 
 	// Labels must start in the first column
-	if (valid_symbols[LABEL_IDENTIFIER] && lexer->get_column(lexer) == 0) {
+	if (valid_symbols[LABEL_IDENTIFIER] && lexer->get_column(lexer) == 0u) {
 		bool const starts_with_device_prefix = (lexer->lookahead == 'B');
 
 		unsigned const len = ScanLengthLabelIdentifier(lexer);
-		if (len > 0 && lexer->lookahead == ':') {
+		if (len > 0u && lexer->lookahead == ':') {
 			MarkEnd(lexer);
 			Advance(lexer);
 
 			/* B:: is a device prefix at the beginning of commands */
-			if (len == 1 && starts_with_device_prefix && lexer->lookahead == ':') {
+			if (len == 1u && starts_with_device_prefix && lexer->lookahead == ':') {
 				return false;
 			}
 			lexer->result_symbol = LABEL_IDENTIFIER;
@@ -807,27 +808,27 @@ bool tree_sitter_t32_external_scanner_scan(
 	}
 	else if (valid_symbols[AND_OPERATOR_PRE_HOOK] && lexer->lookahead == '&') {
 		state->and_operator_len = ScanLengthAndOperator(lexer);
-		if (state->and_operator_len > 0) {
+		if (state->and_operator_len > 0u) {
 			lexer->result_symbol = AND_OPERATOR_PRE_HOOK;
 			return true;
 		}
 	}
 	else if (
 		(valid_symbols[LOGICAL_AND] || valid_symbols[BITWISE_AND]) &&
-		state->and_operator_len > 0
+		state->and_operator_len > 0u
 	) {
 		unsigned const len = state->and_operator_len;
-		for (unsigned ii = 0; ii < len; ii++) {
+		for (unsigned ii = 0u; ii < len; ii++) {
 			Advance(lexer);
 		}
 
 		if (len == 1) {
-			state->and_operator_len = 0;
+			state->and_operator_len = 0u;
 			lexer->result_symbol = BITWISE_AND;
 			return true;
 		}
 		if (len == 2) {
-			state->and_operator_len = 0;
+			state->and_operator_len = 0u;
 			lexer->result_symbol = LOGICAL_AND;
 			return true;
 		}
@@ -844,19 +845,19 @@ bool tree_sitter_t32_external_scanner_scan(
 	}
 	else if (valid_symbols[DECIMAL_NUMBER_PRE_HOOK] && IsDecimalDigit(lexer->lookahead)) {
 		state->decimal_number_len = ScanLengthDecimalNumber(lexer);
-		if (state->decimal_number_len > 0) {
+		if (state->decimal_number_len > 0u) {
 			lexer->result_symbol = DECIMAL_NUMBER_PRE_HOOK;
 			return true;
 		}
 	}
-	else if (valid_symbols[DECIMAL_NUMBER] && state->decimal_number_len > 0) {
+	else if (valid_symbols[DECIMAL_NUMBER] && state->decimal_number_len > 0u) {
 		unsigned const len = state->decimal_number_len;
-		for (unsigned ii = 0; ii < len; ii++) {
+		for (unsigned ii = 0u; ii < len; ii++) {
 			Advance(lexer);
 		}
 
-		if (len > 0) {
-			state->decimal_number_len = 0;
+		if (len > 0u) {
+			state->decimal_number_len = 0u;
 			lexer->result_symbol = DECIMAL_NUMBER;
 			return true;
 		}
@@ -865,19 +866,19 @@ bool tree_sitter_t32_external_scanner_scan(
 	         && (IsDecimalDigit(lexer->lookahead) || IsSign(lexer->lookahead))
 	) {
 		state->hll_number_literal_len = ScanLengthHllNumberLiteral(lexer);
-		if (state->hll_number_literal_len > 0) {
+		if (state->hll_number_literal_len > 0u) {
 			lexer->result_symbol = HLL_NUMBER_LITERAL_PRE_HOOK;
 			return true;
 		}
 	}
-	else if (valid_symbols[HLL_NUMBER_LITERAL] && state->hll_number_literal_len > 0) {
+	else if (valid_symbols[HLL_NUMBER_LITERAL] && state->hll_number_literal_len > 0u) {
 		unsigned const len = state->hll_number_literal_len;
-		for (unsigned ii = 0; ii < len; ii++) {
+		for (unsigned ii = 0u; ii < len; ii++) {
 			Advance(lexer);
 		}
 
-		if (len > 0) {
-			state->hll_number_literal_len = 0;
+		if (len > 0u) {
+			state->hll_number_literal_len = 0u;
 			lexer->result_symbol = HLL_NUMBER_LITERAL;
 			return true;
 		}
