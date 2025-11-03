@@ -18,6 +18,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - New node `(macro_text_expansion)` for situations where the script logic relies
   on the text replacement properties of PRACTICE macros.
 
+### Changed
+
+- `(symbol)` nodes are now highlighted like variables.
+
 ### Fixed
 
 - Accept `(file_handle)` nodes with one or more `(macro)` nodes. The macros

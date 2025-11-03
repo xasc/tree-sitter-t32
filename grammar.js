@@ -10,6 +10,7 @@ const PREC = {
   declarator: 1,
   escape_sequence: 1,
   macro_assignment: 1,
+  macro_text_expansion: 1,
   option: 1,
   repeat_post_condition: 1,
   string: 1,
@@ -70,7 +71,6 @@ module.exports = grammar({
     [$.hll_sized_type_specifier],
     [$.hll_type_descriptor],
     [$.if_block],
-    [$.macro_text_expansion, $.symbol],
     [$.memory_space],
     [$.option_expression],
     [$.symbol],
@@ -147,17 +147,6 @@ module.exports = grammar({
       $.subroutine_block,
       $.subroutine_call_expression,
       $.while_block
-    ),
-
-    _expression: $ => choice(
-      $.assignment_expression,
-      $.binary_expression,
-      $.call_expression,
-      $.identifier,
-      $._literal,
-      $.unary_expression,
-      $.macro,
-      $._parenthesized_expression
     ),
 
     _parenthesized_expression: $ => choice(
@@ -533,16 +522,21 @@ module.exports = grammar({
       optional(')')
     )),
 
-    macro_text_expansion: $ => prec.right(choice(
+    macro_text_expansion: $ => prec.right(PREC.macro_text_expansion, choice(
       seq(
-        repeat1($.macro),
-        seq(
+        $.macro,
+        repeat1(choice(
           alias($.identifier, 'fragment'),
-          repeat(choice(
-            $.identifier,
-            $.macro
-          ))
-        )
+          $.macro
+        ))
+      ),
+      seq(
+        alias($.identifier, 'fragment'),
+        $.macro,
+        repeat(choice(
+          alias($.identifier, 'fragment'),
+          $.macro
+        ))
       )
     )),
 
@@ -632,7 +626,10 @@ module.exports = grammar({
           $.option_expression,
           repeat(seq(
             repeat1($._blank),
-            $.macro
+            choice(
+              $.macro,
+              $.macro_text_expansion
+            )
           ))
         ))
       ),
@@ -644,7 +641,10 @@ module.exports = grammar({
         $.option_expression,
         repeat(seq(
           repeat1($._blank),
-          $.macro
+          choice(
+            $.macro,
+            $.macro_text_expansion
+          )
         ))
       )
     )),
@@ -683,6 +683,7 @@ module.exports = grammar({
         field('value', choice(
           $.identifier,
           $.macro,
+          $.macro_text_expansion,
           $._literal
         ))
       ))
@@ -690,10 +691,18 @@ module.exports = grammar({
 
     format_expression: $ => seq(
       '%',
-      field('value', $.identifier),
+      field('value', choice(
+        $.identifier,
+        $.macro,
+        $.macro_text_expansion
+      )),
       repeat(seq(
         '.',
-        field('value', $.identifier)
+        field('value', choice(
+          $.identifier,
+          $.macro,
+          $.macro_text_expansion
+        ))
       ))
     ),
 
@@ -1550,6 +1559,7 @@ module.exports = grammar({
     _address_expression: $ => choice(
       $.integer,
       $.macro,
+      $.macro_text_expansion,
       alias($._address_binary_expression, $.binary_expression),
       $.call_expression,
       $._parenthesized_address_expression
@@ -1714,7 +1724,7 @@ module.exports = grammar({
                   $.macro_text_expansion
                 ))
               ),
-              repeat1($.macro),
+              $.macro,
               $.macro_text_expansion
             ),
             optional(seq(
@@ -1728,7 +1738,7 @@ module.exports = grammar({
                     $.macro_text_expansion
                   ))
                 ),
-                repeat1($.macro),
+                $.macro,
                 $.macro_text_expansion
               ))
             )),
@@ -1743,7 +1753,7 @@ module.exports = grammar({
                     $.macro_text_expansion
                   ))
                 ),
-                repeat1($.macro),
+                $.macro,
                 $.macro_text_expansion,
                 $.string
               ))
@@ -1758,7 +1768,7 @@ module.exports = grammar({
                     $.macro_text_expansion
                   ))
                 ),
-                repeat1($.macro),
+                $.macro,
                 $.macro_text_expansion
               )
             )),
@@ -1773,7 +1783,7 @@ module.exports = grammar({
                     $.macro_text_expansion
                   ))
                 ),
-                repeat1($.macro),
+                $.macro,
                 $.macro_text_expansion
               )
             ))
@@ -1789,7 +1799,7 @@ module.exports = grammar({
                   $.macro_text_expansion
                 ))
               ),
-              repeat1($.macro),
+              $.macro,
               $.macro_text_expansion
             ),
             optional(seq(
@@ -1803,7 +1813,7 @@ module.exports = grammar({
                     $.macro_text_expansion
                   ))
                 ),
-                repeat1($.macro),
+                $.macro,
                 $.macro_text_expansion,
                 $.string,
               ))
@@ -1818,7 +1828,7 @@ module.exports = grammar({
                     $.macro_text_expansion
                   ))
                 ),
-                repeat1($.macro),
+                $.macro,
                 $.macro_text_expansion
               )
             )),
@@ -1833,7 +1843,7 @@ module.exports = grammar({
                     $.macro_text_expansion
                   ))
                 ),
-                repeat1($.macro),
+                $.macro,
                 $.macro_text_expansion
               ),
             ))
@@ -1849,7 +1859,7 @@ module.exports = grammar({
                   $.macro_text_expansion
                 ))
               ),
-              repeat1($.macro),
+              $.macro,
               $.macro_text_expansion,
               $.string,
             ),
@@ -1863,7 +1873,7 @@ module.exports = grammar({
                     $.macro_text_expansion
                   ))
                 ),
-                repeat1($.macro),
+                $.macro,
                 $.macro_text_expansion
               )
             )),
@@ -1878,7 +1888,7 @@ module.exports = grammar({
                     $.macro_text_expansion
                   ))
                 ),
-                repeat1($.macro),
+                $.macro,
                 $.macro_text_expansion
               )
             ))
@@ -1896,7 +1906,7 @@ module.exports = grammar({
                     $.macro_text_expansion
                   ))
                 ),
-                repeat1($.macro),
+                $.macro,
                 $.macro_text_expansion
               ),
             ))
@@ -1967,9 +1977,10 @@ module.exports = grammar({
       $.binary_expression,
       $.call_expression,
       $.identifier,
-      $._literal,
       $.unary_expression,
       $.macro,
+      $.macro_text_expansion,
+      $._literal,
       $._parenthesized_expression,
       $._path_expression
     ),

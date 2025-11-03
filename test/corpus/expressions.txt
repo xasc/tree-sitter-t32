@@ -1598,9 +1598,10 @@ List \\\machine\\&program\"C:\module"\method::name\&var
   (assignment_expression
     (macro)
     (symbol
-      (macro)
-      (macro)
-      (macro)
+      (macro_text_expansion
+        (macro)
+        (macro)
+        (macro))
       (macro_text_expansion
         (macro)
         (macro))
@@ -1613,3 +1614,91 @@ List \\\machine\\&program\"C:\module"\method::name\&var
       (macro_text_expansion
         (macro)
         (macro)))))
+
+
+==================
+Macro chains
+==================
+
+Data.Dump &(base)&{offset}
+
+IF (&a&op&b)
+(
+    PRINT "TRUE"
+)
+
+View %&hex&major.&reversed&minor 0x543210000
+Print "test" /Rate &(sl)&(ow)
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (macro_text_expansion
+        (macro)
+        (macro))))
+  (if_block
+    command: (identifier)
+    condition: (macro_text_expansion
+      (macro)
+      (macro)
+      (macro))
+      (block
+        (command_expression
+          command: (identifier)
+          arguments: (argument_list
+            (string)))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (format_expression
+        value: (macro_text_expansion
+        (macro)
+        (macro))
+        value: (macro_text_expansion
+        (macro)
+        (macro)))
+      (integer)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (string)
+      (option_expression
+        option: (identifier)
+        value: (macro_text_expansion
+          (macro)
+          (macro))))))
+
+
+==================
+Macro text expansion
+==================
+
+TYPE %&(l)o&{n}g.b&(y)te file.txt
+List P:&machine&(idx)a::0x12345
+
+---
+
+(script
+  (command_expression
+    (identifier)
+    (argument_list
+      (format_expression
+        (macro_text_expansion
+          (macro)
+          (macro))
+        (macro_text_expansion
+          (macro)))
+      (path)))
+  (command_expression
+    (identifier)
+    (argument_list
+      (address
+        (access_class)
+        (memory_space
+          (macro_text_expansion
+            (macro)
+            (macro)))
+        (integer)))))
