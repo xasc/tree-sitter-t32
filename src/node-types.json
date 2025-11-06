@@ -42,6 +42,10 @@
             "named": true
           },
           {
+            "type": "macro_text_expansion",
+            "named": true
+          },
+          {
             "type": "{",
             "named": false
           },
@@ -200,6 +204,10 @@
           "named": true
         },
         {
+          "type": "macro_text_expansion",
+          "named": true
+        },
+        {
           "type": "option_expression",
           "named": true
         },
@@ -221,10 +229,6 @@
         },
         {
           "type": "time",
-          "named": true
-        },
-        {
-          "type": "trace32_hll_variable",
           "named": true
         },
         {
@@ -300,6 +304,10 @@
           },
           {
             "type": "macro",
+            "named": true
+          },
+          {
+            "type": "macro_text_expansion",
             "named": true
           },
           {
@@ -415,6 +423,10 @@
             "named": true
           },
           {
+            "type": "macro_text_expansion",
+            "named": true
+          },
+          {
             "type": "path",
             "named": true
           },
@@ -526,6 +538,10 @@
           },
           {
             "type": "macro",
+            "named": true
+          },
+          {
+            "type": "macro_text_expansion",
             "named": true
           },
           {
@@ -721,6 +737,10 @@
             "named": true
           },
           {
+            "type": "macro_text_expansion",
+            "named": true
+          },
+          {
             "type": "path",
             "named": true
           },
@@ -900,6 +920,10 @@
           },
           {
             "type": "macro",
+            "named": true
+          },
+          {
+            "type": "macro_text_expansion",
             "named": true
           },
           {
@@ -1100,6 +1124,10 @@
             "named": true
           },
           {
+            "type": "macro_text_expansion",
+            "named": true
+          },
+          {
             "type": "path",
             "named": true
           },
@@ -1268,6 +1296,21 @@
     }
   },
   {
+    "type": "file_handle",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "macro",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "format_expression",
     "named": true,
     "fields": {
@@ -1277,6 +1320,14 @@
         "types": [
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "macro",
+            "named": true
+          },
+          {
+            "type": "macro_text_expansion",
             "named": true
           }
         ]
@@ -1383,10 +1434,6 @@
           },
           {
             "type": "symbol",
-            "named": true
-          },
-          {
-            "type": "trace32_hll_variable",
             "named": true
           }
         ]
@@ -1581,10 +1628,6 @@
         {
           "type": "symbol",
           "named": true
-        },
-        {
-          "type": "trace32_hll_variable",
-          "named": true
         }
       ]
     }
@@ -1614,7 +1657,7 @@
             "named": true
           },
           {
-            "type": "trace32_hll_variable",
+            "type": "symbol",
             "named": true
           }
         ]
@@ -1694,10 +1737,6 @@
           {
             "type": "symbol",
             "named": true
-          },
-          {
-            "type": "trace32_hll_variable",
-            "named": true
           }
         ]
       }
@@ -1746,7 +1785,7 @@
             "named": true
           },
           {
-            "type": "trace32_hll_variable",
+            "type": "symbol",
             "named": true
           }
         ]
@@ -1872,10 +1911,6 @@
           {
             "type": "symbol",
             "named": true
-          },
-          {
-            "type": "trace32_hll_variable",
-            "named": true
           }
         ]
       }
@@ -1955,10 +1990,6 @@
           },
           {
             "type": "symbol",
-            "named": true
-          },
-          {
-            "type": "trace32_hll_variable",
             "named": true
           }
         ]
@@ -2112,10 +2143,6 @@
           {
             "type": "symbol",
             "named": true
-          },
-          {
-            "type": "trace32_hll_variable",
-            "named": true
           }
         ]
       }
@@ -2206,10 +2233,6 @@
           {
             "type": "symbol",
             "named": true
-          },
-          {
-            "type": "trace32_hll_variable",
-            "named": true
           }
         ]
       }
@@ -2299,10 +2322,6 @@
           },
           {
             "type": "symbol",
-            "named": true
-          },
-          {
-            "type": "trace32_hll_variable",
             "named": true
           }
         ]
@@ -2403,10 +2422,6 @@
           {
             "type": "symbol",
             "named": true
-          },
-          {
-            "type": "trace32_hll_variable",
-            "named": true
           }
         ]
       },
@@ -2484,10 +2499,6 @@
           },
           {
             "type": "symbol",
-            "named": true
-          },
-          {
-            "type": "trace32_hll_variable",
             "named": true
           }
         ]
@@ -2569,10 +2580,6 @@
           {
             "type": "symbol",
             "named": true
-          },
-          {
-            "type": "trace32_hll_variable",
-            "named": true
           }
         ]
       },
@@ -2646,10 +2653,6 @@
           },
           {
             "type": "symbol",
-            "named": true
-          },
-          {
-            "type": "trace32_hll_variable",
             "named": true
           }
         ]
@@ -2725,10 +2728,6 @@
           {
             "type": "symbol",
             "named": true
-          },
-          {
-            "type": "trace32_hll_variable",
-            "named": true
           }
         ]
       }
@@ -2759,7 +2758,7 @@
             "named": true
           },
           {
-            "type": "trace32_hll_variable",
+            "type": "symbol",
             "named": true
           }
         ]
@@ -2897,10 +2896,6 @@
           {
             "type": "symbol",
             "named": true
-          },
-          {
-            "type": "trace32_hll_variable",
-            "named": true
           }
         ]
       },
@@ -2955,7 +2950,7 @@
             "named": true
           },
           {
-            "type": "trace32_hll_variable",
+            "type": "symbol",
             "named": true
           }
         ]
@@ -3013,7 +3008,7 @@
             "named": true
           },
           {
-            "type": "trace32_hll_variable",
+            "type": "symbol",
             "named": true
           }
         ]
@@ -3100,7 +3095,7 @@
           "named": true
         },
         {
-          "type": "trace32_hll_variable",
+          "type": "symbol",
           "named": true
         }
       ]
@@ -3185,10 +3180,6 @@
         {
           "type": "symbol",
           "named": true
-        },
-        {
-          "type": "trace32_hll_variable",
-          "named": true
         }
       ]
     }
@@ -3218,7 +3209,7 @@
             "named": true
           },
           {
-            "type": "trace32_hll_variable",
+            "type": "symbol",
             "named": true
           }
         ]
@@ -3309,10 +3300,6 @@
           },
           {
             "type": "symbol",
-            "named": true
-          },
-          {
-            "type": "trace32_hll_variable",
             "named": true
           }
         ]
@@ -3408,10 +3395,6 @@
           {
             "type": "symbol",
             "named": true
-          },
-          {
-            "type": "trace32_hll_variable",
-            "named": true
           }
         ]
       },
@@ -3495,10 +3478,6 @@
           },
           {
             "type": "symbol",
-            "named": true
-          },
-          {
-            "type": "trace32_hll_variable",
             "named": true
           }
         ]
@@ -3605,10 +3584,6 @@
           },
           {
             "type": "symbol",
-            "named": true
-          },
-          {
-            "type": "trace32_hll_variable",
             "named": true
           }
         ]
@@ -3721,10 +3696,6 @@
           {
             "type": "symbol",
             "named": true
-          },
-          {
-            "type": "trace32_hll_variable",
-            "named": true
           }
         ]
       },
@@ -3802,10 +3773,6 @@
           },
           {
             "type": "symbol",
-            "named": true
-          },
-          {
-            "type": "trace32_hll_variable",
             "named": true
           }
         ]
@@ -3965,10 +3932,6 @@
           {
             "type": "symbol",
             "named": true
-          },
-          {
-            "type": "trace32_hll_variable",
-            "named": true
           }
         ]
       },
@@ -4086,10 +4049,6 @@
           },
           {
             "type": "symbol",
-            "named": true
-          },
-          {
-            "type": "trace32_hll_variable",
             "named": true
           }
         ]
@@ -4254,6 +4213,10 @@
             "named": true
           },
           {
+            "type": "macro_text_expansion",
+            "named": true
+          },
+          {
             "type": "path",
             "named": true
           },
@@ -4271,10 +4234,6 @@
           },
           {
             "type": "time",
-            "named": true
-          },
-          {
-            "type": "trace32_hll_variable",
             "named": true
           },
           {
@@ -4485,6 +4444,21 @@
     }
   },
   {
+    "type": "macro_text_expansion",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "macro",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "memory_space",
     "named": true,
     "fields": {
@@ -4514,6 +4488,10 @@
           },
           {
             "type": "macro",
+            "named": true
+          },
+          {
+            "type": "macro_text_expansion",
             "named": true
           },
           {
@@ -4555,6 +4533,10 @@
             "named": true
           },
           {
+            "type": "macro_text_expansion",
+            "named": true
+          },
+          {
             "type": "{",
             "named": false
           },
@@ -4593,6 +4575,10 @@
             "named": true
           },
           {
+            "type": "macro_text_expansion",
+            "named": true
+          },
+          {
             "type": "{",
             "named": false
           },
@@ -4603,11 +4589,6 @@
         ]
       }
     }
-  },
-  {
-    "type": "module",
-    "named": false,
-    "fields": {}
   },
   {
     "type": "option_expression",
@@ -4665,6 +4646,10 @@
           },
           {
             "type": "macro",
+            "named": true
+          },
+          {
+            "type": "macro_text_expansion",
             "named": true
           },
           {
@@ -4818,6 +4803,10 @@
           },
           {
             "type": "macro",
+            "named": true
+          },
+          {
+            "type": "macro_text_expansion",
             "named": true
           },
           {
@@ -5084,20 +5073,23 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "macro",
+          "named": true
+        },
+        {
+          "type": "macro_text_expansion",
+          "named": true
+        },
         {
           "type": "string",
           "named": true
         }
       ]
     }
-  },
-  {
-    "type": "trace32_hll_variable",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "unary_expression",
@@ -5165,6 +5157,10 @@
           },
           {
             "type": "macro",
+            "named": true
+          },
+          {
+            "type": "macro_text_expansion",
             "named": true
           },
           {
@@ -5372,6 +5368,10 @@
             "named": true
           },
           {
+            "type": "macro_text_expansion",
+            "named": true
+          },
+          {
             "type": "path",
             "named": true
           },
@@ -5389,10 +5389,6 @@
           },
           {
             "type": "time",
-            "named": true
-          },
-          {
-            "type": "trace32_hll_variable",
             "named": true
           },
           {
@@ -5479,6 +5475,10 @@
   },
   {
     "type": "\"",
+    "named": false
+  },
+  {
+    "type": "#",
     "named": false
   },
   {
@@ -5710,6 +5710,14 @@
     "named": false
   },
   {
+    "type": "\\\\",
+    "named": false
+  },
+  {
+    "type": "\\\\\\",
+    "named": false
+  },
+  {
     "type": "]",
     "named": false
   },
@@ -5746,12 +5754,12 @@
     "named": false
   },
   {
-    "type": "file_handle",
+    "type": "float",
     "named": true
   },
   {
-    "type": "float",
-    "named": true
+    "type": "fragment",
+    "named": false
   },
   {
     "type": "frequency",
