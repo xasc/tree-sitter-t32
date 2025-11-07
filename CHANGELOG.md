@@ -33,7 +33,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `(trace32_hll_variable)` nodes are removed. All instances are replaced by
   `(symbol)` nodes. `(trace32_hll_variable)` and `(symbol)` have always shared
   the same syntax and could be used interchangeably. However, `(symbol)` is
-  the more generic type.
+  the more generic type. Ultimately, the decision of whether a symbol is a
+  TRACE32 internal HLL variable needs to be made at a higher level.
 
 ## [6.0.10] - 2025-10-15
 
