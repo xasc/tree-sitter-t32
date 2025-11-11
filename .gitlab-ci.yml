@@ -127,7 +127,8 @@ build-linux:
   script:
     - curl -sSL https://get.docker.com/ | sh
     - python -m pip install cibuildwheel==3.2.1
-    - cibuildwheel --output-dir wheelhouse
+    - docker version -f '{{json .}}'
+    - cibuildwheel --output-dir wheelhouse --debug-traceback
   artifacts:
     paths:
       - wheelhouse/
