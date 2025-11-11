@@ -20,7 +20,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- `(symbol)` nodes are now highlighted like variables.
+- `(symbol)` nodes starting with machine or program names are highlighted as
+  constants.
+- Other `(symbol)` nodes are now highlighted like variables.
 
 ### Fixed
 

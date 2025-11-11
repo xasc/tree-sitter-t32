@@ -175,7 +175,6 @@
   (#match? @constant.builtin "^[%/][a-zA-Z][a-zA-Z0-9.]*$")
 )
 
-; Machine and program names
 (
   (symbol) @constant
   (#match? @constant "^\\\\\\\\\\\\[^\\\\]*(\\\\\\\\[^\\\\]*)?(\\\\[^\\\\]*)?$")
