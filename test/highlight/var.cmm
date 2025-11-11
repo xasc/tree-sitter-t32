@@ -1,7 +1,7 @@
 Var.NEWGLOBAL char[4][32] \myarr
 ; <- keyword
 ;             ^ type.builtin
-;                          ^ variable.builtin
+;                          ^ variable
 LOCAL &i &data
 
 &data="zero|one|two|three"

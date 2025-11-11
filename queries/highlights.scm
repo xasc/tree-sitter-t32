@@ -164,6 +164,7 @@
 
 ; Variables, constants and labels
 (macro) @variable.builtin
+
 (symbol) @variable
 
 (argument_list
@@ -172,6 +173,17 @@
 (
   (argument_list (identifier) @constant.builtin)
   (#match? @constant.builtin "^[%/][a-zA-Z][a-zA-Z0-9.]*$")
+)
+
+; Machine and program names
+(
+  (symbol) @constant
+  (#match? @constant "^\\\\\\\\\\\\[^\\\\]*(\\\\\\\\[^\\\\]*)?(\\\\[^\\\\]*)?$")
+)
+
+(
+  (symbol) @constant
+  (#match? @constant "^\\\\\\\\[^\\\\]*(\\\\[^\\\\]*)?$")
 )
 
 (
