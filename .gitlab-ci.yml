@@ -21,7 +21,7 @@ stages:
 
 build-npm-linux:
   stage: build
-  image: node:lts
+  image: node:25
   # make a docker daemon available for tree-sitter-cli
   services:
     - name: docker:dind
