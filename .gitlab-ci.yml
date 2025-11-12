@@ -125,7 +125,10 @@ build-linux:
     # See https://github.com/docker-library/docker/pull/166
     DOCKER_TLS_CERTDIR: ""
   script:
-    - curl -sSL https://get.docker.com/ | sh
+    # Workaround for Docker 29 that uses a different format for the version
+    # information. Restricts the installed docker version to 28.
+    - curl -fsSL https://get.docker.com -o get-docker.sh && sh ./get-docker.sh --version 28 && rm get-docker.sh
+    # - curl -sSL https://get.docker.com/ | sh
     - python -m pip install cibuildwheel==3.2.1
     - docker version -f '{{json .}}'
     - cibuildwheel --output-dir wheelhouse --debug-traceback
@@ -144,7 +147,7 @@ build-windows:
     - choco install git.install -y
     - py -m pip install cibuildwheel==3.2.1
   script:
-    - py -m cibuildwheel --output-dir wheelhouse --platform windows
+    - py -m cibuildwheel --output-dir wheelhouse --platform windows --debug-traceback
   artifacts:
     paths:
       - wheelhouse/
