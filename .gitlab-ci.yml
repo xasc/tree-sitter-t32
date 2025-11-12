@@ -39,7 +39,6 @@ build-npm-linux:
     - node --version
     - npm --version
     - curl -sSL https://get.docker.com/ | sh
-    - apt-get install build-essential
   script:
     - npm install
     - npm install tree-sitter-cli
@@ -57,10 +56,10 @@ build-npm-windows:
   stage: build
   image: mcr.microsoft.com/windows/servercore:1809
   before_script:
+    # `--version 22` will install version `22.0.0`
     - choco install nodejs -y --allow-downgrade --version 22.21.1
     - node --version
     - npm --version
-    - npm install --global --production windows-build-tools
   script:
     - npm install
     - npm run install --verbose
