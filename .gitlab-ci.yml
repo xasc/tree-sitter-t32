@@ -21,7 +21,7 @@ stages:
 
 build-npm-linux:
   stage: build
-  image: node:25
+  image: node:lts
   # make a docker daemon available for tree-sitter-cli
   services:
     - name: docker:dind
@@ -38,8 +38,10 @@ build-npm-linux:
   before_script:
     - node --version
     - npm --version
-  script:
     - curl -sSL https://get.docker.com/ | sh
+    - sudo apt-get install build-essential
+  script:
+    - npm install
     - npm install tree-sitter-cli
     - npm run prebuildify --verbose
     - npm run build-wasm --verbose
@@ -58,6 +60,7 @@ build-npm-windows:
     - choco install nodejs-lts -y --allow-downgrade
     - node --version
     - npm --version
+    - npm install --global --production windows-build-tools
   script:
     - npm install
     - npm run install --verbose
