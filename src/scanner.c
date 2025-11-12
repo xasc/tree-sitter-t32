@@ -96,7 +96,7 @@ unsigned tree_sitter_t32_external_scanner_serialize(
 	STATIC_ASSERT(sizeof(s[0]) <= TREE_SITTER_SERIALIZATION_BUFFER_SIZE, "Buffer too small");
 
 	memcpy(buffer, s, num);
-	return num;
+	return (unsigned) num;
 }
 
 
