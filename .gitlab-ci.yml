@@ -57,7 +57,7 @@ build-npm-windows:
   stage: build
   image: mcr.microsoft.com/windows/servercore:1809
   before_script:
-    - choco install nodejs -y --allow-downgrade --version 22
+    - choco install nodejs -y --allow-downgrade --version 22.21.1
     - node --version
     - npm --version
     - npm install --global --production windows-build-tools
