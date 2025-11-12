@@ -39,7 +39,7 @@ build-npm-linux:
     - node --version
     - npm --version
     - curl -sSL https://get.docker.com/ | sh
-    - sudo apt-get install build-essential
+    - apt-get install build-essential
   script:
     - npm install
     - npm install tree-sitter-cli
