@@ -21,7 +21,7 @@ stages:
 
 build-npm-linux:
   stage: build
-  image: node:lts
+  image: node:22
   # make a docker daemon available for tree-sitter-cli
   services:
     - name: docker:dind
@@ -57,7 +57,7 @@ build-npm-windows:
   stage: build
   image: mcr.microsoft.com/windows/servercore:1809
   before_script:
-    - choco install nodejs-lts -y --allow-downgrade
+    - choco install nodejs -y --allow-downgrade --version 22
     - node --version
     - npm --version
     - npm install --global --production windows-build-tools
@@ -76,7 +76,7 @@ build-npm-windows:
 
 test-npm:
   stage: test
-  image: node:lts
+  image: node:22
   needs:
     - job: build-npm-linux
     - job: build-npm-windows
@@ -96,7 +96,7 @@ test-npm:
 
 publish-npm:
   stage: publish
-  image: node:lts
+  image: node:22
   needs:
     - job: build-npm-linux
     - job: build-npm-windows
