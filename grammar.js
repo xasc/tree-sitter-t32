@@ -73,6 +73,7 @@ module.exports = grammar({
     [$.if_block],
     [$.memory_space],
     [$.option_expression],
+    [$.hll_option_expression],
     [$.symbol],
     [$._address_expression, $._literal],
     [$._binary_expression, $._and_expression],
@@ -681,9 +682,12 @@ module.exports = grammar({
       optional(seq(
         repeat1($._blank),
         field('value', choice(
+          $.binary_expression,
+          $.call_expression,
           $.identifier,
           $.macro,
           $.macro_text_expansion,
+          $.unary_expression,
           $._literal
         ))
       ))
@@ -889,10 +893,10 @@ module.exports = grammar({
       optional(seq(
         repeat1($._blank),
         repeat(seq(
-          $.option_expression,
+          alias($.hll_option_expression, $.option_expression),
           repeat1($._blank)
         )),
-        $.option_expression
+        alias($.hll_option_expression, $.option_expression)
       ))
     ),
 
@@ -930,7 +934,7 @@ module.exports = grammar({
         ),
         optional(seq(
           repeat1($._blank),
-          $.option_expression
+          alias($.hll_option_expression, $.option_expression)
         ))
       )
     ),
@@ -953,13 +957,13 @@ module.exports = grammar({
         repeat(seq(
           choice(
             $.format_expression,
-            $.option_expression
+            alias($.hll_option_expression, $.option_expression)
           ),
           repeat1($._blank)
         )),
         choice(
           $.format_expression,
-          $.option_expression
+          alias($.hll_option_expression, $.option_expression)
         )
     ),
 
@@ -990,6 +994,31 @@ module.exports = grammar({
       ))
     ),
 
+    hll_option_expression: $ => prec(PREC.option, seq(
+      '/',
+      field('option', $.identifier),
+      optional(seq(
+        repeat1($._blank),
+        field('value', choice(
+          $.hll_binary_expression,
+          $.hll_call_expression,
+          $.hll_cast_expression,
+          $.hll_char_literal,
+          $.hll_conditional_expression,
+          $.hll_field_expression,
+          $.hll_pointer_expression,
+          $.hll_sizeof_expression,
+          $.hll_string_literal,
+          $.hll_subscript_expression,
+          $.hll_unary_expression,
+          $.hll_update_expression,
+          $.identifier,
+          $.symbol,
+          $._hll_number_literal
+        ))
+      ))
+    )),
+
     //////////////////////////////////////
     //////////////////////////////////////
 
@@ -1005,9 +1034,9 @@ module.exports = grammar({
     // are tolerated.
     _hll_expression: $ => choice(
       $._hll_number_literal,
-      $.hll_conditional_expression,
       $.hll_assignment_expression,
       $.hll_binary_expression,
+      $.hll_conditional_expression,
       $.hll_unary_expression,
       $.hll_update_expression,
       $.hll_cast_expression,
@@ -1020,7 +1049,7 @@ module.exports = grammar({
       $.hll_char_literal,
       $.hll_parenthesized_expression,
       $.identifier,
-      $.symbol,
+      $.symbol
     ),
 
     // TRACE32 does not allow any spaces between function name

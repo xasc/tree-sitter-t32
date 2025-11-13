@@ -864,7 +864,7 @@ List.EXPORT.Mix /COVerage /Append &option_sorder &option_nodata
           right: (hll_number_literal)))
       (option_expression
         option: (identifier)
-        value: (integer))))
+        value: (hll_number_literal))))
   (command_expression
     command: (identifier)
     arguments: (argument_list
@@ -1702,3 +1702,25 @@ List P:&machine&(idx)a::0x12345
             (macro)
             (macro)))
         (integer)))))
+
+==================
+Complex option values
+==================
+
+Break.Set func /CONDition Register(r1)==0xff
+
+---
+
+(script
+  (command_expression
+    (identifier)
+    (argument_list
+      (identifier)
+      (option_expression
+        (identifier)
+        (binary_expression
+          (call_expression
+            (identifier)
+            (argument_list
+              (identifier)))
+          (integer))))))

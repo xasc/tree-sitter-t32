@@ -1315,3 +1315,25 @@ Var.set `class1::operator+(int)\i`
     command: (identifier)
     arguments: (argument_list
       (symbol))))
+
+==================
+Complex HLL option values
+==================
+
+Var.Break.Set func /CONDition Register(r1)==0xff
+
+---
+
+(script
+  (command_expression
+    (identifier)
+    (argument_list
+      (identifier)
+      (option_expression
+        (identifier)
+        (hll_binary_expression
+          (hll_call_expression
+            (identifier)
+            (hll_argument_list
+              (identifier)))
+          (hll_number_literal))))))
