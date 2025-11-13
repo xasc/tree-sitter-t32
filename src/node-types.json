@@ -4613,7 +4613,15 @@
             "named": true
           },
           {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
             "type": "bitmask",
+            "named": true
+          },
+          {
+            "type": "call_expression",
             "named": true
           },
           {
@@ -4630,6 +4638,58 @@
           },
           {
             "type": "frequency",
+            "named": true
+          },
+          {
+            "type": "hll_binary_expression",
+            "named": true
+          },
+          {
+            "type": "hll_call_expression",
+            "named": true
+          },
+          {
+            "type": "hll_cast_expression",
+            "named": true
+          },
+          {
+            "type": "hll_char_literal",
+            "named": true
+          },
+          {
+            "type": "hll_conditional_expression",
+            "named": true
+          },
+          {
+            "type": "hll_field_expression",
+            "named": true
+          },
+          {
+            "type": "hll_number_literal",
+            "named": true
+          },
+          {
+            "type": "hll_pointer_expression",
+            "named": true
+          },
+          {
+            "type": "hll_sizeof_expression",
+            "named": true
+          },
+          {
+            "type": "hll_string_literal",
+            "named": true
+          },
+          {
+            "type": "hll_subscript_expression",
+            "named": true
+          },
+          {
+            "type": "hll_unary_expression",
+            "named": true
+          },
+          {
+            "type": "hll_update_expression",
             "named": true
           },
           {
@@ -4666,6 +4726,10 @@
           },
           {
             "type": "time",
+            "named": true
+          },
+          {
+            "type": "unary_expression",
             "named": true
           }
         ]

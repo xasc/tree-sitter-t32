@@ -34,4 +34,5 @@ sed --in-place "s#\(.*\)version\s*=.*\$#\1$version_rust#" "Cargo.toml"
 sed --in-place "s#\(.*\)\"version\":.*\$#\1$version_treesitter#" "tree-sitter.json"
 sed --in-place "s#\(.*\)\.version\s*=.*\$#\1$version_zig#" "build.zig.zon"
 
+make build
 cargo build
