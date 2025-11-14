@@ -384,7 +384,7 @@ to automatically install the supported grammar.
 ## Limitations
 
 - `(symbol)` nodes that represent an unquoted module, like `\module`, cannot be
-  differentiated from node type `(trace32_hll_variable)`, e.g. `\x`.
+  differentiated from user-defined TRACE32 internal HLL variables, e.g. `\x`.
 - `(symbol)` nodes that depend on the hex radix mode cannot always be
   kept apart from `(address)` nodes, e.g. `P:A::B:0x800`. To avoid conflicts always add
   the radix mode to the number.
@@ -410,7 +410,8 @@ to automatically install the supported grammar.
 
 ## Mirrors
 
-This repository is mirrored to https://gitlab.com/xasc/tree-sitter-t32. The main repository is https://codeberg.org/xasc/tree-sitter-t32.
+This repository is mirrored to https://gitlab.com/xasc/tree-sitter-t32 and https://github.com/xasc/tree-sitter-t32.
+The main repository is https://codeberg.org/xasc/tree-sitter-t32.
 
 
 ## Contributing

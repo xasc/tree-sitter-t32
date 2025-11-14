@@ -52,5 +52,5 @@ test-all: build
 	$(yarn) test
 
 
-src/parser.c: grammar.js src/scanner.c
+src/parser.c: grammar.js src/scanner.c tree-sitter.json
 	$(yarn) build
