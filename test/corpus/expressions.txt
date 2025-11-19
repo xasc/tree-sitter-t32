@@ -1708,6 +1708,7 @@ Complex option values
 ==================
 
 Break.Set func /CONDition Register(r1)==0xff
+Break.Set func /CONDition (&ii==TRUE())
 
 ---
 
@@ -1723,4 +1724,15 @@ Break.Set func /CONDition Register(r1)==0xff
             (identifier)
             (argument_list
               (identifier)))
-          (integer))))))
+          (integer)))))
+  (command_expression
+    (identifier)
+    (argument_list
+      (identifier)
+      (option_expression
+        (identifier)
+        (binary_expression
+          (macro)
+          (call_expression
+            (identifier)
+            (argument_list)))))))

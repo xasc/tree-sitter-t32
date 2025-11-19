@@ -1321,6 +1321,7 @@ Complex HLL option values
 ==================
 
 Var.Break.Set func /CONDition Register(r1)==0xff
+Var.Break.Set func /CONDition (a[0]==func)
 
 ---
 
@@ -1336,4 +1337,15 @@ Var.Break.Set func /CONDition Register(r1)==0xff
             (identifier)
             (hll_argument_list
               (identifier)))
-          (hll_number_literal))))))
+          (hll_number_literal)))))
+  (command_expression
+    (identifier)
+    (argument_list
+      (identifier)
+      (option_expression
+        (identifier)
+        (hll_binary_expression
+          (hll_subscript_expression
+            (identifier)
+            (hll_number_literal))
+          (identifier))))))

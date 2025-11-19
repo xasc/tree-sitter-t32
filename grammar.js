@@ -12,6 +12,7 @@ const PREC = {
   macro_assignment: 1,
   macro_text_expansion: 1,
   option: 1,
+  option_value: 1,
   repeat_post_condition: 1,
   string: 1,
   logical_or: 10,
@@ -676,19 +677,30 @@ module.exports = grammar({
       ',',
     ),
 
+    _option_value: $ => prec(PREC.option_value, choice(
+      $.binary_expression,
+      $.call_expression,
+      $.identifier,
+      $.macro,
+      $.macro_text_expansion,
+      $.unary_expression,
+      $._literal
+    )),
+
+    _parenthesized_option_value: $ => seq(
+      '(',
+      $._option_value,
+      ')'
+    ),
+
     option_expression: $ => prec(PREC.option, seq(
       '/',
       field('option', $.identifier),
       optional(seq(
         repeat1($._blank),
         field('value', choice(
-          $.binary_expression,
-          $.call_expression,
-          $.identifier,
-          $.macro,
-          $.macro_text_expansion,
-          $.unary_expression,
-          $._literal
+          $._option_value,
+          $._parenthesized_option_value
         ))
       ))
     )),
@@ -994,27 +1006,38 @@ module.exports = grammar({
       ))
     ),
 
+    _hll_option_value: $ => prec(PREC.option_value, choice(
+      $.hll_binary_expression,
+      $.hll_call_expression,
+      $.hll_cast_expression,
+      $.hll_char_literal,
+      $.hll_conditional_expression,
+      $.hll_field_expression,
+      $.hll_pointer_expression,
+      $.hll_sizeof_expression,
+      $.hll_string_literal,
+      $.hll_subscript_expression,
+      $.hll_unary_expression,
+      $.hll_update_expression,
+      $.identifier,
+      $.symbol,
+      $._hll_number_literal
+    )),
+
+    _hll_parenthesized_option_value: $ => seq(
+      '(',
+      $._hll_option_value,
+      ')'
+    ),
+
     hll_option_expression: $ => prec(PREC.option, seq(
       '/',
       field('option', $.identifier),
       optional(seq(
         repeat1($._blank),
         field('value', choice(
-          $.hll_binary_expression,
-          $.hll_call_expression,
-          $.hll_cast_expression,
-          $.hll_char_literal,
-          $.hll_conditional_expression,
-          $.hll_field_expression,
-          $.hll_pointer_expression,
-          $.hll_sizeof_expression,
-          $.hll_string_literal,
-          $.hll_subscript_expression,
-          $.hll_unary_expression,
-          $.hll_update_expression,
-          $.identifier,
-          $.symbol,
-          $._hll_number_literal
+          $._hll_option_value,
+          $._hll_parenthesized_option_value
         ))
       ))
     )),
