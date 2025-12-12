@@ -372,13 +372,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"env-paths@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "env-paths@npm:3.0.0"
-  checksum: 10/b2b0a0d0d9931a13d279c22ed94d78648a1cc5f408f05d47ff3e0c1616f0aa0c38fb33deec5e5be50497225d500607d57f9c8652c4d39c2f2b7608cd45768128
-  languageName: node
-  linkType: hard
-
 "err-code@npm:^2.0.2":
   version: 2.0.3
   resolution: "err-code@npm:2.0.3"
@@ -941,11 +934,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-gyp@npm:^12.0.0":
-  version: 12.0.0
-  resolution: "node-gyp@npm:12.0.0"
+"node-gyp@npm:^12.1.0":
+  version: 12.1.0
+  resolution: "node-gyp@npm:12.1.0"
   dependencies:
-    env-paths: "npm:^3.0.0"
+    env-paths: "npm:^2.2.0"
     exponential-backoff: "npm:^3.1.1"
     graceful-fs: "npm:^4.2.6"
     make-fetch-happen: "npm:^15.0.0"
@@ -957,7 +950,7 @@ __metadata:
     which: "npm:^6.0.0"
   bin:
     node-gyp: bin/node-gyp.js
-  checksum: 10/47e5c11a13bc1297e26e9348a3cef5b81016494c7dc5e06b6bba12383fb668aeb89acdf6c8bf5cb5efd2b1d1a86428a6835fabbbdeb1bd21c4bd557aa1ed442e
+  checksum: 10/d93079236cef1dd7fa4df683708d8708ad255c55865f6656664c8959e4d3963d908ac48e8f9f341705432e979dbbf502a40d68d65a17fe35956a5a05ba6c1cb4
   languageName: node
   linkType: hard
 
@@ -1421,7 +1414,7 @@ __metadata:
   resolution: "tree-sitter-t32@workspace:."
   dependencies:
     node-addon-api: "npm:^8.5.0"
-    node-gyp: "npm:^12.0.0"
+    node-gyp: "npm:^12.1.0"
     node-gyp-build: "npm:^4.8.4"
     prebuildify: "npm:^6.0.1"
     tree-sitter-cli: "npm:^0.25.10"
