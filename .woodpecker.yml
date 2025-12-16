@@ -20,7 +20,7 @@ steps:
         branch: [main, dev]
 
   test-nodejs:
-    image: node:bookworm
+    image: node:trixie
     environment:
       DEBIAN_FRONTEND: noninteractive
     commands:
