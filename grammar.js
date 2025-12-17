@@ -474,8 +474,14 @@ module.exports = grammar({
         seq(
           field('command', alias(longAndShortForm('ENTRY'), $.identifier)),
           optional(seq(
-            repeat1($._blank),
-            alias(longAndShortForm('%LINE'), $.identifier)
+            repeat(seq(
+              repeat1($._blank),
+              field('macro', $.macro)
+            )),
+            seq(
+              repeat1($._blank),
+              alias(longAndShortForm('%LINE'), $.identifier)
+            )
           ))
         )
       ),

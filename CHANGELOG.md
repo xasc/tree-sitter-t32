@@ -15,6 +15,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Fix use of parameter declarations with `ENTRY` and `%LINE` format option. `%LINE` can
+  now appear after the first `(macro)`.
+
+## [7.1.4] - 2025-12-17
+
+### Fixed
+
 - Use newer Debian version for CI builds
 
 ## [7.1.3] - 2025-12-16
