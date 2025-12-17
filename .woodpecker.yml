@@ -16,7 +16,7 @@ steps:
       - cargo test
     when:
       - event: [push, pull_request, tag]
-        path: ['src/*', 'test/*', 'grammar.js', 'package.json']
+        path: ['src/*', 'test/*', 'grammar.js', 'package.json', '.woodpecker.yml']
         branch: [main, dev]
 
   test-nodejs:
@@ -31,5 +31,5 @@ steps:
       - yarn run tree-sitter test
     when:
       - event: [push, pull_request, tag]
-        path: ['src/*', 'test/*', 'grammar.js', 'package.json']
+        path: ['src/*', 'test/*', 'grammar.js', 'package.json', '.woodpecker.yml']
         branch: [main, dev]
