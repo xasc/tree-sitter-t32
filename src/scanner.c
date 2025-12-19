@@ -265,8 +265,16 @@ static unsigned ScanLengthAndOperator(
 		lexer->lookahead == '(' ||
 		lexer->lookahead == '{'
 	) {
-		if (macro_delim == '\0' && lexer->lookahead == '&') {
-			len += 1u;
+		if (lexer->lookahead == '&') {
+			if (macro_delim == '\0') {
+				len += 1u;
+			}
+			else {
+				/* &(&macro)
+				 *   ^ we are here → the first ampersand is an operator
+				 */
+				break;
+			}
 		}
 		else if (lexer->lookahead == '(') {
 			macro_delim = ')';
@@ -295,7 +303,7 @@ static unsigned ScanLengthAndOperator(
 	) {
 		return len;
 	}
-	return len - 1u;;
+	return len - 1u;
 }
 
 

@@ -142,6 +142,7 @@ module.exports = grammar({
       alias($.macro_assignment_expression, $.assignment_expression),
       $.command_expression,
       $.macro_definition,
+      $.macro,
       $.if_block,
       $.parameter_declaration,
       $.recursive_macro_expansion,
@@ -496,7 +497,10 @@ module.exports = grammar({
       optional(/(::)?B::/),
       field('command', alias(longAndShortForm('GOSUB'), $.identifier)),
       repeat1($._blank),
-      field('subroutine', $.identifier),
+      field('subroutine', choice(
+        $.macro,
+        $.identifier
+      )),
       optional(seq(
         repeat1($._blank),
         field('arguments', alias($._command_arguments, $.argument_list)),
