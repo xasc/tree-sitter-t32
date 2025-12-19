@@ -814,6 +814,10 @@
           "named": true
         },
         {
+          "type": "macro",
+          "named": true
+        },
+        {
           "type": "macro_definition",
           "named": true
         },
@@ -1191,6 +1195,10 @@
           "named": true
         },
         {
+          "type": "macro",
+          "named": true
+        },
+        {
           "type": "macro_definition",
           "named": true
         },
@@ -1262,6 +1270,10 @@
         },
         {
           "type": "labeled_expression",
+          "named": true
+        },
+        {
+          "type": "macro",
           "named": true
         },
         {
@@ -4288,6 +4300,10 @@
           "named": true
         },
         {
+          "type": "macro",
+          "named": true
+        },
+        {
           "type": "macro_definition",
           "named": true
         },
@@ -4364,6 +4380,10 @@
         },
         {
           "type": "labeled_expression",
+          "named": true
+        },
+        {
+          "type": "macro",
           "named": true
         },
         {
@@ -4945,6 +4965,10 @@
           "named": true
         },
         {
+          "type": "macro",
+          "named": true
+        },
+        {
           "type": "macro_definition",
           "named": true
         },
@@ -5006,6 +5030,10 @@
         },
         {
           "type": "labeled_expression",
+          "named": true
+        },
+        {
+          "type": "macro",
           "named": true
         },
         {
@@ -5124,6 +5152,10 @@
         "types": [
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "macro",
             "named": true
           }
         ]
@@ -5504,6 +5536,10 @@
         },
         {
           "type": "labeled_expression",
+          "named": true
+        },
+        {
+          "type": "macro",
           "named": true
         },
         {

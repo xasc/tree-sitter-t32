@@ -143,6 +143,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "macro"
+        },
+        {
+          "type": "SYMBOL",
           "name": "if_block"
         },
         {
@@ -2242,25 +2246,53 @@
                       "type": "SEQ",
                       "members": [
                         {
-                          "type": "REPEAT1",
+                          "type": "REPEAT",
                           "content": {
-                            "type": "SYMBOL",
-                            "name": "_blank"
+                            "type": "SEQ",
+                            "members": [
+                              {
+                                "type": "REPEAT1",
+                                "content": {
+                                  "type": "SYMBOL",
+                                  "name": "_blank"
+                                }
+                              },
+                              {
+                                "type": "FIELD",
+                                "name": "macro",
+                                "content": {
+                                  "type": "SYMBOL",
+                                  "name": "macro"
+                                }
+                              }
+                            ]
                           }
                         },
                         {
-                          "type": "ALIAS",
-                          "content": {
-                            "type": "ALIAS",
-                            "content": {
-                              "type": "PATTERN",
-                              "value": "[%%][lL][iI][nN][eE]"
+                          "type": "SEQ",
+                          "members": [
+                            {
+                              "type": "REPEAT1",
+                              "content": {
+                                "type": "SYMBOL",
+                                "name": "_blank"
+                              }
                             },
-                            "named": false,
-                            "value": "%LINE"
-                          },
-                          "named": true,
-                          "value": "identifier"
+                            {
+                              "type": "ALIAS",
+                              "content": {
+                                "type": "ALIAS",
+                                "content": {
+                                  "type": "PATTERN",
+                                  "value": "[%%][lL][iI][nN][eE]"
+                                },
+                                "named": false,
+                                "value": "%LINE"
+                              },
+                              "named": true,
+                              "value": "identifier"
+                            }
+                          ]
                         }
                       ]
                     },
@@ -2346,8 +2378,17 @@
           "type": "FIELD",
           "name": "subroutine",
           "content": {
-            "type": "SYMBOL",
-            "name": "identifier"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "macro"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "identifier"
+              }
+            ]
           }
         },
         {
