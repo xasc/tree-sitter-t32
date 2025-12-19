@@ -316,3 +316,73 @@ WRITE #1 "; This is comment"
     (argument_list
       (file_handle)
       (string))))
+
+==================
+Subroutine calls with parameterized call target
+==================
+
+GOSUB &subroutine &a &b &c
+
+---
+
+(script
+  (subroutine_call_expression
+    command: (identifier)
+    subroutine: (macro)
+    arguments: (argument_list
+      (macro)
+      (macro)
+      (macro))))
+
+==================
+Macro text expansion for complete line
+==================
+
+; run this!
+&run_me
+
+---
+
+(script
+  (comment)
+  (macro))
+
+==================
+Expressions with parenthesized macros
+==================
+
+  IF ((&a)&(&b))==0x0
+  (
+    &result=0.
+  )
+  ELSE IF ((&a)&&(&b))==0x1
+  (
+    &result=1.
+  )
+
+---
+
+(script
+  (if_block
+    (identifier)
+    (binary_expression
+      (binary_expression
+        (macro)
+        (macro))
+      (integer))
+    (block
+      (assignment_expression
+        (macro)
+        (integer)))
+    (elif_block
+      (identifier)
+      (identifier)
+      (binary_expression
+        (binary_expression
+          (macro)
+          (macro))
+        (integer))
+      (block
+        (assignment_expression
+          (macro)
+          (integer))))))

@@ -13,10 +13,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [7.1.4] - 2025-12-17
 
+### Added
+
+- Support parameterized call targets in `(subroutine_call_expression)`.
+- Allow single `(macro)` node when macro text expansion is used for a whole
+  line.
+
 ### Fixed
 
 - Fix use of parameter declarations with `ENTRY` and `%LINE` format option. `%LINE` can
   now appear after the first `(macro)`.
+- Detection of ampersand operators in expressions with parenthesized `(macro)`
+  nodes.
 
 ## [7.1.4] - 2025-12-17
 
