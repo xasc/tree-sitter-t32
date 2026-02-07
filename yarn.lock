@@ -934,9 +934,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-gyp@npm:^12.1.0":
-  version: 12.1.0
-  resolution: "node-gyp@npm:12.1.0"
+"node-gyp@npm:^12.2.0":
+  version: 12.2.0
+  resolution: "node-gyp@npm:12.2.0"
   dependencies:
     env-paths: "npm:^2.2.0"
     exponential-backoff: "npm:^3.1.1"
@@ -945,12 +945,12 @@ __metadata:
     nopt: "npm:^9.0.0"
     proc-log: "npm:^6.0.0"
     semver: "npm:^7.3.5"
-    tar: "npm:^7.5.2"
+    tar: "npm:^7.5.4"
     tinyglobby: "npm:^0.2.12"
     which: "npm:^6.0.0"
   bin:
     node-gyp: bin/node-gyp.js
-  checksum: 10/d93079236cef1dd7fa4df683708d8708ad255c55865f6656664c8959e4d3963d908ac48e8f9f341705432e979dbbf502a40d68d65a17fe35956a5a05ba6c1cb4
+  checksum: 10/4ebab5b77585a637315e969c2274b5520562473fe75de850639a580c2599652fb9f33959ec782ea45a2e149d8f04b548030f472eeeb3dbdf19a7f2ccbc30b908
   languageName: node
   linkType: hard
 
@@ -1377,16 +1377,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tar@npm:^7.5.2":
-  version: 7.5.2
-  resolution: "tar@npm:7.5.2"
+"tar@npm:^7.5.4":
+  version: 7.5.7
+  resolution: "tar@npm:7.5.7"
   dependencies:
     "@isaacs/fs-minipass": "npm:^4.0.0"
     chownr: "npm:^3.0.0"
     minipass: "npm:^7.1.2"
     minizlib: "npm:^3.1.0"
     yallist: "npm:^5.0.0"
-  checksum: 10/dbad9c9a07863cd1bdf8801d563b3280aa7dd0f4a6cead779ff7516d148dc80b4c04639ba732d47f91f04002f57e8c3c6573a717d649daecaac74ce71daa7ad3
+  checksum: 10/0d6938dd32fe5c0f17c8098d92bd9889ee0ed9d11f12381b8146b6e8c87bb5aa49feec7abc42463f0597503d8e89e4c4c0b42bff1a5a38444e918b4878b7fd21
   languageName: node
   linkType: hard
 
@@ -1400,12 +1400,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tree-sitter-cli@npm:^0.26.3":
-  version: 0.26.3
-  resolution: "tree-sitter-cli@npm:0.26.3"
+"tree-sitter-cli@npm:^0.26.5":
+  version: 0.26.5
+  resolution: "tree-sitter-cli@npm:0.26.5"
   bin:
     tree-sitter: cli.js
-  checksum: 10/b0a985b2c65653ba40e9443c24945fce7e0b6f6d877e61cc0b9b5d0b97178e7f278c27d6257f91bdf487a9dfede5ec1045463257c6774e137aac0edcbfa3b2a4
+  checksum: 10/546b8e959312748510399b8bb33d56b22a45c6a7390c07042b82d6508e065e082f02f51760601cfefa26eb4830bdbb6198fb148c6b0a7d1d30d9ab49527cb468
   languageName: node
   linkType: hard
 
@@ -1414,10 +1414,10 @@ __metadata:
   resolution: "tree-sitter-t32@workspace:."
   dependencies:
     node-addon-api: "npm:^8.5.0"
-    node-gyp: "npm:^12.1.0"
+    node-gyp: "npm:^12.2.0"
     node-gyp-build: "npm:^4.8.4"
     prebuildify: "npm:^6.0.1"
-    tree-sitter-cli: "npm:^0.26.3"
+    tree-sitter-cli: "npm:^0.26.5"
   peerDependencies:
     tree-sitter: ^0.25.0
   peerDependenciesMeta:
