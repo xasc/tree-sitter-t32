@@ -914,12 +914,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-addon-api@npm:^8.5.0":
-  version: 8.5.0
-  resolution: "node-addon-api@npm:8.5.0"
+"node-addon-api@npm:^8.6.0":
+  version: 8.6.0
+  resolution: "node-addon-api@npm:8.6.0"
   dependencies:
     node-gyp: "npm:latest"
-  checksum: 10/9a893f4f835fbc3908e0070f7bcacf36e37fd06be8008409b104c30df4092a0d9a29927b3a74cdbc1d34338274ba4116d597a41f573e06c29538a1a70d07413f
+  checksum: 10/2b2c205d7d0af088e3bd7eb1afbdedf83844b34af8910d0a2bd4122d9962125d5590955702527b4ebd3fb8c751fc31ac04daf04b6fbe270c2e9930e06b89762f
   languageName: node
   linkType: hard
 
@@ -1400,12 +1400,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tree-sitter-cli@npm:^0.26.5":
-  version: 0.26.5
-  resolution: "tree-sitter-cli@npm:0.26.5"
+"tree-sitter-cli@npm:^0.26.6":
+  version: 0.26.6
+  resolution: "tree-sitter-cli@npm:0.26.6"
   bin:
     tree-sitter: cli.js
-  checksum: 10/546b8e959312748510399b8bb33d56b22a45c6a7390c07042b82d6508e065e082f02f51760601cfefa26eb4830bdbb6198fb148c6b0a7d1d30d9ab49527cb468
+  checksum: 10/fc48084e411b07906bc6bb303949a1376e48788169ea4b037e1761e1e0b2b3a7b884c2a9ba3975704be931e5c734c4bc6c1fc81c9dad85085f2f83d3eb61c6dc
   languageName: node
   linkType: hard
 
@@ -1413,11 +1413,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "tree-sitter-t32@workspace:."
   dependencies:
-    node-addon-api: "npm:^8.5.0"
+    node-addon-api: "npm:^8.6.0"
     node-gyp: "npm:^12.2.0"
     node-gyp-build: "npm:^4.8.4"
     prebuildify: "npm:^6.0.1"
-    tree-sitter-cli: "npm:^0.26.5"
+    tree-sitter-cli: "npm:^0.26.6"
   peerDependencies:
     tree-sitter: ^0.25.0
   peerDependenciesMeta:
