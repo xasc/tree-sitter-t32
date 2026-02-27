@@ -9,7 +9,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "tree-sitter-t32"
 description = "Lauterbach TRACE32® script language grammar for Tree-sitter"
-version = "7.2.2"
+version = "7.2.3"
 keywords = [
   "lexer",
   "incremental",
