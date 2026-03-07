@@ -1,0 +1,18 @@
+Nname: Create release
+
+on:
+  push:
+    tags: ["v*"]
+
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  id-token: write
+  attestations: write
+
+jobs:
+  release:
+    uses: tree-sitter/workflows/.github/workflows/release.yml@main
