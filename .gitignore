@@ -12,6 +12,7 @@
 !.yarn/versions
 
 build/
+node_modules/
 prebuilds/
 samples/
 src/*.o
