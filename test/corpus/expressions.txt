@@ -50,7 +50,7 @@ PARAMETERS &_myvalue1 &my_Value2
 
 ENTRY &parameter
 
-RETURNVALUES &FIRST &(second)
+RETURNVALUES "&FIRST" "&(second)"
 
 ENTRY %LInE &params
 
@@ -68,8 +68,10 @@ ENTRY &first %LINE &rest
     macro: (macro))
   (parameter_declaration
     command: (identifier)
-    macro: (macro)
-    macro: (macro))
+    macro: (string
+      (macro))
+    macro: (string
+      (macro)))
   (parameter_declaration
     command: (identifier)
     (identifier)

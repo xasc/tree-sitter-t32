@@ -214,6 +214,14 @@
 (parameter_declaration
   command: (identifier) @keyword
   (identifier)? @constant.builtin
+  macro: [
+      (macro) @variable.parameter
+      (string (macro) @variable.parameter)
+  ])
+
+(parameter_declaration
+  command: (identifier) @keyword
+  (identifier)? @constant.builtin
   macro: (macro) @variable.parameter)
 
 ; Control flow

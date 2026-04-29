@@ -193,8 +193,35 @@ static bool IsSign(
 }
 
 
+static bool IsBracedMacro(
+	TSLexer *const lexer)
+{
+	assert(lexer != NULL && (lexer->lookahead == '(' || lexer->lookahead == '{'));
+
+	Advance(lexer);
+
+	/* PRACTICE macros may not start with a number */
+	if (IsEof(lexer) || !IsAlpha(lexer->lookahead)) {
+		return false;
+	}
+
+	while (IsAlphaNum(lexer->lookahead)) {
+		Advance(lexer);
+
+		if (IsEof(lexer)) {
+			return false;
+		}
+	}
+
+	if (lexer->lookahead == ')' || lexer->lookahead == '}') {
+		return true;
+	}
+	return false;
+}
+
+
 static unsigned ScanLengthLabelIdentifier(
-	TSLexer * lexer)
+	TSLexer *const lexer)
 {
 	assert(lexer != NULL);
 
@@ -216,7 +243,7 @@ static unsigned ScanLengthLabelIdentifier(
 
 
 static void ScanIdentifier(
-	TSLexer * lexer)
+	TSLexer *const lexer)
 {
 	assert(lexer != NULL);
 
@@ -843,9 +870,14 @@ bool tree_sitter_t32_external_scanner_scan(
 	}
 	else if (valid_symbols[AMPERSAND_CHAR] && lexer->lookahead == '&') {
 		Advance(lexer);
+		MarkEnd(lexer);
 
 		/* PRACTICE macros may not start with a number */
-		if (IsEof(lexer) || IsAlpha(lexer->lookahead)) {
+		if (
+			IsEof(lexer) ||
+			IsAlpha(lexer->lookahead) ||
+			((lexer->lookahead == '(' || lexer->lookahead == '{') && IsBracedMacro(lexer))
+		) {
 			return false;
 		}
 		lexer->result_symbol = AMPERSAND_CHAR;

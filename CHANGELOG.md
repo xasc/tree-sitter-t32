@@ -11,6 +11,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+
+- Changed highlights query for `(parameter_declaration)` nodes. The command
+  `RETURNVALUES` is only accepting strings as arguments.
+
+### Fixed
+
+- Fix syntax for command `RETURNVALUES`. Its parameters need to be contained in
+  a `(string)` node.
+- Fix detection of nested macros that use parenthesized notation inside
+  `(string)` nodes.
+
 ## [7.2.6] - 2026-04-02
 
 ### Added
