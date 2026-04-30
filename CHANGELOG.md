@@ -4,19 +4,23 @@ SPDX-FileCopyrightText: 2022 Christoph Sax <c_sax@mailbox.org>
 SPDX-License-Identifier: MIT
 -->
 
-# Changelog
+Changelog
+=========
 
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+
+[Unreleased]
+------------
 
 ### Changed
 
 - Changed highlights query for `(parameter_declaration)` nodes. The command
   `RETURNVALUES` is only accepting strings as arguments.
+- Reformatted query files.
 
 ### Fixed
 
@@ -25,20 +29,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix detection of nested macros that use parenthesized notation inside
   `(string)` nodes.
 
-## [7.2.6] - 2026-04-02
+
+[7.2.6] - 2026-04-02
+--------------------
 
 ### Added
 
 - Switch to Tree-sitter v0.26.8
 - Add GitHub workflow for checking the included queries.
 
-## [7.2.5] - 2026-03-07
+
+[7.2.5] - 2026-03-07
+--------------------
 
 ### Fixed
 
 - Fix release tagging.
 
-## [7.2.4] - 2026-03-07
+
+[7.2.4] - 2026-03-07
+--------------------
 
 ### Added
 
@@ -48,25 +58,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Disabled GitLab publishing.
 
-## [7.2.3] - 2026-02-27
+
+[7.2.3] - 2026-02-27
+--------------------
 
 ### Added
 
 - Switch to Tree-sitter v0.26.6
 
-## [7.2.2] - 2026-02-07
+
+[7.2.2] - 2026-02-07
+--------------------
 
 ### Added
 
 - Switch to Tree-sitter v0.26.5
 
-## [7.2.1] - 2025-12-19
+
+[7.2.1] - 2025-12-19
+--------------------
 
 ### Fixed
 
 - Fix release tagging.
 
-## [7.2.0] - 2025-12-19
+
+[7.2.0] - 2025-12-19
+--------------------
 
 ### Added
 
@@ -81,25 +99,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Detection of ampersand operators in expressions with parenthesized `(macro)`
   nodes.
 
-## [7.1.4] - 2025-12-17
+
+[7.1.4] - 2025-12-17
+--------------------
 
 ### Fixed
 
 - Use newer Debian version for CI builds
 
-## [7.1.3] - 2025-12-16
+
+[7.1.3] - 2025-12-16
+--------------------
 
 ### Added
 
 - Switch to Tree-sitter v0.26.3
 
-## [7.1.2] - 2025-11-19
+
+[7.1.2] - 2025-11-19
+--------------------
 
 ### Fixed
 
 - Fix parsing of `(option_expression)` enclosed in parentheses.
 
-## [7.1.1] - 2025-11-14
+
+[7.1.1] - 2025-11-14
+--------------------
 
 ### Added
 
@@ -110,26 +136,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Remove `(trace32_hll_variable)` references from readme.
 - Fix update of parser version in `src/parser.c`.
 
-## [7.1.0] - 2025-11-13
+
+[7.1.0] - 2025-11-13
+--------------------
 
 ### Changed
 
 - `(option_expression)` can handle complex values with expressions.
   Accepted expressions differ for commands with and without HLL support.
 
-## [7.0.2] - 2025-11-12
+
+[7.0.2] - 2025-11-12
+--------------------
 
 ### Fixed
 
 - Fix Node.js package CI builds.
 
-## [7.0.1] - 2025-11-12
+
+[7.0.1] - 2025-11-12
+--------------------
 
 ### Fixed
 
 - Fix Python package CI builds.
 
-## [7.0.0] - 2025-11-11
+
+[7.0.0] - 2025-11-11
+--------------------
 
 ### Added
 
@@ -156,56 +190,74 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   the more generic type. Ultimately, the decision of whether a symbol is a
   TRACE32 internal HLL variable needs to be made at a higher level.
 
-## [6.0.10] - 2025-10-15
+
+[6.0.10] - 2025-10-15
+---------------------
 
 ### Fixed
 
 - Fixed CI pipeline definitions for GitLab.
 
-## [6.0.9] - 2025-10-15
+
+[6.0.9] - 2025-10-15
+--------------------
 
 ### Fixed
 
 - Include build artifacts (prebuilds, WebAssembly module) in Node.js package.
 
-## [6.0.8] - 2025-09-28
+
+[6.0.8] - 2025-09-28
+--------------------
 
 ### Fixed
 
 - Install missing curl dependency for CI.
 
-## [6.0.7] - 2025-09-28
+
+[6.0.7] - 2025-09-28
+--------------------
 
 ### Fixed
 
 - Use GitLab package registry for artifact publishing.
 
-## [6.0.6] - 2025-09-28
+
+[6.0.6] - 2025-09-28
+--------------------
 
 ### Fixed
 
 - Fixed release artifact publishing.
 
-## [6.0.5] - 2025-09-28
+
+[6.0.5] - 2025-09-28
+--------------------
 
 ### Fixed
 
 - Fixed release artifact publishing.
 
-## [6.0.4] - 2025-09-28
+
+[6.0.4] - 2025-09-28
+--------------------
 
 ### Added
 
 - Publish Node.js package with prebuilt binaries.
 - Automatically create releases with WebAssembly module on GitLab.
 
-## [6.0.3] - 2025-09-26
+
+[6.0.3] - 2025-09-26
+--------------------
 
 ### Added
 
 - Add GitLab CI builds for publishing Node.js packages on npm.
 
-## [6.0.2] - 2025-09-26
+
+[6.0.2] - 2025-09-26
+--------------------
 
 ### Added
 
@@ -221,13 +273,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Dropped `(comment)` limitation from readme file.
 
-## [6.0.1] - 2025-07-18
+
+[6.0.1] - 2025-07-18
+--------------------
 
 ### Added
 
 - Bump package version.
 
-## [6.0.0] - 2025-07-18
+
+[6.0.0] - 2025-07-18
+--------------------
 
 ### Changed
 
@@ -238,20 +294,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed parsing errors for `(string)` nodes that contain `//` or `;`.
 
-## [5.5.5] - 2025-07-17
+
+[5.5.5] - 2025-07-17
+--------------------
 
 ### Added
 
 - Add GitLab CI builds for Python sdist package
 - Add GitLab CI builds for Rust package
 
-## [5.5.4] - 2025-07-16
+
+[5.5.4] - 2025-07-16
+--------------------
 
 ### Added
 
 - Automated GitLab CI builds for Python package (Linux & Windows)
 
-## [5.5.3] - 2025-07-13
+
+[5.5.3] - 2025-07-13
+--------------------
 
 ### Added
 
@@ -262,7 +324,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Reduce number of conflicts for `(if_block)` and `(else_block)`. The capture range
   after `(if_block)` is now clearly defined.
 
-## [5.5.2] - 2025-07-11
+
+[5.5.2] - 2025-07-11
+--------------------
 
 ### Added
 
@@ -273,7 +337,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix capture range for `(if_block)` expressions. Empty lines after the block
   are no longer considered part of the expression anymore.
 
-## [5.5.1] - 2025-05-30
+
+[5.5.1] - 2025-05-30
+--------------------
 
 ### Added
 
@@ -284,14 +350,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix detection of unquoted `(path)` expressions with interposed `(macro)`
   nodes.
 
-## [5.5.0] - 2025-05-08
+
+[5.5.0] - 2025-05-08
+--------------------
 
 ### Added
 
 - Allow use of unquoted scope resolution operator (`::`) for namespaces, method names,
   etc. in `(symbol)` nodes.
 
-## [5.4.3] - 2025-04-28
+
+[5.4.3] - 2025-04-28
+--------------------
 
 ### Fixed
 
@@ -299,19 +369,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Shorten regular expression patterns for commands with identical long and short
   forms.
 
-## [5.4.2] - 2025-03-08
+
+[5.4.2] - 2025-03-08
+--------------------
 
 ### Added
 
 - Switch to Tree-sitter v0.25.3
 
-## [5.4.1] - 2025-02-08
+
+[5.4.1] - 2025-02-08
+--------------------
 
 ### Added
 
 - Update Tree-sitter dependency for language bindings
 
-## [5.4.0] - 2025-02-08
+
+[5.4.0] - 2025-02-08
+--------------------
 
 ### Added
 
@@ -319,25 +395,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Switch to Tree-sitter v0.25.1
 - Add Zig language bindings
 
-## [5.0.3] - 2025-01-17
+
+[5.0.3] - 2025-01-17
+--------------------
 
 ### Added
 
 - Switch to Tree-sitter v0.24.7
 
-## [5.0.2] - 2024-12-05
+
+[5.0.2] - 2024-12-05
+--------------------
 
 ### Fixed
 
 - Allow `(recursive_macro_expansion)` on left side of assignment expressions.
 
-## [5.0.1] - 2024-12-01
+
+[5.0.1] - 2024-12-01
+--------------------
 
 ### Fixed
 
 - Fix incorrect command range in `Var` function expressions and commands.
 
-## [5.0.0] - 2024-11-30
+
+[5.0.0] - 2024-11-30
+--------------------
 
 ### Added
 
@@ -356,26 +440,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Do not accept comma as command option delimiter.
 - Allow multiple spaces between option and its value.
 
-## [4.0.2] - 2024-11-26
+
+[4.0.2] - 2024-11-26
+--------------------
 
 ### Fixed
 
 - Fix `labeled_expression` that are continued with an indented command.
 
-## [4.0.1] - 2024-11-11
+
+[4.0.1] - 2024-11-11
+--------------------
 
 ### Changed
 
 - Update language bindings.
 
-## [4.0.0] - 2024-10-23
+
+[4.0.0] - 2024-10-23
+--------------------
 
 ### Changed
 
 - `RePeaT` blocks with post condition capture the `WHILE` keyword as `(command)`, so that highlights are
   correctly applied.
 
-## [3.0.0] - 2024-04-13
+
+[3.0.0] - 2024-04-13
+--------------------
 
 ### Added
 
@@ -391,20 +483,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fix Node.js CI builds.
 
-## [2.8.1] - 2024-03-23
+
+[2.8.1] - 2024-03-23
+--------------------
 
 ### Fixed
 
 - Fix build errors for Rust language bindings.
 
-## [2.8.0] - 2024-03-23
+
+[2.8.0] - 2024-03-23
+--------------------
 
 ### Added
 
 - Language bindings for C, Go, Python, and Swift.
 - Switch to Tree-sitter v0.22
 
-## [2.7.0] - 2024-03-03
+
+[2.7.0] - 2024-03-03
+--------------------
 
 ### Added
 
@@ -418,20 +516,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Remove unnecessary conflict resolution for node `(hll_pointer_declarator)`.
 
-## [2.6.2] - 2023-11-15
+
+[2.6.2] - 2023-11-15
+--------------------
 
 ### Fixed
 
 - Logical AND operators with parenthesized on right hand side are parsed
   without error.
 
-## [2.6.1] - 2023-10-25
+
+[2.6.1] - 2023-10-25
+--------------------
 
 ### Fixed
 
 - Commands including the device prefix `B::` are not mixed up with `(labeled_expression)`.
 
-## [2.6.0] - 2023-09-27
+
+[2.6.0] - 2023-09-27
+--------------------
 
 ### Added
 
@@ -442,14 +546,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `Var` commands with string as first parameter.
 
-## [2.5.0] - 2023-09-17
+
+[2.5.0] - 2023-09-17
+--------------------
 
 ### Added
 
 - Support `(symbol)` nodes with `\<line number>\<column number>\<instance number>` postfix.
 - Support `(symbol)` nodes with file path as replacement for module name.
 
-## [2.4.0] - 2023-09-13
+
+[2.4.0] - 2023-09-13
+--------------------
 
 ### Changed
 
@@ -461,7 +569,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix parsing of `(block)`, `(if_block)`, `(while_block)` and `(repeat_block)` nodes with
   additional line breaks.
 
-## [2.3.0] - 2023-09-07
+
+[2.3.0] - 2023-09-07
+--------------------
 
 ### Changed
 
@@ -471,7 +581,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Comments end at line break
 
-## [2.2.1] - 2023-08-02
+
+[2.2.1] - 2023-08-02
+--------------------
 
 ### Fixed
 
@@ -481,20 +593,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Detect `(string)` nodes in arguments of host commands
 
-## [2.2.0] - 2023-07-29
+
+[2.2.0] - 2023-07-29
+--------------------
 
 ### Changed
 
 - Reduce number of highlighting queries for variables in HLL expressions.
   A single `(identifier) @variable` capture is sufficient.
 
-## [2.1.1] - 2023-07-27
+
+[2.1.1] - 2023-07-27
+--------------------
 
 ### Fixed
 
 - Revert highlighting of PRACTICE function call expressions back to `@function.builtin`
 
-## [2.1.0] - 2023-07-23
+
+[2.1.0] - 2023-07-23
+--------------------
 
 ### Added
 
@@ -510,7 +628,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fix highlighting of `(identifier)` nodes as variables.
 
-## [2.0.0] - 2023-07-23
+
+[2.0.0] - 2023-07-23
+--------------------
 
 ### Added
 
@@ -530,13 +650,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Nodes `(c_type_declaration)`, `(c_subscript_expression)`,
   `(c_cast_expression)`, `(c_field_expression)`, `(internal_c_variable)`, `(type_identifier)`, `(c_pointer_expression)` and `(c_field_expression)` were removed.
 
-## [1.3.2] - 2023-05-10
+
+[1.3.2] - 2023-05-10
+--------------------
 
 ### Fixed
 
 - Fix Microsoft Visual C/C++ Compiler builds.
 
-## [1.3.1] - 2023-05-09
+
+[1.3.1] - 2023-05-09
+--------------------
 
 ### Added
 
@@ -546,7 +670,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fix syntax highlighting of `ENTRY %LINE`.
 
-## [1.3.0] - 2023-04-27
+
+[1.3.0] - 2023-04-27
+--------------------
 
 ### Added
 
@@ -568,13 +694,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix detection CPU names with hyphens.
 - Fix detection of standalone access classes, e.g. `N:` or `Z:`.
 
-## [1.2.1] - 2022-12-16
+
+[1.2.1] - 2022-12-16
+--------------------
 
 ### Fixed
 
 - Fix Microsoft Visual C/C++ Compiler builds.
 
-## [1.2.0] - 2022-11-16
+
+[1.2.0] - 2022-11-16
+--------------------
 
 ### Added
 
@@ -597,7 +727,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fix capture names in locals query.
 
-## [1.1.0] - 2022-11-06
+
+[1.1.0] - 2022-11-06
+--------------------
 
 ### Added
 
@@ -618,7 +750,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix parsing of nested blocks, if statements and comments.
 - Fix detection of macros in complex expressions.
 
-## [1.0.0] - 2022-11-05
+
+[1.0.0] - 2022-11-05
+--------------------
 
 ### Added
 
