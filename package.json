@@ -49,7 +49,7 @@
     "prebuildify": "^6.0.1",
     "tree-sitter-cli": "^0.26.8"
   },
-  "packageManager": "yarn@4.13.0",
+  "packageManager": "yarn@4.14.1",
   "main": "bindings/node",
   "types": "bindings/node",
   "peerDependenciesMeta": {
@@ -59,7 +59,7 @@
   },
   "dependencies": {
     "node-addon-api": "^8.7.0",
-    "node-gyp": "^12.2.0",
+    "node-gyp": "^12.3.0",
     "node-gyp-build": "^4.8.4"
   },
   "peerDependencies": {
