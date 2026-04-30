@@ -1,7 +1,7 @@
-;;; SPDX-FileCopyrightText: 2022 Christoph Sax <c_sax@mailbox.org>
-;;;
-;;; SPDX-License-Identifier: MIT
-
+; SPDX-FileCopyrightText: 2022 Christoph Sax <c_sax@mailbox.org>
+;
+; SPDX-License-Identifier: MIT
+;
 ; Subroutine definitions
 (subroutine_block
   command: (identifier)

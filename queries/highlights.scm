@@ -1,7 +1,7 @@
-;;; SPDX-FileCopyrightText: 2022 Christoph Sax <c_sax@mailbox.org>
-;;;
-;;; SPDX-License-Identifier: MIT
-
+; SPDX-FileCopyrightText: 2022 Christoph Sax <c_sax@mailbox.org>
+;
+; SPDX-License-Identifier: MIT
+;
 ; Keywords, punctuation and operators
 [
   "="
@@ -26,13 +26,10 @@
   ".."
   "--"
   "++"
-  "+"
-  "-"
   "~"
   "!"
   "&"
   "->"
-  "*"
   "-="
   "+="
   "*="
@@ -43,8 +40,6 @@
   "^="
   ">>="
   "<<="
-  "--"
-  "++"
 ] @operator
 
 [
@@ -80,9 +75,9 @@
 
 (hll_conditional_expression
   [
-   "?"
-   ":"
-] @conditional.ternary)
+    "?"
+    ":"
+  ] @conditional.ternary)
 
 ; Strings and others literal types
 (access_class) @constant.builtin
@@ -128,6 +123,7 @@
 
 ; HLL variables
 (identifier) @variable
+
 (hll_field_identifier) @field
 
 ; HLL call expressions
@@ -139,23 +135,23 @@
     field: (hll_field_identifier) @function.call))
 
 ; Commands
-(command_expression command: (identifier) @keyword)
-(macro_definition command: (identifier) @keyword)
+(command_expression
+  command: (identifier) @keyword)
+
+(macro_definition
+  command: (identifier) @keyword)
 
 (call_expression
   function: (identifier) @function.builtin)
 
 ; Returns
-(
-  (command_expression
-    command: (identifier) @keyword.return)
-  (#match? @keyword.return "^[eE][nN][dD]([dD][oO])?$")
-)
-(
-  (command_expression
-    command: (identifier) @keyword.return)
-  (#match? @keyword.return "^[rR][eE][tT][uU][rR][nN]$")
-)
+((command_expression
+  command: (identifier) @keyword.return)
+  (#match? @keyword.return "^[eE][nN][dD]([dD][oO])?$"))
+
+((command_expression
+  command: (identifier) @keyword.return)
+  (#match? @keyword.return "^[rR][eE][tT][uU][rR][nN]$"))
 
 ; Subroutine calls
 (subroutine_call_expression
@@ -170,27 +166,22 @@
 (argument_list
   (identifier) @constant.builtin)
 
-(
-  (argument_list (identifier) @constant.builtin)
-  (#match? @constant.builtin "^[%/][a-zA-Z][a-zA-Z0-9.]*$")
-)
+((argument_list
+  (identifier) @constant.builtin)
+  (#match? @constant.builtin "^[%/][a-zA-Z][a-zA-Z0-9.]*$"))
 
-(
-  (symbol) @constant
-  (#match? @constant "^\\\\\\\\\\\\[^\\\\]*(\\\\\\\\[^\\\\]*)?(\\\\[^\\\\]*)?$")
-)
+((symbol) @constant
+  (#match? @constant "^\\\\\\\\\\\\[^\\\\]*(\\\\\\\\[^\\\\]*)?(\\\\[^\\\\]*)?$"))
 
-(
-  (symbol) @constant
-  (#match? @constant "^\\\\\\\\[^\\\\]*(\\\\[^\\\\]*)?$")
-)
+((symbol) @constant
+  (#match? @constant "^\\\\\\\\[^\\\\]*(\\\\[^\\\\]*)?$"))
 
-(
-  (command_expression
-    command: (identifier) @keyword
-    arguments: (argument_list . (identifier) @label))
-  (#match? @keyword "^[gG][oO][tT][oO]$")
-)
+((command_expression
+  command: (identifier) @keyword
+  arguments: (argument_list
+    .
+    (identifier) @label))
+  (#match? @keyword "^[gG][oO][tT][oO]$"))
 
 (labeled_expression
   label: (identifier) @label)
@@ -228,13 +219,16 @@
 ; Control flow
 (if_block
   command: (identifier) @conditional)
+
 (elif_block
   command: (identifier) @conditional)
+
 (else_block
   command: (identifier) @conditional)
 
 (while_block
   command: (identifier) @repeat)
+
 (repeat_block
   command: (identifier) @repeat)
 
