@@ -215,8 +215,9 @@
   command: (identifier) @keyword
   (identifier)? @constant.builtin
   macro: [
-      (macro) @variable.parameter
-      (string (macro) @variable.parameter)
+    (macro) @variable.parameter
+    (string
+      (macro) @variable.parameter)
   ])
 
 (parameter_declaration
