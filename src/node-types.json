@@ -4785,6 +4785,10 @@
           {
             "type": "macro",
             "named": true
+          },
+          {
+            "type": "string",
+            "named": true
           }
         ]
       }
