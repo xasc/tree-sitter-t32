@@ -13,7 +13,7 @@ ENTRY %LINE &salt
 IF "&password"==""
 ; <- conditional
 ;  ^ string
-;    ^ variable.parameter
+;    ^ variable.builtin
 ;             ^ operator
 (
     ECHO "Failed to provide password."
@@ -59,7 +59,7 @@ LOCAL &num
 RePeaT &num PRINT "Password: &password"
 ; <- repeat
 ;       ^ variable.builtin
-;                             ^ variable.parameter
+;                             ^ variable.builtin
 
 RePeaT
 ; <- repeat
@@ -91,10 +91,11 @@ fail:
 verify_password:
 ; <- function
 (
-    PARAMETERS &password
+    PARAMETERS &password &salt
 ;               ^ variable.parameter
+;                        ^ variable.parameter
 
-    SYStem.Option.KEYCODE "&password"
+    SYStem.Option.KEYCODE "&(salt)&password"
     SYStem.JtagClock  1kHz
 ;                     ^ float
     SYStem.Mode.Attach
