@@ -26,6 +26,7 @@ steps:
     commands:
       - apt-get update
       - apt-get install --no-install-recommends --yes build-essential
+      - apt install nodejs node-corepack
       - yarn install --immutable
       - yarn run tree-sitter generate
       - yarn run tree-sitter test
