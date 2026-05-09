@@ -27,9 +27,9 @@ steps:
       - apt-get update
       - apt-get install --no-install-recommends --yes build-essential
       - apt install --no-install-recommends --yes nodejs node-corepack
-      - yarn install --immutable
-      - yarn run tree-sitter generate
-      - yarn run tree-sitter test
+      - yarnpkg install --immutable
+      - yarnpkg run tree-sitter generate
+      - yarnpkg run tree-sitter test
     when:
       - event: [push, pull_request, tag]
         path: ['src/*', 'test/*', 'grammar.js', 'package.json', '.woodpecker.yml']
