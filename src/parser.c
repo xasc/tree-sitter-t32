@@ -193030,7 +193030,7 @@ TS_PUBLIC const TSLanguage *tree_sitter_t32(void) {
     .metadata = {
       .major_version = 8,
       .minor_version = 0,
-      .patch_version = 0,
+      .patch_version = 1,
     },
   };
   return &language;
