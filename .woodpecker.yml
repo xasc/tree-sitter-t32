@@ -26,7 +26,7 @@ steps:
     commands:
       - apt-get update
       - apt-get install --no-install-recommends --yes build-essential
-      - apt-get install --no-install-recommends --yes nodejs yarnpkg
+      - apt-get install --no-install-recommends --yes yarnpkg
       - node --version
       - yarnpkg --version
       - yarnpkg install --immutable
