@@ -32,8 +32,8 @@ ELSE
     (
         GOSUB verify_password "&password"
 ;             ^ function.call
-        RETURNVALUES "&pass"
-;                      ^ variable.parameter
+        RETURNVALUES &pass
+;                     ^ variable.parameter
         WAIT 10.ms
 ;            ^ float
     )

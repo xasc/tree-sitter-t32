@@ -469,36 +469,28 @@ module.exports = grammar({
 
     parameter_declaration: $ => seq(
       optional(/(::)?B::/),
-      choice(
-        seq(
-          choice(
-            field('command', alias(longAndShortForm('PARAMETERS'), $.identifier)),
-            seq(
-              field('command', alias(longAndShortForm('ENTRY'), $.identifier)),
-              optional(seq(
-                repeat(seq(
-                  repeat1($._blank),
-                  field('macro', $.macro)
-                )),
-                seq(
-                  repeat1($._blank),
-                  alias(longAndShortForm('%LINE'), $.identifier)
-                )
-              ))
-            )
-          ),
-          repeat1(seq(
-            repeat1($._blank),
-            field('macro', $.macro)
-          ))
-        ),
-        seq(
+      seq(
+        choice(
+          field('command', alias(longAndShortForm('PARAMETERS'), $.identifier)),
           field('command', alias(longAndShortForm('RETURNVALUES'), $.identifier)),
-          repeat1(seq(
-            repeat1($._blank),
-            field('macro', $.string)
-          ))
-        )
+          seq(
+            field('command', alias(longAndShortForm('ENTRY'), $.identifier)),
+            optional(seq(
+              repeat(seq(
+                repeat1($._blank),
+                field('macro', $.macro)
+              )),
+              seq(
+                repeat1($._blank),
+                alias(longAndShortForm('%LINE'), $.identifier)
+              )
+            ))
+          )
+        ),
+        repeat1(seq(
+          repeat1($._blank),
+          field('macro', $.macro)
+        ))
       ),
       $._terminator
     ),

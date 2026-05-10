@@ -20,6 +20,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Highlights queries containing a `(symbol)` node were grouped and reordered.
 
+### Fixed
+
+-  Fix syntax for command `RETURNVALUES`. Its parameters must **not** be
+   contained in a `(string)` node.
+
 
 [8.0.1] - 2026-05-09
 --------------------
