@@ -17,7 +17,7 @@
     }
   ],
   "metadata": {
-    "version": "8.0.1",
+    "version": "9.0.0",
     "license": "MIT",
     "description": "Lauterbach TRACE32® script language grammar for Tree-sitter",
     "authors": [
