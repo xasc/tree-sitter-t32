@@ -2,7 +2,7 @@
 # Manual changes might be lost - proceed with caution!
 
 __metadata:
-  version: 9
+  version: 10
   cacheKey: 10
 
 "@isaacs/cliui@npm:^8.0.2":
@@ -692,12 +692,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-addon-api@npm:^8.7.0":
-  version: 8.7.0
-  resolution: "node-addon-api@npm:8.7.0"
+"node-addon-api@npm:^8.8.0":
+  version: 8.8.0
+  resolution: "node-addon-api@npm:8.8.0"
   dependencies:
     node-gyp: "npm:latest"
-  checksum: 10/a384774d04f019fc32745b9168fab8d4b91df2d7558a57c91e6d87e00acab3c9a08292c074a3c0efb5d4f4adaf1b79cb65c002a3fbcafd8d3d5b3dc91d0ac495
+  checksum: 10/96f5567611674e7bf79c74a2f1844aa48a32124baf7b32e13e90522074934ff7efeb4b04beb673df3aa404b855abf55ba05b79ba46d2f8bf191143d6ce8a2aac
   languageName: node
   linkType: hard
 
@@ -712,9 +712,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-gyp@npm:^12.3.0":
-  version: 12.3.0
-  resolution: "node-gyp@npm:12.3.0"
+"node-gyp@npm:^12.4.0":
+  version: 12.4.0
+  resolution: "node-gyp@npm:12.4.0"
   dependencies:
     env-paths: "npm:^2.2.0"
     exponential-backoff: "npm:^3.1.1"
@@ -728,7 +728,7 @@ __metadata:
     which: "npm:^6.0.0"
   bin:
     node-gyp: bin/node-gyp.js
-  checksum: 10/cd97bf17f0f3e6288c42cc23a6db8528a98e7530abdb72ab558272906d603362e4558069f99f8a5250bc78f65ff305b1438caca4f1b31c81904a8798c242603e
+  checksum: 10/b1f52282398b08ed485f7d93859d45a7bd54f9a3ba8f1e2626ebc2e7e150834c20d90d7f204e07f67c0a88e85c7400d90e01618d7e6d7dd8056bc493821ef181
   languageName: node
   linkType: hard
 
@@ -1096,12 +1096,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tree-sitter-cli@npm:^0.26.8":
-  version: 0.26.8
-  resolution: "tree-sitter-cli@npm:0.26.8"
+"tree-sitter-cli@npm:^0.26.9":
+  version: 0.26.9
+  resolution: "tree-sitter-cli@npm:0.26.9"
   bin:
     tree-sitter: cli.js
-  checksum: 10/ed8628a450c350f0d588c5c24e021e420d68ae2d0a8c6da5fc533ed397c3c071c2a01f49a79333ab594e94770bc45998ac140aca7eb7ffa386881fc6a7723c1a
+  checksum: 10/53adea8e63fc396eb45ff4e33469b0ff456adcc4349ee5614d7d9e40a5401cd29d9404b4b02db052a15253c4a8ac8544d191e3cdd8af62400b11a7826898cf5c
   languageName: node
   linkType: hard
 
@@ -1109,11 +1109,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "tree-sitter-t32@workspace:."
   dependencies:
-    node-addon-api: "npm:^8.7.0"
-    node-gyp: "npm:^12.3.0"
+    node-addon-api: "npm:^8.8.0"
+    node-gyp: "npm:^12.4.0"
     node-gyp-build: "npm:^4.8.4"
     prebuildify: "npm:^6.0.1"
-    tree-sitter-cli: "npm:^0.26.8"
+    tree-sitter-cli: "npm:^0.26.9"
   peerDependencies:
     tree-sitter: ^0.25.0
   peerDependenciesMeta:
