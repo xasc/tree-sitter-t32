@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
    as `(identifier)` nodes. Segments may consist of numbers only.
 -  Fix detection of options with multiple segments inside `(option_expression)`
    nodes.
+-  Improve detection of macros in command or function segments.
 
 
 [9.0.3] - 2026-10-13

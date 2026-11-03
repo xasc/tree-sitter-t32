@@ -604,7 +604,11 @@ module.exports = grammar({
       alias($.identifier, 'command'),
       repeat(seq(
         '.',
-        alias($.identifier, 'subcommand')
+        choice(
+          alias($.identifier, 'subcommand'),
+          $.macro,
+          $.macro_text_expansion
+        ),
       ))
     ),
 
@@ -749,12 +753,12 @@ module.exports = grammar({
       alias($.identifier, 'segment'),
       repeat1(seq(
         '.',
-        alias(choice(
-            $.identifier,
-            /[0-9]+/
-            ),
-            'segment'
-        )
+        choice(
+          alias($.identifier, 'segment'),
+          alias(/[0-9]+/, 'segment'),
+          $.macro,
+          $.macro_text_expansion
+        ),
       ))
     ),
 

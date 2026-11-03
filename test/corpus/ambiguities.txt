@@ -460,3 +460,29 @@ Expressions with parenthesized macros
         (assignment_expression
           (macro)
           (integer))))))
+
+==================
+Macros in command or function segments
+==================
+
+TASK.&(nMachineName).Option MMUCHECK OFF
+PRINT TASK.&(sInfix)Y.O.S(1)
+
+---
+
+(script
+  (command_expression
+    command: (identifier
+      (macro))
+    arguments: (argument_list
+      (identifier)
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (call_expression
+        function: (identifier
+          (macro_text_expansion
+          (macro)))
+        arguments: (argument_list
+          (integer))))))
