@@ -707,7 +707,10 @@ module.exports = grammar({
 
     option_expression: $ => prec(PREC.option, seq(
       '/',
-      field('option', $.identifier),
+      field('option', choice(
+          $.identifier,
+          alias($._segmented_identifier, $.identifier)
+      )),
       optional(seq(
         repeat1($._blank),
         field('value', choice(
@@ -1046,7 +1049,10 @@ module.exports = grammar({
 
     hll_option_expression: $ => prec(PREC.option, seq(
       '/',
-      field('option', $.identifier),
+      field('option', choice(
+          $.identifier,
+          alias($._segmented_identifier, $.identifier)
+      )),
       optional(seq(
         repeat1($._blank),
         field('value', choice(

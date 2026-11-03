@@ -149,6 +149,34 @@ Trace.List DEFault Trigger.0
       (identifier))))
 
 ==================
+Options with segments separated by dots
+==================
+
+Break.Set buffer /Write /DATA.Byte 0x33
+LOG.toAREA ON /ALL /COLOR.GREEN
+
+---
+
+(script
+ (command_expression
+  command: (identifier)
+  arguments: (argument_list
+    (identifier)
+    (option_expression
+     option: (identifier))
+    (option_expression
+     option: (identifier)
+     value: (integer))))
+ (command_expression
+  command: (identifier)
+  arguments: (argument_list
+    (identifier)
+    (option_expression
+     option: (identifier))
+    (option_expression
+     option: (identifier)))))
+
+==================
 WHILE after RePeaT blocks
 ==================
 
