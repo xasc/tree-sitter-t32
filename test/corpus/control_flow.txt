@@ -239,7 +239,6 @@ ELSE
         (command_expression
           command: (identifier))))))
 
-
 ==================
 IF block statements with different indentation
 ==================
@@ -370,7 +369,6 @@ ELSE IF "&dlg_action"=="SET_PRIMARY"
           command: (identifier)
           arguments: (argument_list
             (macro)))))))
-
 
 ==================
 WHILE block statements
@@ -1104,7 +1102,6 @@ Var.WHILE string_array[\i]!='\0'
       arguments: (argument_list
         (hll_update_expression
           argument: (symbol))))))
-
 
 ==================
 Subroutine Calls

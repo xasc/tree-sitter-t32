@@ -103,6 +103,52 @@ SYStem.CONFIG L2CACHE Type L2C-310
       (identifier))))
 
 ==================
+Arguments with segments separated by dots
+==================
+
+PRINT IProbe.GET(ip.V1)
+PRINT PRACTICE.CoMmanD.AVAILable(CACHE.FLUSH.L2)
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (call_expression
+        function: (identifier)
+        arguments: (argument_list
+          (identifier)))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (call_expression
+        function: (identifier)
+        arguments: (argument_list
+          (identifier))))))
+
+==================
+Arguments with number segments separated by dots
+==================
+
+NAME.Set eXt.3 write
+Trace.List DEFault Trigger.0
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)
+      (identifier))))
+
+==================
 WHILE after RePeaT blocks
 ==================
 

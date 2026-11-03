@@ -2,6 +2,7 @@
  * Copyright (c) 2014 Max Brunsfeld
  * SPDX-FileCopyrightText: 2014 Max Brunsfeld
  * SPDX-FileCopyrightText: 2022 Christoph Sax <c_sax@mailbox.org>
+ * SPDX-FileCopyrightText: 2026 Philipp Foth <philipp.foth@lauterbach.com>
  *
  * SPDX-License-Identifier: MIT
  */
@@ -79,7 +80,6 @@ module.exports = grammar({
     [$._address_expression, $._literal],
     [$._binary_expression, $._and_expression],
     [$._command_argument, $.assignment_expression],
-    [$._expression, $._function_identifier],
     [$._expression, $._address_expression],
     [$._hll_declaration_specifiers],
     [$._hll_pointer_declarator_specifier],
@@ -737,19 +737,21 @@ module.exports = grammar({
     call_expression: $ => prec(PREC.call, choice(
       $._hll_var_call_expression,
       seq(
-        field('function', choice(
-          $._expression,
-          alias($._function_identifier, $.identifier)
-        )),
+        field('function', $._expression),
         field('arguments', $.argument_list)
       )
     )),
 
-    _function_identifier: $ => seq(
-      alias($.identifier, 'function'),
-      repeat(seq(
+    _segmented_identifier: $ => seq(
+      alias($.identifier, 'segment'),
+      repeat1(seq(
         '.',
-        alias($.identifier, 'subfunction')
+        alias(choice(
+            $.identifier,
+            /[0-9]+/
+            ),
+            'segment'
+        )
       ))
     ),
 
@@ -2045,6 +2047,7 @@ module.exports = grammar({
       $.macro,
       $.macro_text_expansion,
       $._literal,
+      alias($._segmented_identifier, $.identifier),
       $._parenthesized_expression,
       $._path_expression
     ),
