@@ -93,8 +93,12 @@ Number literals
 &c = 0xA12F
 
 &d = 1.2
-&d = 1.3e+34
 &d = 0.123
+
+&e = 1.3e+34
+&e = 1.3e-34
+&e = 1.4e13
+&e = 1.3E5
 
 ---
 
@@ -114,6 +118,15 @@ Number literals
   (assignment_expression
     left: (macro)
     right: (integer))
+  (assignment_expression
+    left: (macro)
+    right: (float))
+  (assignment_expression
+    left: (macro)
+    right: (float))
+  (assignment_expression
+    left: (macro)
+    right: (float))
   (assignment_expression
     left: (macro)
     right: (float))

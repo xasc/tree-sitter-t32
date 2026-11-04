@@ -1747,7 +1747,7 @@ module.exports = grammar({
       )
     ),
 
-    float: $ => /[0-9]+\.[0-9]+(e[-+][0-9]+)?/,
+    float: $ => /[0-9]+\.[0-9]+([eE][-+]?[0-9]+)?/,
 
     bitmask: $ => choice(
       /0y[0-9xX]+/,  // Bitmask
