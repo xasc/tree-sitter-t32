@@ -190,7 +190,7 @@ static bool IsSpace(
 static bool IsSign(
 	int32_t const glyph)
 {
-	return (glyph == '+' && glyph <= '-');
+	return (glyph == '+' || glyph == '-');
 }
 
 

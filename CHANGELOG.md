@@ -30,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -  Improve detection of macros in command or function segments.
 -  Identifiers starting with a number are correctly detected.
 -  Fix detection of time and floating point literals.
+-  Fix detection of HLL number literals with negative sign or exponent.
 
 
 [9.0.3] - 2026-10-13

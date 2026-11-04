@@ -1349,3 +1349,42 @@ Var.Break.Set func /CONDition (a[0]==func)
             (identifier)
             (hll_number_literal))
           (identifier))))))
+
+==================
+HLl number literals with negative exponents
+==================
+
+Var.set f = 1.0e-5
+Var.set f = 0x1p-3
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_assignment_expression
+        left: (identifier)
+        right: (hll_number_literal))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_assignment_expression
+        left: (identifier)
+        right: (hll_number_literal)))))
+
+==================
+Expression with negative HLL number literal
+==================
+
+Var.set i = -1
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_assignment_expression
+        left: (identifier)
+        right: (hll_number_literal)))))
