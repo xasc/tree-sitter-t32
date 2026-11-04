@@ -1,4 +1,5 @@
 /* SPDX-FileCopyrightText: 2022 Christoph Sax <c_sax@mailbox.org>
+ * SPDX-FileCopyrightText: 2026 Philipp Foth <philipp.foth@lauterbach.com>
  *
  * SPDX-License-Identifier: MIT
  */
@@ -355,6 +356,8 @@ static unsigned ScanLengthDecimalNumber(
 	 * &e = 1.0%
 	 *
 	 * WINPOS A 50%,0
+	 *
+	 * WIDTH 4Lane
 	 */
 	MarkEnd(lexer);
 
@@ -399,6 +402,11 @@ static unsigned ScanLengthDecimalNumber(
 		lexer->lookahead == 'k' || lexer->lookahead == 'm' || lexer->lookahead == 'g' || lexer->lookahead == 'h' ||
 		lexer->lookahead == 'K' || lexer->lookahead == 'M' || lexer->lookahead == 'G' || lexer->lookahead == 'H'
 	) {
+		return 0u;
+	}
+
+	// Identifier starting with a number
+	if (IsAlpha(lexer->lookahead) || lexer->lookahead == '_') {
 		return 0u;
 	}
 

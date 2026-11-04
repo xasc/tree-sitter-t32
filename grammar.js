@@ -39,8 +39,10 @@ const PREC = {
 }
 
 const RE_BIN_HEX_NUMBER = [
-  /0y[0-9]+/,  // Binary
-  /0[xX][0-9a-fA-F]+/,  // Hexadecimal
+  /0y[0-9]+/,  // Binary number
+  /0[xX][0-9a-fA-F]+/,  // Hexadecimal number with prefix
+  /0+[a-fA-F][0-9a-fA-F]*/,  // Hexadecimal number without prefix (2+ digits)
+  /[a-fA-F]+[0-9][0-9a-fA-F]+/,  // Hexadecimal number without prefix (3+ digits)
 ]
 
 const RE_QUOTED_SYMBOL_NAME = /`[^`\n]+`/

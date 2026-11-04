@@ -13,6 +13,57 @@ LINE "3*(32-bit)"
       (string))))
 
 ==================
+Plain hexadecimal numbers
+==================
+
+Register.Set USP 0FEFF
+MAP.BOnchip P:0--0FF
+Data.Set 0x100 %Long 0a05f
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)
+      (integer)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (address
+        access: (access_class)
+        location: (binary_expression
+          left: (integer)
+          right: (integer)))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (integer)
+      (format_expression
+        value: (identifier))
+      (integer))))
+
+==================
+Identifiers starting with a number
+==================
+
+TRACEPORT.LaneCount 4Lane
+CHOOSE A_OR_B
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier))))
+
+==================
 Path literals with operators
 ==================
 

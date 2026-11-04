@@ -16,6 +16,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [Unreleased]
 ------------
 
+### Added
+
+-  Hexadecimal numbers without prefix can be detected, if it is clear that we
+   are dealing with a number.
+
 ### Fixed
 
 -  Fix detection of command and function arguments with multiple segments
@@ -23,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -  Fix detection of options with multiple segments inside `(option_expression)`
    nodes.
 -  Improve detection of macros in command or function segments.
+-  Identifiers starting with a number are correctly detected.
 
 
 [9.0.3] - 2026-10-13
