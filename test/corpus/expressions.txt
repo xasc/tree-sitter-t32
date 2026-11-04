@@ -155,14 +155,26 @@ Time literals
 ==================
 
 &a = 10s
-&a = 10.s
-&a = 23.24ms
-&a = 123us
-&a = 75.0ns
+&b = 10.s
+&c = 23.24ms
+&d = 123us
+&e = 75.0ns
+&f = 50.MS
+&g = 10.uS
+&h = 2.ks
 
 ---
 
 (script
+  (assignment_expression
+    left: (macro)
+    right: (time))
+  (assignment_expression
+    left: (macro)
+    right: (time))
+  (assignment_expression
+    left: (macro)
+    right: (time))
   (assignment_expression
     left: (macro)
     right: (time))
@@ -1193,8 +1205,8 @@ Unary operators
 
 &a= !1
 &a=+&b
-&a= -5.7
-&a= ~1.ms
+&c= -5.7
+&d= ~1.ms
 
 ---
 

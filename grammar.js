@@ -2030,7 +2030,7 @@ module.exports = grammar({
       ))
     )),
 
-    time: $ => /[0-9]+\.?[0-9]*[mnu]*s/,
+    time: $ => /[0-9]+\.?[0-9]*[kKmMnNu]*[sS]/,
 
     frequency: $ => /[0-9]+\.?[0-9]*[kKmMgG]*[hH][zZ]/,
 

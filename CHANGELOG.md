@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
    nodes.
 -  Improve detection of macros in command or function segments.
 -  Identifiers starting with a number are correctly detected.
+-  Fix detection of time literals.
 
 
 [9.0.3] - 2026-10-13
