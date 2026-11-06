@@ -32,6 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -  Identifiers starting with a number are correctly detected.
 -  Fix detection of time and floating point literals.
 -  Fix detection of HLL number literals with negative sign or exponent.
+-  Detect `(identifier)` nodes with `+` or `-` as suffix.
 
 
 [9.0.3] - 2026-10-13

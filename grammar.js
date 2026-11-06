@@ -2023,13 +2023,28 @@ module.exports = grammar({
       )
     ),
 
-    _composed_name: $ => token(seq(
-      /[A-Za-z][A-Za-z0-9]+/,
-      repeat1(seq(
-        '-',
-        /[A-Za-z0-9]+/
+    _composed_name: $ => choice(
+      token(seq(
+        seq(
+          /[A-Za-z][A-Za-z0-9]+/,
+          repeat1(seq(
+          '-',
+          /[A-Za-z0-9]+/
+          )),
+        ),
+        repeat(choice(
+          '+',
+          '-'
+        ))
+      )),
+      token(seq(
+        /[A-Za-z][A-Za-z0-9]+/,
+        choice(
+          '+',
+          '-'
+        )
       ))
-    )),
+    ),
 
     _wildcard_name: $ => seq(
         /(\w+([?]+|[*])|([?]+|[*]))(\w([?]+|[*])?)*/

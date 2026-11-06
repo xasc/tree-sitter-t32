@@ -577,3 +577,30 @@ PRINT TASK.&(sInfix)Y.O.S(1)
           (macro)))
         arguments: (argument_list
           (integer))))))
+
+==================
+Names with trailing plus/minus sign
+==================
+
+SYStem.CPU CYT4BB8-CM0+
+SYStem.CPU ABC-
+&a=&b-0x10+1
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)))
+  (assignment_expression
+    left: (macro)
+    right: (binary_expression
+      left: (binary_expression
+        left: (macro)
+        right: (integer))
+      right: (integer))))

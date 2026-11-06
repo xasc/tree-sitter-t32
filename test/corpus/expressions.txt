@@ -1253,6 +1253,7 @@ Range operator
 &a=teststart--testend
 &a=`main`..`_exit`
 &a=2..4.
+&a=start++end
 
 ---
 
@@ -1298,7 +1299,12 @@ Range operator
     left: (macro)
     right: (binary_expression
       left: (integer)
-      right: (integer))))
+      right: (integer)))
+  (assignment_expression
+    left: (macro)
+    right: (binary_expression
+      left: (identifier)
+      right: (identifier))))
 
 ==================
 Operator precedence
