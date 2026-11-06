@@ -2020,7 +2020,8 @@ module.exports = grammar({
             $.macro_text_expansion
           )
         ))
-      )
+      ),
+      /\.[A-Za-z_]\w*/
     ),
 
     _composed_name: $ => choice(

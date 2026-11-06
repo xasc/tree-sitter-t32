@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -  Hexadecimal numbers without prefix can be detected, if it is clear that we
    are dealing with a number.
 -  Names with `?` and `*` wildcards are parsed as `(identifier)` nodes.
+-  Parse section names as `(symbol)` nodes.
 
 ### Fixed
 
