@@ -428,6 +428,46 @@ List 0xA::0x800
         (integer)))))
 
 ==================
+Names with wildcards vs. multiplication
+==================
+
+SYStem.CPU *ultra*
+Break.PATtern *memory* /Program
+IF !CPUIS(STM32G0???C*)
+  PRINT "a"
+&a=&b*c
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)
+      (option_expression
+        option: (identifier))))
+  (if_block
+    command: (identifier)
+    condition: (unary_expression
+      argument: (call_expression
+        function: (identifier)
+        arguments: (argument_list
+          (identifier))))
+    (command_expression
+      command: (identifier)
+      arguments: (argument_list
+        (string))))
+  (assignment_expression
+    left: (macro)
+    right: (binary_expression
+      left: (macro)
+      right: (identifier))))
+
+==================
 Comments in strings
 ==================
 

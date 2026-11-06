@@ -1623,6 +1623,7 @@ module.exports = grammar({
       $.bitmask,
       $.character,
       alias($._composed_name, $.identifier),
+      alias($._wildcard_name, $.identifier),
       $.file_handle,
       $.float,
       $.frequency,
@@ -2029,6 +2030,10 @@ module.exports = grammar({
         /[A-Za-z0-9]+/
       ))
     )),
+
+    _wildcard_name: $ => seq(
+        /(\w+([?]+|[*])|([?]+|[*]))(\w([?]+|[*])?)*/
+    ),
 
     time: $ => /[0-9]+\.?[0-9]*[kKmMnNu]*[sS]/,
 
