@@ -40,6 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -  Fix detection of HLL number literals with negative sign or exponent.
 -  Detect `(identifier)` nodes with `+` or `-` as suffix.
 -  Recognize `(path)` nodes with forward slashes and drive letter.
+-  Accept both wildcard and dots in `(path)` nodes.
 
 
 [9.0.3] - 2026-10-13

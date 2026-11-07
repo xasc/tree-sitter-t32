@@ -92,6 +92,28 @@ DO ~~~~/../../../env/&environment/practice/load_sym
       (path))))
 
 ==================
+Path literals with wildcards
+==================
+
+GREP "bcnt2" *.* /Word
+DIR *.?mm
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (string)
+      (path)
+      (option_expression
+        option: (identifier))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (path))))
+
+==================
 Addresses with nested expressions
 ==================
 
