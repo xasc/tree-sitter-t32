@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -  Names with `?` and `*` wildcards are parsed as `(identifier)` nodes.
 -  Parse section names as `(symbol)` nodes.
 -  `(option_expression)` with `(path)` option value are picked up.
+-  `(command_expression)` can start with a `(macro)` node.
 
 ### Changed
 

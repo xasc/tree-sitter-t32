@@ -563,7 +563,13 @@ module.exports = grammar({
     ),
 
     command_expression: $ => seq(
-      optional(/(::)?B::/),
+      optional(choice(
+        /(::)?B::/,
+        seq(
+          $.macro,
+          repeat1($._blank)
+        )
+      )),
       choice(
         seq(
           $._var_command,

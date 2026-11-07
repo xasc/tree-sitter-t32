@@ -333,6 +333,34 @@ B::WinPrint.Data.dump 0x1000 /Byte
       option: (identifier)))))
 
 ==================
+Command with prefix macro
+==================
+
+&cmd Go
+&core0 Data.Set SPR:0x3F4 %Long 0x80000000
+&a = 1
+
+---
+
+(script
+  (command_expression
+    (macro)
+    command: (identifier))
+  (command_expression
+    (macro)
+    command: (identifier)
+    arguments: (argument_list
+      (address
+        access: (access_class)
+        location: (integer))
+      (format_expression
+        value: (identifier))
+      (integer)))
+  (assignment_expression
+    left: (macro)
+    right: (integer)))
+
+==================
 Boolean Expressions with parentheses and macros
 ==================
 
