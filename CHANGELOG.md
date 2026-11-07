@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
    are dealing with a number.
 -  Names with `?` and `*` wildcards are parsed as `(identifier)` nodes.
 -  Parse section names as `(symbol)` nodes.
+-  `(option_expression)` with `(path)` option value are picked up.
 
 ### Changed
 
@@ -38,7 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -  Fix detection of time and floating point literals.
 -  Fix detection of HLL number literals with negative sign or exponent.
 -  Detect `(identifier)` nodes with `+` or `-` as suffix.
--  Recognize `(path)` nodes with forward slashes and driver letter.
+-  Recognize `(path)` nodes with forward slashes and drive letter.
 
 
 [9.0.3] - 2026-10-13

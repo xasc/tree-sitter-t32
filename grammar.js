@@ -701,6 +701,7 @@ module.exports = grammar({
       $.identifier,
       $.macro,
       $.macro_text_expansion,
+      $._path_expression,
       $.unary_expression,
       $._literal
     )),

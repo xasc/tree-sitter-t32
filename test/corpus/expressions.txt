@@ -1816,3 +1816,28 @@ Break.Set func /CONDition (&ii==TRUE())
           (call_expression
             (identifier)
             (argument_list)))))))
+
+==================
+Options with paths
+==================
+
+Data.LOAD.Elf foo /RELOC .text
+Data.LOAD.Elf foo /DeBuGInfoFILE foo.bar
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)
+      (option_expression
+        option: (identifier)
+        value: (path))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (identifier)
+      (option_expression
+        option: (identifier)
+        value: (path)))))
