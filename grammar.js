@@ -744,6 +744,7 @@ module.exports = grammar({
     ),
 
     call_expression: $ => prec(PREC.call, choice(
+      $._hll_task_call_expression,
       $._hll_var_call_expression,
       seq(
         field('function', $._expression),
@@ -1004,18 +1005,41 @@ module.exports = grammar({
 
     _var_definition_command_argument_list_format: $ => $.hll_declaration,
 
-    _hll_var_call_expression_function: $ => seq(
-        longAndShortForm('Var'),
-        '.',
-        alias($.identifier, 'subfunction')
+    _hll_task_call_expression: $ => seq(
+      field('function', alias($._hll_task_call_expression_function, $.identifier)),
+      field('arguments', alias($.hll_call_expression_argument_list, $.argument_list))
     ),
 
     _hll_var_call_expression: $ => seq(
       field('function', alias($._hll_var_call_expression_function, $.identifier)),
-      field('arguments', alias($.hll_var_call_expression_argument_list, $.argument_list))
+      field('arguments', alias($.hll_call_expression_argument_list, $.argument_list))
     ),
 
-    hll_var_call_expression_argument_list: $ => seq(
+    _hll_task_call_expression_function: $ => seq(
+        longAndShortForm('TASK'),
+        repeat1(seq(
+          '.',
+          choice(
+            alias($.identifier, 'subfunction'),
+            $.macro,
+            $.macro_text_expansion
+          )
+        ))
+    ),
+
+    _hll_var_call_expression_function: $ => seq(
+        longAndShortForm('Var'),
+        seq(
+          '.',
+          choice(
+            alias($.identifier, 'subfunction'),
+            $.macro,
+            $.macro_text_expansion
+          )
+        )
+    ),
+
+    hll_call_expression_argument_list: $ => seq(
       '(',
       $._hll_expression,
       ')'

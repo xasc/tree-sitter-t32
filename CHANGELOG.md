@@ -23,6 +23,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -  Names with `?` and `*` wildcards are parsed as `(identifier)` nodes.
 -  Parse section names as `(symbol)` nodes.
 
+### Changed
+
+-  Allow HLL expressions as arguments in functions of the `TASK` group.
+
 ### Fixed
 
 -  Fix detection of command and function arguments with multiple segments

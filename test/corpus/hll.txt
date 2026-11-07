@@ -1055,6 +1055,38 @@ Var.Assign \myarr[&i]="&val"
             argument: (identifier)))
         right: (hll_string_literal)))))
 
+==================
+Commands with functions calls from TASK group
+==================
+
+Break.Set TASK.CONFIG(magic[1]) /Write
+PRINT TASK.CONFIG(magic_service[&core])
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (call_expression
+        function: (identifier)
+        arguments: (argument_list
+          (hll_subscript_expression
+            argument: (identifier)
+            index: (hll_number_literal))))
+      (option_expression
+        option: (identifier))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (call_expression
+        function: (identifier)
+        arguments: (argument_list
+          (hll_subscript_expression
+            argument: (identifier)
+            index: (hll_pointer_expression
+              argument: (identifier))))))))
+
 ============================================
 Commands with field accesses
 ============================================
