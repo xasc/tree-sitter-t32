@@ -752,11 +752,11 @@ static bool ScanPathLiteral(
 			scan->has_letters = true;
 		}
 
-		if (ii == 1 && lexer->lookahead == ':') {
+		if (ii == 1u && lexer->lookahead == ':') {
 			scan->has_drive = true;
 		}
-		else if (ii == 2 && scan->has_drive) {
-			scan->has_drive = (lexer->lookahead == '\\');
+		else if (ii == 2u && scan->has_drive) {
+			scan->has_drive = (lexer->lookahead == '\\' || lexer->lookahead == '/');
 		}
 		else if (lexer->lookahead == '*' || lexer->lookahead == '?') {
 			if (scan->seq->num_slashes > 0u || scan->seq->num_backslashes > 0u) {

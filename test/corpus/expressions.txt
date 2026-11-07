@@ -651,6 +651,9 @@ ChDir.DO \practice\*
 EDIT a?.c
 DIR *.obj
 
+PATH c:/t32/tests
+CD.DO C:/T32/demo/arm/flash/stm32f4.cmm
+
 ---
 
 (script
@@ -716,6 +719,14 @@ DIR *.obj
     command: (identifier)
     arguments: (argument_list
       (file_handle)
+      (path)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (path)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
       (path)))
   (command_expression
     command: (identifier)
