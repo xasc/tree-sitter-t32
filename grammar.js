@@ -446,7 +446,7 @@ module.exports = grammar({
       }));
     },
 
-    assignment_expression: $ => prec.right(seq(
+    assignment_expression: $ => prec.left(seq(
       field('left', $._expression),
       repeat($._blank),
       field('operator', '='),

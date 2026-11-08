@@ -663,3 +663,32 @@ SYStem.CPU ABC-
         left: (macro)
         right: (integer))
       right: (integer))))
+
+==================
+Commands with assignment expressions
+==================
+
+DO tc27x.cmm CPU=TC277T PREPAREONLY
+DO i2c.cmm CONTROLLERID=I2C1 DEVICESEL=0x50
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (path)
+      (assignment_expression
+        left: (identifier)
+        right: (identifier))
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (path)
+      (assignment_expression
+        left: (identifier)
+        right: (identifier))
+      (assignment_expression
+        left: (identifier)
+        right: (integer)))))
