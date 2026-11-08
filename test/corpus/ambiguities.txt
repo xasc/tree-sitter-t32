@@ -692,3 +692,27 @@ DO i2c.cmm CONTROLLERID=I2C1 DEVICESEL=0x50
       (assignment_expression
         left: (identifier)
         right: (integer)))))
+
+==================
+Host commands with ampersands and embedded macros
+==================
+
+OS.screen cmd /C echo hi && pause
+OS.Area echo a & echo b
+OS.Area ls &dir/sub "&(name).txt"
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (macro)
+      (string
+        (macro)))))

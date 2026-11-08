@@ -690,19 +690,23 @@ module.exports = grammar({
     )),
 
     _host_command_argument_list_default_format: $ => seq(
-      choice(
-        $.macro,
-        $.string,
-        repeat1(/[^ \t\r\n]/)
-      ),
+      $._host_command_argument,
       repeat(seq(
         repeat1($._blank),
-        choice(
-          $.macro,
-          $.string,
-          repeat1(/[^ \t\r\n]/)
-        )
+        $._host_command_argument
       ))
+    ),
+
+    _host_command_argument: $ => choice(
+      $.string,
+      repeat1(choice(
+        $.macro,
+        /[^ \t\r\n]/,
+      )),
+      seq(
+        $._ampersand_char,
+        optional($._ampersand_char)
+      )
     ),
 
     _command_argument: $ => choice(
@@ -2092,9 +2096,7 @@ module.exports = grammar({
       ))
     ),
 
-    _wildcard_name: $ => seq(
-        /(\w+([?]+|[*])|([?]+|[*]))(\w([?]+|[*])?)*/
-    ),
+    _wildcard_name: $ => /(\w+([?]+|[*])|([?]+|[*]))(\w([?]+|[*])?)*/,
 
     time: $ => /[0-9]+\.?[0-9]*[kKmMnNu]*[sS]/,
 
