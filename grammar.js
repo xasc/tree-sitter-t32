@@ -1479,8 +1479,10 @@ module.exports = grammar({
     )),
 
     hll_declaration: $ => seq(
-      $._hll_declaration_specifiers,
-      repeat($._blank),
+      optional(seq(
+        $._hll_declaration_specifiers,
+        repeat($._blank),
+      )),
       field('declarator', $._hll_declarator)
     ),
 

@@ -30,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 -  Allow HLL expressions as arguments in functions of the `TASK` group.
+-  Internal HLL variables can be defined without type.
 
 ### Fixed
 

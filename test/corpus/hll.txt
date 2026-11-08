@@ -993,6 +993,27 @@ Var.NEWGLOBAL int const * const \c
           declarator: (symbol))))))
 
 ==================
+Internal C-style variable definitions without type
+==================
+
+Var.NEWLOCAL \x
+Var.NEWGLOBAL \counter
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        declarator: (symbol))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_declaration
+        declarator: (symbol)))))
+
+==================
 Commands with TRACE32-internal C-style variables
 ==================
 
