@@ -33,6 +33,96 @@ next:
     command: (identifier)))
 
 ==================
+Labels followed by comments
+==================
+
+first:
+; comment
+PRINT "A"
+
+second:
+  ; comment
+  PRINT "B"
+
+third:
+; comment
+(
+  RETURN
+)
+
+fourth:
+; comment 1
+
+; comment 2
+PRINT "D"
+
+fifth:
+  ; comment 1
+
+  ; comment 2
+  PRINT "E"
+
+sixth:
+; comment 1
+
+; comment 2
+(
+  ; comment 3
+
+  ; comment 4
+  RETURN
+)
+
+---
+
+(script
+  (labeled_expression
+    label: (identifier)
+    (comment))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (string)))
+  (labeled_expression
+    label: (identifier)
+    (comment))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (string)))
+  (labeled_expression
+    label: (identifier)
+    (comment)
+    (block
+      (command_expression
+        command: (identifier))))
+  (labeled_expression
+    label: (identifier)
+    (comment)
+    (comment))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (string)))
+  (labeled_expression
+    label: (identifier)
+    (comment)
+    (comment))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (string)))
+  (labeled_expression
+    label: (identifier)
+    (comment)
+    (comment)
+    (block
+      (comment)
+      (comment)
+      (command_expression
+        command: (identifier)))))
+
+==================
 IF block statements
 ==================
 

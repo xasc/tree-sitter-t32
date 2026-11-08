@@ -197,10 +197,13 @@ module.exports = grammar({
         ),
         seq(
           $._terminator,
-          optional(seq(
-            repeat($.comment),
-            $.block
-          ))
+          repeat($._filler_line),
+          optional($.block)
+        ),
+        seq(
+          $._terminator,
+          repeat1($._filler_line),
+          repeat1($._blank)
         )
       )
     )),

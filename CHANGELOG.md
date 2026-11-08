@@ -45,6 +45,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -  Recognize `(path)` nodes with forward slashes and drive letter.
 -  Accept both wildcard and dots in `(path)` nodes.
 -  Fix use of `(assignment_expression)` as argument inside `(command_expression)`.
+-  Better support for `(comments)` and empty lines after `(labeled_expression)`.
 
 
 [9.0.3] - 2026-10-13
