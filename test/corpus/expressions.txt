@@ -1015,6 +1015,9 @@ OS.Hidden cat &src >> &dst
 OS.Hidden copy /b &a + &b  &c
 OS.OPEN "&ppd/report/index.html"
 
+OS.AREA.Select CMDOUT
+OS.Execute.RELease &h
+
 ---
 
 (script
@@ -1040,7 +1043,14 @@ OS.OPEN "&ppd/report/index.html"
     command: (identifier)
     arguments: (argument_list
       (string
-        (macro)))))
+        (macro))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (macro))))
 
 ==================
 Commands with embedded blocks

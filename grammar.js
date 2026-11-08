@@ -608,10 +608,10 @@ module.exports = grammar({
 
     _host_command_with_default_format: $ => seq(
       longAndShortForm('OS'),
-      seq(
+      repeat1(seq(
         '.',
         alias($.identifier, 'subcommand')
-      )
+      ))
     ),
 
     _other_command: $ => seq(
