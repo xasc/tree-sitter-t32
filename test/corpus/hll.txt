@@ -1370,6 +1370,34 @@ Var.set `class1::operator+(int)\i`
       (symbol))))
 
 ==================
+Extension: Most derived class
+==================
+
+Var.set *[this]
+Var.Set (*[pA]).nb1 = 1
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_pointer_expression
+        argument: (hll_most_derived_class_expression
+          argument: (identifier)))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (hll_assignment_expression
+        left: (hll_field_expression
+          argument: (hll_parenthesized_expression
+            (hll_pointer_expression
+              argument: (hll_most_derived_class_expression
+                argument: (identifier))))
+          field: (hll_field_identifier))
+        right: (hll_number_literal)))))
+
+==================
 Complex HLL option values
 ==================
 

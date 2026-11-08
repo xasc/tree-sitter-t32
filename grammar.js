@@ -1146,6 +1146,7 @@ module.exports = grammar({
       $.hll_string_literal,
       $.hll_char_literal,
       $.hll_parenthesized_expression,
+      $.hll_most_derived_class_expression,
       $.identifier,
       $.symbol
     ),
@@ -1300,6 +1301,12 @@ module.exports = grammar({
         repeat($._blank),
         field('right', $._hll_expression)
     )),
+
+    hll_most_derived_class_expression: $ => seq(
+      '[',
+       field('argument', $._hll_expression),
+      ']'
+    ),
 
     hll_assignment_expression: $ => prec.right(seq(
       field('left', $._hll_assignment_left_expression),
