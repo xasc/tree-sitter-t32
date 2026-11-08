@@ -473,28 +473,32 @@ module.exports = grammar({
 
     parameter_declaration: $ => seq(
       optional(RE_DEVICE_PROMPT),
-      seq(
-        choice(
-          field('command', alias(longAndShortForm('PARAMETERS'), $.identifier)),
-          field('command', alias(longAndShortForm('RETURNVALUES'), $.identifier)),
+      choice(
+        seq(
           seq(
-            field('command', alias(longAndShortForm('ENTRY'), $.identifier)),
-            optional(seq(
-              repeat(seq(
-                repeat1($._blank),
-                field('macro', $.macro)
-              )),
+            choice(
+              field('command', alias(longAndShortForm('PARAMETERS'), $.identifier)),
+              field('command', alias(longAndShortForm('RETURNVALUES'), $.identifier)),
               seq(
-                repeat1($._blank),
-                alias(longAndShortForm('%LINE'), $.identifier)
+                field('command', alias(longAndShortForm('ENTRY'), $.identifier)),
+                optional(seq(
+                  repeat(seq(
+                    repeat1($._blank),
+                    field('macro', $.macro)
+                  )),
+                  seq(
+                    repeat1($._blank),
+                    alias(longAndShortForm('%LINE'), $.identifier)
+                  )
+                ))
               )
-            ))
-          )
-        ),
-        repeat1(seq(
-          repeat1($._blank),
-          field('macro', $.macro)
-        ))
+            )
+          ),
+          repeat(seq(
+            repeat1($._blank),
+            field('macro', $.macro)
+          ))
+        )
       ),
       $._terminator
     ),

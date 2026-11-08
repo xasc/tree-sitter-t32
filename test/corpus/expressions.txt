@@ -81,6 +81,25 @@ ENTRY &first %LINE &rest
     macro: (macro)))
 
 ==================
+Parameter declarations without macros
+==================
+
+ENTRY
+PARAMETERS
+RETURNVALUES  ; discard the return values
+
+---
+
+(script
+  (parameter_declaration
+    command: (identifier))
+  (parameter_declaration
+    command: (identifier))
+  (parameter_declaration
+    command: (identifier)
+    (comment)))
+
+==================
 Number literals
 ==================
 
