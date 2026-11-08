@@ -45,9 +45,10 @@ const RE_BIN_HEX_NUMBER = [
   /[a-fA-F]+[0-9][0-9a-fA-F]+/,  // Hexadecimal number without prefix (3+ digits)
 ]
 
+const RE_DEVICE_PROMPT = /((::)?[BE])?::/
+const RE_MACHINE_PROG_MOD_NAME = /\w+/
 const RE_QUOTED_SYMBOL_NAME = /`[^`\n]+`/
 const RE_UNQUOTED_SYMBOL_NAME = /[a-zA-Z_]\w*/
-const RE_MACHINE_PROG_MOD_NAME = /\w+/
 
 const RE_FUNCTION_NAME = /[a-zA-Z_]\w*(::[a-zA-Z_]\w*)*|`[^`\n]+`/
 const RE_METHOD_NAME = /[a-zA-Z_]\w*(::[a-zA-Z_]\w*)+/
@@ -143,6 +144,7 @@ module.exports = grammar({
     _non_labeled_statement: $ => choice(
       alias($.macro_assignment_expression, $.assignment_expression),
       $.command_expression,
+      $.device_selection,
       $.macro_definition,
       $.macro,
       $.if_block,
@@ -460,7 +462,7 @@ module.exports = grammar({
     ),
 
     macro_definition: $ => seq(
-      optional(/(::)?B::/),
+      optional(RE_DEVICE_PROMPT),
       field('command', alias($.macro_definition_command, $.identifier)),
       repeat1(seq(
         repeat1($._blank),
@@ -470,7 +472,7 @@ module.exports = grammar({
     ),
 
     parameter_declaration: $ => seq(
-      optional(/(::)?B::/),
+      optional(RE_DEVICE_PROMPT),
       seq(
         choice(
           field('command', alias(longAndShortForm('PARAMETERS'), $.identifier)),
@@ -498,7 +500,7 @@ module.exports = grammar({
     ),
 
     subroutine_call_expression: $ => seq(
-      optional(/(::)?B::/),
+      optional(RE_DEVICE_PROMPT),
       field('command', alias(longAndShortForm('GOSUB'), $.identifier)),
       repeat1($._blank),
       field('subroutine', choice(
@@ -564,7 +566,7 @@ module.exports = grammar({
 
     command_expression: $ => seq(
       optional(choice(
-        /(::)?B::/,
+        RE_DEVICE_PROMPT,
         seq(
           $.macro,
           repeat1($._blank)
@@ -584,6 +586,11 @@ module.exports = grammar({
           $._terminator
         )
       )
+    ),
+
+    device_selection: $ => seq(
+        RE_DEVICE_PROMPT,
+        $._terminator
     ),
 
     _host_command: $ => seq(

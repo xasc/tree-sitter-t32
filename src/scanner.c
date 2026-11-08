@@ -838,14 +838,17 @@ bool tree_sitter_t32_external_scanner_scan(
 
 	// Labels must start in the first column
 	if (valid_symbols[LABEL_IDENTIFIER] && lexer->get_column(lexer) == 0u) {
-		bool const starts_with_device_prefix = (lexer->lookahead == 'B');
+		bool const starts_with_device_prefix = (
+			lexer->lookahead == 'B' ||
+			lexer->lookahead == 'E'
+		);
 
 		unsigned const len = ScanLengthLabelIdentifier(lexer);
 		if (len > 0u && lexer->lookahead == ':') {
 			MarkEnd(lexer);
 			Advance(lexer);
 
-			/* B:: is a device prefix at the beginning of commands */
+			/* B:: or E:: are device prompts at the beginning of commands */
 			if (len == 1u && starts_with_device_prefix && lexer->lookahead == ':') {
 				return false;
 			}

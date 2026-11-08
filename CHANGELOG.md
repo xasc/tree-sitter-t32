@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -  Parse section names as `(symbol)` nodes.
 -  `(option_expression)` with `(path)` option value are picked up.
 -  `(command_expression)` can start with a `(macro)` node.
+-  Introduces new `(device_selection)` node for `B::` and `E::` device prompts.
 
 ### Changed
 

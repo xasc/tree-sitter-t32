@@ -1076,6 +1076,32 @@ MYNAME: POS 22. 0. 24. 1.
         (string)))))
 
 ==================
+Commands with device prompt
+==================
+
+B::
+Data.dump 0x1000
+E::
+  E::List.auto
+::
+::B::Register.view
+
+---
+
+(script
+  (device_selection)
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (integer)))
+  (device_selection)
+  (command_expression
+    command: (identifier))
+  (device_selection)
+  (command_expression
+    command: (identifier)))
+
+==================
 Assignment expression
 ==================
 
