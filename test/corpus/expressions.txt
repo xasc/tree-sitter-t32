@@ -675,6 +675,40 @@ Data.dump P:\arm\main+0x20
           right: (integer))))))
 
 ==================
+Address ranges with two access classes
+==================
+
+Data.dump P:0x100--P:0x1ff
+PRINT COVerage.BDONE(P:0x100..P:0x200)
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (address
+        access: (access_class)
+        location: (binary_expression
+          left: (integer)
+          right: (address
+            access: (access_class)
+            location: (integer))))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (call_expression
+        function: (identifier)
+        arguments: (argument_list
+          (address
+            access: (access_class)
+            location: (binary_expression
+              left: (integer)
+              right: (address
+                access: (access_class)
+                location: (integer)))))))))
+
+==================
 Path literals
 ==================
 

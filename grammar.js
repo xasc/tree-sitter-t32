@@ -77,6 +77,7 @@ module.exports = grammar({
     [$.hll_type_descriptor],
     [$.if_block],
     [$.memory_space],
+    [$.memory_space, $.address],
     [$.option_expression],
     [$.hll_option_expression],
     [$.symbol],
@@ -1810,8 +1811,11 @@ module.exports = grammar({
         return prec.left(pre, seq(
           field('left', $._address_expression),
           field('operator', op),
-          field('right', $._address_expression)
-        ))
+          field('right', choice(
+            $.address,
+            $._address_expression
+          )
+        )))
       }));
     },
 

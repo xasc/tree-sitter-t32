@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -  Add `(hll_most_derived_class_expressions)`.
 -  A `(symbol)` can be combined with an `(access_class)` node to form an
    address.
+-  Verbose address ranges with two access classes are resolved.
 
 ### Changed
 
