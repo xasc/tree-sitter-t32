@@ -159,6 +159,7 @@ Commands with multi-part names
 ==================
 
 SYStem.CPU ZYNQ-7000
+SYStem.CPU *ZYNQ?-70?0*0?
 SYStem.CONFIG L2CACHE Type L2C-310
 
 ---
@@ -171,9 +172,15 @@ SYStem.CONFIG L2CACHE Type L2C-310
   (command_expression
     command: (identifier)
     arguments: (argument_list
+      (identifier)))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
       (identifier)
       (identifier)
-      (identifier))))
+      (binary_expression
+        left: (identifier)
+        right: (integer)))))
 
 ==================
 Arguments with segments separated by dots

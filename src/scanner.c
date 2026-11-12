@@ -57,6 +57,9 @@ typedef struct pathScan_s {
 	bool has_letters;
 	sequences_t seq[1];
 	unsigned num_total_slashes;
+	unsigned num_total_backslashes;
+	unsigned num_total_dots;
+	unsigned num_total_tildes;
 }
 pathScan_t;
 
@@ -710,24 +713,23 @@ static bool ScanPathLiteral(
 	bool is_line_continuation = false;
 	bool is_option = false;
 	bool is_symbol = false;
+	bool is_binop = false;
 
 	pathScan_t scan[1] = {{0}};
 
 	unsigned ii = 0u;
 	while (!(IsSpace(lexer->lookahead) || IsEof(lexer))) {
-		if (
-			lexer->lookahead == '(' ||
-			lexer->lookahead == ')' ||
-			lexer->lookahead == '&' ||
-			lexer->lookahead == '%' ||
-			lexer->lookahead == '+' ||
-			lexer->lookahead == '"' ||
-			lexer->lookahead == '`' ||
-			lexer->lookahead == '\'' ||
-			((ii == 0u || scan->seq->num_tildes > 0u) && IsDecimalDigit(lexer->lookahead))
+		if (lexer->lookahead == '(' ||
+		    lexer->lookahead == ')' ||
+		    lexer->lookahead == '&' ||
+		    lexer->lookahead == '%' ||
+		    lexer->lookahead == '+' ||
+		    lexer->lookahead == '"' ||
+		    lexer->lookahead == '`' ||
+		    lexer->lookahead == '\'' ||
+		    ((ii == 0u || scan->seq->num_tildes > 0u) && IsDecimalDigit(lexer->lookahead))
 		) {
-			/*
-			 * Detect expressions containing tilde operators, macros or
+			/* Detect expressions containing tilde operators, macros or
 			 * time literals.
 			 */
 			is_expression = true;
@@ -787,19 +789,44 @@ static bool ScanPathLiteral(
 		if (lexer->lookahead == '/') {
 			scan->num_total_slashes += 1u;
 		}
+		else if (lexer->lookahead == '\\') {
+			scan->num_total_backslashes += 1u;
+		}
+		else if (lexer->lookahead == '.') {
+			scan->num_total_dots += 1u;
+		}
+		else if (lexer->lookahead == '~') {
+			scan->num_total_tildes += 1u;
+		}
 
 		Advance(lexer);
 		ii += 1u;
 	}
 
-	if (scan->seq->num_backslashes > 0u && (lexer->lookahead == '\r' || lexer->lookahead == '\n')) {
+	if (scan->seq->num_backslashes > 0u &&
+	    (lexer->lookahead == '\r' || lexer->lookahead == '\n')
+	) {
 		is_line_continuation = true;
 	}
 	else if (is_option && scan->num_total_slashes != 1u) {
 		is_option = false;
 	}
 
-	if (is_comment || is_line_continuation || is_option || is_symbol) {
+	if (IsSign(lexer->lookahead) &&
+	    scan->num_total_backslashes > 0u &&
+	    scan->num_total_slashes <= 0u &&
+	    scan->num_total_tildes <= 0u &&
+	    scan->num_total_dots <= 0u
+	) {
+		is_binop = true;
+	}
+
+	if (is_comment ||
+	    is_line_continuation ||
+	    is_option ||
+	    is_symbol ||
+	    is_binop
+	) {
 		return false;
 	}
 

@@ -581,6 +581,10 @@ module.exports = grammar({
       )),
       choice(
         seq(
+          $._cpu_selection_command,
+          $._terminator
+        ),
+        seq(
           $._var_command,
           $._terminator
         ),
@@ -633,6 +637,18 @@ module.exports = grammar({
         ),
       ))
     ),
+
+    _cpu_selection_command: $ => seq(
+      field('command', alias(token(seq(
+         longAndShortForm('SYStem'),
+         '.',
+         longAndShortForm('CPU')
+       )), $.identifier)),
+       repeat1($._blank),
+       field('arguments', optional(alias($._cpu_selection_command_arguments, $.argument_list))),
+    ),
+
+    _cpu_selection_command_arguments: $ => alias(/[*+\w\?-]+/, $.identifier),
 
     _command_arguments: $ => seq(choice(
       seq(
@@ -1680,7 +1696,6 @@ module.exports = grammar({
       $.address,
       $.bitmask,
       $.character,
-      alias($._composed_name, $.identifier),
       alias($._wildcard_name, $.identifier),
       $.file_handle,
       $.float,
@@ -1694,9 +1709,11 @@ module.exports = grammar({
     ),
 
     _address_expression: $ => choice(
+      $.identifier,
       $.integer,
       $.macro,
       $.macro_text_expansion,
+      $.symbol,
       alias($._address_binary_expression, $.binary_expression),
       $.call_expression,
       $._parenthesized_address_expression
@@ -2080,29 +2097,6 @@ module.exports = grammar({
         ))
       ),
       /\.[A-Za-z_]\w*/
-    ),
-
-    _composed_name: $ => choice(
-      token(seq(
-        seq(
-          /[A-Za-z][A-Za-z0-9]+/,
-          repeat1(seq(
-          '-',
-          /[A-Za-z0-9]+/
-          )),
-        ),
-        repeat(choice(
-          '+',
-          '-'
-        ))
-      )),
-      token(seq(
-        /[A-Za-z][A-Za-z0-9]+/,
-        choice(
-          '+',
-          '-'
-        )
-      ))
     ),
 
     _wildcard_name: $ => /(\w+([?]+|[*])|([?]+|[*]))(\w([?]+|[*])?)*/,

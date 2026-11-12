@@ -641,6 +641,40 @@ Address literals
       (access_class))))
 
 ==================
+Address literals with symbols
+==================
+
+Data.dump D:flags
+Break.Set P:main+0x10
+Data.dump P:\arm\main+0x20
+
+---
+
+(script
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (address
+        access: (access_class)
+        location: (identifier))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (address
+        access: (access_class)
+        location: (binary_expression
+          left: (identifier)
+          right: (integer)))))
+  (command_expression
+    command: (identifier)
+    arguments: (argument_list
+      (address
+        access: (access_class)
+        location: (binary_expression
+          left: (symbol)
+          right: (integer))))))
+
+==================
 Path literals
 ==================
 

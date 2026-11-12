@@ -27,6 +27,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -  Introduces new `(device_selection)` node for `B::` and `E::` device prompts.
 -  Support `ENTRY`, `PARAMETERS`, and `RETURNVALUES` without `(macro)` arguments.
 -  Add `(hll_most_derived_class_expressions)`.
+-  A `(symbol)` can be combined with an `(access_class)` node to form an
+   address.
 
 ### Changed
 
@@ -43,7 +45,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -  Identifiers starting with a number are correctly detected.
 -  Fix detection of time and floating point literals.
 -  Fix detection of HLL number literals with negative sign or exponent.
--  Detect `(identifier)` nodes with `+` or `-` as suffix.
+-  Detect core names with `+` or `-` as suffix as `(identifier)` nodes.
 -  Recognize `(path)` nodes with forward slashes and drive letter.
 -  Accept both wildcard and dots in `(path)` nodes.
 -  Fix use of `(assignment_expression)` as argument inside `(command_expression)`.
