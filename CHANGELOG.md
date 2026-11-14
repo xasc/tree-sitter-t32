@@ -48,7 +48,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -  Fix detection of HLL number literals with negative sign or exponent.
 -  Detect core names with `+` or `-` as suffix as `(identifier)` nodes.
 -  Recognize `(path)` nodes with forward slashes and drive letter.
--  Accept both wildcard and dots in `(path)` nodes.
+-  Accept both wildcards and dots in `(path)` nodes.
 -  Fix use of `(assignment_expression)` as argument inside `(command_expression)`.
 -  Better support for `(comments)` and empty lines after `(labeled_expression)`.
 -  Fix parsing of host commands with more then two segments.
