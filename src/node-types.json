@@ -34,6 +34,10 @@
             "named": true
           },
           {
+            "type": "identifier",
+            "named": true
+          },
+          {
             "type": "integer",
             "named": true
           },
@@ -43,6 +47,10 @@
           },
           {
             "type": "macro_text_expansion",
+            "named": true
+          },
+          {
+            "type": "symbol",
             "named": true
           },
           {
@@ -149,6 +157,10 @@
         },
         {
           "type": "hll_field_expression",
+          "named": true
+        },
+        {
+          "type": "hll_most_derived_class_expression",
           "named": true
         },
         {
@@ -806,6 +818,10 @@
           "named": true
         },
         {
+          "type": "device_selection",
+          "named": true
+        },
+        {
           "type": "if_block",
           "named": true
         },
@@ -1039,6 +1055,25 @@
       }
     },
     "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "macro",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "device_selection",
+    "named": true,
+    "fields": {},
+    "children": {
       "multiple": false,
       "required": false,
       "types": [
@@ -1187,6 +1222,10 @@
           "named": true
         },
         {
+          "type": "device_selection",
+          "named": true
+        },
+        {
           "type": "if_block",
           "named": true
         },
@@ -1262,6 +1301,10 @@
         },
         {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "device_selection",
           "named": true
         },
         {
@@ -1406,6 +1449,10 @@
           },
           {
             "type": "hll_field_expression",
+            "named": true
+          },
+          {
+            "type": "hll_most_derived_class_expression",
             "named": true
           },
           {
@@ -1602,6 +1649,10 @@
           "named": true
         },
         {
+          "type": "hll_most_derived_class_expression",
+          "named": true
+        },
+        {
           "type": "hll_number_literal",
           "named": true
         },
@@ -1708,6 +1759,10 @@
           },
           {
             "type": "hll_field_expression",
+            "named": true
+          },
+          {
+            "type": "hll_most_derived_class_expression",
             "named": true
           },
           {
@@ -1885,6 +1940,10 @@
             "named": true
           },
           {
+            "type": "hll_most_derived_class_expression",
+            "named": true
+          },
+          {
             "type": "hll_number_literal",
             "named": true
           },
@@ -1962,6 +2021,10 @@
           },
           {
             "type": "hll_field_expression",
+            "named": true
+          },
+          {
+            "type": "hll_most_derived_class_expression",
             "named": true
           },
           {
@@ -2117,6 +2180,10 @@
             "named": true
           },
           {
+            "type": "hll_most_derived_class_expression",
+            "named": true
+          },
+          {
             "type": "hll_number_literal",
             "named": true
           },
@@ -2207,6 +2274,10 @@
             "named": true
           },
           {
+            "type": "hll_most_derived_class_expression",
+            "named": true
+          },
+          {
             "type": "hll_number_literal",
             "named": true
           },
@@ -2294,6 +2365,10 @@
           },
           {
             "type": "hll_field_expression",
+            "named": true
+          },
+          {
+            "type": "hll_most_derived_class_expression",
             "named": true
           },
           {
@@ -2396,6 +2471,10 @@
             "named": true
           },
           {
+            "type": "hll_most_derived_class_expression",
+            "named": true
+          },
+          {
             "type": "hll_number_literal",
             "named": true
           },
@@ -2471,6 +2550,10 @@
           },
           {
             "type": "hll_field_expression",
+            "named": true
+          },
+          {
+            "type": "hll_most_derived_class_expression",
             "named": true
           },
           {
@@ -2554,6 +2637,10 @@
             "named": true
           },
           {
+            "type": "hll_most_derived_class_expression",
+            "named": true
+          },
+          {
             "type": "hll_number_literal",
             "named": true
           },
@@ -2628,6 +2715,10 @@
             "named": true
           },
           {
+            "type": "hll_most_derived_class_expression",
+            "named": true
+          },
+          {
             "type": "hll_number_literal",
             "named": true
           },
@@ -2699,6 +2790,10 @@
           },
           {
             "type": "hll_field_expression",
+            "named": true
+          },
+          {
+            "type": "hll_most_derived_class_expression",
             "named": true
           },
           {
@@ -2777,7 +2872,7 @@
       },
       "type": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "hll_enum_specifier",
@@ -2867,6 +2962,10 @@
           },
           {
             "type": "hll_field_expression",
+            "named": true
+          },
+          {
+            "type": "hll_most_derived_class_expression",
             "named": true
           },
           {
@@ -2973,6 +3072,90 @@
         "types": [
           {
             "type": "hll_parameter_list",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "hll_most_derived_class_expression",
+    "named": true,
+    "fields": {
+      "argument": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "hll_assignment_expression",
+            "named": true
+          },
+          {
+            "type": "hll_binary_expression",
+            "named": true
+          },
+          {
+            "type": "hll_call_expression",
+            "named": true
+          },
+          {
+            "type": "hll_cast_expression",
+            "named": true
+          },
+          {
+            "type": "hll_char_literal",
+            "named": true
+          },
+          {
+            "type": "hll_conditional_expression",
+            "named": true
+          },
+          {
+            "type": "hll_field_expression",
+            "named": true
+          },
+          {
+            "type": "hll_most_derived_class_expression",
+            "named": true
+          },
+          {
+            "type": "hll_number_literal",
+            "named": true
+          },
+          {
+            "type": "hll_parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "hll_pointer_expression",
+            "named": true
+          },
+          {
+            "type": "hll_sizeof_expression",
+            "named": true
+          },
+          {
+            "type": "hll_string_literal",
+            "named": true
+          },
+          {
+            "type": "hll_subscript_expression",
+            "named": true
+          },
+          {
+            "type": "hll_unary_expression",
+            "named": true
+          },
+          {
+            "type": "hll_update_expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "symbol",
             "named": true
           }
         ]
@@ -3154,6 +3337,10 @@
           "named": true
         },
         {
+          "type": "hll_most_derived_class_expression",
+          "named": true
+        },
+        {
           "type": "hll_number_literal",
           "named": true
         },
@@ -3275,6 +3462,10 @@
             "named": true
           },
           {
+            "type": "hll_most_derived_class_expression",
+            "named": true
+          },
+          {
             "type": "hll_number_literal",
             "named": true
           },
@@ -3369,6 +3560,10 @@
             "named": true
           },
           {
+            "type": "hll_most_derived_class_expression",
+            "named": true
+          },
+          {
             "type": "hll_number_literal",
             "named": true
           },
@@ -3450,6 +3645,10 @@
           },
           {
             "type": "hll_field_expression",
+            "named": true
+          },
+          {
+            "type": "hll_most_derived_class_expression",
             "named": true
           },
           {
@@ -3556,6 +3755,10 @@
           },
           {
             "type": "hll_field_expression",
+            "named": true
+          },
+          {
+            "type": "hll_most_derived_class_expression",
             "named": true
           },
           {
@@ -3670,6 +3873,10 @@
             "named": true
           },
           {
+            "type": "hll_most_derived_class_expression",
+            "named": true
+          },
+          {
             "type": "hll_number_literal",
             "named": true
           },
@@ -3741,6 +3948,10 @@
           },
           {
             "type": "hll_field_expression",
+            "named": true
+          },
+          {
+            "type": "hll_most_derived_class_expression",
             "named": true
           },
           {
@@ -3906,6 +4117,10 @@
             "named": true
           },
           {
+            "type": "hll_most_derived_class_expression",
+            "named": true
+          },
+          {
             "type": "hll_number_literal",
             "named": true
           },
@@ -4024,6 +4239,10 @@
             "named": true
           },
           {
+            "type": "hll_most_derived_class_expression",
+            "named": true
+          },
+          {
             "type": "hll_number_literal",
             "named": true
           },
@@ -4084,7 +4303,21 @@
   {
     "type": "identifier",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "macro",
+          "named": true
+        },
+        {
+          "type": "macro_text_expansion",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "if_block",
@@ -4174,6 +4407,10 @@
           },
           {
             "type": "hll_field_expression",
+            "named": true
+          },
+          {
+            "type": "hll_most_derived_class_expression",
             "named": true
           },
           {
@@ -4284,6 +4521,10 @@
           "named": true
         },
         {
+          "type": "device_selection",
+          "named": true
+        },
+        {
           "type": "elif_block",
           "named": true
         },
@@ -4372,6 +4613,10 @@
         },
         {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "device_selection",
           "named": true
         },
         {
@@ -4503,6 +4748,10 @@
             "named": true
           },
           {
+            "type": "identifier",
+            "named": true
+          },
+          {
             "type": "integer",
             "named": true
           },
@@ -4512,6 +4761,10 @@
           },
           {
             "type": "macro_text_expansion",
+            "named": true
+          },
+          {
+            "type": "symbol",
             "named": true
           },
           {
@@ -4545,6 +4798,10 @@
             "named": true
           },
           {
+            "type": "identifier",
+            "named": true
+          },
+          {
             "type": "integer",
             "named": true
           },
@@ -4554,6 +4811,10 @@
           },
           {
             "type": "macro_text_expansion",
+            "named": true
+          },
+          {
+            "type": "symbol",
             "named": true
           },
           {
@@ -4587,6 +4848,10 @@
             "named": true
           },
           {
+            "type": "identifier",
+            "named": true
+          },
+          {
             "type": "integer",
             "named": true
           },
@@ -4596,6 +4861,10 @@
           },
           {
             "type": "macro_text_expansion",
+            "named": true
+          },
+          {
+            "type": "symbol",
             "named": true
           },
           {
@@ -4741,6 +5010,10 @@
             "named": true
           },
           {
+            "type": "path",
+            "named": true
+          },
+          {
             "type": "percentage",
             "named": true
           },
@@ -4780,7 +5053,7 @@
       },
       "macro": {
         "multiple": true,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "macro",
@@ -4957,6 +5230,10 @@
           "named": true
         },
         {
+          "type": "device_selection",
+          "named": true
+        },
+        {
           "type": "if_block",
           "named": true
         },
@@ -5022,6 +5299,10 @@
         },
         {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "device_selection",
           "named": true
         },
         {
@@ -5424,6 +5705,10 @@
             "named": true
           },
           {
+            "type": "hll_most_derived_class_expression",
+            "named": true
+          },
+          {
             "type": "hll_number_literal",
             "named": true
           },
@@ -5528,6 +5813,10 @@
         },
         {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "device_selection",
           "named": true
         },
         {
@@ -5790,6 +6079,10 @@
     "named": false
   },
   {
+    "type": "TASK",
+    "named": false
+  },
+  {
     "type": "TREE",
     "named": false
   },
@@ -5912,6 +6205,10 @@
   {
     "type": "percentage",
     "named": true
+  },
+  {
+    "type": "segment",
+    "named": false
   },
   {
     "type": "short",
