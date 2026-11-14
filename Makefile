@@ -2,7 +2,8 @@
 #
 # SPDX-License-Identifier: MIT
 
-.PHONY: build build-wasm highlight parse playground publish tags test test-all test-debug test-graph
+.PHONY: build build-wasm highlight parse playground publish tags test test-all
+.PHONY: test-debug test-graph
 
 filter ?=
 file ?=
@@ -30,14 +31,14 @@ parse: build
 highlight: build
 	$(yarn) highlight "$(file)"
 
-tags: build
-	$(yarn) tags "$(file)"
-
 publish:
 	cargo publish
 
 playground:
 	$(yarn) playground
+
+tags: build
+	$(yarn) tags "$(file)"
 
 test: build
 	$(yarn) test $(filterFlag)
@@ -50,6 +51,9 @@ test-graph: build
 
 test-all: build
 	$(yarn) test
+
+workflows-lock:
+	gh actions-lock
 
 
 src/parser.c: grammar.js src/scanner.c tree-sitter.json

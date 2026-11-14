@@ -4,7 +4,8 @@ SPDX-FileCopyrightText: 2022 Christoph Sax <c_sax@mailbox.org>
 SPDX-License-Identifier: MIT
 -->
 
-# tree-sitter-t32
+tree-sitter-t32
+===============
 [![CI Status](https://ci.codeberg.org/api/badges/xasc/tree-sitter-t32/status.svg)](https://ci.codeberg.org/xasc/tree-sitter-t32)
 [![status-badge](https://ci.codeberg.org/api/badges/14550/status.svg?branch=dev)](https://ci.codeberg.org/repos/14550/branches/dev)
 
@@ -13,21 +14,28 @@ Support for HLL expressions was adapted from [tree-sitter-c](https://github.com/
 
 A demo is available [here](https://xasc.codeberg.page/tree-sitter-t32-playground/).
 
-## Features
+Features
+--------
 
 - Full coverage of the PRACTICE script language including TRACE32® commands & functions
 - Extended support for HLL expressions
 
 
-## Quick Start
+Quick Start
+-----------
 
 ### Dependencies
 
-- [Tree-sitter CLI](https://github.com/tree-sitter/tree-sitter/blob/master/cli/README.md) for generating the parser from the grammar.
 - A C compiler
-- [Make](https://www.gnu.org/software/make/manual) [optional]
-- [Yarn](https://yarnpkg.com/) [optional]
+- [GitHub CLI]
+- [Make] [optional]
+- [Tree-sitter CLI] for generating the parser from the grammar.
+- [Yarn] [optional]
 
+[GitHub CLI]: https://github.com/cli/cli
+[Make]: https://www.gnu.org/software/make/manual
+[Tree-sitter CLI]: https://github.com/tree-sitter/tree-sitter/blob/master/cli/README.md
+[Yarn]: https://yarnpkg.com/
 
 ### Commands
 
@@ -352,7 +360,8 @@ TearDownTestCase	 | function	def (106, 0) - (106, 16) `TearDownTestCase:`
 </details>
 
 
-## Development
+Development
+-----------
 
 There is a makefile to simplify the most common activities. The makefile expects you to have Yarn installed and set up.
 
@@ -366,7 +375,8 @@ To run all tests:
     make test-all
 
 
-## Editor Support
+Editor Support
+--------------
 
 | Editor                                                     | Plugin                                                                | Syntax Highlighting | Local Variables  | Folds  | Indents  |
 | -------------                                              | -------------                                                         | :-----------------: | :--------------: | :----: | :------: |
@@ -381,7 +391,9 @@ Run
 ```
 to automatically install the supported grammar.
 
-## Limitations
+
+Limitations
+-----------
 
 - `(symbol)` nodes that represent an unquoted module, like `\module`, cannot be
   differentiated from user-defined TRACE32 internal HLL variables, e.g. `\x`.
@@ -399,7 +411,8 @@ to automatically install the supported grammar.
   from `&&` operators.
 
 
-## Packages
+Packages
+--------
 
 | Language      | Package                                               | Download                                              |
 | ------------- | ----------------------------------------------------- | ----------------------------------------------------- |
@@ -408,26 +421,30 @@ to automatically install the supported grammar.
 | Rust          | [crates.io](https://crates.io/crates/tree-sitter-t32) |                                                       |
 
 
-## Mirrors
+Mirrors
+-------
 
 This repository is mirrored to https://gitlab.com/xasc/tree-sitter-t32 and https://github.com/xasc/tree-sitter-t32.
 The main repository is https://codeberg.org/xasc/tree-sitter-t32.
 
 
-## Contributing
+Contributing
+------------
 
 For the time being, we are not accepting pull requests.
 However, please feel free to open issues for changes you would like to see.
 
 
-## License
+License
+-------
 
 Distributed under the MIT license.
 [REUSE](https://reuse.software/) is used for managing licensing information throughout the project.
 For more accurate licensing information, please check the individual files.
 
 
-## References
+References
+----------
 
 - [PRACTICE Script Language User’s Guide](https://www.lauterbach.com/pdf/practice_user.pdf)
 - [Training Script Language PRACTICE](https://www.lauterbach.com/pdf/training_practice.pdf)
