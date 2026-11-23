@@ -1103,12 +1103,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tree-sitter-cli@npm:^0.27.1":
-  version: 0.27.1
-  resolution: "tree-sitter-cli@npm:0.27.1"
+"tree-sitter-cli@npm:^0.27.2":
+  version: 0.27.2
+  resolution: "tree-sitter-cli@npm:0.27.2"
   bin:
     tree-sitter: cli.js
-  checksum: 10/b30898fa5d9a441de15fe88ebf5ab899d4a310684303233cba45edab4f7326402eb0dbd210e04f81340e42f3b71849532cc195beb06495da0806975cac331bee
+  checksum: 10/4f5b9d6e8390d01e226cfbea24915501fe653537e1c683216871a13c6c75dff18e26b71a6b2b290d7917c539f8476feffd7155cbad5e8db1607aec275fa7a8c3
   languageName: node
   linkType: hard
 
@@ -1120,7 +1120,7 @@ __metadata:
     node-gyp: "npm:^13.1.0"
     node-gyp-build: "npm:^4.8.4"
     prebuildify: "npm:^6.0.1"
-    tree-sitter-cli: "npm:^0.27.1"
+    tree-sitter-cli: "npm:^0.27.2"
   peerDependencies:
     tree-sitter: ^0.25.0
   peerDependenciesMeta:
