@@ -1194,7 +1194,7 @@ Var.WHILE string_array[\i]!='\0'
           argument: (symbol))))))
 
 ==================
-Subroutine Calls
+Subroutine calls
 ==================
 
 GOSUB printA
@@ -1283,3 +1283,34 @@ SUBROUTINE printC
                 (macro)))))
         (command_expression
           command: (identifier)))))
+
+==================
+Dynamic menus
+==================
+
+menu.rp
+(&+
+  add
+  TOOLBAR
+  (
+    TOOLITEM "New Button" "[:icon]" "Dump 0x1234"
+  )
+)
+
+---
+
+(script
+  (command_expression
+    (identifier))
+  (block
+    (command_expression
+      (identifier))
+    (command_expression
+      (identifier))
+    (block
+      (command_expression
+        (identifier)
+        (argument_list
+          (string)
+          (string)
+          (string))))))
